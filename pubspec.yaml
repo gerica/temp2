@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter_localizations:
@@ -49,6 +49,11 @@ dependencies:
   #region Dependency Injection
   injectable: ^1.3.0
   get_it: ^6.1.1
+  #endregion
+
+  #region Firebase
+  firebase_core: ^1.1.0
+  firebase_crashlytics: ^2.0.2
   #endregion
 
   #region Network and Local Data
@@ -112,3 +117,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true
+  main_locale: en

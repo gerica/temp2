@@ -29,7 +29,7 @@ Future main() async {
       runApp(RadioLifeAppWidget());
     },
         (error, stackTrace) =>
-        FirebaseCrashlytics.instance.recordError(error, stackTrace),
+          FirebaseCrashlytics.instance.recordError(error, stackTrace),
   );
 }
 
