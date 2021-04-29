@@ -210,7 +210,7 @@ analyzer:
     cancel_subscriptions: error
     cascade_invocations: error
     close_sinks: error
-    comment_references: error
+    comment_references: warning
     constant_identifier_names: error
     control_flow_in_finally: error
     curly_braces_in_flow_control_structures: error
