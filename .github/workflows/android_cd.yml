@@ -3,7 +3,7 @@ name: Distribute Android App
 on:
   push:
     branches:
-      - "release-android-*"
+      - "beta"
 
 jobs:
   deploy_android_dev:
@@ -11,8 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PAT }}
       - uses: ruby/setup-ruby@v1.62.0
         with:
           ruby-version: '2.7'
@@ -31,7 +29,7 @@ jobs:
           flutter-version: '2.0.1'
       - run: flutter clean
       - run: flutter pub get
-      - run: flutter build apk --release -t lib/main_dev.dart --flavor dev --build-number=${GITHUB_RUN_NUMBER}
+      - run: flutter build apk --release -t lib/main_dev.dart --build-number=${GITHUB_RUN_NUMBER}
         env:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
@@ -41,6 +39,5 @@ jobs:
           lane: android_dev
           subdirectory: android
         env:
-          FIREBASE_DEV_APP_ID: '${{ secrets.FIREBASE_DEV_APP_ID }}'
-          FIREBASE_PROD_APP_ID: '${{ secrets.FIREBASE_PROD_APP_ID }}'
+          FIREBASE_APP_ID: '${{ secrets.FIREBASE_APP_ID }}'
           FIREBASE_TOKEN: '${{ secrets.FIREBASE_TOKEN }}'
