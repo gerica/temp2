@@ -1,8 +1,6 @@
 
 import 'dart:async';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
 import 'app/radio_life_app_widget.dart';
@@ -16,7 +14,6 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runZonedGuarded(
         () async {
-      await _initializeFirebase();
       Resource.setErrorMapper(ErrorMapper.from);
       FlavorConfig(
         flavor: Flavor.DEV,
@@ -28,23 +25,6 @@ Future main() async {
       );
       runApp(RadioLifeAppWidget());
     },
-        (error, stackTrace) =>
-        FirebaseCrashlytics.instance.recordError(error, stackTrace),
+        (error, stackTrace) => debugPrint(stackTrace.toString()),
   );
-}
-
-// Define an async function to initialize FlutterFire
-Future<void> _initializeFirebase() async {
-  // Wait for Firebase to initialize
-  await Firebase.initializeApp();
-
-  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-
-  // Pass all uncaught errors to Crashlytics.
-  final Function originalOnError = FlutterError.onError!;
-  FlutterError.onError = (FlutterErrorDetails errorDetails) async {
-    await FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
-    // Forward to original handler.
-    originalOnError(errorDetails);
-  };
 }
