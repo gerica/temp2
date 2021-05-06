@@ -1,5 +1,7 @@
 
 import 'package:get/get.dart';
+import 'package:radio_life/app/pages/sign_in/bindings/sign_in_bindings.dart';
+import 'package:radio_life/app/pages/sign_in/sign_in_page.dart';
 
 abstract class Routes {
   static String initial = '/';
@@ -11,5 +13,11 @@ abstract class Routes {
 }
 
 mixin RadioLifeAppRoutes {
-  static List<GetPage> routes = [];
+  static List<GetPage> routes = [
+    GetPage(
+      name: Routes.signIn,
+      page: () => SignInPage(),
+      binding: SignInBinding()
+    )
+  ];
 }
