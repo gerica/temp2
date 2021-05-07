@@ -1,0 +1,33 @@
+# Automatically generated on 2021-05-07 UTC from https://codemagic.io/app/60947f1a2149abb02e7b5e1d/settings
+# Note that this configuration is not an exact match to UI settings. Review and adjust as necessary.
+
+workflows:
+  default-workflow:
+    name: Default Workflow
+    environment:
+      vars:
+        AWS_SECRET_ACCESS_KEY: Encrypted(Z0FBQUFBQmdsSWhCa05oLV9mUWNRMzU0MjRqYWVnSm5FaTNSZDBKRWJkN0E1WHViS2JxM2hUdlRKMzNLVUJLX0ZkeE5EVkxjWjE3NVo5R1NhYUVLWHJLREl0X3hHNHdiSFA3WUhNcGtrWUdJdGFzRFBZXzI5bF94SlZmYUpJSER2R1FpNjN3ZGRRSWU=)
+        AWS_ACCESS_KEY_ID: Encrypted(Z0FBQUFBQmdsSWhCb0ptZGYzaGpLWEtWTGJncVY4Qjk4RVhFa3VyVzctMGdlWTVMMWd6eHlZZjJQNDNIdXpRWWpFLUZETlg2X1JSaU9ZZklkZ2hBUTF6MUtOaFBPZkduaUhIT1B0QWhHMVNReUVRc0d6ZVNiUDA9)
+      flutter: dev
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: 'main'
+          include: true
+          source: true
+    scripts:
+      - flutter packages pub get
+      - flutter config --enable-web
+      - |
+        # build web
+        flutter build web --release
+        cd build/web
+        7z a -r ../web.zip ./*
+        cd $FCI_BUILD_DIR/build/
+        sudo pip3 install awscli --upgrade
+        aws s3 sync web/ s3://radiolife-bucket/
+    artifacts:
+      - build/**/outputs/**/mapping.txt
+      - build/web.zip
+      - flutter_drive.log
