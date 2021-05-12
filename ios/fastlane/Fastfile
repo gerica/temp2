@@ -42,11 +42,11 @@ platform :ios do
     )
 
     increment_build_number(
-      build_number: "31" # set a specific number
+      build_number: "1" # set a specific number
     )
 
     increment_version_number(
-      version_number: "1.0.31" # Set a specific version number
+      version_number: "1.0.0" # Set a specific version number
     )
 
     gym(
