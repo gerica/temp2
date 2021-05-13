@@ -1,1 +1,3 @@
-- Configuring CI/CD using Github Actions + Fastlane for Android on dev
+- App Styles
+- App Icon
+- Splash screen

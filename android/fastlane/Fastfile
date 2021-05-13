@@ -10,7 +10,7 @@ platform :android do
         firebase_app_distribution(
            app: FIREBASE_APP_ID,
             firebase_cli_token: FIREBASE_TOKEN,
-            apk_path: "../build/app/outputs/apk/dev/release/app-dev-release.apk",
+            apk_path: "../build/app/outputs/flutter-apk/app-release.apk",
             release_notes_file: "../android/release_notes_file.txt",
             groups: "mobile-team"
         )

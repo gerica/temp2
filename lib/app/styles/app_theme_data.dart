@@ -23,11 +23,7 @@ class AppThemeData extends ThemeDataRadioLife {
 
   static ThemeData get themeData =>
       appThemeModeIsDark ? themeDataDark : themeDataLight;
-  static ThemeMode get themeMode => ThemeDataRadioLife.isDark == null
-      ? ThemeMode.system
-      : appThemeModeIsDark
-          ? ThemeMode.dark
-          : ThemeMode.light;
+  static ThemeMode get themeMode => ThemeMode.light;
 
   static final ThemeData themeDataLight = ThemeData(
     brightness: Brightness.light,
