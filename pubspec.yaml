@@ -33,6 +33,7 @@ dependencies:
   flutter_svg: ^0.22.0
   auto_size_text: ^3.0.0-nullsafety.0
   shimmer: ^2.0.0
+  flutter_native_splash: ^1.1.8+4
   #endregion
 
   #region Local
@@ -122,3 +123,9 @@ flutter:
 flutter_intl:
   enabled: true
   main_locale: en
+
+flutter_native_splash:
+  color: "#FA4B86"
+  image: assets/images/white_monochrome_logo_vertical_splash_screen.png
+  android_gravity: center
+  ios_content_mode: center
