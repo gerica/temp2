@@ -33,8 +33,8 @@ class AppThemeData extends ThemeDataRadioLife {
     brightness: Brightness.light,
     accentColorBrightness: Brightness.light,
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    primarySwatch: AppColorScheme.primarySwatchLight,
-    accentColor: AppColorScheme.accentColorLight,
+    primarySwatch: AppColorScheme.primarySwatch,
+    accentColor: AppColorScheme.accentColor,
     textTheme: AppTextTheme.textTheme,
     bottomSheetTheme:
         const BottomSheetThemeData(backgroundColor: Colors.transparent),
@@ -49,17 +49,17 @@ class AppThemeData extends ThemeDataRadioLife {
           fontFamily: 'Montserrat'),
       labelPadding: EdgeInsets.symmetric(horizontal: AppSpacing.extraSmall),
     ),
-    scaffoldBackgroundColor: RadioLifeLightThemeColors.background,
-    colorScheme: AppColorScheme.colorSchemeLight,
+    scaffoldBackgroundColor: RadiolifeThemeColors.background,
+    colorScheme: AppColorScheme.colorScheme,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     textSelectionTheme: TextSelectionThemeData(
-      selectionColor: AppColorScheme.successLight,
+      selectionColor: AppColorScheme.success,
       cursorColor: AppColorScheme.success,
       selectionHandleColor: AppColorScheme.success,
     ),
     appBarTheme: const AppBarTheme(
-        backgroundColor: RadioLifeLightThemeColors.background,
+        backgroundColor: RadiolifeThemeColors.background,
         brightness: Brightness.light,
         elevation: 0),
     pageTransitionsTheme: const PageTransitionsTheme(
@@ -73,7 +73,7 @@ class AppThemeData extends ThemeDataRadioLife {
       brightness: Brightness.light,
     ),
     iconTheme: IconThemeData(
-      color: AppColorScheme.primarySwatchLight[500],
+      color: AppColorScheme.primarySwatch[500],
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
@@ -81,7 +81,7 @@ class AppThemeData extends ThemeDataRadioLife {
       elevation: 0,
     ),
     buttonTheme: ButtonThemeData(
-        colorScheme: AppColorScheme.colorSchemeLight,
+        colorScheme: AppColorScheme.colorScheme,
         textTheme: ButtonTextTheme.primary),
   );
 
@@ -89,8 +89,8 @@ class AppThemeData extends ThemeDataRadioLife {
     visualDensity: VisualDensity.adaptivePlatformDensity,
     brightness: Brightness.dark,
     accentColorBrightness: Brightness.dark,
-    primarySwatch: AppColorScheme.primarySwatchDark,
-    accentColor: AppColorScheme.accentColorDark,
+    primarySwatch: AppColorScheme.primarySwatch,
+    accentColor: AppColorScheme.accentColor,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     tabBarTheme: const TabBarTheme(
@@ -107,15 +107,15 @@ class AppThemeData extends ThemeDataRadioLife {
     textTheme: AppTextTheme.textTheme,
     bottomSheetTheme:
         const BottomSheetThemeData(backgroundColor: Colors.transparent),
-    scaffoldBackgroundColor: RadioLifeDarkThemeColors.background,
-    colorScheme: AppColorScheme.colorSchemeDark,
+    scaffoldBackgroundColor: RadiolifeThemeColors.background,
+    colorScheme: AppColorScheme.colorScheme,
     textSelectionTheme: TextSelectionThemeData(
-      selectionColor: AppColorScheme.successLight,
+      selectionColor: AppColorScheme.success,
       cursorColor: AppColorScheme.success,
       selectionHandleColor: AppColorScheme.success,
     ),
     appBarTheme: const AppBarTheme(
-      backgroundColor: RadioLifeDarkThemeColors.background,
+      backgroundColor: RadiolifeThemeColors.background,
       elevation: 0,
       brightness: Brightness.dark,
     ),
@@ -127,17 +127,17 @@ class AppThemeData extends ThemeDataRadioLife {
       },
     ),
     iconTheme: IconThemeData(
-      color: AppColorScheme.primarySwatchDark[500],
+      color: AppColorScheme.primarySwatch[500],
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: RadioLifeDarkThemeColors.backgroundLight,
+      backgroundColor: RadiolifeThemeColors.backgroundLight,
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: RadioLifeDarkThemeColors.emphasis,
-      unselectedItemColor: RadioLifeDarkThemeColors.emphasis.withOpacity(0.3),
+      selectedItemColor: RadiolifeThemeColors.blue,
+      unselectedItemColor: RadiolifeThemeColors.blue.withOpacity(0.3),
       elevation: 0,
     ),
     buttonTheme: ButtonThemeData(
-        colorScheme: AppColorScheme.colorSchemeDark,
+        colorScheme: AppColorScheme.colorScheme,
         textTheme: ButtonTextTheme.primary),
   );
 }
