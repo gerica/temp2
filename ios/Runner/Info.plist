@@ -26,6 +26,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>Radiolife require access your bluetooth to connect to the device</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>Radiolife require access your bluetooth to connect to the device</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

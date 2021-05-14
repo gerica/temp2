@@ -3,7 +3,7 @@ name: Distribute Android App
 on:
   push:
     branches:
-      - "beta"
+      - "android-beta"
 
 jobs:
   deploy_android_dev:
