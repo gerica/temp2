@@ -8,9 +8,9 @@ extension TransactionColorExtension on TransactionColorTheme {
   Color get backgroundColor {
     switch (this) {
       case TransactionColorTheme.success:
-        return AppColorScheme.successLight;
+        return AppColorScheme.success;
       case TransactionColorTheme.error:
-        return AppColorScheme.errorLight;
+        return AppColorScheme.error;
     }
   }
 

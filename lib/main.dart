@@ -17,7 +17,7 @@ Future main() async {
       Resource.setErrorMapper(ErrorMapper.from);
       FlavorConfig(
         flavor: Flavor.DEV,
-        color: AppColorScheme.primary,
+        color: AppColorScheme.success,
         values: FlavorValues(
             baseUrl: Environment.baseUrlDev,
             baseWebSocketUrl: Environment.baseWebSocketUrlDev,
