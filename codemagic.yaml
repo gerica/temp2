@@ -9,7 +9,7 @@ workflows:
       vars:
         AWS_ACCESS_KEY_ID: Encrypted(Z0FBQUFBQmdsSV9uVUw2M0pnbU0zUlRTVVQ5bEtfNXcwUE9IQzFrQ0lXUFdodDBWdXYtdVpmaW9aSE9MeUlocV9zVTJnMmpEYmZMTHVWMVhTUTlaeldQanVLZEQxOU4xTWU3Tzd0WVRuT0JsRTVueXBaM2Jrc289)
         AWS_SECRET_ACCESS_KEY: Encrypted(Z0FBQUFBQmdsSV9uUXB5UVphc1NVUHdfVk5PU3MycElaQ3VkaVdyc3pjeGFWVGo1UVNVaF9kY0hWUlZoSmhqMjl5WkJ5ZXlBcm9PdFNfbHlWblR5Q1Mxa3F4OG9pcjc1b19wSnBaY3l0Z1lVTWowam9BXzFqZmR5MVlxY3d0VTQ2V2JSQ3BFWUNuZWg=)
-      flutter: dev
+      flutter: stable
     triggering:
       events:
         - push
