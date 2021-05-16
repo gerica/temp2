@@ -4,7 +4,7 @@ import 'package:radio_life/app/utils/style_utils.dart';
 class AppColorScheme {
 
   static final ColorScheme colorScheme = ColorScheme.fromSwatch(
-    brightness: Brightness.dark,
+    brightness: Brightness.light,
     backgroundColor: RadiolifeThemeColors.background,
     accentColor: RadiolifeThemeColors.accentColor,
     primarySwatch: RadiolifeThemeColors.primarySwatch,

@@ -1,47 +1,30 @@
-import 'package:exchangeapp_flutter/app/styles/app_theme.dart';
-import 'package:exchangeapp_flutter/core/data/enum/status.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:radio_life/app/styles/app_color_scheme.dart';
+import 'package:radio_life/core/data/enum/status.dart';
 
-enum PrimaryButtonColor { success, error, primary, emphasis }
+enum PrimaryButtonColor { success, error, primary }
 
 extension PrimaryButtonColorExtension on PrimaryButtonColor {
   Color get backgroundColor {
     switch (this) {
       case PrimaryButtonColor.success:
-        return AppColorScheme.successLight;
+        return AppColorScheme.success.withOpacity(0.4);
       case PrimaryButtonColor.error:
-        return AppColorScheme.errorLight;
+        return AppColorScheme.error.withOpacity(0.4);
       case PrimaryButtonColor.primary:
-        return AppColorScheme.primaryLight.withOpacity(0.2);
-      case PrimaryButtonColor.emphasis:
-        return AppColorScheme.primary;
+        return AppColorScheme.primarySwatch;
     }
   }
 
   Color get textColor {
     switch (this) {
       case PrimaryButtonColor.success:
-        return AppColorScheme.success;
+        return AppColorScheme.white;
       case PrimaryButtonColor.error:
-        return AppColorScheme.error;
+        return AppColorScheme.white;
       case PrimaryButtonColor.primary:
-        return AppColorScheme.primaryLight;
-      case PrimaryButtonColor.emphasis:
-        return AppColorScheme.emphasis;
-    }
-  }
-
-  Color get borderColor {
-    switch (this) {
-      case PrimaryButtonColor.success:
-        return AppColorScheme.success;
-      case PrimaryButtonColor.error:
-        return AppColorScheme.error;
-      case PrimaryButtonColor.primary:
-        return AppColorScheme.primaryLight;
-      case PrimaryButtonColor.emphasis:
-        return AppColorScheme.emphasis;
+        return AppColorScheme.white;
     }
   }
 }
@@ -104,9 +87,9 @@ class PrimaryButton extends StatelessWidget {
     required this.type,
     required this.style,
     required this.state,
-    this.fontSize = 20,
+    this.fontSize = 18,
     this.fontWeight = FontWeight.bold,
-    this.height = 65,
+    this.height = 50,
     this.width = double.infinity,
   });
 
@@ -122,10 +105,6 @@ class PrimaryButton extends StatelessWidget {
           fillColor: style.showBackground ? color.backgroundColor : Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(type.cornerRadius),
-            side: BorderSide(
-              color: style.showBorder ? color.borderColor : Colors.transparent,
-              width: 2,
-            ),
           ),
           onPressed: onPressed,
           child: Padding(
@@ -142,7 +121,7 @@ class PrimaryButton extends StatelessWidget {
               ),
               child: Center(
                 child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(AppColorScheme.primaryLight),
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColorScheme.primarySwatch),
                   strokeWidth: 2,
                 ),
               ),

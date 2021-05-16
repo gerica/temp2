@@ -1,13 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:exchangeapp_flutter/app/styles/app_font_size.dart';
-import 'package:exchangeapp_flutter/app/styles/app_font_weight.dart';
-import 'package:exchangeapp_flutter/app/styles/app_spacing.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:radio_life/app/styles/app_font_size.dart';
+import 'package:radio_life/app/styles/app_font_weight.dart';
+import 'package:radio_life/app/styles/app_spacing.dart';
 
 import '../../styles/app_color_scheme.dart';
 
-class DibbsAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
+class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final bool automaticallyImplyLeading;
   final Widget? backButtonIcon;
   final String? titleText;
@@ -36,7 +36,7 @@ class DibbsAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final bool invertColors;
   final TextStyle? style;
 
-  const DibbsAppBarWidget({
+  const RadioLifeAppBarWidget({
     Key? key,
     this.automaticallyImplyLeading = true,
     this.actions,
@@ -51,7 +51,7 @@ class DibbsAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor,
     this.brightness,
     this.iconTheme,
-    this.hideTitle = false,
+    this.hideTitle = true,
     this.backButtonColor,
     this.actionsIconTheme,
     this.textTheme,
@@ -66,7 +66,7 @@ class DibbsAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) => AppBar(
-        elevation: elevation,
+        elevation: elevation ?? 0,
         backgroundColor: backgroundColor ?? AppColorScheme.background,
         leadingWidth: leadingWidth,
         leading: showBackButton
@@ -84,7 +84,7 @@ class DibbsAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 : IconButton(
                     icon: Icon(
                       Icons.arrow_back_ios,
-                      color: backButtonColor ?? AppColorScheme.emphasis,
+                      color: backButtonColor ?? AppColorScheme.textPrimary,
                     ),
                     onPressed: onBackButtonPressed,
                   )
@@ -113,7 +113,7 @@ class DibbsAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                           style: style ??
                               TextStyle(
                                 fontSize: AppFontSize.extraMega,
-                                color: AppColorScheme.emphasis,
+                                color: AppColorScheme.textPrimary,
                                 fontWeight: AppFontWeight.bold,
                               ),
                           softWrap: true,

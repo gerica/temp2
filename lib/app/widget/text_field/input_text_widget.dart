@@ -1,8 +1,11 @@
-import 'package:exchangeapp_flutter/app/styles/app_color_scheme.dart';
-import 'package:exchangeapp_flutter/app/styles/app_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:radio_life/app/styles/app_color_scheme.dart';
+import 'package:radio_life/app/styles/app_corner_radius.dart';
+import 'package:radio_life/app/styles/app_font_size.dart';
+import 'package:radio_life/app/styles/app_font_weight.dart';
+import 'package:radio_life/app/styles/app_spacing.dart';
 
 abstract class FieldWidget {
   TextFormField buildTextFieldCore();
@@ -94,8 +97,6 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
   @override
   Widget build(BuildContext context) => //
       Container(
-        margin: margin ??
-            const EdgeInsets.symmetric(horizontal: AppSpacing.medium, vertical: AppSpacing.medium),
         child: buildTextFieldCore(),
       );
 
@@ -115,7 +116,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         style: style ??
             TextStyle(
                 fontSize: AppFontSize.primary,
-                color: AppColorScheme.emphasis,
+                color: AppColorScheme.textPrimary,
                 fontWeight: AppFontWeight.semiBold),
         onEditingComplete: () {
           focusNode?.unfocus();
@@ -127,26 +128,26 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         },
         autofocus: autofocus,
         onChanged: onChanged,
-        cursorColor: AppColorScheme.emphasis,
+        cursorColor: AppColorScheme.textPrimary,
         decoration: showDecoration ? _buildInputDecoration() : _buildClearInputDecoration(),
       );
 
   InputDecoration _buildInputDecoration() => InputDecoration(
-        fillColor: background ?? AppColorScheme.primary,
+        fillColor: background ?? AppColorScheme.backgroundLight,
         filled: true,
         suffixIcon: suffixIcon ?? Container(height: 0, width: 0),
         hintText: hintText,
         disabledBorder: _buildInputBorderSide,
         enabledBorder: _buildInputBorderSide,
         prefixText: prefixText,
-        suffixIconConstraints: BoxConstraints(minHeight: height ?? 62),
+        suffixIconConstraints: BoxConstraints(minHeight: height ?? 50),
         prefixStyle: prefixStyle,
         errorBorder: _buildInputBorderSide,
         focusedBorder: _buildInputBorderSide,
         focusedErrorBorder: _buildInputBorderSide,
         border: _buildInputBorderSide,
         hintStyle: hintStyle ??
-            TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.emphasisLight),
+            TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.textSecondary),
         errorStyle: TextStyle(fontSize: AppFontSize.secondary, color: AppColorScheme.error),
         errorText: canValidate ? errorText : null,
         contentPadding: const EdgeInsets.only(left: AppSpacing.extraMedium),
@@ -166,15 +167,14 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         focusedErrorBorder: InputBorder.none,
         border: InputBorder.none,
         hintStyle: hintStyle ??
-            TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.emphasisLight),
+            TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.textPrimary),
         errorStyle: TextStyle(fontSize: AppFontSize.secondary, color: AppColorScheme.error),
         errorText: canValidate ? errorText : null,
         contentPadding: EdgeInsets.zero,
       );
 
-  InputBorder get _buildInputBorderSide => OutlineInputBorder(
-      borderSide: BorderSide(color: AppColorScheme.border),
-      borderRadius: const BorderRadius.all(AppCornerRadius.medium));
+  InputBorder get _buildInputBorderSide => const OutlineInputBorder(
+      borderRadius: BorderRadius.all(AppCornerRadius.medium));
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

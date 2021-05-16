@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:radio_life/app/styles/theme_data_radio_life.dart';
 
 import '../generated/l10n.dart';
 import 'radio_life_app_binding.dart';
@@ -13,7 +13,13 @@ import 'utils/widget_utils.dart';
 
 class RadioLifeAppWidget extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => GetMaterialApp(
+  Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+          statusBarColor: Colors.white,
+          statusBarIconBrightness: Brightness.light),
+    );
+    return GetMaterialApp(
         navigatorKey: Get.key,
         localizationsDelegates: const [
           S.delegate,
@@ -22,23 +28,26 @@ class RadioLifeAppWidget extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        builder: (context, child) {
-          ThemeDataRadioLife.setIsDark(context);
-          return Scaffold(
+        themeMode: ThemeMode.light,
+        builder: (context, child) => Scaffold(
             backgroundColor: AppColorScheme.background,
-            body: GestureDetector(
-              onTap: () => WidgetUtils.hideKeyboard(context),
-              child: child,
+            body: AnnotatedRegion<SystemUiOverlayStyle>(
+              sized: false,
+              value: const SystemUiOverlayStyle(
+                  statusBarIconBrightness: Brightness.light),
+              child: GestureDetector(
+                onTap: () => WidgetUtils.hideKeyboard(context),
+                child: child,
+              ),
             ),
-          );
-        },
+          ),
         debugShowCheckedModeBanner: false,
-        title: 'Dibbs',
-        themeMode: AppThemeData.themeMode,
-        theme: AppThemeData.themeData,
-        darkTheme: AppThemeData.themeDataDark,
+        title: 'Radiolife',
+        theme: AppThemeData.themeDataLight,
+        darkTheme: AppThemeData.themeDataLight,
         getPages: RadioLifeAppRoutes.routes,
         initialRoute: Routes.signIn,
         initialBinding: RadioLifeAppBinding(),
       );
+  }
 }
