@@ -4,5 +4,11 @@
   "email": "E-mail",
   "password": "Password",
   "forgotPassword": "Forgot password?",
-  "login": "LOGIN"
+  "login": "LOGIN",
+  "joinUs": "JOIN US",
+  "alreadyHaveAnAccount": "Already have an account?",
+  "signinInstead": "Sign-in instead",
+  "signup": "SIGNUP",
+  "firstName": "First name",
+  "lastName": "Last name"
 }
