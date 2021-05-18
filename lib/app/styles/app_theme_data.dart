@@ -18,22 +18,18 @@ class AppThemeData extends ThemeDataRadioLife {
     _appThemeModeIsDark = isDark;
   }
 
-  static bool get appThemeModeIsDark =>
-      _appThemeModeIsDark ?? ThemeDataRadioLife.isDark ?? true;
+  static bool get appThemeModeIsDark => _appThemeModeIsDark ?? ThemeDataRadioLife.isDark ?? true;
 
-  static ThemeData get themeData =>
-      appThemeModeIsDark ? themeDataDark : themeDataLight;
+  static ThemeData get themeData => appThemeModeIsDark ? themeDataDark : themeDataLight;
+
   static ThemeMode get themeMode => ThemeMode.light;
 
   static final ThemeData themeDataLight = ThemeData(
-    brightness: Brightness.light,
-    accentColorBrightness: Brightness.light,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     primarySwatch: AppColorScheme.primarySwatch,
     accentColor: AppColorScheme.accentColor,
     textTheme: AppTextTheme.textTheme,
-    bottomSheetTheme:
-        const BottomSheetThemeData(backgroundColor: Colors.transparent),
+    bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent),
     tabBarTheme: const TabBarTheme(
       labelStyle: TextStyle(
           fontSize: AppFontSize.primary,
@@ -54,19 +50,12 @@ class AppThemeData extends ThemeDataRadioLife {
       cursorColor: AppColorScheme.success,
       selectionHandleColor: AppColorScheme.success,
     ),
-    appBarTheme: const AppBarTheme(
-        backgroundColor: RadiolifeThemeColors.background,
-        brightness: Brightness.light,
-        elevation: 0),
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
         TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
         TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
       },
-    ),
-    cupertinoOverrideTheme: const CupertinoThemeData(
-      brightness: Brightness.light,
     ),
     iconTheme: IconThemeData(
       color: AppColorScheme.primarySwatch[500],
@@ -77,12 +66,10 @@ class AppThemeData extends ThemeDataRadioLife {
       elevation: 0,
     ),
     buttonTheme: ButtonThemeData(
-        colorScheme: AppColorScheme.colorScheme,
-        textTheme: ButtonTextTheme.primary),
+        colorScheme: AppColorScheme.colorScheme, textTheme: ButtonTextTheme.primary),
   );
 
   static final ThemeData themeDataDark = ThemeData(
-    visualDensity: VisualDensity.adaptivePlatformDensity,
     brightness: Brightness.dark,
     accentColorBrightness: Brightness.dark,
     primarySwatch: AppColorScheme.primarySwatch,
@@ -101,8 +88,7 @@ class AppThemeData extends ThemeDataRadioLife {
       labelPadding: EdgeInsets.symmetric(horizontal: AppSpacing.extraSmall),
     ),
     textTheme: AppTextTheme.textTheme,
-    bottomSheetTheme:
-        const BottomSheetThemeData(backgroundColor: Colors.transparent),
+    bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent),
     scaffoldBackgroundColor: RadiolifeThemeColors.background,
     colorScheme: AppColorScheme.colorScheme,
     textSelectionTheme: TextSelectionThemeData(
@@ -133,7 +119,6 @@ class AppThemeData extends ThemeDataRadioLife {
       elevation: 0,
     ),
     buttonTheme: ButtonThemeData(
-        colorScheme: AppColorScheme.colorScheme,
-        textTheme: ButtonTextTheme.primary),
+        colorScheme: AppColorScheme.colorScheme, textTheme: ButtonTextTheme.primary),
   );
 }

@@ -1,3 +1,8 @@
 {
-  "key": "value"
+  "key": "value",
+  "welcomeBack": "WELCOME BACK",
+  "email": "E-mail",
+  "password": "Password",
+  "forgotPassword": "Forgot password?",
+  "login": "LOGIN"
 }

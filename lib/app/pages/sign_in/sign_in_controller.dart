@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignInController extends GetxController {
@@ -6,6 +7,8 @@ class SignInController extends GetxController {
   //endregion
 
   //region Public
+  TextEditingController emailController = TextEditingController();
+  TextEditingController pwdController = TextEditingController();
   //endregion
 
   //region Functions
