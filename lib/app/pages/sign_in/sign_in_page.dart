@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
+import 'package:radio_life/app/pages/forgot_password/forgot_password_page.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
@@ -60,7 +61,9 @@ class SignInPage extends GetView<SignInController> {
                 controller: controller.pwdController,
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  ForgotPasswordPage.navigateTo;
+                },
                 child: Text(
                   S.of(context).forgotPassword,
                   style: TextStyle(color: AppColorScheme.textPrimary),

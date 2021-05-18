@@ -1,5 +1,7 @@
 
 import 'package:get/get.dart';
+import 'package:radio_life/app/pages/forgot_password/bindings/forgot_password_binding.dart';
+import 'package:radio_life/app/pages/forgot_password/forgot_password_page.dart';
 import 'package:radio_life/app/pages/sign_in/bindings/sign_in_bindings.dart';
 import 'package:radio_life/app/pages/sign_in/sign_in_page.dart';
 import 'package:radio_life/app/pages/sign_up/bindings/sign_up_bindings.dart';
@@ -11,7 +13,7 @@ abstract class Routes {
   static const signUp = '/sign-up';
   static const main = '/main';
   static const account = '/account';
-  static const resetPassword = '/reset-password';
+  static const forgotPassword = '/forgot-password';
 }
 
 mixin RadioLifeAppRoutes {
@@ -25,6 +27,11 @@ mixin RadioLifeAppRoutes {
       name: Routes.signIn,
       page: () => SignInPage(),
       binding: SignInBinding()
+    ),
+    GetPage(
+        name: Routes.forgotPassword,
+        page: () => ForgotPasswordPage(),
+        binding: ForgotPasswordBinding()
     )
   ];
 }
