@@ -315,6 +315,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  gap:
+    dependency: transitive
+    description:
+      name: gap
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   get:
     dependency: "direct main"
     description:
@@ -504,6 +511,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+  layout:
+    dependency: "direct main"
+    description:
+      name: layout
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.1"
   lint:
     dependency: "direct main"
     description:
@@ -795,7 +809,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.0"
   stack_trace:
     dependency: transitive
     description:
@@ -837,7 +851,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.2.19"
   timing:
     dependency: transitive
     description:
