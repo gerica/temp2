@@ -14,13 +14,7 @@ import 'utils/widget_utils.dart';
 
 class RadioLifeAppWidget extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-          statusBarColor: Colors.white,
-          statusBarIconBrightness: Brightness.light),
-    );
-    return Layout(
+  Widget build(BuildContext context) => Layout(
       child: GetMaterialApp(
         navigatorKey: Get.key,
         localizationsDelegates: const [
@@ -52,5 +46,4 @@ class RadioLifeAppWidget extends StatelessWidget {
         initialBinding: RadioLifeAppBinding(),
       ),
     );
-  }
 }
