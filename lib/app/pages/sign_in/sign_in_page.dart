@@ -29,65 +29,67 @@ class SignInPage extends GetView<SignInController> {
           },
         ),
         body: Center(
-          child: Container(
-            constraints: BoxConstraints(
-                maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                    ? 500
-                    : MediaQuery.of(context).size.width),
-            padding: const EdgeInsets.all(AppSpacing.medium),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                  child: Hero(
-                    tag: 'logo',
-                    child: Image.asset(AppImages.icon, width: 100),
-                  ),
+          child: Obx(() => Container(
+                constraints: BoxConstraints(
+                    maxWidth: context.breakpoint > LayoutBreakpoint.xs
+                        ? 500
+                        : MediaQuery.of(context).size.width),
+                padding: const EdgeInsets.all(AppSpacing.medium),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Hero(
+                        tag: 'logo',
+                        child: Image.asset(AppImages.icon, width: 100),
+                      ),
+                    ),
+                    UIHelper.verticalSpaceLarge,
+                    Text(
+                      S.of(context).welcomeBack,
+                      style: const TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    UIHelper.verticalSpaceLarge,
+                    InputTextWidget(
+                      hintText: S.of(context).email,
+                      onFieldSubmitted: () {},
+                      keyboardType: TextInputType.emailAddress,
+                      controller: controller.emailController,
+                      errorText: controller.signInModel.value.emailError,
+                    ),
+                    UIHelper.verticalSpaceMedium,
+                    InputTextWidget(
+                      hintText: S.of(context).password,
+                      onFieldSubmitted: () {},
+                      obscureText: true,
+                      keyboardType: TextInputType.text,
+                      controller: controller.pwdController,
+                      errorText: controller.signInModel.value.passwordError,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        ForgotPasswordPage.navigateTo;
+                      },
+                      child: Text(
+                        S.of(context).forgotPassword,
+                        style: TextStyle(color: AppColorScheme.textPrimary),
+                      ),
+                    ),
+                    UIHelper.verticalSpaceMega,
+                    PrimaryButton(
+                        onPressed: () => controller.performSignIn(),
+                        title: S.of(context).login,
+                        width: 200,
+                        color: PrimaryButtonColor.primary,
+                        type: PrimaryButtonType.rounded,
+                        style: PrimaryButtonStyle.filled,
+                        state: Status.success)
+                  ],
                 ),
-                UIHelper.verticalSpaceLarge,
-                Text(
-                  S.of(context).welcomeBack,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                UIHelper.verticalSpaceLarge,
-                InputTextWidget(
-                  hintText: S.of(context).email,
-                  onFieldSubmitted: () {},
-                  keyboardType: TextInputType.emailAddress,
-                  controller: controller.emailController,
-                ),
-                UIHelper.verticalSpaceMedium,
-                InputTextWidget(
-                  hintText: S.of(context).password,
-                  onFieldSubmitted: () {},
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  controller: controller.pwdController,
-                ),
-                TextButton(
-                  onPressed: () {
-                    ForgotPasswordPage.navigateTo;
-                  },
-                  child: Text(
-                    S.of(context).forgotPassword,
-                    style: TextStyle(color: AppColorScheme.textPrimary),
-                  ),
-                ),
-                UIHelper.verticalSpaceMega,
-                PrimaryButton(
-                    onPressed: () {},
-                    title: S.of(context).login,
-                    width: 200,
-                    color: PrimaryButtonColor.primary,
-                    type: PrimaryButtonType.rounded,
-                    style: PrimaryButtonStyle.filled,
-                    state: Status.success)
-              ],
-            ),
-          ),
+              )),
         ),
       );
 }

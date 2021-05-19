@@ -27,7 +27,7 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
           },
         ),
         body: Center(
-          child: Container(
+          child: Obx(() => Container(
             constraints: BoxConstraints(
                 maxWidth: context.breakpoint > LayoutBreakpoint.xs
                     ? 500
@@ -53,13 +53,14 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                       onFieldSubmitted: () {},
                       keyboardType: TextInputType.emailAddress,
                       controller: controller.emailController,
+                      errorText: controller.forgotPasswordModel.value.emailError,
                     ),],
                 ),
 
                 Column(
                   children: [
                     PrimaryButton(
-                        onPressed: () {},
+                        onPressed: () => controller.performPasswordRecovery(),
                         title: S.of(context).reset,
                         width: 200,
                         color: PrimaryButtonColor.primary,
@@ -71,7 +72,7 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                 )
               ],
             ),
-          ),
+          )),
         ),
       );
 }
