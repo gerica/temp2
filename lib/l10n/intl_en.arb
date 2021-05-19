@@ -10,5 +10,7 @@
   "signinInstead": "Sign-in instead",
   "signup": "SIGNUP",
   "firstName": "First name",
-  "lastName": "Last name"
+  "lastName": "Last name",
+  "reset": "RESET",
+  "forgotPasswordUpperCase": "FORGOT PASSWORD"
 }

@@ -169,6 +169,26 @@ class S {
       args: [],
     );
   }
+
+  /// `RESET`
+  String get reset {
+    return Intl.message(
+      'RESET',
+      name: 'reset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FORGOT PASSWORD`
+  String get forgotPasswordUpperCase {
+    return Intl.message(
+      'FORGOT PASSWORD',
+      name: 'forgotPasswordUpperCase',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
