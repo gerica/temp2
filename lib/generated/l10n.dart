@@ -189,6 +189,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Required field`
+  String get requiredField {
+    return Intl.message(
+      'Required field',
+      name: 'requiredField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The entered email is not valid`
+  String get theEnteredEmailIsNotValid {
+    return Intl.message(
+      'The entered email is not valid',
+      name: 'theEnteredEmailIsNotValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password must have at least 6 characters`
+  String get yourPasswordMustHaveAtLeast6Characters {
+    return Intl.message(
+      'Your password must have at least 6 characters',
+      name: 'yourPasswordMustHaveAtLeast6Characters',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

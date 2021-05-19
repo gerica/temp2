@@ -12,5 +12,8 @@
   "firstName": "First name",
   "lastName": "Last name",
   "reset": "RESET",
-  "forgotPasswordUpperCase": "FORGOT PASSWORD"
+  "forgotPasswordUpperCase": "FORGOT PASSWORD",
+  "requiredField": "Required field",
+  "theEnteredEmailIsNotValid": "The entered email is not valid",
+  "yourPasswordMustHaveAtLeast6Characters": "Your password must have at least 6 characters"
 }
