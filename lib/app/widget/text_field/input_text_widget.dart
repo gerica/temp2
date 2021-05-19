@@ -12,24 +12,8 @@ abstract class FieldWidget {
 }
 
 class InputTextWidget extends StatelessWidget implements FieldWidget {
-  /// [hasAFieldError] Uma função validadora que retorna bool
-  /// deve ser passada para esse parâmetro
-  /// A validation function returning a bool
-  /// must be passed to this parameter
-  final bool hasAFieldError;
 
-  /// [errorText] Uma função validadora que retorna bool
-  /// deve ser passada para esse parâmetro
-  /// A validation function returning a bool
-  /// must be passed to this parameter
-  final String errorText;
-
-  /// [canValidate] Padrão é true, o que faz o campo ser validado ao digitar um texto
-  /// para ser validado apenas depois de uma condição passar um bool
-  /// Default is true, which makes field be validated as user types
-  /// in order for it to be validated only after a condition pass a bool
-  final bool canValidate;
-
+  final String? errorText;
   final String? hintText;
   final String? prefixText;
   final Widget? suffixIcon;
@@ -89,8 +73,6 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
     this.style,
     this.autofocus = false,
     Key? key,
-    this.hasAFieldError = false,
-    this.canValidate = false,
     this.showDecoration = true,
   }) : super(key: key);
 
@@ -149,7 +131,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         hintStyle: hintStyle ??
             TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.textSecondary),
         errorStyle: TextStyle(fontSize: AppFontSize.secondary, color: AppColorScheme.error),
-        errorText: canValidate ? errorText : null,
+        errorText: errorText,
         contentPadding: const EdgeInsets.only(left: AppSpacing.extraMedium),
       );
 
@@ -169,7 +151,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         hintStyle: hintStyle ??
             TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.textPrimary),
         errorStyle: TextStyle(fontSize: AppFontSize.secondary, color: AppColorScheme.error),
-        errorText: canValidate ? errorText : null,
+        errorText: errorText,
         contentPadding: EdgeInsets.zero,
       );
 
@@ -194,9 +176,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
       ..add(DiagnosticsProperty<Function()>('onFieldSubmitted', onFieldSubmitted))
       ..add(DiagnosticsProperty<EdgeInsets>('padding', padding))
       ..add(EnumProperty<TextAlign>('textAlign', textAlign))
-      ..add(StringProperty('errorText', errorText))
-      ..add(DiagnosticsProperty<bool>('hasAFieldError', hasAFieldError))
-      ..add(DiagnosticsProperty<bool>('canValidate', canValidate));
+      ..add(StringProperty('errorText', errorText));
     properties.add(DiagnosticsProperty<TextStyle>('style', style));
     properties.add(DiagnosticsProperty<Function(String p1)>('onChanged', onChanged));
     properties.add(DoubleProperty('height', height));
