@@ -14,7 +14,7 @@ workflows:
       events:
         - push
       branch_patterns:
-        - pattern: 'web*'
+        - pattern: 'release*'
           include: true
           source: true
     scripts:
