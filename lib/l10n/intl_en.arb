@@ -15,5 +15,10 @@
   "forgotPasswordUpperCase": "FORGOT PASSWORD",
   "requiredField": "Required field",
   "theEnteredEmailIsNotValid": "The entered email is not valid",
-  "yourPasswordMustHaveAtLeast6Characters": "Your password must have at least 6 characters"
+  "yourPasswordMustHaveAtLeast6Characters": "Your password must have at least 6 characters",
+  "hello": "Hello,",
+  "products": "Products",
+  "reports": "Reports",
+  "myDevices": "My Devices",
+  "support": "Support"
 }

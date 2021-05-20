@@ -1,8 +1,5 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:radio_life/app/styles/app_font_size.dart';
-import 'package:radio_life/app/styles/app_font_weight.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 
 import '../../styles/app_color_scheme.dart';

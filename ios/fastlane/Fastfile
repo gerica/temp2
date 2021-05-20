@@ -41,14 +41,6 @@ platform :ios do
       keychain_password: keychain_password
     )
 
-    increment_build_number(
-      build_number: "4" # set a specific number
-    )
-
-    increment_version_number(
-      version_number: "1.0.4" # Set a specific version number
-    )
-
     gym(
       configuration: "Release",
       workspace: "Runner.xcworkspace",

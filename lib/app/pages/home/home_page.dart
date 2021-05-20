@@ -3,13 +3,9 @@ import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
-import 'package:radio_life/app/pages/sign_in/sign_in_page.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
-import 'package:radio_life/app/widget/buttons/primary_button.dart';
-import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
-import 'package:radio_life/core/data/enum/status.dart';
 
 import '../../../generated/l10n.dart';
 import 'home_controller.dart';
@@ -49,7 +45,7 @@ class HomePage extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'Hello, ',
+                          S.of(context).hello,
                           style: TextStyle(
                               color: AppColorScheme.textPrimary, fontSize: AppFontSize.ultra),
                         ),
