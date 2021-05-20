@@ -33,6 +33,12 @@ workflows:
       - build/web.zip
       - flutter_drive.log
     publishing:
-      email:
-        recipients:
-          - rogerio@radiolife.co
+#      email:
+#        recipients:
+#          - rogerio@radiolife.co
+      slack:
+        channel: '#deploys'
+        notify_on_build_start: false    # To receive a notification when a build starts
+        notify:
+          success: true               # To not receive a notification when a build succeeds
+          failure: false               # To not receive a notification when a build fails
