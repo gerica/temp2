@@ -1,6 +1,6 @@
 # Automatically generated on 2021-05-07 UTC from https://codemagic.io/app/60947f1a2149abb02e7b5e1d/settings
 # Note that this configuration is not an exact match to UI settings. Review and adjust as necessary.
-# VERSION: 1.0.4
+# VERSION: 1.0.4 
 
 workflows:
   default-workflow:
@@ -14,7 +14,7 @@ workflows:
       events:
         - push
       branch_patterns:
-        - pattern: 'release-web*'
+        - pattern: 'release*'
           include: true
           source: true
     scripts:
@@ -33,6 +33,12 @@ workflows:
       - build/web.zip
       - flutter_drive.log
     publishing:
-      email:
-        recipients:
-          - rogerio@radiolife.co
+#      email:
+#        recipients:
+#          - rogerio@radiolife.co
+      slack:
+        channel: '#deploys'
+        notify_on_build_start: false    # To receive a notification when a build starts
+        notify:
+          success: true               # To not receive a notification when a build succeeds
+          failure: false               # To not receive a notification when a build fails
