@@ -4,6 +4,8 @@ import 'package:radio_life/app/pages/forgot_password/bindings/forgot_password_bi
 import 'package:radio_life/app/pages/forgot_password/forgot_password_page.dart';
 import 'package:radio_life/app/pages/home/bindings/home_bindings.dart';
 import 'package:radio_life/app/pages/home/home_page.dart';
+import 'package:radio_life/app/pages/home/pages/products/bindings/products_binding.dart';
+import 'package:radio_life/app/pages/home/pages/products/products_page.dart';
 import 'package:radio_life/app/pages/sign_in/bindings/sign_in_bindings.dart';
 import 'package:radio_life/app/pages/sign_in/sign_in_page.dart';
 import 'package:radio_life/app/pages/sign_up/bindings/sign_up_bindings.dart';
@@ -16,6 +18,7 @@ abstract class Routes {
   static const home = '/home';
   static const account = '/account';
   static const forgotPassword = '/forgot-password';
+  static const products = '/home/products';
 }
 
 mixin RadioLifeAppRoutes {
@@ -39,6 +42,11 @@ mixin RadioLifeAppRoutes {
         name: Routes.home,
         page: () => HomePage(),
         binding: HomeBinding()
+    ),
+    GetPage(
+        name: Routes.products,
+        page: () => ProductsPage(),
+        binding: ProductsBinding()
     )
   ];
 }

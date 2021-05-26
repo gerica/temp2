@@ -18,7 +18,7 @@ class AppColorScheme {
 
   static MaterialColor get accentColor => RadiolifeThemeColors.accentColor;
 
-  static Color get background => RadiolifeThemeColors.background;
+  static Color get background => RadiolifeThemeColors.pinkLightest;
 
   static Color get whiteOutline => RadiolifeThemeColors.whiteOutline;
 
@@ -52,7 +52,7 @@ class RadiolifeThemeColors {
   static final MaterialColor accentColor = StyleUtils.createMaterialColor(blue);
 
   static const whiteOutline = Color(0xFFFFFFFF);
-  static const background = Color(0xFFCBDFE6);
+  static const background = pinkLightest;
   static const blue = Color(0xFF0078A8);
   static const pink = Color(0xFFFA4B86);
   static const footer = Color(0xFFFA4B86);
@@ -60,6 +60,7 @@ class RadiolifeThemeColors {
   static const textSecondary = Color(0xFF7698A4);
   static const backgroundLight = Color(0xFFF1F4F7);
   static const backgroundPink = Color(0xFFFC95B9);
+  static const pinkLightest = Color(0xFFFFFAFC);
   static const backgroundLightPink = Color(0xFFFEE6EE);
   static const backgroundExtraLightPink = Color(0xFFFFF7F8);
   static const success = Color(0xFF74DBB5);

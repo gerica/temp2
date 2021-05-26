@@ -11,6 +11,9 @@ import '../../../generated/l10n.dart';
 import 'home_controller.dart';
 
 class HomePage extends GetView<HomeController> {
+
+
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: RadioLifeAppBarWidget(
@@ -74,7 +77,7 @@ class HomePage extends GetView<HomeController> {
                         ),
                         elevation: 4,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () => controller.navigateTo(index),
                           splashColor: AppColorScheme.primarySwatch.withOpacity(0.5),
                           borderRadius: BorderRadius.circular(20),
                           child: Container(
