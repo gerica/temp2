@@ -44,6 +44,8 @@ class AppColorScheme {
 
   static Color get backgroundExtraLightPink => RadiolifeThemeColors.backgroundExtraLightPink;
 
+  static Color get gray1 => RadiolifeThemeColors.gray1;
+
   static const lightGray = Color(0xffe4e4e4);
 }
 
@@ -57,6 +59,7 @@ class RadiolifeThemeColors {
   static const pink = Color(0xFFFA4B86);
   static const footer = Color(0xFFFA4B86);
   static const textPrimary = Color(0xFF364E57);
+  static const gray1 = Color(0xFF4E4D4D);
   static const textSecondary = Color(0xFF7698A4);
   static const backgroundLight = Color(0xFFF1F4F7);
   static const backgroundPink = Color(0xFFFC95B9);

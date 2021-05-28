@@ -33,15 +33,16 @@ class SignUpPage extends GetView<SignUpController> {
                         Center(
                           child: Hero(
                             tag: 'logo',
-                            child: Image.asset(AppImages.icon, width: 70),
+                            child: Image.asset(AppImages.logoHorizontalColor, height: 53),
                           ),
                         ),
-                        UIHelper.verticalSpaceLarge,
+                        UIHelper.verticalSpaceExtraLarge,
                         Text(
                           S.of(context).joinUs,
                           style: const TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w800,
+                            fontSize: AppFontSize.mega,
+                            fontWeight: AppFontWeight.regular,
+                            color: Colors.black
                           ),
                         ),
                         UIHelper.verticalSpaceLarge,
@@ -79,13 +80,12 @@ class SignUpPage extends GetView<SignUpController> {
                           controller: controller.pwdController,
                           errorText: controller.signUpModel.value.passwordError,
                         ),
-                        UIHelper.verticalSpaceLarge,
+                        UIHelper.verticalSpaceMega,
                         PrimaryButton(
                             onPressed: () => controller.performSignUp(),
                             title: S.of(context).signup,
-                            width: 200,
                             color: PrimaryButtonColor.primary,
-                            type: PrimaryButtonType.rounded,
+                            type: PrimaryButtonType.circular,
                             style: PrimaryButtonStyle.filled,
                             state: Status.success),
                         UIHelper.verticalSpaceMedium,
