@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
+import 'package:radio_life/app/images/app_images.dart';
+import 'package:radio_life/app/styles/app_font_size.dart';
+import 'package:radio_life/app/styles/app_font_weight.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
+import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
@@ -25,6 +29,7 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
           onBackButtonPressed: () {
             Get.back();
           },
+          backButtonColor: Colors.black,
         ),
         body: Center(
           child: Obx(() => Container(
@@ -35,15 +40,23 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
             padding: const EdgeInsets.all(AppSpacing.medium),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Column(
                   children: [
+                    Center(
+                      child: Hero(
+                        tag: 'logo',
+                        child: Image.asset(AppImages.logoHorizontalColor, height: 53),
+                      ),
+                    ),
+                    UIHelper.verticalSpaceExtraLarge,
                     Text(
-                      S.of(context).forgotPasswordUpperCase,
+                      S.of(context).resetPassword,
                       style: const TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w800,
+                        fontSize: AppFontSize.mega,
+                        fontWeight: AppFontWeight.regular,
+                        color: Colors.black
                       ),
                     ),
                     UIHelper.verticalSpaceLarge,
@@ -56,20 +69,14 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                       errorText: controller.forgotPasswordModel.value.emailError,
                     ),],
                 ),
-
-                Column(
-                  children: [
-                    PrimaryButton(
-                        onPressed: () => controller.performPasswordRecovery(),
-                        title: S.of(context).reset,
-                        width: 200,
-                        color: PrimaryButtonColor.primary,
-                        type: PrimaryButtonType.rounded,
-                        style: PrimaryButtonStyle.filled,
-                        state: Status.success),
-                    UIHelper.verticalSpaceMega,
-                  ],
-                )
+                UIHelper.verticalSpaceUltra,
+                PrimaryButton(
+                    onPressed: () => controller.performPasswordRecovery(),
+                    title: S.of(context).sendEmailUpperCase,
+                    color: PrimaryButtonColor.primary,
+                    type: PrimaryButtonType.circular,
+                    style: PrimaryButtonStyle.filled,
+                    state: Status.success)
               ],
             ),
           )),

@@ -5,9 +5,9 @@ import 'package:radio_life/app/styles/app_theme.dart';
 class AppTextTheme {
   /// https://material.io/design/typography/the-type-system.html#type-scale - Helps to create textTheme
 
-  static TextTheme get textTheme => textThemeMontserrat;
+  static TextTheme get textTheme => textOpenSans;
 
-  static TextTheme textThemeMontserrat = TextTheme(
+  static TextTheme textOpenSans = TextTheme(
     headline1: GoogleFonts.openSans(
         fontSize: 96, fontWeight: FontWeight.w300, color: AppColorScheme.textPrimary),
     headline2: GoogleFonts.openSans(
