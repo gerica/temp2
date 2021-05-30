@@ -54,7 +54,7 @@ class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidg
     this.backButtonColor,
     this.actionsIconTheme,
     this.textTheme,
-    this.centerTitle = false,
+    this.centerTitle = true,
     this.showBackButton = false,
     this.excludeHeaderSemantics = false,
     this.onBackButtonPressed,
@@ -83,7 +83,7 @@ class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidg
                 : IconButton(
                     icon: Icon(
                       Icons.arrow_back_ios,
-                      color: backButtonColor ?? AppColorScheme.textPrimary,
+                      color: backButtonColor ?? AppColorScheme.white,
                     ),
                     onPressed: onBackButtonPressed,
                   )
@@ -94,10 +94,15 @@ class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidg
         automaticallyImplyLeading: false,
         flexibleSpace: flexibleSpace,
         actions: actions,
-        title: title,
+        title: title ??
+            Text(
+              titleText ?? '',
+              style: const TextStyle(color: AppColorScheme.white),
+            ),
         iconTheme: iconTheme,
         actionsIconTheme: actionsIconTheme,
         textTheme: textTheme,
+        brightness: brightness,
         centerTitle: centerTitle,
         excludeHeaderSemantics: excludeHeaderSemantics,
         bottomOpacity: bottomOpacity,

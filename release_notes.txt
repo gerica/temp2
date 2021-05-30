@@ -1,3 +1,3 @@
 Radiolife web: https://radiolife-bucket.s3.us-east-2.amazonaws.com/index.html
 Releases:
-    - chancing favicon for web
+    - Products page

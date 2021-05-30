@@ -60,11 +60,11 @@ class S {
     );
   }
 
-  /// `WELCOME BACK`
-  String get welcomeBack {
+  /// `Login`
+  String get login {
     return Intl.message(
-      'WELCOME BACK',
-      name: 'welcomeBack',
+      'Login',
+      name: 'login',
       desc: '',
       args: [],
     );
@@ -100,20 +100,30 @@ class S {
     );
   }
 
-  /// `LOGIN`
-  String get login {
+  /// `Reset Password`
+  String get resetPassword {
     return Intl.message(
-      'LOGIN',
-      name: 'login',
+      'Reset Password',
+      name: 'resetPassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `JOIN US`
+  /// `SIGN IN`
+  String get signIn {
+    return Intl.message(
+      'SIGN IN',
+      name: 'signIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join US`
   String get joinUs {
     return Intl.message(
-      'JOIN US',
+      'Join US',
       name: 'joinUs',
       desc: '',
       args: [],
@@ -140,10 +150,10 @@ class S {
     );
   }
 
-  /// `SIGNUP`
+  /// `SIGN UP`
   String get signup {
     return Intl.message(
-      'SIGNUP',
+      'SIGN UP',
       name: 'signup',
       desc: '',
       args: [],
@@ -175,6 +185,16 @@ class S {
     return Intl.message(
       'RESET',
       name: 'reset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SEND EMAIL`
+  String get sendEmailUpperCase {
+    return Intl.message(
+      'SEND EMAIL',
+      name: 'sendEmailUpperCase',
       desc: '',
       args: [],
     );

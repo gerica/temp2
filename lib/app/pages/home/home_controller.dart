@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 
 import '../../../generated/l10n.dart';
@@ -23,6 +24,22 @@ class HomeController extends GetxController {
     S.current.myDevices,
     S.current.support
   ];
+  //endregion
+
+  //region Functions
+  void navigateTo(int index){
+    switch(index){
+      case 0:
+        Get.toNamed(Routes.products);
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+    }
+  }
   //endregion
 
 }

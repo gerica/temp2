@@ -30,23 +30,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotPasswordUpperCase":
             MessageLookupByLibrary.simpleMessage("FORGOT PASSWORD"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
-        "joinUs": MessageLookupByLibrary.simpleMessage("JOIN US"),
+        "joinUs": MessageLookupByLibrary.simpleMessage("Join US"),
         "key": MessageLookupByLibrary.simpleMessage("value"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
-        "login": MessageLookupByLibrary.simpleMessage("LOGIN"),
+        "login": MessageLookupByLibrary.simpleMessage("Login"),
         "myDevices": MessageLookupByLibrary.simpleMessage("My Devices"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "products": MessageLookupByLibrary.simpleMessage("Products"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "requiredField": MessageLookupByLibrary.simpleMessage("Required field"),
         "reset": MessageLookupByLibrary.simpleMessage("RESET"),
+        "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
+        "sendEmailUpperCase":
+            MessageLookupByLibrary.simpleMessage("SEND EMAIL"),
+        "signIn": MessageLookupByLibrary.simpleMessage("SIGN IN"),
         "signinInstead":
             MessageLookupByLibrary.simpleMessage("Sign-in instead"),
-        "signup": MessageLookupByLibrary.simpleMessage("SIGNUP"),
+        "signup": MessageLookupByLibrary.simpleMessage("SIGN UP"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
         "theEnteredEmailIsNotValid": MessageLookupByLibrary.simpleMessage(
             "The entered email is not valid"),
-        "welcomeBack": MessageLookupByLibrary.simpleMessage("WELCOME BACK"),
         "yourPasswordMustHaveAtLeast6Characters":
             MessageLookupByLibrary.simpleMessage(
                 "Your password must have at least 6 characters")
