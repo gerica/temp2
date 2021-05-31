@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
+import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 
 class ProductCardWidget extends StatelessWidget {
@@ -34,7 +36,7 @@ class ProductCardWidget extends StatelessWidget {
                           bottomLeft: Radius.circular(8),
                         ),
                       ),
-                      child: const Center(child: Icon(Icons.radio, color: Colors.white)),
+                      child: Center(child: PlatformSvg.asset(AppSvgImages.icTrophy)),
                     ),
                   ),
                   UIHelper.horizontalSpaceMedium,
@@ -46,13 +48,13 @@ class ProductCardWidget extends StatelessWidget {
                       children: [
                         Text(
                           name,
-                          style: TextStyle(
-                              color: AppColorScheme.textPrimary, fontSize: AppFontSize.medium),
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: AppFontSize.medium),
                         ),
-                        Text(
+                        const Text(
                           'Lorem ipsum dolor sit amet, consectetur',
                           style: TextStyle(
-                              color: AppColorScheme.textPrimary, fontSize: AppFontSize.secondary),
+                              color: Colors.black, fontSize: AppFontSize.secondary),
                         )
                       ],
                     ),
