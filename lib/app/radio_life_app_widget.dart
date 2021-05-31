@@ -42,7 +42,7 @@ class RadioLifeAppWidget extends StatelessWidget {
         theme: AppThemeData.themeDataLight,
         darkTheme: AppThemeData.themeDataLight,
         getPages: RadioLifeAppRoutes.routes,
-        initialRoute: Routes.signUp,
+        initialRoute: Routes.home,
         initialBinding: RadioLifeAppBinding(),
       ),
     );

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
+import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
@@ -11,9 +14,6 @@ import '../../../generated/l10n.dart';
 import 'home_controller.dart';
 
 class HomePage extends GetView<HomeController> {
-
-
-
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: RadioLifeAppBarWidget(
@@ -50,52 +50,41 @@ class HomePage extends GetView<HomeController> {
                         Text(
                           S.of(context).hello,
                           style: TextStyle(
-                              color: AppColorScheme.textPrimary, fontSize: AppFontSize.ultra),
+                              color: AppColorScheme.textPrimary, fontSize: AppFontSize.mega),
                         ),
                         Text(
-                          'Denis',
+                          ' Denis',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: AppColorScheme.primarySwatch,
-                              fontSize: AppFontSize.ultra),
+                              color: AppColorScheme.primarySwatch, fontSize: AppFontSize.mega),
                         ),
                       ],
                     ),
-                    UIHelper.verticalSpaceMega,
+                    UIHelper.verticalSpaceLarge,
                     GridView.builder(
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 140 / 140,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 5
-                      ),
+                          crossAxisCount: 2,
+                          childAspectRatio: 140 / 140,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 5),
                       itemCount: controller.items.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) => Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)
-                        ),
-                        elevation: 4,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        elevation: 2,
                         child: InkWell(
                           onTap: () => controller.navigateTo(index),
-                          splashColor: AppColorScheme.primarySwatch.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(20),
+                          splashColor: AppColorScheme.primarySwatch.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(8),
                           child: Container(
                             padding: const EdgeInsets.all(AppSpacing.medium),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const SizedBox(
-                                  width: 40,
-                                  height: 40,
-                                  child: Placeholder(),
-                                ),
+                                PlatformSvg.asset(controller.icons[index], fit: BoxFit.contain),
                                 Text(
                                   controller.items[index],
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColorScheme.primarySwatch),
+                                  style: TextStyle(color: AppColorScheme.textPrimary),
                                 )
                               ],
                             ),

@@ -5,16 +5,15 @@ import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 
-class ProductCardWidget extends StatelessWidget {
+class DeviceCardWidget extends StatelessWidget {
   final String name;
-  final String description;
   final VoidCallback onTap;
 
-  const ProductCardWidget({required this.name, required this.description, required this.onTap});
+  const DeviceCardWidget({required this.name, required this.onTap});
 
   @override
   Widget build(BuildContext context) => AspectRatio(
-        aspectRatio: MediaQuery.of(context).size.width / 115,
+        aspectRatio: MediaQuery.of(context).size.width / 130,
         child: Card(
           margin: const EdgeInsets.symmetric(vertical: 8),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -22,7 +21,7 @@ class ProductCardWidget extends StatelessWidget {
           child: InkWell(
             onTap: onTap,
             borderRadius: BorderRadius.circular(8),
-            splashColor: AppColorScheme.accentColor.withOpacity(0.1),
+            splashColor: AppColorScheme.primarySwatch.withOpacity(0.1),
             child: Container(
               child: Row(
                 children: [
@@ -30,7 +29,7 @@ class ProductCardWidget extends StatelessWidget {
                     flex: 1,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppColorScheme.accentColor,
+                        color: AppColorScheme.primarySwatch,
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(8),
                           bottomLeft: Radius.circular(8),
@@ -39,7 +38,7 @@ class ProductCardWidget extends StatelessWidget {
                       child: Center(child: PlatformSvg.asset(AppSvgImages.icTrophy)),
                     ),
                   ),
-                  UIHelper.horizontalSpaceMedium,
+                  UIHelper.horizontalSpaceSmall,
                   Flexible(
                     flex: 3,
                     child: Column(
@@ -48,14 +47,17 @@ class ProductCardWidget extends StatelessWidget {
                       children: [
                         Text(
                           name,
-                          style: const TextStyle(
-                              color: Colors.black, fontSize: AppFontSize.medium),
+                          style:
+                              const TextStyle(color: Colors.black, fontSize: AppFontSize.primary),
                         ),
-                        const Text(
-                          'Lorem ipsum dolor sit amet, consectetur',
-                          style: TextStyle(
-                              color: Colors.black, fontSize: AppFontSize.secondary),
-                        )
+                        Row(children: [
+                          _chip('Covid-19'),
+                          _chip('São Paulo'),
+                        ]),
+                        Row(children: [
+                          _footer('Bar Code', '123455'),
+                          _footer('Data', '22 de Março'),
+                        ]),
                       ],
                     ),
                   )
@@ -66,11 +68,43 @@ class ProductCardWidget extends StatelessWidget {
         ),
       );
 
+  Widget _chip(String text) => Container(
+        margin: const EdgeInsets.only(right: 10),
+        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+        decoration:
+            BoxDecoration(color: AppColorScheme.blueLight, borderRadius: BorderRadius.circular(4)),
+        child: Text(
+          text,
+          style: TextStyle(
+              color: AppColorScheme.textPrimary,
+              fontSize: AppFontSize.small,
+              fontWeight: AppFontWeight.bold),
+        ),
+      );
+
+  Widget _footer(String label, String text) => Container(
+        margin: const EdgeInsets.only(right: 10),
+        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              label,
+              style: const TextStyle(
+                  color: Colors.black, fontSize: AppFontSize.small, fontWeight: AppFontWeight.bold),
+            ),
+            Text(
+              text,
+              style: TextStyle(color: AppColorScheme.gray1, fontSize: AppFontSize.small),
+            ),
+          ],
+        ),
+      );
+
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(StringProperty('name', name));
-    properties.add(StringProperty('description', description));
     properties.add(ObjectFlagProperty<VoidCallback>.has('onTap', onTap));
   }
 }

@@ -44,9 +44,15 @@ class AppColorScheme {
 
   static Color get backgroundExtraLightPink => RadiolifeThemeColors.backgroundExtraLightPink;
 
+  static Color get blueLight => RadiolifeThemeColors.blueLight;
+
   static Color get gray1 => RadiolifeThemeColors.gray1;
 
   static const lightGray = Color(0xffe4e4e4);
+
+  static Color get yellow => RadiolifeThemeColors.yellow;
+
+  static Color get orange => RadiolifeThemeColors.orange;
 }
 
 class RadiolifeThemeColors {
@@ -55,11 +61,12 @@ class RadiolifeThemeColors {
 
   static const whiteOutline = Color(0xFFFFFFFF);
   static const background = pinkLightest;
-  static const blue = Color(0xFF0078A8);
-  static const pink = Color(0xFFFA4B86);
-  static const footer = Color(0xFFFA4B86);
+  static const blue = Color(0xFF004764);
+  static const blueLight = Color(0xFFA9E6FF);
+  static const pink = Color(0xFFC72E61);
+  static const footer = Color(0xFFC72E61);
   static const textPrimary = Color(0xFF364E57);
-  static const gray1 = Color(0xFF4E4D4D);
+  static const gray1 = Color(0xFFA8A8A8);
   static const textSecondary = Color(0xFF7698A4);
   static const backgroundLight = Color(0xFFF1F4F7);
   static const backgroundPink = Color(0xFFFC95B9);
@@ -68,4 +75,6 @@ class RadiolifeThemeColors {
   static const backgroundExtraLightPink = Color(0xFFFFF7F8);
   static const success = Color(0xFF74DBB5);
   static const error = Color(0xFFCF3E5A);
+  static const yellow = Color(0xFFFED543);
+  static const orange = Color(0xFFFD6C2E);
 }

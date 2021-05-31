@@ -82,7 +82,7 @@ class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidg
                   )
                 : IconButton(
                     icon: Icon(
-                      Icons.arrow_back_ios,
+                      Icons.arrow_back,
                       color: backButtonColor ?? AppColorScheme.white,
                     ),
                     onPressed: onBackButtonPressed,

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 
@@ -24,6 +25,12 @@ class HomeController extends GetxController {
     S.current.myDevices,
     S.current.support
   ];
+  final icons = [
+    AppSvgImages.icProducts,
+    AppSvgImages.icReports,
+    AppSvgImages.icMyDevices,
+    AppSvgImages.icSupport
+  ];
   //endregion
 
   //region Functions
@@ -33,8 +40,10 @@ class HomeController extends GetxController {
         Get.toNamed(Routes.products);
         break;
       case 1:
+        Get.toNamed(Routes.reports);
         break;
       case 2:
+        Get.toNamed(Routes.myDevices);
         break;
       case 3:
         break;
