@@ -40,6 +40,7 @@ class HomeController extends GetxController {
         Get.toNamed(Routes.products);
         break;
       case 1:
+        Get.toNamed(Routes.reports);
         break;
       case 2:
         Get.toNamed(Routes.myDevices);

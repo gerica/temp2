@@ -13,6 +13,8 @@ import 'package:radio_life/app/pages/sign_up/bindings/sign_up_bindings.dart';
 import 'package:radio_life/app/pages/sign_up/sign_up_page.dart';
 
 import 'pages/home/pages/my_devices/bindings/my_devices_binding.dart';
+import 'pages/home/pages/reports/bindings/reports_binding.dart';
+import 'pages/home/pages/reports/reports_page.dart';
 
 abstract class Routes {
   static String initial = '/';
@@ -23,6 +25,7 @@ abstract class Routes {
   static const forgotPassword = '/forgot-password';
   static const products = '/home/products';
   static const myDevices = '/home/my_devices';
+  static const reports = '/home/reports';
 }
 
 mixin RadioLifeAppRoutes {
@@ -56,6 +59,11 @@ mixin RadioLifeAppRoutes {
         name: Routes.myDevices,
         page: () => MyDevicesPage(),
         binding: MyDevicesBinding()
+    ),
+    GetPage(
+        name: Routes.reports,
+        page: () => ReportsPage(),
+        binding: ReportsBinding()
     )
   ];
 }
