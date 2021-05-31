@@ -44,6 +44,13 @@ class AppThemeData extends ThemeDataRadioLife {
     scaffoldBackgroundColor: RadiolifeThemeColors.background,
     colorScheme: AppColorScheme.colorScheme,
     splashColor: Colors.transparent,
+    appBarTheme: AppBarTheme(
+      backgroundColor: RadiolifeThemeColors.background,
+      elevation: 0,
+      brightness: Brightness.light,
+      centerTitle: true,
+      titleTextStyle: TextStyle(color: AppColorScheme.textPrimary)
+    ),
     highlightColor: Colors.transparent,
     textSelectionTheme: TextSelectionThemeData(
       selectionColor: AppColorScheme.success,
@@ -96,10 +103,12 @@ class AppThemeData extends ThemeDataRadioLife {
       cursorColor: AppColorScheme.success,
       selectionHandleColor: AppColorScheme.success,
     ),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: RadiolifeThemeColors.background,
-      elevation: 0,
-      brightness: Brightness.dark,
+    appBarTheme: AppBarTheme(
+        backgroundColor: RadiolifeThemeColors.background,
+        elevation: 0,
+        brightness: Brightness.dark,
+        centerTitle: true,
+        titleTextStyle: TextStyle(color: AppColorScheme.textPrimary)
     ),
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: {

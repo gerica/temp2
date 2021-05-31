@@ -12,24 +12,7 @@ abstract class FieldWidget {
 }
 
 class InputTextWidget extends StatelessWidget implements FieldWidget {
-  /// [hasAFieldError] Uma função validadora que retorna bool
-  /// deve ser passada para esse parâmetro
-  /// A validation function returning a bool
-  /// must be passed to this parameter
-  final bool hasAFieldError;
-
-  /// [errorText] Uma função validadora que retorna bool
-  /// deve ser passada para esse parâmetro
-  /// A validation function returning a bool
-  /// must be passed to this parameter
-  final String errorText;
-
-  /// [canValidate] Padrão é true, o que faz o campo ser validado ao digitar um texto
-  /// para ser validado apenas depois de uma condição passar um bool
-  /// Default is true, which makes field be validated as user types
-  /// in order for it to be validated only after a condition pass a bool
-  final bool canValidate;
-
+  final String? errorText;
   final String? hintText;
   final String? prefixText;
   final Widget? suffixIcon;
@@ -55,7 +38,6 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
   final TextStyle? style;
   final TextStyle? hintStyle;
   final TextStyle? prefixStyle;
-  final bool showDecoration;
   final bool autofocus;
   final Color? background;
 
@@ -89,9 +71,6 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
     this.style,
     this.autofocus = false,
     Key? key,
-    this.hasAFieldError = false,
-    this.canValidate = false,
-    this.showDecoration = true,
   }) : super(key: key);
 
   @override
@@ -116,8 +95,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         style: style ??
             TextStyle(
                 fontSize: AppFontSize.primary,
-                color: AppColorScheme.textPrimary,
-                fontWeight: AppFontWeight.semiBold),
+                color: AppColorScheme.textPrimary),
         onEditingComplete: () {
           focusNode?.unfocus();
           onEditingComplete!();
@@ -129,52 +107,51 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         autofocus: autofocus,
         onChanged: onChanged,
         cursorColor: AppColorScheme.textPrimary,
-        decoration: showDecoration ? _buildInputDecoration() : _buildClearInputDecoration(),
+        decoration: _buildInputDecoration(),
       );
 
   InputDecoration _buildInputDecoration() => InputDecoration(
         fillColor: background ?? AppColorScheme.backgroundLight,
         filled: true,
         suffixIcon: suffixIcon ?? Container(height: 0, width: 0),
-        hintText: hintText,
-        disabledBorder: _buildInputBorderSide,
-        enabledBorder: _buildInputBorderSide,
+        labelText: hintText,
+        labelStyle: TextStyle(color: AppColorScheme.gray1),
+        disabledBorder: _buildBorderSide,
+        enabledBorder: _buildBorderSide,
         prefixText: prefixText,
         suffixIconConstraints: BoxConstraints(minHeight: height ?? 50),
         prefixStyle: prefixStyle,
-        errorBorder: _buildInputBorderSide,
+        errorBorder: _buildInputErrorBorderSide,
         focusedBorder: _buildInputBorderSide,
-        focusedErrorBorder: _buildInputBorderSide,
-        border: _buildInputBorderSide,
+        focusedErrorBorder: _buildInputErrorBorderSide,
+        border: _buildBorderSide,
         hintStyle: hintStyle ??
             TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.textSecondary),
         errorStyle: TextStyle(fontSize: AppFontSize.secondary, color: AppColorScheme.error),
-        errorText: canValidate ? errorText : null,
+        errorText: errorText,
         contentPadding: const EdgeInsets.only(left: AppSpacing.extraMedium),
       );
 
-  InputDecoration _buildClearInputDecoration() => InputDecoration(
-        filled: false,
-        suffixIcon: suffixIcon ?? Container(height: 0, width: 0),
-        hintText: hintText,
-        disabledBorder: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        prefixText: prefixText,
-        suffixIconConstraints: BoxConstraints(minHeight: height ?? 62),
-        prefixStyle: prefixStyle,
-        errorBorder: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        focusedErrorBorder: InputBorder.none,
-        border: InputBorder.none,
-        hintStyle: hintStyle ??
-            TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.textPrimary),
-        errorStyle: TextStyle(fontSize: AppFontSize.secondary, color: AppColorScheme.error),
-        errorText: canValidate ? errorText : null,
-        contentPadding: EdgeInsets.zero,
+  InputBorder get _buildInputBorderSide => const OutlineInputBorder(
+        borderRadius: BorderRadius.all(AppCornerRadius.mini),
+        borderSide: BorderSide(width: 2),
       );
 
-  InputBorder get _buildInputBorderSide => const OutlineInputBorder(
-      borderRadius: BorderRadius.all(AppCornerRadius.medium));
+  InputBorder get _buildInputErrorBorderSide => OutlineInputBorder(
+        borderRadius: const BorderRadius.all(AppCornerRadius.mini),
+        borderSide: BorderSide(
+          width: 1,
+          color: AppColorScheme.error,
+        ),
+      );
+
+  InputBorder get _buildBorderSide => const OutlineInputBorder(
+        borderRadius: BorderRadius.all(AppCornerRadius.mini),
+        borderSide: BorderSide(
+          width: 1,
+          color: Color(0xFFD8D8D8),
+        ),
+      );
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -194,9 +171,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
       ..add(DiagnosticsProperty<Function()>('onFieldSubmitted', onFieldSubmitted))
       ..add(DiagnosticsProperty<EdgeInsets>('padding', padding))
       ..add(EnumProperty<TextAlign>('textAlign', textAlign))
-      ..add(StringProperty('errorText', errorText))
-      ..add(DiagnosticsProperty<bool>('hasAFieldError', hasAFieldError))
-      ..add(DiagnosticsProperty<bool>('canValidate', canValidate));
+      ..add(StringProperty('errorText', errorText));
     properties.add(DiagnosticsProperty<TextStyle>('style', style));
     properties.add(DiagnosticsProperty<Function(String p1)>('onChanged', onChanged));
     properties.add(DoubleProperty('height', height));
@@ -205,7 +180,6 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
     properties.add(DiagnosticsProperty<TextStyle?>('prefixStyle', prefixStyle));
     properties.add(StringProperty('prefixText', prefixText));
     properties.add(EnumProperty<TextCapitalization?>('textCapitalization', textCapitalization));
-    properties.add(DiagnosticsProperty<bool>('showDecoration', showDecoration));
     properties.add(DiagnosticsProperty<bool>('autofocus', autofocus));
     properties.add(ColorProperty('background', background));
     properties.add(DiagnosticsProperty<bool>('readOnly', readOnly));

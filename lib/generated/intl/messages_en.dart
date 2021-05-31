@@ -29,15 +29,29 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "forgotPasswordUpperCase":
             MessageLookupByLibrary.simpleMessage("FORGOT PASSWORD"),
-        "joinUs": MessageLookupByLibrary.simpleMessage("JOIN US"),
+        "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
+        "joinUs": MessageLookupByLibrary.simpleMessage("Join US"),
         "key": MessageLookupByLibrary.simpleMessage("value"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
-        "login": MessageLookupByLibrary.simpleMessage("LOGIN"),
+        "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "myDevices": MessageLookupByLibrary.simpleMessage("My Devices"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "products": MessageLookupByLibrary.simpleMessage("Products"),
+        "reports": MessageLookupByLibrary.simpleMessage("Reports"),
+        "requiredField": MessageLookupByLibrary.simpleMessage("Required field"),
         "reset": MessageLookupByLibrary.simpleMessage("RESET"),
+        "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
+        "sendEmailUpperCase":
+            MessageLookupByLibrary.simpleMessage("SEND EMAIL"),
+        "signIn": MessageLookupByLibrary.simpleMessage("SIGN IN"),
         "signinInstead":
             MessageLookupByLibrary.simpleMessage("Sign-in instead"),
-        "signup": MessageLookupByLibrary.simpleMessage("SIGNUP"),
-        "welcomeBack": MessageLookupByLibrary.simpleMessage("WELCOME BACK")
+        "signup": MessageLookupByLibrary.simpleMessage("SIGN UP"),
+        "support": MessageLookupByLibrary.simpleMessage("Support"),
+        "theEnteredEmailIsNotValid": MessageLookupByLibrary.simpleMessage(
+            "The entered email is not valid"),
+        "yourPasswordMustHaveAtLeast6Characters":
+            MessageLookupByLibrary.simpleMessage(
+                "Your password must have at least 6 characters")
       };
 }

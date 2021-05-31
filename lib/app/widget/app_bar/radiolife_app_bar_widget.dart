@@ -1,8 +1,5 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:radio_life/app/styles/app_font_size.dart';
-import 'package:radio_life/app/styles/app_font_weight.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 
 import '../../styles/app_color_scheme.dart';
@@ -13,6 +10,7 @@ class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidg
   final String? titleText;
   final List<Widget>? actions;
   final Widget? flexibleSpace;
+  final Widget? title;
   final PreferredSizeWidget? bottom;
   final double? elevation;
   final Color? backgroundColor;
@@ -46,6 +44,7 @@ class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidg
     this.backButtonIcon,
     this.roundedBorder = true,
     this.bottom,
+    this.title,
     this.titleText,
     this.elevation,
     this.backgroundColor,
@@ -55,7 +54,7 @@ class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidg
     this.backButtonColor,
     this.actionsIconTheme,
     this.textTheme,
-    this.centerTitle = false,
+    this.centerTitle = true,
     this.showBackButton = false,
     this.excludeHeaderSemantics = false,
     this.onBackButtonPressed,
@@ -83,8 +82,8 @@ class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidg
                   )
                 : IconButton(
                     icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: backButtonColor ?? AppColorScheme.textPrimary,
+                      Icons.arrow_back,
+                      color: backButtonColor ?? AppColorScheme.white,
                     ),
                     onPressed: onBackButtonPressed,
                   )
@@ -94,42 +93,16 @@ class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidg
               ),
         automaticallyImplyLeading: false,
         flexibleSpace: flexibleSpace,
-        actions: hideTitle ? actions : null,
-        bottom: hideTitle
-            ? null
-            : PreferredSize(
-                preferredSize: Size(MediaQuery.of(context).size.width, 0),
-                child: Container(
-                  margin: const EdgeInsets.only(
-                    left: AppSpacing.medium,
-                    right: AppSpacing.medium,
-                    top: AppSpacing.extraMedium,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: AutoSizeText(
-                          titleText ?? '',
-                          style: style ??
-                              TextStyle(
-                                fontSize: AppFontSize.extraMega,
-                                color: AppColorScheme.textPrimary,
-                                fontWeight: AppFontWeight.bold,
-                              ),
-                          softWrap: true,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      Row(
-                        children: actions ?? [],
-                      )
-                    ],
-                  ),
-                ),
-              ),
+        actions: actions,
+        title: title ??
+            Text(
+              titleText ?? '',
+              style: const TextStyle(color: AppColorScheme.white),
+            ),
         iconTheme: iconTheme,
         actionsIconTheme: actionsIconTheme,
         textTheme: textTheme,
+        brightness: brightness,
         centerTitle: centerTitle,
         excludeHeaderSemantics: excludeHeaderSemantics,
         bottomOpacity: bottomOpacity,
