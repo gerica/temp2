@@ -137,9 +137,9 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         contentPadding: const EdgeInsets.only(left: AppSpacing.extraMedium, top: AppSpacing.small),
       );
 
-  InputBorder get _buildInputBorderSide => const OutlineInputBorder(
-        borderRadius: BorderRadius.all(AppCornerRadius.mini),
-        borderSide: BorderSide(width: 2),
+  InputBorder get _buildInputBorderSide => OutlineInputBorder(
+        borderRadius: const BorderRadius.all(AppCornerRadius.mini),
+        borderSide: BorderSide(width: 2, color: borderColor ?? Colors.black),
       );
 
   InputBorder get _buildInputErrorBorderSide => OutlineInputBorder(

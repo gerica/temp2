@@ -6,7 +6,7 @@
   "forgotPassword": "Forgot password?",
   "resetPassword": "Reset Password",
   "signIn": "SIGN IN",
-  "joinUs": "Join US",
+  "joinUs": "Join us",
   "alreadyHaveAnAccount": "Already have an account?",
   "signinInstead": "Sign-in instead",
   "signup": "SIGN UP",
@@ -28,5 +28,6 @@
   "howCanIAddADevice": "How can I add a device?",
   "isItPossibleToSeeMyResults": "Is it possible to see my results?",
   "stillNeedHelpSendUsAMessage": "Still need help? Send us a message!",
-  "yourMessage": "Your Message"
+  "yourMessage": "Your Message",
+  "send": "Send"
 }

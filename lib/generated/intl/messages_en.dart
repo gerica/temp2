@@ -37,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("How do I add more credits?"),
         "isItPossibleToSeeMyResults": MessageLookupByLibrary.simpleMessage(
             "Is it possible to see my results?"),
-        "joinUs": MessageLookupByLibrary.simpleMessage("Join US"),
+        "joinUs": MessageLookupByLibrary.simpleMessage("Join us"),
         "key": MessageLookupByLibrary.simpleMessage("value"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requiredField": MessageLookupByLibrary.simpleMessage("Required field"),
         "reset": MessageLookupByLibrary.simpleMessage("RESET"),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
+        "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendEmailUpperCase":
             MessageLookupByLibrary.simpleMessage("SEND EMAIL"),
         "signIn": MessageLookupByLibrary.simpleMessage("SIGN IN"),

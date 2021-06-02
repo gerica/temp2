@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
+import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_font_size.dart';
 import 'package:radio_life/app/styles/app_font_weight.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
+import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/cards/device_card_widget.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
+import 'package:radio_life/core/data/enum/status.dart';
 
 import '../../../../../generated/l10n.dart';
 import 'support_controller.dart';
@@ -89,10 +93,24 @@ class SupportPage extends GetView<SupportController> {
                   keyboardType: TextInputType.multiline,
                   minLines: 7,
                   maxLines: 7,
+                  borderColor: AppColorScheme.accentColor,
                   controller: controller.helpMessageController,
                   errorText: null,
                 ),
               ),
+              UIHelper.verticalSpaceLarge,
+              Align(
+                alignment: Alignment.bottomRight,
+                child: PrimaryButton(
+                    onPressed: () {},
+                    title: S.of(context).send,
+                    width: 120,
+                    icon: PlatformSvg.asset(AppSvgImages.icSend, color: AppColorScheme.white),
+                    color: PrimaryButtonColor.primary,
+                    type: PrimaryButtonType.circular,
+                    style: PrimaryButtonStyle.filled,
+                    state: Status.success),
+              )
             ],
           ),
         ),

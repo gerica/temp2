@@ -120,10 +120,10 @@ class S {
     );
   }
 
-  /// `Join US`
+  /// `Join us`
   String get joinUs {
     return Intl.message(
-      'Join US',
+      'Join us',
       name: 'joinUs',
       desc: '',
       args: [],
@@ -345,6 +345,16 @@ class S {
     return Intl.message(
       'Your Message',
       name: 'yourMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get send {
+    return Intl.message(
+      'Send',
+      name: 'send',
       desc: '',
       args: [],
     );
