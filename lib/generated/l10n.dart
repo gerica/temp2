@@ -289,6 +289,66 @@ class S {
       args: [],
     );
   }
+
+  /// `FAQ`
+  String get faqUpperCase {
+    return Intl.message(
+      'FAQ',
+      name: 'faqUpperCase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How do I add more credits?`
+  String get howDoIAddMoreCredits {
+    return Intl.message(
+      'How do I add more credits?',
+      name: 'howDoIAddMoreCredits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How can I add a device?`
+  String get howCanIAddADevice {
+    return Intl.message(
+      'How can I add a device?',
+      name: 'howCanIAddADevice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is it possible to see my results?`
+  String get isItPossibleToSeeMyResults {
+    return Intl.message(
+      'Is it possible to see my results?',
+      name: 'isItPossibleToSeeMyResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Still need help? Send us a message!`
+  String get stillNeedHelpSendUsAMessage {
+    return Intl.message(
+      'Still need help? Send us a message!',
+      name: 'stillNeedHelpSendUsAMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Message`
+  String get yourMessage {
+    return Intl.message(
+      'Your Message',
+      name: 'yourMessage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

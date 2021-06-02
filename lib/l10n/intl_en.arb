@@ -22,5 +22,11 @@
   "products": "Products",
   "reports": "Reports",
   "myDevices": "My Devices",
-  "support": "Support"
+  "support": "Support",
+  "faqUpperCase": "FAQ",
+  "howDoIAddMoreCredits": "How do I add more credits?",
+  "howCanIAddADevice": "How can I add a device?",
+  "isItPossibleToSeeMyResults": "Is it possible to see my results?",
+  "stillNeedHelpSendUsAMessage": "Still need help? Send us a message!",
+  "yourMessage": "Your Message"
 }

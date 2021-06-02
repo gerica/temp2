@@ -123,8 +123,8 @@ class AppThemeData extends ThemeDataRadioLife {
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: RadiolifeThemeColors.backgroundLight,
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: RadiolifeThemeColors.blue,
-      unselectedItemColor: RadiolifeThemeColors.blue.withOpacity(0.3),
+      selectedItemColor: RadiolifeThemeColors.darkBlue,
+      unselectedItemColor: RadiolifeThemeColors.darkBlue.withOpacity(0.3),
       elevation: 0,
     ),
     buttonTheme: ButtonThemeData(

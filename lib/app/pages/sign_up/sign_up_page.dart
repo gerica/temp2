@@ -99,7 +99,7 @@ class SignUpPage extends GetView<SignUpController> {
                           },
                           child: Text(
                             S.of(context).signinInstead,
-                            style: TextStyle(color: AppColorScheme.blue, fontSize: 16),
+                            style: TextStyle(color: AppColorScheme.darkBlue, fontSize: 16),
                           ),
                         ),
                       ],
