@@ -24,13 +24,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "faqUpperCase": MessageLookupByLibrary.simpleMessage("FAQ"),
         "firstName": MessageLookupByLibrary.simpleMessage("First name"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "forgotPasswordUpperCase":
             MessageLookupByLibrary.simpleMessage("FORGOT PASSWORD"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
-        "joinUs": MessageLookupByLibrary.simpleMessage("Join US"),
+        "howCanIAddADevice":
+            MessageLookupByLibrary.simpleMessage("How can I add a device?"),
+        "howDoIAddMoreCredits":
+            MessageLookupByLibrary.simpleMessage("How do I add more credits?"),
+        "isItPossibleToSeeMyResults": MessageLookupByLibrary.simpleMessage(
+            "Is it possible to see my results?"),
+        "joinUs": MessageLookupByLibrary.simpleMessage("Join us"),
         "key": MessageLookupByLibrary.simpleMessage("value"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
@@ -41,15 +48,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "requiredField": MessageLookupByLibrary.simpleMessage("Required field"),
         "reset": MessageLookupByLibrary.simpleMessage("RESET"),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
+        "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendEmailUpperCase":
             MessageLookupByLibrary.simpleMessage("SEND EMAIL"),
         "signIn": MessageLookupByLibrary.simpleMessage("SIGN IN"),
         "signinInstead":
             MessageLookupByLibrary.simpleMessage("Sign-in instead"),
         "signup": MessageLookupByLibrary.simpleMessage("SIGN UP"),
+        "stillNeedHelpSendUsAMessage": MessageLookupByLibrary.simpleMessage(
+            "Still need help? Send us a message!"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
         "theEnteredEmailIsNotValid": MessageLookupByLibrary.simpleMessage(
             "The entered email is not valid"),
+        "yourMessage": MessageLookupByLibrary.simpleMessage("Your Message"),
         "yourPasswordMustHaveAtLeast6Characters":
             MessageLookupByLibrary.simpleMessage(
                 "Your password must have at least 6 characters")

@@ -21,7 +21,7 @@ class DeviceCardWidget extends StatelessWidget {
           child: InkWell(
             onTap: onTap,
             borderRadius: BorderRadius.circular(8),
-            splashColor: AppColorScheme.primarySwatch.withOpacity(0.1),
+            splashColor: AppColorScheme.pinkDark.withOpacity(0.1),
             child: Container(
               child: Row(
                 children: [
@@ -29,7 +29,7 @@ class DeviceCardWidget extends StatelessWidget {
                     flex: 1,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppColorScheme.primarySwatch,
+                        color: AppColorScheme.pinkDark,
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(8),
                           bottomLeft: Radius.circular(8),

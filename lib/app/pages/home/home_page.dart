@@ -5,7 +5,6 @@ import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
-import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
@@ -16,20 +15,8 @@ import 'home_controller.dart';
 class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: RadioLifeAppBarWidget(
-          title: SizedBox(
-            height: 50,
-            child: Hero(
-              tag: 'logo',
-              child: Image.asset(
-                AppImages.logoHorizontalColor,
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-          ),
+        appBar: const RadioLifeAppBarWidget(
           showBackButton: false,
-          centerTitle: true,
-          leadingWidth: 0,
         ),
         body: ListView(
           shrinkWrap: true,
@@ -44,6 +31,13 @@ class HomePage extends GetView<HomeController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Center(
+                      child: Hero(
+                        tag: 'logo',
+                        child: Image.asset(AppImages.logoHorizontalColor, height: 53),
+                      ),
+                    ),
+                    UIHelper.verticalSpaceMedium,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [

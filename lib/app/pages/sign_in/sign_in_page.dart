@@ -78,7 +78,7 @@ class SignInPage extends GetView<SignInController> {
                       },
                       child: Text(
                         S.of(context).forgotPassword,
-                        style: TextStyle(color: AppColorScheme.blue, fontSize: 16),
+                        style: TextStyle(color: AppColorScheme.darkBlue, fontSize: 16),
                       ),
                     ),
                     UIHelper.verticalSpaceUltra,
