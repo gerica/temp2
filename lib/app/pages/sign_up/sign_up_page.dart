@@ -7,6 +7,7 @@ import 'package:radio_life/app/pages/sign_in/sign_in_page.dart';
 import 'package:radio_life/app/pages/sign_up/sign_up_controller.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
+import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
@@ -16,6 +17,9 @@ import '../../../generated/l10n.dart';
 class SignUpPage extends GetView<SignUpController> {
   @override
   Widget build(BuildContext context) => Scaffold(
+        appBar: const RadioLifeAppBarWidget(
+          showBackButton: false,
+        ),
         body: ListView(
           shrinkWrap: true,
           children: [
@@ -29,7 +33,6 @@ class SignUpPage extends GetView<SignUpController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        UIHelper.verticalSpaceLarge,
                         Center(
                           child: Hero(
                             tag: 'logo',
@@ -40,10 +43,9 @@ class SignUpPage extends GetView<SignUpController> {
                         Text(
                           S.of(context).joinUs,
                           style: const TextStyle(
-                            fontSize: AppFontSize.mega,
-                            fontWeight: AppFontWeight.regular,
-                            color: Colors.black
-                          ),
+                              fontSize: AppFontSize.mega,
+                              fontWeight: AppFontWeight.regular,
+                              color: Colors.black),
                         ),
                         UIHelper.verticalSpaceLarge,
                         InputTextWidget(
@@ -99,7 +101,7 @@ class SignUpPage extends GetView<SignUpController> {
                           },
                           child: Text(
                             S.of(context).signinInstead,
-                            style: TextStyle(color: AppColorScheme.blue, fontSize: 16),
+                            style: TextStyle(color: AppColorScheme.darkBlue, fontSize: 16),
                           ),
                         ),
                       ],

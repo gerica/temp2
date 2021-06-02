@@ -22,9 +22,9 @@ class AppColorScheme {
 
   static Color get whiteOutline => RadiolifeThemeColors.whiteOutline;
 
-  static Color get blue => RadiolifeThemeColors.blue;
+  static Color get darkBlue => RadiolifeThemeColors.darkBlue;
 
-  static Color get pink => RadiolifeThemeColors.pink;
+  static Color get pink => RadiolifeThemeColors.pinkDark;
 
   static Color get footer => RadiolifeThemeColors.footer;
 
@@ -53,17 +53,23 @@ class AppColorScheme {
   static Color get yellow => RadiolifeThemeColors.yellow;
 
   static Color get orange => RadiolifeThemeColors.orange;
+
+  static Color get pinkDark => RadiolifeThemeColors.pinkDark;
+
+  static Color get blue => RadiolifeThemeColors.blue;
 }
 
 class RadiolifeThemeColors {
   static final MaterialColor primarySwatch = StyleUtils.createMaterialColor(pink);
-  static final MaterialColor accentColor = StyleUtils.createMaterialColor(blue);
+  static final MaterialColor accentColor = StyleUtils.createMaterialColor(darkBlue);
 
   static const whiteOutline = Color(0xFFFFFFFF);
   static const background = pinkLightest;
-  static const blue = Color(0xFF004764);
+  static const darkBlue = Color(0xFF004764);
+  static const blue = Color(0xFF0078A8);
   static const blueLight = Color(0xFFA9E6FF);
-  static const pink = Color(0xFFC72E61);
+  static const pinkDark = Color(0xFFC72E61);
+  static const pink = Color(0xFFFA4B86);
   static const footer = Color(0xFFC72E61);
   static const textPrimary = Color(0xFF364E57);
   static const gray1 = Color(0xFFA8A8A8);

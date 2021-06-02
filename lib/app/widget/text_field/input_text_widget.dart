@@ -22,6 +22,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
   final bool readOnly;
   final int? maxLength;
   final int? maxLines;
+  final int? minLines;
   final int? heightMultiplier;
   final Function(String)? onChanged;
   final Function()? onEditingComplete;
@@ -40,6 +41,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
   final TextStyle? prefixStyle;
   final bool autofocus;
   final Color? background;
+  final Color? borderColor;
 
   const InputTextWidget({
     required this.onFieldSubmitted,
@@ -56,11 +58,13 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
     this.prefixText,
     this.textCapitalization,
     this.keyboardType,
+    this.minLines,
     this.background,
     this.hintStyle,
     this.height,
     this.maxLength,
     this.maxLines = 1,
+    this.borderColor,
     this.obscureText = false,
     this.keyboardSuggestions = false,
     this.readOnly = false,
@@ -92,6 +96,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         maxLength: maxLength,
         maxLines: maxLines,
         readOnly: readOnly,
+        minLines: minLines,
         style: style ??
             TextStyle(
                 fontSize: AppFontSize.primary,
@@ -129,12 +134,12 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
             TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.textSecondary),
         errorStyle: TextStyle(fontSize: AppFontSize.secondary, color: AppColorScheme.error),
         errorText: errorText,
-        contentPadding: const EdgeInsets.only(left: AppSpacing.extraMedium),
+        contentPadding: const EdgeInsets.only(left: AppSpacing.extraMedium, top: AppSpacing.small),
       );
 
-  InputBorder get _buildInputBorderSide => const OutlineInputBorder(
-        borderRadius: BorderRadius.all(AppCornerRadius.mini),
-        borderSide: BorderSide(width: 2),
+  InputBorder get _buildInputBorderSide => OutlineInputBorder(
+        borderRadius: const BorderRadius.all(AppCornerRadius.mini),
+        borderSide: BorderSide(width: 2, color: borderColor ?? Colors.black),
       );
 
   InputBorder get _buildInputErrorBorderSide => OutlineInputBorder(
@@ -183,5 +188,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
     properties.add(DiagnosticsProperty<bool>('autofocus', autofocus));
     properties.add(ColorProperty('background', background));
     properties.add(DiagnosticsProperty<bool>('readOnly', readOnly));
+    properties.add(IntProperty('minLines', minLines));
+    properties.add(ColorProperty('borderColor', borderColor));
   }
 }

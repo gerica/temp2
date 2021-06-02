@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 
@@ -78,6 +79,7 @@ class PrimaryButton extends StatelessWidget {
   double fontSize;
   double height;
   FontWeight fontWeight;
+  Widget? icon;
   double width;
 
   PrimaryButton({
@@ -88,6 +90,7 @@ class PrimaryButton extends StatelessWidget {
     required this.style,
     required this.state,
     this.fontSize = 18,
+    this.icon,
     this.fontWeight = FontWeight.bold,
     this.height = 50,
     this.width = double.infinity,
@@ -111,13 +114,22 @@ class PrimaryButton extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
             child: Visibility(
               visible: state == Status.loading,
-              replacement: Text(
-                title,
-                style: TextStyle(
-                  color: color.textColor,
-                  fontSize: fontSize,
-                  fontWeight: fontWeight,
-                ),
+              replacement: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (icon != null) ...[
+                    icon!,
+                    UIHelper.horizontalSpaceExtraTiny,
+                  ],
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: color.textColor,
+                      fontSize: fontSize,
+                      fontWeight: fontWeight,
+                    ),
+                  ),
+                ],
               ),
               child: Center(
                 child: CircularProgressIndicator(

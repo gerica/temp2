@@ -14,7 +14,7 @@ class MyDevicesPage extends GetView<MyDevicesController> {
           showBackButton: true,
           brightness: Brightness.dark,
           titleText: S.of(context).myDevices,
-          backgroundColor: AppColorScheme.primarySwatch,
+          backgroundColor: AppColorScheme.pinkDark,
           onBackButtonPressed: () {
             Get.back();
           },
