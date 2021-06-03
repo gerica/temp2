@@ -1,0 +1,1 @@
+export 'products/products_adapter.dart';

@@ -4,7 +4,7 @@ import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 
-enum PrimaryButtonColor { success, error, primary }
+enum PrimaryButtonColor { success, error, primary, secondary }
 
 extension PrimaryButtonColorExtension on PrimaryButtonColor {
   Color get backgroundColor {
@@ -15,6 +15,9 @@ extension PrimaryButtonColorExtension on PrimaryButtonColor {
         return AppColorScheme.error.withOpacity(0.4);
       case PrimaryButtonColor.primary:
         return AppColorScheme.primarySwatch;
+      case PrimaryButtonColor.secondary:
+        return AppColorScheme.blue;
+        break;
     }
   }
 
@@ -26,6 +29,9 @@ extension PrimaryButtonColorExtension on PrimaryButtonColor {
         return AppColorScheme.white;
       case PrimaryButtonColor.primary:
         return AppColorScheme.white;
+      case PrimaryButtonColor.secondary:
+        return AppColorScheme.blue;
+        break;
     }
   }
 }
