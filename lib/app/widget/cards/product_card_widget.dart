@@ -22,7 +22,7 @@ class ProductCardWidget extends StatelessWidget {
           child: InkWell(
             onTap: onTap,
             borderRadius: BorderRadius.circular(8),
-            splashColor: AppColorScheme.accentColor.withOpacity(0.1),
+            splashColor: AppColorScheme.blue.withOpacity(0.1),
             child: Container(
               child: Row(
                 children: [
@@ -30,7 +30,7 @@ class ProductCardWidget extends StatelessWidget {
                     flex: 1,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppColorScheme.accentColor,
+                        color: AppColorScheme.blue,
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(8),
                           bottomLeft: Radius.circular(8),

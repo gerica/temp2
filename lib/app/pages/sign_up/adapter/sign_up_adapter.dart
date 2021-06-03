@@ -1,4 +1,3 @@
-import 'package:radio_life/app/helper/validation_helper.dart';
 import 'package:radio_life/app/pages/sign_up/model/sign_up_model.dart';
 
 extension SignUpAdapter on SignUpModel {

@@ -5,4 +5,5 @@ abstract class AppSvgImages {
   static const icSupport = 'assets/svg/ic_support.svg';
   static const icTrophy = 'assets/svg/ic_trophy.svg';
   static const icSend = 'assets/svg/ic_send.svg';
+  static const icDownload = 'assets/svg/ic_download.svg';
 }
