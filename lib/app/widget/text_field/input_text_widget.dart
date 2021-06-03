@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_corner_radius.dart';
 import 'package:radio_life/app/styles/app_font_size.dart';
-import 'package:radio_life/app/styles/app_font_weight.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 
 abstract class FieldWidget {

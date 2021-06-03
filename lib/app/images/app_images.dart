@@ -8,4 +8,6 @@ abstract class AppImages {
   static const whiteMonoChromeLogoVertical = 'assets/images/white_monochrome_logo_vertical.png';
   static const grayMonoChromeLogoHorizontal = 'assets/images/gray_monochrome_logo_horizontal.png';
   static const grayMonoChromeLogoVertical = 'assets/images/gray_monochrome_logo_vertical.png';
+  static const productImage = 'assets/images/product_image.png';
+
 }
