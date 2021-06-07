@@ -8,6 +8,8 @@ import 'package:radio_life/app/pages/home/pages/products/bindings/products_bindi
 import 'package:radio_life/app/pages/home/pages/products/pages/product_details/bindings/product_details_binding.dart';
 import 'package:radio_life/app/pages/home/pages/products/pages/product_details/product_details_page.dart';
 import 'package:radio_life/app/pages/home/pages/products/products_page.dart';
+import 'package:radio_life/app/pages/home/pages/reports/pages/report_details/bindings/report_details_binding.dart';
+import 'package:radio_life/app/pages/home/pages/reports/pages/report_details/report_details_page.dart';
 import 'package:radio_life/app/pages/sign_in/bindings/sign_in_bindings.dart';
 import 'package:radio_life/app/pages/sign_in/sign_in_page.dart';
 import 'package:radio_life/app/pages/sign_up/bindings/sign_up_bindings.dart';
@@ -31,6 +33,7 @@ abstract class Routes {
   static const reports = '$home/reports';
   static const support = '$home/support';
   static const productDetails = '$products/product-details';
+  static const reportDetails = '$reports/reports-details';
 }
 
 mixin RadioLifeAppRoutes {
@@ -79,6 +82,11 @@ mixin RadioLifeAppRoutes {
       name: Routes.productDetails,
       page: () => ProductDetailsPage(),
       binding: ProductDetailsBinding(),
+    ),
+    GetPage(
+      name: Routes.reportDetails,
+      page: () => ReportDetailsPage(),
+      binding: ReportDetailsBinding(),
     )
   ];
 }

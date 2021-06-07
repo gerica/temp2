@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/pages/home/pages/reports/pages/report_details/params/report_details_params.dart';
+import 'package:radio_life/app/pages/home/pages/reports/pages/report_details/report_details_page.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/cards/report_card_widget.dart';
@@ -27,7 +29,14 @@ class ReportsPage extends GetView<ReportsController> {
           padding: const EdgeInsets.all(16),
           itemCount: controller.reports.length,
           itemBuilder: (context, index) => ReportCardWidget(
-            onTap: () {},
+            onTap: () {
+              ReportDetailsPage.navigateWith(
+                params: ReportDetailsParams(
+                  report: controller.reports[index],
+                  status: controller.status[index]
+                ),
+              );
+            },
             name: controller.reports[index],
             status: controller.status[index],
             color: index == 0

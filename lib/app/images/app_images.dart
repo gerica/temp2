@@ -9,5 +9,6 @@ abstract class AppImages {
   static const grayMonoChromeLogoHorizontal = 'assets/images/gray_monochrome_logo_horizontal.png';
   static const grayMonoChromeLogoVertical = 'assets/images/gray_monochrome_logo_vertical.png';
   static const productImage = 'assets/images/product_image.png';
+  static const avatar = 'assets/images/avatar.png';
 
 }
