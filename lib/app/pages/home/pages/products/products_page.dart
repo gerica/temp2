@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/helper/platform_svg.dart';
+import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/pages/home/pages/products/pages/product_details/params/product_details_params.dart';
 import 'package:radio_life/app/pages/home/pages/products/pages/product_details/product_details_page.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
@@ -7,6 +9,7 @@ import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/cards/product_card_widget.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../radio_life_app_routes.dart';
 import 'products_controller.dart';
 
 class ProductsPage extends GetView<ProductsController> {
@@ -16,7 +19,7 @@ class ProductsPage extends GetView<ProductsController> {
           showBackButton: true,
           brightness: Brightness.dark,
           titleText: S.of(context).products,
-          backgroundColor: AppColorScheme.blue,
+          backgroundColor: AppColorScheme.primarySwatch,
           onBackButtonPressed: () {
             Get.back();
           },
@@ -40,5 +43,13 @@ class ProductsPage extends GetView<ProductsController> {
             description: '',
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.offNamed(Routes.home);
+          },
+          backgroundColor: AppColorScheme.pinkDark,
+          child: PlatformSvg.asset(AppSvgImages.icHome),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
       );
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
+import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_font_size.dart';
@@ -23,7 +25,7 @@ class ReportDetailsPage extends GetView<ReportDetailsController> {
           showBackButton: true,
           brightness: Brightness.dark,
           titleText: S.of(context).products,
-          backgroundColor: AppColorScheme.accentColor,
+          backgroundColor: AppColorScheme.primarySwatch,
           title: Obx(
             () => Text(
               controller.state.value.data?.title ?? '',
@@ -70,10 +72,7 @@ class ReportDetailsPage extends GetView<ReportDetailsController> {
               ),
               UIHelper.verticalSpaceLarge,
               Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 30,
-                  horizontal: 16
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                   color: controller.state.value.data?.status == 'Analyzing'
@@ -105,6 +104,14 @@ class ReportDetailsPage extends GetView<ReportDetailsController> {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.offNamed(Routes.home);
+          },
+          backgroundColor: AppColorScheme.pinkDark,
+          child: PlatformSvg.asset(AppSvgImages.icHome),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
       );
 
   Widget _chip(String text, {Color? color}) => Container(
@@ -116,10 +123,7 @@ class ReportDetailsPage extends GetView<ReportDetailsController> {
         ),
         child: Text(
           text,
-          style: TextStyle(
-              color: AppColorScheme.textPrimary,
-              fontSize: AppFontSize.small,
-              fontWeight: AppFontWeight.bold),
+          style: const TextStyle(color: Colors.black, fontSize: AppFontSize.small),
         ),
       );
 }

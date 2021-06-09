@@ -103,12 +103,12 @@ class ReportCardWidget extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-              color: AppColorScheme.textPrimary,
-              fontSize: AppFontSize.small,
-              fontWeight: AppFontWeight.bold),
+              color: color != null && color == AppColorScheme.success
+                  ? AppColorScheme.white
+                  : Colors.black,
+              fontSize: AppFontSize.small),
         ),
       );
-
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

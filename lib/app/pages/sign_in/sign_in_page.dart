@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
 import 'package:radio_life/app/pages/forgot_password/forgot_password_page.dart';
@@ -18,80 +19,181 @@ import 'sign_in_controller.dart';
 
 class SignInPage extends GetView<SignInController> {
   static void get navigateTo {
-    Get.toNamed(Routes.signIn);
+    Get.offNamed(Routes.signIn);
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: RadioLifeAppBarWidget(
-          showBackButton: true,
-          onBackButtonPressed: () {
-            Get.back();
-          },
-          backButtonColor: Colors.black,
-        ),
+        appBar: context.breakpoint <= LayoutBreakpoint.xs
+            ? const RadioLifeAppBarWidget(
+                showBackButton: false,
+                backButtonColor: Colors.black,
+              )
+            : null,
         body: Center(
           child: Obx(() => Container(
                 constraints: BoxConstraints(
                     maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                        ? 500
+                        ? 1000
                         : MediaQuery.of(context).size.width),
                 padding: const EdgeInsets.all(AppSpacing.medium),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: Hero(
-                        tag: 'logo',
-                        child: Image.asset(AppImages.logoHorizontalColor, height: 53),
-                      ),
-                    ),
-                    UIHelper.verticalSpaceLarge,
-                    Text(
-                      S.of(context).login,
-                      style: const TextStyle(
-                        fontSize: 25,
-                        fontWeight: AppFontWeight.regular,
-                        color: Colors.black
-                      ),
-                    ),
-                    UIHelper.verticalSpaceLarge,
-                    InputTextWidget(
-                      hintText: S.of(context).email,
-                      onFieldSubmitted: () {},
-                      keyboardType: TextInputType.emailAddress,
-                      controller: controller.emailController,
-                      errorText: controller.signInModel.value.emailError,
-                    ),
-                    UIHelper.verticalSpaceMedium,
-                    InputTextWidget(
-                      hintText: S.of(context).password,
-                      onFieldSubmitted: () {},
-                      obscureText: true,
-                      keyboardType: TextInputType.text,
-                      controller: controller.pwdController,
-                      errorText: controller.signInModel.value.passwordError,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        ForgotPasswordPage.navigateTo;
-                      },
-                      child: Text(
-                        S.of(context).forgotPassword,
-                        style: TextStyle(color: AppColorScheme.darkBlue, fontSize: 16),
-                      ),
-                    ),
-                    UIHelper.verticalSpaceUltra,
-                    PrimaryButton(
-                        onPressed: () => controller.performSignIn(),
-                        title: S.of(context).signIn,
-                        color: PrimaryButtonColor.primary,
-                        type: PrimaryButtonType.circular,
-                        style: PrimaryButtonStyle.filled,
-                        state: Status.success)
-                  ],
-                ),
+                child: context.breakpoint > LayoutBreakpoint.xs
+                    ? _buildWebBody(context)
+                    : _buildAppBody(context),
               )),
         ),
+      );
+
+  Widget _buildAppBody(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+            child: Hero(
+              tag: 'logo',
+              child: PlatformSvg.asset(AppImages.logoHorizontalColor, height: 53),
+            ),
+          ),
+          UIHelper.verticalSpaceLarge,
+          Text(
+            S.of(context).login,
+            style: const TextStyle(
+                fontSize: 25, fontWeight: AppFontWeight.regular, color: Colors.black),
+          ),
+          UIHelper.verticalSpaceLarge,
+          InputTextWidget(
+            hintText: S.of(context).email,
+            onFieldSubmitted: () {},
+            keyboardType: TextInputType.emailAddress,
+            controller: controller.emailController,
+            errorText: controller.signInModel.value.emailError,
+          ),
+          UIHelper.verticalSpaceMedium,
+          InputTextWidget(
+            hintText: S.of(context).password,
+            onFieldSubmitted: () {},
+            obscureText: true,
+            keyboardType: TextInputType.text,
+            controller: controller.pwdController,
+            errorText: controller.signInModel.value.passwordError,
+          ),
+          UIHelper.verticalSpaceSmall,
+          InkWell(
+            onTap: () {
+              ForgotPasswordPage.navigateTo;
+            },
+            child: Text(
+              S.of(context).forgotPassword,
+              style: TextStyle(
+                color: AppColorScheme.blue,
+                fontSize: 16,
+                fontWeight: AppFontWeight.regular,
+              ),
+            ),
+          ),
+          UIHelper.verticalSpaceUltra,
+          PrimaryButton(
+              onPressed: () => controller.performSignIn(),
+              title: S.of(context).signIn,
+              color: PrimaryButtonColor.primary,
+              type: PrimaryButtonType.circular,
+              style: PrimaryButtonStyle.filled,
+              state: Status.success),
+          UIHelper.verticalSpaceExtraLarge,
+          InkWell(
+            onTap: () {
+              Get.offNamed(Routes.signUp);
+            },
+            child: Text(
+              S.of(context).createAnAccount,
+              style: TextStyle(
+                color: AppColorScheme.blue,
+                fontSize: 16,
+                fontWeight: AppFontWeight.regular,
+              ),
+            ),
+          ),
+        ],
+      );
+
+  Widget _buildWebBody(BuildContext context) => Row(
+        children: [
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  S.of(context).signInCamelCase,
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: AppFontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                UIHelper.verticalSpaceLarge,
+                InputTextWidget(
+                  hintText: S.of(context).email,
+                  onFieldSubmitted: () {},
+                  keyboardType: TextInputType.emailAddress,
+                  controller: controller.emailController,
+                  errorText: controller.signInModel.value.emailError,
+                ),
+                UIHelper.verticalSpaceMedium,
+                InputTextWidget(
+                  hintText: S.of(context).password,
+                  onFieldSubmitted: () {},
+                  obscureText: true,
+                  keyboardType: TextInputType.text,
+                  controller: controller.pwdController,
+                  errorText: controller.signInModel.value.passwordError,
+                ),
+                UIHelper.verticalSpaceSmall,
+                InkWell(
+                  onTap: () {
+                    ForgotPasswordPage.navigateTo;
+                  },
+                  child: Text(
+                    S.of(context).forgotPassword,
+                    style: TextStyle(
+                      color: AppColorScheme.blue,
+                      fontSize: 16,
+                      fontWeight: AppFontWeight.regular,
+                    ),
+                  ),
+                ),
+                UIHelper.verticalSpaceUltra,
+                PrimaryButton(
+                    onPressed: () => controller.performSignIn(),
+                    title: S.of(context).signIn,
+                    color: PrimaryButtonColor.primary,
+                    type: PrimaryButtonType.circular,
+                    style: PrimaryButtonStyle.filled,
+                    state: Status.success),
+                UIHelper.verticalSpaceExtraLarge,
+                InkWell(
+                  onTap: () {
+                    Get.offNamed(Routes.signUp);
+                  },
+                  child: Text(
+                    S.of(context).createAnAccount,
+                    style: TextStyle(
+                      color: AppColorScheme.blue,
+                      fontSize: 16,
+                      fontWeight: AppFontWeight.regular,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Flexible(
+            child: Center(
+              child: Hero(
+                tag: 'logo',
+                child: PlatformSvg.asset(AppImages.logoVerticalColor, height: 300),
+              ),
+            ),
+          )
+        ],
       );
 }

@@ -26,7 +26,7 @@ class ProductDetailsPage extends GetView<ProductDetailsController> {
           showBackButton: true,
           brightness: Brightness.dark,
           titleText: S.of(context).products,
-          backgroundColor: AppColorScheme.blue,
+          backgroundColor: AppColorScheme.primarySwatch,
           title: Obx(
             () => Text(
               controller.state.value.data?.title ?? '',
@@ -69,15 +69,15 @@ class ProductDetailsPage extends GetView<ProductDetailsController> {
                     const Spacer(),
                     Row(
                       children: [
-                    PlatformSvg.asset(AppSvgImages.icDownload),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        S.of(context).downloadManual,
-                        style: TextStyle(
-                            color: AppColorScheme.blue, fontSize: AppFontSize.primary),
-                      ),
-                    ),
+                        PlatformSvg.asset(AppSvgImages.icDownload),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            S.of(context).downloadManual,
+                            style: TextStyle(
+                                color: AppColorScheme.blue, fontSize: AppFontSize.primary),
+                          ),
+                        ),
                       ],
                     )
                   ],
@@ -86,7 +86,7 @@ class ProductDetailsPage extends GetView<ProductDetailsController> {
                 PrimaryButton(
                     onPressed: () {},
                     title: S.of(context).buyNow,
-                    color: PrimaryButtonColor.primary,
+                    color: PrimaryButtonColor.secondary,
                     type: PrimaryButtonType.circular,
                     style: PrimaryButtonStyle.filled,
                     state: Status.success)
