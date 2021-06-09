@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:radio_life/app/utils/style_utils.dart';
 
 class AppColorScheme {
-
   static final ColorScheme colorScheme = ColorScheme.fromSwatch(
     brightness: Brightness.light,
     backgroundColor: RadiolifeThemeColors.background,
@@ -79,7 +78,7 @@ class RadiolifeThemeColors {
   static const pinkLightest = Color(0xFFFFFAFC);
   static const backgroundLightPink = Color(0xFFFEE6EE);
   static const backgroundExtraLightPink = Color(0xFFFFF7F8);
-  static const success = Color(0xFF74DBB5);
+  static const success = Color(0xFF00A624);
   static const error = Color(0xFFCF3E5A);
   static const yellow = Color(0xFFFED543);
   static const orange = Color(0xFFFD6C2E);

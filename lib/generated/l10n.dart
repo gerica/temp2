@@ -389,6 +389,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Create an account`
+  String get createAnAccount {
+    return Intl.message(
+      'Create an account',
+      name: 'createAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUpCamelCase {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUpCamelCase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get signInCamelCase {
+    return Intl.message(
+      'Sign In',
+      name: 'signInCamelCase',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

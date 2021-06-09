@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "buyNow": MessageLookupByLibrary.simpleMessage("Buy now"),
+        "createAnAccount":
+            MessageLookupByLibrary.simpleMessage("Create an account"),
         "downloadManual":
             MessageLookupByLibrary.simpleMessage("Download Manual"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
@@ -57,6 +59,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendEmailUpperCase":
             MessageLookupByLibrary.simpleMessage("SEND EMAIL"),
         "signIn": MessageLookupByLibrary.simpleMessage("SIGN IN"),
+        "signInCamelCase": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "signUpCamelCase": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signinInstead":
             MessageLookupByLibrary.simpleMessage("Sign-in instead"),
         "signup": MessageLookupByLibrary.simpleMessage("SIGN UP"),

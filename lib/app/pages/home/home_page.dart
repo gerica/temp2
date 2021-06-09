@@ -14,8 +14,14 @@ import 'home_controller.dart';
 class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: const RadioLifeAppBarWidget(
+        appBar: RadioLifeAppBarWidget(
           showBackButton: false,
+          leadingWidth: 0,
+          title: Hero(
+            tag: 'logo',
+            child: Image.asset(AppImages.logoHorizontalColor, height: 40),
+          ),
+          centerTitle: false,
         ),
         body: ListView(
           shrinkWrap: true,
@@ -29,27 +35,27 @@ class HomePage extends GetView<HomeController> {
                 padding: const EdgeInsets.all(AppSpacing.medium),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Center(
-                      child: Hero(
-                        tag: 'logo',
-                        child: Image.asset(AppImages.logoHorizontalColor, height: 53),
-                      ),
-                    ),
-                    UIHelper.verticalSpaceMedium,
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          S.of(context).hello,
-                          style: TextStyle(
-                              color: AppColorScheme.textPrimary, fontSize: AppFontSize.mega),
+                        Row(
+                          children: [Text(
+                            S.of(context).hello,
+                            style: TextStyle(
+                                color: AppColorScheme.textPrimary, fontSize: AppFontSize.mega),
+                          ),
+                            Text(
+                              ' Denis',
+                              style: TextStyle(
+                                  color: AppColorScheme.primarySwatch, fontSize: AppFontSize.mega),
+                            )],
                         ),
-                        Text(
-                          ' Denis',
-                          style: TextStyle(
-                              color: AppColorScheme.primarySwatch, fontSize: AppFontSize.mega),
-                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.asset(AppImages.avatar2),
+                        )
                       ],
                     ),
                     UIHelper.verticalSpaceLarge,

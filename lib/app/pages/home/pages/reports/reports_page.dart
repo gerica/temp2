@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/helper/platform_svg.dart';
+import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/pages/home/pages/reports/pages/report_details/params/report_details_params.dart';
 import 'package:radio_life/app/pages/home/pages/reports/pages/report_details/report_details_page.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
@@ -7,6 +9,7 @@ import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/cards/report_card_widget.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../radio_life_app_routes.dart';
 import 'reports_controller.dart';
 
 class ReportsPage extends GetView<ReportsController> {
@@ -16,7 +19,7 @@ class ReportsPage extends GetView<ReportsController> {
           showBackButton: true,
           brightness: Brightness.dark,
           titleText: S.of(context).reports,
-          backgroundColor: AppColorScheme.accentColor,
+          backgroundColor: AppColorScheme.primarySwatch,
           onBackButtonPressed: () {
             Get.back();
           },
@@ -32,9 +35,7 @@ class ReportsPage extends GetView<ReportsController> {
             onTap: () {
               ReportDetailsPage.navigateWith(
                 params: ReportDetailsParams(
-                  report: controller.reports[index],
-                  status: controller.status[index]
-                ),
+                    report: controller.reports[index], status: controller.status[index]),
               );
             },
             name: controller.reports[index],
@@ -46,5 +47,13 @@ class ReportsPage extends GetView<ReportsController> {
                     : AppColorScheme.success,
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.offNamed(Routes.home);
+          },
+          backgroundColor: AppColorScheme.pinkDark,
+          child: PlatformSvg.asset(AppSvgImages.icHome),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
       );
 }
