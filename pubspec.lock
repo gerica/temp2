@@ -299,12 +299,12 @@ packages:
     source: hosted
     version: "4.2.0"
   flutter_svg:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.22.0"
+    version: "0.21.0+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -721,6 +721,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  responsive_builder:
+    dependency: "direct main"
+    description:
+      name: responsive_builder
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1"
   rxdart:
     dependency: transitive
     description:
@@ -912,6 +919,13 @@ packages:
     dependency: transitive
     description:
       name: web_socket_channel
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
+  websafe_svg:
+    dependency: "direct main"
+    description:
+      name: websafe_svg
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"

@@ -115,7 +115,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
       );
 
   InputDecoration _buildInputDecoration() => InputDecoration(
-        fillColor: background ?? AppColorScheme.backgroundLight,
+        fillColor: background ?? AppColorScheme.white,
         filled: true,
         suffixIcon: suffixIcon ?? Container(height: 0, width: 0),
         labelText: hintText,

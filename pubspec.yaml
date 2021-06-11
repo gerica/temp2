@@ -30,11 +30,12 @@ dependencies:
   cupertino_icons: ^1.0.3
   google_fonts: ^2.1.0
   intl_utils: ^2.3.0
-  flutter_svg: ^0.22.0
   auto_size_text: ^3.0.0-nullsafety.0
   shimmer: ^2.0.0
   flutter_native_splash: ^1.1.8+4
   layout: ^0.6.2
+  websafe_svg: ^2.0.0
+  responsive_builder: ^0.4.1
   #endregion
 
   #region Local

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
@@ -35,83 +36,89 @@ class SupportPage extends GetView<SupportController> {
             )
           ],
         ),
-        body: Container(
-          padding: const EdgeInsets.all(AppSpacing.medium),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                UIHelper.verticalSpaceLarge,
-                Text(
-                  S.of(context).faqUpperCase,
-                  style: const TextStyle(color: Colors.black, fontSize: AppFontSize.mega),
-                ),
-                UIHelper.verticalSpaceMedium,
-                InkWell(
-                  onTap: () {},
-                  child: Text(
-                    S.of(context).howDoIAddMoreCredits,
-                    style: TextStyle(
-                        color: AppColorScheme.blue,
+        body: Center(
+          child: Container(
+            constraints: BoxConstraints(
+                maxWidth: context.breakpoint > LayoutBreakpoint.xs
+                    ? 500
+                    : MediaQuery.of(context).size.width),
+            padding: const EdgeInsets.all(AppSpacing.medium),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  UIHelper.verticalSpaceLarge,
+                  Text(
+                    S.of(context).faqUpperCase,
+                    style: const TextStyle(color: Colors.black, fontSize: AppFontSize.mega),
+                  ),
+                  UIHelper.verticalSpaceMedium,
+                  InkWell(
+                    onTap: () {},
+                    child: Text(
+                      S.of(context).howDoIAddMoreCredits,
+                      style: TextStyle(
+                          color: AppColorScheme.blue,
+                          fontSize: AppFontSize.medium,
+                          fontWeight: AppFontWeight.regular),
+                    ),
+                  ),
+                  UIHelper.verticalSpaceMedium,
+                  InkWell(
+                    onTap: () {},
+                    child: Text(
+                      S.of(context).howCanIAddADevice,
+                      style: TextStyle(
+                          color: AppColorScheme.blue,
+                          fontSize: AppFontSize.medium,
+                          fontWeight: AppFontWeight.regular),
+                    ),
+                  ),
+                  UIHelper.verticalSpaceMedium,
+                  InkWell(
+                    onTap: () {},
+                    child: Text(
+                      S.of(context).isItPossibleToSeeMyResults,
+                      style: TextStyle(
+                          color: AppColorScheme.blue,
+                          fontSize: AppFontSize.medium,
+                          fontWeight: AppFontWeight.regular),
+                    ),
+                  ),
+                  UIHelper.verticalSpaceUltra,
+                  Text(
+                    S.of(context).stillNeedHelpSendUsAMessage,
+                    style: const TextStyle(
+                        color: Colors.black,
                         fontSize: AppFontSize.medium,
                         fontWeight: AppFontWeight.regular),
                   ),
-                ),
-                UIHelper.verticalSpaceMedium,
-                InkWell(
-                  onTap: () {},
-                  child: Text(
-                    S.of(context).howCanIAddADevice,
-                    style: TextStyle(
-                        color: AppColorScheme.blue,
-                        fontSize: AppFontSize.medium,
-                        fontWeight: AppFontWeight.regular),
+                  UIHelper.verticalSpaceMedium,
+                  InputTextWidget(
+                    hintText: S.of(context).yourMessage,
+                    onFieldSubmitted: () {},
+                    keyboardType: TextInputType.multiline,
+                    minLines: 7,
+                    maxLines: 7,
+                    borderColor: AppColorScheme.accentColor,
+                    controller: controller.helpMessageController,
+                    errorText: null,
                   ),
-                ),
-                UIHelper.verticalSpaceMedium,
-                InkWell(
-                  onTap: () {},
-                  child: Text(
-                    S.of(context).isItPossibleToSeeMyResults,
-                    style: TextStyle(
-                        color: AppColorScheme.blue,
-                        fontSize: AppFontSize.medium,
-                        fontWeight: AppFontWeight.regular),
-                  ),
-                ),
-                UIHelper.verticalSpaceUltra,
-                Text(
-                  S.of(context).stillNeedHelpSendUsAMessage,
-                  style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: AppFontSize.medium,
-                      fontWeight: AppFontWeight.regular),
-                ),
-                UIHelper.verticalSpaceMedium,
-                InputTextWidget(
-                  hintText: S.of(context).yourMessage,
-                  onFieldSubmitted: () {},
-                  keyboardType: TextInputType.multiline,
-                  minLines: 7,
-                  maxLines: 7,
-                  borderColor: AppColorScheme.accentColor,
-                  controller: controller.helpMessageController,
-                  errorText: null,
-                ),
-                UIHelper.verticalSpaceLarge,
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: PrimaryButton(
-                      onPressed: () {},
-                      title: S.of(context).send,
-                      width: 120,
-                      icon: PlatformSvg.asset(AppSvgImages.icSend, color: AppColorScheme.white),
-                      color: PrimaryButtonColor.secondary,
-                      type: PrimaryButtonType.circular,
-                      style: PrimaryButtonStyle.filled,
-                      state: Status.success),
-                )
-              ],
+                  UIHelper.verticalSpaceLarge,
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: PrimaryButton(
+                        onPressed: () {},
+                        title: S.of(context).send,
+                        width: 120,
+                        icon: PlatformSvg.asset(AppSvgImages.icSend, color: AppColorScheme.white),
+                        color: PrimaryButtonColor.secondary,
+                        type: PrimaryButtonType.circular,
+                        style: PrimaryButtonStyle.filled,
+                        state: Status.success),
+                  )
+                ],
+              ),
             ),
           ),
         ),

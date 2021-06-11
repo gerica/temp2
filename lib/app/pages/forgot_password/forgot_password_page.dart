@@ -25,117 +25,141 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
   @override
   Widget build(BuildContext context) => Scaffold(
         resizeToAvoidBottomInset: true,
-        appBar: RadioLifeAppBarWidget(
-          showBackButton: true,
-          onBackButtonPressed: () {
-            Get.back();
-          },
-          backButtonColor: Colors.black,
-        ),
+        appBar: context.breakpoint <= LayoutBreakpoint.xs
+            ? RadioLifeAppBarWidget(
+                showBackButton: false,
+                leadingWidth: 0,
+                title: Hero(
+                  tag: 'logo',
+                  child: Image.asset(AppImages.logoHorizontalColor, height: 40),
+                ),
+                centerTitle: true,
+              )
+            : null,
         body: Center(
           child: Obx(() => Container(
-            constraints: BoxConstraints(
-                maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                    ? 1000
-                    : MediaQuery.of(context).size.width),
-            padding: const EdgeInsets.all(AppSpacing.medium),
-            child: context.breakpoint > LayoutBreakpoint.xs
-                ? _buildWebBody(context)
-                : _buildAppBody(context),
-          )),
+                constraints: BoxConstraints(
+                    maxWidth: context.breakpoint > LayoutBreakpoint.xs
+                        ? 1000
+                        : MediaQuery.of(context).size.width),
+                padding: const EdgeInsets.all(AppSpacing.medium),
+                child: context.breakpoint > LayoutBreakpoint.xs
+                    ? _buildWebBody(context)
+                    : _buildAppBody(context),
+              )),
         ),
       );
 
   Widget _buildAppBody(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Center(
-            child: Hero(
-              tag: 'logo',
-              child: Image.asset(AppImages.logoHorizontalColor, height: 53),
-            ),
+          Column(
+            children: [
+              Text(
+                S.of(context).resetPassword,
+                style: const TextStyle(
+                    fontSize: AppFontSize.mega,
+                    fontWeight: AppFontWeight.regular,
+                    color: Colors.black),
+              ),
+              UIHelper.verticalSpaceExtraLarge,
+              InputTextWidget(
+                hintText: S.of(context).email,
+                onFieldSubmitted: () {},
+                keyboardType: TextInputType.emailAddress,
+                controller: controller.emailController,
+                errorText: controller.forgotPasswordModel.value.emailError,
+              ),
+            ],
           ),
-          UIHelper.verticalSpaceExtraLarge,
-          Text(
-            S.of(context).resetPassword,
-            style: const TextStyle(
-                fontSize: AppFontSize.mega,
+          UIHelper.verticalSpaceUltra,
+          PrimaryButton(
+              onPressed: () => controller.performPasswordRecovery(),
+              title: S.of(context).sendEmailUpperCase,
+              color: PrimaryButtonColor.primary,
+              type: PrimaryButtonType.circular,
+              style: PrimaryButtonStyle.filled,
+              state: Status.success),
+          UIHelper.verticalSpaceLarge,
+          InkWell(
+            onTap: () {
+              Get.offNamed(Routes.signIn);
+            },
+            child: Text(
+              S.of(context).cancel,
+              style: TextStyle(
+                color: AppColorScheme.blue,
+                fontSize: 16,
                 fontWeight: AppFontWeight.regular,
-                color: Colors.black
+              ),
             ),
           ),
-          UIHelper.verticalSpaceLarge,
-          UIHelper.verticalSpaceLarge,
-          InputTextWidget(
-            hintText: S.of(context).email,
-            onFieldSubmitted: () {},
-            keyboardType: TextInputType.emailAddress,
-            controller: controller.emailController,
-            errorText: controller.forgotPasswordModel.value.emailError,
-          ),],
-      ),
-      UIHelper.verticalSpaceUltra,
-      PrimaryButton(
-          onPressed: () => controller.performPasswordRecovery(),
-          title: S.of(context).sendEmailUpperCase,
-          color: PrimaryButtonColor.primary,
-          type: PrimaryButtonType.circular,
-          style: PrimaryButtonStyle.filled,
-          state: Status.success)
-    ],
-  );
+        ],
+      );
 
   Widget _buildWebBody(BuildContext context) => Row(
-    children: [
-      Flexible(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
+        children: [
+          Flexible(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  S.of(context).resetPassword,
-                  style: const TextStyle(
-                      fontSize: AppFontSize.mega,
-                      fontWeight: AppFontWeight.bold,
-                      color: Colors.black
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      S.of(context).resetPassword,
+                      style: const TextStyle(
+                          fontSize: AppFontSize.mega,
+                          fontWeight: AppFontWeight.bold,
+                          color: Colors.black),
+                    ),
+                    UIHelper.verticalSpaceLarge,
+                    UIHelper.verticalSpaceLarge,
+                    InputTextWidget(
+                      hintText: S.of(context).email,
+                      onFieldSubmitted: () {},
+                      keyboardType: TextInputType.emailAddress,
+                      controller: controller.emailController,
+                      errorText: controller.forgotPasswordModel.value.emailError,
+                    ),
+                  ],
+                ),
+                UIHelper.verticalSpaceUltra,
+                PrimaryButton(
+                    onPressed: () => controller.performPasswordRecovery(),
+                    title: S.of(context).sendEmailUpperCase,
+                    color: PrimaryButtonColor.primary,
+                    type: PrimaryButtonType.circular,
+                    style: PrimaryButtonStyle.filled,
+                    state: Status.success),
+                UIHelper.verticalSpaceLarge,
+                InkWell(
+                  onTap: () {
+                    Get.offNamed(Routes.signIn);
+                  },
+                  child: Text(
+                    S.of(context).cancel,
+                    style: TextStyle(
+                      color: AppColorScheme.blue,
+                      fontSize: 16,
+                      fontWeight: AppFontWeight.regular,
+                    ),
                   ),
                 ),
-                UIHelper.verticalSpaceLarge,
-                UIHelper.verticalSpaceLarge,
-                InputTextWidget(
-                  hintText: S.of(context).email,
-                  onFieldSubmitted: () {},
-                  keyboardType: TextInputType.emailAddress,
-                  controller: controller.emailController,
-                  errorText: controller.forgotPasswordModel.value.emailError,
-                ),],
+              ],
             ),
-            UIHelper.verticalSpaceUltra,
-            PrimaryButton(
-                onPressed: () => controller.performPasswordRecovery(),
-                title: S.of(context).sendEmailUpperCase,
-                color: PrimaryButtonColor.primary,
-                type: PrimaryButtonType.circular,
-                style: PrimaryButtonStyle.filled,
-                state: Status.success)
-          ],
-        ),
-      ),
-      Flexible(
-        child: Center(
-          child: Hero(
-            tag: 'logo',
-            child: PlatformSvg.asset(AppImages.logoVerticalColor, height: 300),
           ),
-        ),
-      )
-    ],
-  );
+          Flexible(
+            child: Center(
+              child: Hero(
+                tag: 'logo',
+                child: Image.asset(AppImages.logoVerticalColor, height: 300),
+              ),
+            ),
+          )
+        ],
+      );
 }

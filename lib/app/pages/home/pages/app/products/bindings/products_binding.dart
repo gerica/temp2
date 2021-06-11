@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:radio_life/app/pages/home/pages/products/products_controller.dart';
+
+import '../products_controller.dart';
 
 class ProductsBinding extends Bindings {
 

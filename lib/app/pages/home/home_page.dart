@@ -4,6 +4,7 @@ import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
@@ -41,20 +42,30 @@ class HomePage extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
-                          children: [Text(
-                            S.of(context).hello,
-                            style: TextStyle(
-                                color: AppColorScheme.textPrimary, fontSize: AppFontSize.mega),
-                          ),
+                          children: [
+                            Text(
+                              S.of(context).hello,
+                              style: TextStyle(
+                                  color: AppColorScheme.textPrimary, fontSize: AppFontSize.mega),
+                            ),
                             Text(
                               ' Denis',
                               style: TextStyle(
                                   color: AppColorScheme.primarySwatch, fontSize: AppFontSize.mega),
-                            )],
+                            )
+                          ],
                         ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.asset(AppImages.avatar2),
+                        InkWell(
+                          onTap: () {
+                            Get.toNamed(Routes.profile);
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Hero(
+                              tag: 'avatar',
+                              child: Image.asset(AppImages.avatar2, height: 52),
+                            ),
+                          ),
                         )
                       ],
                     ),
@@ -62,10 +73,11 @@ class HomePage extends GetView<HomeController> {
                     GridView.builder(
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          childAspectRatio: 140 / 140,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 5),
+                          childAspectRatio: 160 / 169,
+                          mainAxisSpacing: 12,
+                          crossAxisSpacing: 8),
                       itemCount: controller.items.length,
+                      padding: EdgeInsets.zero,
                       shrinkWrap: true,
                       itemBuilder: (context, index) => Card(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

@@ -13,7 +13,7 @@
   "firstName": "First name",
   "lastName": "Last name",
   "reset": "RESET",
-  "sendEmailUpperCase": "SEND EMAIL",
+  "sendEmailUpperCase": "SEND E-MAIL",
   "forgotPasswordUpperCase": "FORGOT PASSWORD",
   "requiredField": "Required field",
   "theEnteredEmailIsNotValid": "The entered email is not valid",
@@ -35,5 +35,10 @@
   "buyNow": "Buy now",
   "createAnAccount": "Create an account",
   "signUpCamelCase": "Sign Up",
-  "signInCamelCase": "Sign In"
+  "signInCamelCase": "Sign In",
+  "cancel": "Cancel",
+  "haveAnAccountSignIn": "Have an account? Sign In!",
+  "profile": "Profile",
+  "updatePassword": "Update password",
+  "logOut": "Log out"
 }
