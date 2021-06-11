@@ -190,10 +190,10 @@ class S {
     );
   }
 
-  /// `SEND EMAIL`
+  /// `SEND E-MAIL`
   String get sendEmailUpperCase {
     return Intl.message(
-      'SEND EMAIL',
+      'SEND E-MAIL',
       name: 'sendEmailUpperCase',
       desc: '',
       args: [],
@@ -415,6 +415,56 @@ class S {
     return Intl.message(
       'Sign In',
       name: 'signInCamelCase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have an account? Sign In!`
+  String get haveAnAccountSignIn {
+    return Intl.message(
+      'Have an account? Sign In!',
+      name: 'haveAnAccountSignIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update password`
+  String get updatePassword {
+    return Intl.message(
+      'Update password',
+      name: 'updatePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out`
+  String get logOut {
+    return Intl.message(
+      'Log out',
+      name: 'logOut',
       desc: '',
       args: [],
     );

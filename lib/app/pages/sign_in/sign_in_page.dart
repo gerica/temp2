@@ -25,9 +25,14 @@ class SignInPage extends GetView<SignInController> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: context.breakpoint <= LayoutBreakpoint.xs
-            ? const RadioLifeAppBarWidget(
+            ? RadioLifeAppBarWidget(
                 showBackButton: false,
-                backButtonColor: Colors.black,
+                leadingWidth: 0,
+                title: Hero(
+                  tag: 'logo',
+                  child: Image.asset(AppImages.logoHorizontalColor, height: 40),
+                ),
+                centerTitle: true,
               )
             : null,
         body: Center(
@@ -47,19 +52,12 @@ class SignInPage extends GetView<SignInController> {
   Widget _buildAppBody(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
-            child: Hero(
-              tag: 'logo',
-              child: PlatformSvg.asset(AppImages.logoHorizontalColor, height: 53),
-            ),
-          ),
-          UIHelper.verticalSpaceLarge,
           Text(
             S.of(context).login,
             style: const TextStyle(
                 fontSize: 25, fontWeight: AppFontWeight.regular, color: Colors.black),
           ),
-          UIHelper.verticalSpaceLarge,
+          UIHelper.verticalSpaceExtraLarge,
           InputTextWidget(
             hintText: S.of(context).email,
             onFieldSubmitted: () {},
@@ -76,7 +74,7 @@ class SignInPage extends GetView<SignInController> {
             controller: controller.pwdController,
             errorText: controller.signInModel.value.passwordError,
           ),
-          UIHelper.verticalSpaceSmall,
+          UIHelper.verticalSpaceLarge,
           InkWell(
             onTap: () {
               ForgotPasswordPage.navigateTo;
@@ -90,7 +88,7 @@ class SignInPage extends GetView<SignInController> {
               ),
             ),
           ),
-          UIHelper.verticalSpaceUltra,
+          UIHelper.verticalSpaceLarge,
           PrimaryButton(
               onPressed: () => controller.performSignIn(),
               title: S.of(context).signIn,
@@ -98,7 +96,7 @@ class SignInPage extends GetView<SignInController> {
               type: PrimaryButtonType.circular,
               style: PrimaryButtonStyle.filled,
               state: Status.success),
-          UIHelper.verticalSpaceExtraLarge,
+          UIHelper.verticalSpaceLarge,
           InkWell(
             onTap: () {
               Get.offNamed(Routes.signUp);
@@ -147,7 +145,7 @@ class SignInPage extends GetView<SignInController> {
                   controller: controller.pwdController,
                   errorText: controller.signInModel.value.passwordError,
                 ),
-                UIHelper.verticalSpaceSmall,
+                UIHelper.verticalSpaceLarge,
                 InkWell(
                   onTap: () {
                     ForgotPasswordPage.navigateTo;
@@ -161,7 +159,7 @@ class SignInPage extends GetView<SignInController> {
                     ),
                   ),
                 ),
-                UIHelper.verticalSpaceUltra,
+                UIHelper.verticalSpaceLarge,
                 PrimaryButton(
                     onPressed: () => controller.performSignIn(),
                     title: S.of(context).signIn,
@@ -169,7 +167,7 @@ class SignInPage extends GetView<SignInController> {
                     type: PrimaryButtonType.circular,
                     style: PrimaryButtonStyle.filled,
                     state: Status.success),
-                UIHelper.verticalSpaceExtraLarge,
+                UIHelper.verticalSpaceLarge,
                 InkWell(
                   onTap: () {
                     Get.offNamed(Routes.signUp);
@@ -190,7 +188,7 @@ class SignInPage extends GetView<SignInController> {
             child: Center(
               child: Hero(
                 tag: 'logo',
-                child: PlatformSvg.asset(AppImages.logoVerticalColor, height: 300),
+                child: Image.asset(AppImages.logoVerticalColor, height: 300),
               ),
             ),
           )

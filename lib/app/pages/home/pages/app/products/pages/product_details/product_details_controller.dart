@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:radio_life/app/pages/home/pages/products/pages/product_details/params/product_details_params.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 
-import '../../../../../../pages/adapter/index.dart';
+import '../../../../../../../pages/adapter/index.dart';
 import 'model/product_details_model.dart';
+import 'params/product_details_params.dart';
 
 class ProductDetailsController extends GetxController {
   //region State

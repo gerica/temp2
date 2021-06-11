@@ -30,8 +30,7 @@ extension PrimaryButtonColorExtension on PrimaryButtonColor {
       case PrimaryButtonColor.primary:
         return AppColorScheme.white;
       case PrimaryButtonColor.secondary:
-        return AppColorScheme.white;
-        break;
+        return AppColorScheme.blue;
     }
   }
 }
@@ -95,9 +94,9 @@ class PrimaryButton extends StatelessWidget {
     required this.type,
     required this.style,
     required this.state,
-    this.fontSize = 18,
+    this.fontSize = 16,
     this.icon,
-    this.fontWeight = FontWeight.bold,
+    this.fontWeight = FontWeight.normal,
     this.height = 50,
     this.width = double.infinity,
   });
@@ -113,8 +112,10 @@ class PrimaryButton extends StatelessWidget {
           highlightElevation: 0,
           fillColor: style.showBackground ? color.backgroundColor : Colors.transparent,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(type.cornerRadius),
-          ),
+              borderRadius: BorderRadius.circular(type.cornerRadius),
+              side: style.showBorder
+                  ? BorderSide(color: color.backgroundColor, width: 2)
+                  : BorderSide.none),
           onPressed: onPressed,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
@@ -130,7 +131,7 @@ class PrimaryButton extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                      color: color.textColor,
+                      color: style.showBorder ? color.textColor : AppColorScheme.white,
                       fontSize: fontSize,
                       fontWeight: fontWeight,
                     ),

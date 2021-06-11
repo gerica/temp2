@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
@@ -13,7 +14,9 @@ class DeviceCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AspectRatio(
-        aspectRatio: MediaQuery.of(context).size.width / 130,
+        aspectRatio: context.breakpoint > LayoutBreakpoint.xs
+            ? 600/200
+            : MediaQuery.of(context).size.width / 130,
         child: Card(
           margin: const EdgeInsets.symmetric(vertical: 8),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
 class PlatformSvg {
   static Widget asset(String asset,
@@ -11,13 +12,13 @@ class PlatformSvg {
       AlignmentGeometry alignment = Alignment.center,
       String? semanticsLabel}) {
     if (kIsWeb) {
-      return Image.network(asset,
+      return WebsafeSvg.asset(asset,
           width: width,
           height: height,
           fit: fit,
           color: color,
           alignment: alignment,
-          semanticLabel: semanticsLabel);
+          semanticsLabel: semanticsLabel);
     }
     return SvgPicture.asset(asset,
         width: width,

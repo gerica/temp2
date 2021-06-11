@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
-import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
 import 'package:radio_life/app/pages/sign_in/sign_in_page.dart';
@@ -19,8 +18,14 @@ class SignUpPage extends GetView<SignUpController> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: context.breakpoint <= LayoutBreakpoint.xs
-            ? const RadioLifeAppBarWidget(
+            ? RadioLifeAppBarWidget(
                 showBackButton: false,
+                leadingWidth: 0,
+                title: Hero(
+                  tag: 'logo',
+                  child: Image.asset(AppImages.logoHorizontalColor, height: 40),
+                ),
+                centerTitle: true,
               )
             : null,
         body: ListView(
@@ -46,19 +51,12 @@ class SignUpPage extends GetView<SignUpController> {
   Widget _buildAppBody(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
-            child: Hero(
-              tag: 'logo',
-              child: Image.asset(AppImages.logoHorizontalColor, height: 53),
-            ),
-          ),
-          UIHelper.verticalSpaceExtraLarge,
           Text(
             S.of(context).joinUs,
             style: const TextStyle(
                 fontSize: AppFontSize.mega, fontWeight: AppFontWeight.regular, color: Colors.black),
           ),
-          UIHelper.verticalSpaceLarge,
+          UIHelper.verticalSpaceExtraLarge,
           InputTextWidget(
             hintText: S.of(context).firstName,
             onFieldSubmitted: () {},
@@ -84,15 +82,6 @@ class SignUpPage extends GetView<SignUpController> {
             controller: controller.emailController,
             errorText: controller.signUpModel.value.emailError,
           ),
-          UIHelper.verticalSpaceMedium,
-          InputTextWidget(
-            hintText: S.of(context).password,
-            onFieldSubmitted: () {},
-            obscureText: true,
-            keyboardType: TextInputType.text,
-            controller: controller.pwdController,
-            errorText: controller.signUpModel.value.passwordError,
-          ),
           UIHelper.verticalSpaceMega,
           PrimaryButton(
               onPressed: () => controller.performSignUp(),
@@ -101,13 +90,13 @@ class SignUpPage extends GetView<SignUpController> {
               type: PrimaryButtonType.circular,
               style: PrimaryButtonStyle.filled,
               state: Status.success),
-          UIHelper.verticalSpaceMedium,
+          UIHelper.verticalSpaceLarge,
           InkWell(
             onTap: () {
               SignInPage.navigateTo;
             },
             child: Text(
-              'Have an account? Sign In!',
+              S.of(context).haveAnAccountSignIn,
               style: TextStyle(color: AppColorScheme.blue, fontSize: 16),
             ),
           ),
@@ -154,16 +143,7 @@ class SignUpPage extends GetView<SignUpController> {
                   controller: controller.emailController,
                   errorText: controller.signUpModel.value.emailError,
                 ),
-                UIHelper.verticalSpaceMedium,
-                InputTextWidget(
-                  hintText: S.of(context).password,
-                  onFieldSubmitted: () {},
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  controller: controller.pwdController,
-                  errorText: controller.signUpModel.value.passwordError,
-                ),
-                UIHelper.verticalSpaceMega,
+                UIHelper.verticalSpaceLarge,
                 PrimaryButton(
                     onPressed: () => controller.performSignUp(),
                     title: S.of(context).signup,
@@ -171,13 +151,13 @@ class SignUpPage extends GetView<SignUpController> {
                     type: PrimaryButtonType.circular,
                     style: PrimaryButtonStyle.filled,
                     state: Status.success),
-                UIHelper.verticalSpaceMedium,
+                UIHelper.verticalSpaceLarge,
                 InkWell(
                   onTap: () {
                     SignInPage.navigateTo;
                   },
                   child: Text(
-                    'Have an account? Sign In!',
+                    S.of(context).haveAnAccountSignIn,
                     style: TextStyle(color: AppColorScheme.blue, fontSize: 16),
                   ),
                 ),
@@ -188,7 +168,7 @@ class SignUpPage extends GetView<SignUpController> {
             child: Center(
               child: Hero(
                 tag: 'logo',
-                child: PlatformSvg.asset(AppImages.logoVerticalColor, height: 300),
+                child: Image.asset(AppImages.logoVerticalColor, height: 300),
               ),
             ),
           )

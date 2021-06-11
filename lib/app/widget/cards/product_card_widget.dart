@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
@@ -14,7 +15,9 @@ class ProductCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AspectRatio(
-        aspectRatio: MediaQuery.of(context).size.width / 115,
+        aspectRatio: context.breakpoint > LayoutBreakpoint.xs
+            ? 600/150
+            : MediaQuery.of(context).size.width / 115,
         child: Card(
           margin: const EdgeInsets.symmetric(vertical: 8),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -48,13 +51,11 @@ class ProductCardWidget extends StatelessWidget {
                       children: [
                         Text(
                           name,
-                          style: const TextStyle(
-                              color: Colors.black, fontSize: AppFontSize.medium),
+                          style: const TextStyle(color: Colors.black, fontSize: AppFontSize.medium),
                         ),
                         const Text(
                           'Lorem ipsum dolor sit amet, consectetur',
-                          style: TextStyle(
-                              color: Colors.black, fontSize: AppFontSize.secondary),
+                          style: TextStyle(color: Colors.black, fontSize: AppFontSize.secondary),
                         )
                       ],
                     ),
