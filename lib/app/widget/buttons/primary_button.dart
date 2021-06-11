@@ -17,7 +17,6 @@ extension PrimaryButtonColorExtension on PrimaryButtonColor {
         return AppColorScheme.primarySwatch;
       case PrimaryButtonColor.secondary:
         return AppColorScheme.blue;
-        break;
     }
   }
 
