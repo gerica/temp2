@@ -25,8 +25,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "buyNow": MessageLookupByLibrary.simpleMessage("Buy now"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "createAnAccount":
             MessageLookupByLibrary.simpleMessage("Create an account"),
+        "datePicker": MessageLookupByLibrary.simpleMessage("Date picker"),
+        "devices": MessageLookupByLibrary.simpleMessage("Devices"),
         "downloadManual":
             MessageLookupByLibrary.simpleMessage("Download Manual"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
@@ -60,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requiredField": MessageLookupByLibrary.simpleMessage("Required field"),
         "reset": MessageLookupByLibrary.simpleMessage("RESET"),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendEmailUpperCase":
             MessageLookupByLibrary.simpleMessage("SEND E-MAIL"),
@@ -72,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "stillNeedHelpSendUsAMessage": MessageLookupByLibrary.simpleMessage(
             "Still need help? Send us a message!"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
+        "tests": MessageLookupByLibrary.simpleMessage("Tests"),
         "theEnteredEmailIsNotValid": MessageLookupByLibrary.simpleMessage(
             "The entered email is not valid"),
         "updatePassword":

@@ -469,6 +469,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Date picker`
+  String get datePicker {
+    return Intl.message(
+      'Date picker',
+      name: 'datePicker',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tests`
+  String get tests {
+    return Intl.message(
+      'Tests',
+      name: 'tests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Devices`
+  String get devices {
+    return Intl.message(
+      'Devices',
+      name: 'devices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

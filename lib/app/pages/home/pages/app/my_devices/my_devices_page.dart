@@ -6,8 +6,10 @@ import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/cards/device_card_widget.dart';
+import 'package:radio_life/app/widget/dialog/reports_filter_dialog/show_reports_filter_dialog_widget.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../../helper/dialog_helper.dart';
 import '../../../../../radio_life_app_routes.dart';
 import 'my_devices_controller.dart';
 
@@ -24,7 +26,14 @@ class MyDevicesPage extends GetView<MyDevicesController> {
           },
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.appDialog(
+                  pageChild: ReportsFilterDialogWidget(
+                    onApplyFilter: (filterData) {},
+                    onCancel: () {},
+                  ),
+                );
+              },
               icon: const Icon(Icons.filter_list, color: AppColorScheme.white),
             )
           ],

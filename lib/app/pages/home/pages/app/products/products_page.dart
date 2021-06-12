@@ -7,8 +7,10 @@ import 'package:radio_life/app/pages/home/pages/app/products/pages/product_detai
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/cards/product_card_widget.dart';
+import 'package:radio_life/app/widget/dialog/reports_filter_dialog/show_reports_filter_dialog_widget.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../../helper/dialog_helper.dart';
 import '../../../../../radio_life_app_routes.dart';
 import 'pages/product_details/params/product_details_params.dart';
 import 'products_controller.dart';
@@ -26,7 +28,14 @@ class ProductsPage extends GetView<ProductsController> {
           },
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.appDialog(
+                  pageChild: ReportsFilterDialogWidget(
+                    onApplyFilter: (filterData) {},
+                    onCancel: () {},
+                  ),
+                );
+              },
               icon: const Icon(Icons.filter_list, color: AppColorScheme.white),
             )
           ],
