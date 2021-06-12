@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/styles/app_border_radius.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
@@ -51,7 +52,7 @@ class ReportsFilterDialogWidget extends StatelessWidget {
         duration: const Duration(seconds: 1),
         child: Center(
           child: Container(
-            width: double.infinity,
+            width: context.breakpoint > LayoutBreakpoint.xs ? 500 : double.infinity,
             margin: const EdgeInsets.symmetric(horizontal: AppSpacing.medium),
             padding: const EdgeInsets.all(AppSpacing.medium),
             decoration: BoxDecoration(
