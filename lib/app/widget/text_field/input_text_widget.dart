@@ -45,7 +45,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
   const InputTextWidget({
     required this.onFieldSubmitted,
     required this.controller,
-    this.errorText = '',
+    this.errorText,
     this.onChanged,
     this.onEditingComplete,
     this.focusNode,
@@ -96,13 +96,10 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         maxLines: maxLines,
         readOnly: readOnly,
         minLines: minLines,
-        style: style ??
-            TextStyle(
-                fontSize: AppFontSize.primary,
-                color: AppColorScheme.textPrimary),
+        style: style ?? TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.textPrimary),
         onEditingComplete: () {
           focusNode?.unfocus();
-          onEditingComplete!();
+          if (onEditingComplete != null) onEditingComplete!();
         },
         onFieldSubmitted: (_) {
           focusNode?.unfocus();
@@ -126,7 +123,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         suffixIconConstraints: BoxConstraints(minHeight: height ?? 50),
         prefixStyle: prefixStyle,
         errorBorder: _buildInputErrorBorderSide,
-        focusedBorder: _buildInputBorderSide,
+        focusedBorder: _buildFocusedBorderSide,
         focusedErrorBorder: _buildInputErrorBorderSide,
         border: _buildBorderSide,
         hintStyle: hintStyle ??
@@ -136,9 +133,9 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         contentPadding: const EdgeInsets.only(left: AppSpacing.extraMedium, top: AppSpacing.small),
       );
 
-  InputBorder get _buildInputBorderSide => OutlineInputBorder(
+  InputBorder get _buildFocusedBorderSide => OutlineInputBorder(
         borderRadius: const BorderRadius.all(AppCornerRadius.mini),
-        borderSide: BorderSide(width: 2, color: borderColor ?? Colors.black),
+        borderSide: BorderSide(width: 2, color: borderColor ?? AppColorScheme.darkBlue),
       );
 
   InputBorder get _buildInputErrorBorderSide => OutlineInputBorder(
