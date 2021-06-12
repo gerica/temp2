@@ -40,5 +40,10 @@
   "haveAnAccountSignIn": "Have an account? Sign In!",
   "profile": "Profile",
   "updatePassword": "Update password",
-  "logOut": "Log out"
+  "logOut": "Log out",
+  "datePicker": "Date picker",
+  "tests": "Tests",
+  "devices": "Devices",
+  "confirm": "Confirm",
+  "save": "Save"
 }
