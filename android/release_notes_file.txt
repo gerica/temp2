@@ -1,1 +1,2 @@
-- Filter Component
+- Update Password page
+- UI Improvements
