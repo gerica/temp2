@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
@@ -61,12 +62,35 @@ class ProductsPage extends GetView<ProductsController> {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Get.offNamed(Routes.home);
-          },
+        floatingActionButton: SpeedDial(
+          icon: Icons.more_vert,
+          activeIcon: Icons.close,
+          buttonSize: 56,
+          marginEnd: 30,
+          visible: true,
+          curve: Curves.bounceIn,
+          overlayOpacity: 0.5,
           backgroundColor: AppColorScheme.pinkDark,
-          child: PlatformSvg.asset(AppSvgImages.icHome),
+          foregroundColor: Colors.white,
+          elevation: 8,
+          shape: const CircleBorder(),
+          children: [
+            SpeedDialChild(
+              child: Center(
+                child: PlatformSvg.asset(AppSvgImages.icHome,
+                    width: 25, height: 25, fit: BoxFit.contain),
+              ),
+              backgroundColor: AppColorScheme.pinkDark,
+              onTap: () {
+                Get.back();
+              },
+            ),
+            SpeedDialChild(
+              child: const Icon(Icons.add, color: AppColorScheme.white),
+              backgroundColor: AppColorScheme.pinkDark,
+              onTap: () {},
+            ),
+          ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
       );

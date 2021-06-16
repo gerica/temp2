@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
@@ -78,7 +79,9 @@ class ProfilePage extends GetView<ProfileController> {
                     ),
                     UIHelper.verticalSpaceMedium,
                     PrimaryButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed(Routes.updatePassword);
+                        },
                         title: S.of(context).updatePassword,
                         color: PrimaryButtonColor.primary,
                         type: PrimaryButtonType.circular,

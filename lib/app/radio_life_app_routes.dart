@@ -8,6 +8,8 @@ import 'package:radio_life/app/pages/home/pages/app/my_devices/my_devices_page.d
 import 'package:radio_life/app/pages/home/pages/app/products/bindings/products_binding.dart';
 import 'package:radio_life/app/pages/home/pages/app/products/pages/product_details/bindings/product_details_binding.dart';
 import 'package:radio_life/app/pages/home/pages/app/products/products_page.dart';
+import 'package:radio_life/app/pages/home/pages/profile/pages/update_password/bindings/update_password_bindings.dart';
+import 'package:radio_life/app/pages/home/pages/profile/pages/update_password/update_password_page.dart';
 import 'package:radio_life/app/pages/home/pages/profile/profile_page.dart';
 import 'package:radio_life/app/pages/home/pages/reports/pages/report_details/bindings/report_details_binding.dart';
 import 'package:radio_life/app/pages/home/pages/reports/pages/report_details/report_details_page.dart';
@@ -37,6 +39,7 @@ abstract class Routes {
   static const productDetails = '$products/product-details';
   static const reportDetails = '$reports/reports-details';
   static const profile = '$home/profile';
+  static const updatePassword = '$profile/update-password';
 }
 
 mixin RadioLifeAppRoutes {
@@ -95,6 +98,11 @@ mixin RadioLifeAppRoutes {
       name: Routes.profile,
       page: () => ProfilePage(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: Routes.updatePassword,
+      page: () => UpdatePasswordPage(),
+      binding: UpdatePasswordBinding(),
     )
   ];
 }

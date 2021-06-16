@@ -26,8 +26,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "buyNow": MessageLookupByLibrary.simpleMessage("Buy now"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "confirmPassword":
+            MessageLookupByLibrary.simpleMessage("Confirm password"),
         "createAnAccount":
             MessageLookupByLibrary.simpleMessage("Create an account"),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("Current Password"),
         "datePicker": MessageLookupByLibrary.simpleMessage("Date picker"),
         "devices": MessageLookupByLibrary.simpleMessage("Devices"),
         "downloadManual":
@@ -56,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loremIpsum": MessageLookupByLibrary.simpleMessage(
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
         "myDevices": MessageLookupByLibrary.simpleMessage("My Devices"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "products": MessageLookupByLibrary.simpleMessage("Products"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),

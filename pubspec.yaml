@@ -36,6 +36,7 @@ dependencies:
   layout: ^0.6.2
   websafe_svg: ^2.0.0
   responsive_builder: ^0.4.1
+  flutter_speed_dial: ^3.0.5
   #endregion
 
   #region Local
@@ -69,6 +70,10 @@ dependencies:
   share: ^2.0.4
   flinq: ^2.0.2
   flutter_blue: ^0.8.0
+  #endregion
+
+  #region Utils
+  flutter_keyboard_visibility: ^5.0.2
   #endregion
 
   #region Artemis

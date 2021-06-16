@@ -45,5 +45,8 @@
   "tests": "Tests",
   "devices": "Devices",
   "confirm": "Confirm",
-  "save": "Save"
+  "save": "Save",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "confirmPassword": "Confirm password"
 }
