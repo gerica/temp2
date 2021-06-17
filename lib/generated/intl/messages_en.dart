@@ -26,12 +26,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "buyNow": MessageLookupByLibrary.simpleMessage("Buy now"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "confirmNewDevice":
+            MessageLookupByLibrary.simpleMessage("Confirm new device"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "createAnAccount":
             MessageLookupByLibrary.simpleMessage("Create an account"),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Current Password"),
+        "date": MessageLookupByLibrary.simpleMessage("Date"),
         "datePicker": MessageLookupByLibrary.simpleMessage("Date picker"),
         "devices": MessageLookupByLibrary.simpleMessage("Devices"),
         "downloadManual":
@@ -55,15 +58,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "joinUs": MessageLookupByLibrary.simpleMessage("Join us"),
         "key": MessageLookupByLibrary.simpleMessage("value"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
+        "location": MessageLookupByLibrary.simpleMessage("Location"),
         "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loremIpsum": MessageLookupByLibrary.simpleMessage(
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
         "myDevices": MessageLookupByLibrary.simpleMessage("My Devices"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "newDevice": MessageLookupByLibrary.simpleMessage("New Device"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "products": MessageLookupByLibrary.simpleMessage("Products"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "qrCode": MessageLookupByLibrary.simpleMessage("QR CODE"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "requiredField": MessageLookupByLibrary.simpleMessage("Required field"),
         "reset": MessageLookupByLibrary.simpleMessage("RESET"),
@@ -72,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendEmailUpperCase":
             MessageLookupByLibrary.simpleMessage("SEND E-MAIL"),
+        "serialNumber": MessageLookupByLibrary.simpleMessage("Serial Number"),
         "signIn": MessageLookupByLibrary.simpleMessage("SIGN IN"),
         "signInCamelCase": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signUpCamelCase": MessageLookupByLibrary.simpleMessage("Sign Up"),

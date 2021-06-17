@@ -78,6 +78,13 @@ class MyDevicesPage extends GetView<MyDevicesController> {
                 Get.back();
               },
             ),
+            SpeedDialChild(
+              child: const Icon(Icons.add, color: AppColorScheme.white),
+              backgroundColor: AppColorScheme.pinkDark,
+              onTap: () {
+                Get.toNamed(Routes.addNewDevice);
+              },
+            ),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,

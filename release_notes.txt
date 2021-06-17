@@ -1,4 +1,4 @@
 Radiolife web: https://radiolife-bucket.s3.us-east-2.amazonaws.com/index.html
 Releases:
-    - Update Password page
-    - UI Improvements
+    - New Device Page
+    - QR Code Scan

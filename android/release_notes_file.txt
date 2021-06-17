@@ -1,2 +1,2 @@
-- Update Password page
-- UI Improvements
+- New Device Page
+- QR Code Scan

@@ -48,5 +48,12 @@
   "save": "Save",
   "currentPassword": "Current Password",
   "newPassword": "New Password",
-  "confirmPassword": "Confirm password"
+  "confirmPassword": "Confirm password",
+  "newDevice": "New Device",
+  "name": "Name",
+  "serialNumber": "Serial Number",
+  "date": "Date",
+  "location": "Location",
+  "confirmNewDevice": "Confirm new device",
+  "qrCode": "QR CODE"
 }
