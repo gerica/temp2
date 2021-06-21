@@ -21,7 +21,7 @@ class SignUpController extends GetxController {
   void performSignUp(){
     if(!_isValid) return;
     ///ToDo(denis): perform sign up
-    Get.offNamed(Routes.home);
+    Get.offNamed(Routes.products);
   }
 
   bool get _isValid{
