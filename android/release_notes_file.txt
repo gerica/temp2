@@ -1,2 +1,2 @@
-- New Device Page
-- QR Code Scan
+- Bottom Navigation Bar
+- UI adjustments
