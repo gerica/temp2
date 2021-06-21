@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/styles/theme_data_radio_life.dart';
 
 import 'app_color_scheme.dart';
@@ -34,9 +35,11 @@ class AppThemeData extends ThemeDataRadioLife {
       labelStyle: TextStyle(
           fontSize: AppFontSize.primary,
           fontWeight: AppFontWeight.semiBold,
+          color: Colors.black,
           fontFamily: 'Montserrat'),
       unselectedLabelStyle: TextStyle(
           fontSize: AppFontSize.primary,
+          color: Colors.black12,
           fontWeight: AppFontWeight.semiBold,
           fontFamily: 'Montserrat'),
       labelPadding: EdgeInsets.symmetric(horizontal: AppSpacing.extraSmall),
