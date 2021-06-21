@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
-import 'package:radio_life/app/helper/platform_svg.dart';
-import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/cards/report_card_widget.dart';
 import 'package:radio_life/app/widget/dialog/reports_filter_dialog/show_reports_filter_dialog_widget.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 
-import '../../../../../generated/l10n.dart';
+import '../../../generated/l10n.dart';
 import '../../helper/dialog_helper.dart';
 import 'pages/report_details/params/report_details_params.dart';
 import 'pages/report_details/report_details_page.dart';

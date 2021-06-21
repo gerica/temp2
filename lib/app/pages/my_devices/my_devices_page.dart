@@ -8,7 +8,7 @@ import 'package:radio_life/app/widget/cards/device_card_widget.dart';
 import 'package:radio_life/app/widget/dialog/reports_filter_dialog/show_reports_filter_dialog_widget.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 
-import '../../../../../../generated/l10n.dart';
+import '../../../generated/l10n.dart';
 import '../../helper/dialog_helper.dart';
 import 'my_devices_controller.dart';
 
