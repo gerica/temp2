@@ -1,1 +1,2 @@
-- Filter Component
+- Bottom Navigation Bar
+- UI adjustments

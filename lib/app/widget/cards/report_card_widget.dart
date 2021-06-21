@@ -105,10 +105,8 @@ class ReportCardWidget extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(
-              color: color != null && color == AppColorScheme.success
-                  ? AppColorScheme.white
-                  : Colors.black,
+          style: const TextStyle(
+              color: Colors.black,
               fontSize: AppFontSize.small),
         ),
       );

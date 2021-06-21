@@ -19,7 +19,7 @@ class SignInController extends GetxController {
   void performSignIn(){
     if(!_isValid) return;
     ///ToDo(denis): perform sign in
-    Get.offAllNamed(Routes.home);
+    Get.offAllNamed(Routes.products);
   }
 
   bool get _isValid{
