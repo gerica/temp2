@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 
 class QRCodeViewerPage extends StatefulWidget {
@@ -32,7 +31,7 @@ class _QRCodeViewerPageState extends State<QRCodeViewerPage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: RadioLifeAppBarWidget(
           showBackButton: true,
-          backButtonColor: Colors.black,
+          backButtonColor: Colors.white,
           brightness: Brightness.dark,
           titleText: '',
           backgroundColor: Colors.transparent,

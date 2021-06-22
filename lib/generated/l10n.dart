@@ -619,6 +619,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Temporary Password`
+  String get temporaryPassword {
+    return Intl.message(
+      'Temporary Password',
+      name: 'temporaryPassword',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

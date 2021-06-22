@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/pages/forgot_password/model/forgort_password_model.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'adapter/forgot_password_adapter.dart';
 
 class ForgotPasswordController extends GetxController {
@@ -15,7 +16,8 @@ class ForgotPasswordController extends GetxController {
 
   //region Functions
   void performPasswordRecovery(){
-    if(!_isValid) return;
+    //if(!_isValid) return;
+    Get.toNamed(Routes.changePasswordPage);
     ///ToDo(denis): perform password recovery
   }
 

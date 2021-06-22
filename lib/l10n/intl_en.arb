@@ -55,5 +55,6 @@
   "date": "Date",
   "location": "Location",
   "confirmNewDevice": "Confirm new device",
-  "qrCode": "QR CODE"
+  "qrCode": "QR CODE",
+  "temporaryPassword": "Temporary Password"
 }

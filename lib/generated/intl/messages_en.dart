@@ -89,6 +89,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "stillNeedHelpSendUsAMessage": MessageLookupByLibrary.simpleMessage(
             "Still need help? Send us a message!"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
+        "temporaryPassword":
+            MessageLookupByLibrary.simpleMessage("Temporary Password"),
         "tests": MessageLookupByLibrary.simpleMessage("Tests"),
         "theEnteredEmailIsNotValid": MessageLookupByLibrary.simpleMessage(
             "The entered email is not valid"),
