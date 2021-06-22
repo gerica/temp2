@@ -5,13 +5,16 @@ targets:
     builders:
       artemis:
         options:
-          fragments_glob: lib/graphql/fragments/**.fragment.graphql
           schema_mapping:
             - schema: lib/graphql/schema.graphql
               queries_glob: lib/graphql/queries/*/**.graphql
               output: lib/graphql/graphql_api.dart
           scalar_mapping:
             - graphql_type: Upload
+              dart_type: String
+            - graphql_type: MongoID
+              dart_type: String
+            - graphql_type: RegExpAsString
               dart_type: String
             - graphql_type: StringLowerCase
               dart_type: String
@@ -27,3 +30,5 @@ targets:
               dart_type: int
             - graphql_type: UUID4
               dart_type: String
+            - graphql_type: Date
+              dart_type: DateTime
