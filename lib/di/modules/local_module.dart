@@ -11,7 +11,7 @@ abstract class LocalModule {
   @preResolve
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 
-  @singleton
+  @lazySingleton
   FlutterSecureStorage get storage => const FlutterSecureStorage();
 
 }

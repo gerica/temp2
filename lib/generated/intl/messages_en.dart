@@ -88,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signup": MessageLookupByLibrary.simpleMessage("SIGN UP"),
         "stillNeedHelpSendUsAMessage": MessageLookupByLibrary.simpleMessage(
             "Still need help? Send us a message!"),
+        "success": MessageLookupByLibrary.simpleMessage("Success"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
         "temporaryPassword":
             MessageLookupByLibrary.simpleMessage("Temporary Password"),
@@ -96,6 +97,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "The entered email is not valid"),
         "updatePassword":
             MessageLookupByLibrary.simpleMessage("Update password"),
+        "weSentATemporaryPasswordToYourEmailUseIt":
+            MessageLookupByLibrary.simpleMessage(
+                "We sent a temporary password to your email. Use it to sign in the app."),
         "yourMessage": MessageLookupByLibrary.simpleMessage("Your Message"),
         "yourPasswordMustHaveAtLeast6Characters":
             MessageLookupByLibrary.simpleMessage(

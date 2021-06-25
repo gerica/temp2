@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:radio_life/di/di.dart';
 
 import 'app/radio_life_app_widget.dart';
 import 'app/styles/app_color_scheme.dart';
@@ -23,6 +24,7 @@ Future main() async {
             baseWebSocketUrl: Environment.baseWebSocketUrlDev,
             imageUrl: Environment.imageUrlDev),
       );
+      await configureInjection();
       runApp(RadioLifeAppWidget());
     },
         (error, stackTrace) => debugPrint(stackTrace.toString()),

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:graphql/client.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 
 import 'app_exception.dart';
@@ -33,10 +34,22 @@ class Resource<T> {
 
   static Resource<T> success<T>({T? data}) => Resource<T>(data: data, status: Status.success);
 
-  static FutureOr<Resource<T>> asFuture<T>(FutureOr<T> Function() req) async {
+  static Future<Resource<T>> asFuture<T>(
+      Future<dynamic> Function() req, FutureOr<T> Function(dynamic data) res) async {
     try {
-      final res = await req();
-      return success<T>(data: res);
+      final result = await req();
+      if (result is QueryResult) {
+        if (result.hasException && result.exception != null) {
+          final _errorMapped = _errorMapper(result.exception);
+          print(result.exception.toString());
+          return failed(
+            error: _errorMapped,
+            data: _errorMapped.data is T ? _errorMapped.data : null,
+          );
+        } else
+          return success<T>(data: await res(result.data));
+      }
+      return success<T>(data: await res(result));
       // ignore: avoid_catches_without_on_clauses
     } catch (e) {
       final _errorMapped = _errorMapper(e);
@@ -45,7 +58,6 @@ class Resource<T> {
         error: _errorMapped,
         data: _errorMapped.data is T ? _errorMapped.data : null,
       );
-      // ignore: avoid_catches_without_on_clauses
     }
   }
 }

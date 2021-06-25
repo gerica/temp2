@@ -629,6 +629,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Success`
+  String get success {
+    return Intl.message(
+      'Success',
+      name: 'success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We sent a temporary password to your email. Use it to sign in the app.`
+  String get weSentATemporaryPasswordToYourEmailUseIt {
+    return Intl.message(
+      'We sent a temporary password to your email. Use it to sign in the app.',
+      name: 'weSentATemporaryPasswordToYourEmailUseIt',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -11,6 +11,9 @@ class AppException<E> implements Exception {
     this.description,
   });
 
+  factory AppException.generic() => AppException(
+      title: 'Error', description: 'Please try again later.');
+
   @override
   String toString() => title ?? '';
 }

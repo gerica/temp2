@@ -16,36 +16,42 @@ import '../../../generated/l10n.dart';
 
 class SignUpPage extends GetView<SignUpController> {
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: context.breakpoint <= LayoutBreakpoint.xs
-            ? RadioLifeAppBarWidget(
-                showBackButton: false,
-                leadingWidth: 0,
-                title: Hero(
-                  tag: 'logo',
-                  child: Image.asset(AppImages.logoHorizontalColor, height: 40),
+  Widget build(BuildContext context) => Obx(
+        () => controller.ready.value
+            ? Scaffold(
+                appBar: context.breakpoint <= LayoutBreakpoint.xs
+                    ? RadioLifeAppBarWidget(
+                        showBackButton: false,
+                        leadingWidth: 0,
+                        title: Hero(
+                          tag: 'logo',
+                          child: Image.asset(AppImages.logoHorizontalColor, height: 40),
+                        ),
+                        centerTitle: true,
+                      )
+                    : null,
+                body: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    Center(
+                      child: Obx(() => Container(
+                            height: MediaQuery.of(context).size.height,
+                            constraints: BoxConstraints(
+                                maxWidth: context.breakpoint > LayoutBreakpoint.xs
+                                    ? 1000
+                                    : MediaQuery.of(context).size.width),
+                            padding: const EdgeInsets.all(AppSpacing.medium),
+                            child: context.breakpoint > LayoutBreakpoint.xs
+                                ? _buildWebBody(context)
+                                : _buildAppBody(context),
+                          )),
+                    )
+                  ],
                 ),
-                centerTitle: true,
               )
-            : null,
-        body: ListView(
-          shrinkWrap: true,
-          children: [
-            Center(
-              child: Obx(() => Container(
-                    height: MediaQuery.of(context).size.height,
-                    constraints: BoxConstraints(
-                        maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                            ? 1000
-                            : MediaQuery.of(context).size.width),
-                    padding: const EdgeInsets.all(AppSpacing.medium),
-                    child: context.breakpoint > LayoutBreakpoint.xs
-                        ? _buildWebBody(context)
-                        : _buildAppBody(context),
-                  )),
-            )
-          ],
-        ),
+            : Container(
+                color: AppColorScheme.primarySwatch,
+              ),
       );
 
   Widget _buildAppBody(BuildContext context) => Column(
