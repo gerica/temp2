@@ -1,2 +1,2 @@
-- Bottom Navigation Bar
-- UI adjustments
+- Sign In and Sign Up integrations
+- Keep user local session
