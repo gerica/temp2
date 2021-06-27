@@ -649,6 +649,26 @@ class S {
       args: [],
     );
   }
+
+  /// `My Device`
+  String get myDevice {
+    return Intl.message(
+      'My Device',
+      name: 'myDevice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy credits`
+  String get buyCredits {
+    return Intl.message(
+      'Buy credits',
+      name: 'buyCredits',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

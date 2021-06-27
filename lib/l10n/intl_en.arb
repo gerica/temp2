@@ -58,5 +58,7 @@
   "qrCode": "QR CODE",
   "temporaryPassword": "Temporary Password",
   "success": "Success",
-  "weSentATemporaryPasswordToYourEmailUseIt": "We sent a temporary password to your email. Use it to sign in the app."
+  "weSentATemporaryPasswordToYourEmailUseIt": "We sent a temporary password to your email. Use it to sign in the app.",
+  "myDevice": "My Device",
+  "buyCredits": "Buy credits"
 }

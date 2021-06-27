@@ -8,7 +8,7 @@ import 'package:radio_life/app/styles/app_color_scheme.dart';
 import '../../../generated/l10n.dart';
 import 'app_bottom_navitation_bar_controller.dart';
 
-class AppBottomNavigationBarWidget extends GetWidget<AppBottomNavigationController> {
+class AppBottomNavigationBarWidget extends GetView<AppBottomNavigationController> {
   final int currentIndex;
 
   const AppBottomNavigationBarWidget({required this.currentIndex});
@@ -18,7 +18,7 @@ class AppBottomNavigationBarWidget extends GetWidget<AppBottomNavigationControll
         initState: (_) {
           controller.changePage(currentIndex);
         },
-        builder: (logic) => Container(
+        builder: (_) => Container(
           color: AppColorScheme.white,
           child: Obx(
             () => BottomNavigationBar(

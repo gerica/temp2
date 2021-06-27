@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "buyCredits": MessageLookupByLibrary.simpleMessage("Buy credits"),
         "buyNow": MessageLookupByLibrary.simpleMessage("Buy now"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -63,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loremIpsum": MessageLookupByLibrary.simpleMessage(
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+        "myDevice": MessageLookupByLibrary.simpleMessage("My Device"),
         "myDevices": MessageLookupByLibrary.simpleMessage("My Devices"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newDevice": MessageLookupByLibrary.simpleMessage("New Device"),

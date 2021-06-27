@@ -4,6 +4,10 @@ import 'package:radio_life/app/pages/forgot_password/forgot_password_page.dart';
 import 'package:radio_life/app/pages/forgot_password/pages/change_password_page.dart';
 import 'package:radio_life/app/pages/home/bindings/home_bindings.dart';
 import 'package:radio_life/app/pages/home/home_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/bindings/buy_credits_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/buy_credits_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/bindings/my_device_detail_binding.dart';
+import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/my_device_detail_page.dart';
 import 'package:radio_life/app/pages/qr_code_viewer/qr_code_viewer_page.dart';
 import 'package:radio_life/app/pages/sign_in/bindings/sign_in_bindings.dart';
 import 'package:radio_life/app/pages/sign_in/sign_in_page.dart';
@@ -48,6 +52,8 @@ abstract class Routes {
   static const addNewDevice = '$myDevices/newDevice';
   static const qrCodeViewer = 'qr-code-viewer';
   static const changePasswordPage = '$forgotPassword/change-password';
+  static const myDeviceDetail = '$myDevices/my-device-detail';
+  static const buyCreditsPage = '$myDeviceDetail/buy-credits';
 }
 
 mixin RadioLifeAppRoutes {
@@ -126,5 +132,15 @@ mixin RadioLifeAppRoutes {
         name: Routes.qrCodeViewer,
         page: () => const QRCodeViewerPage(),
         transition: Transition.fadeIn),
+    GetPage<String>(
+        name: Routes.myDeviceDetail,
+        page: () => MyDeviceDetailPage(),
+        binding: MyDeviceDetailBinding(),
+        transition: Transition.fadeIn),
+    GetPage<String>(
+        name: Routes.buyCreditsPage,
+        page: () => BuyCreditsPage(),
+        binding: BuyCreditsBinding(),
+        transition: Transition.fadeIn)
   ];
 }

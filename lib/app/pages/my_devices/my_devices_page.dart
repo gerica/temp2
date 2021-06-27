@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/my_device_detail_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/params/my_device_detail_param.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
@@ -50,7 +52,11 @@ class MyDevicesPage extends GetView<MyDevicesController> {
               padding: const EdgeInsets.all(16),
               itemCount: controller.devices.length,
               itemBuilder: (context, index) => DeviceCardWidget(
-                onTap: () {},
+                onTap: () {
+                  MyDeviceDetailPage.navigateWith(
+                    params: MyDeviceDetailParam(deviceName: controller.devices[index]),
+                  );
+                },
                 name: controller.devices[index],
               ),
             ),
