@@ -19,10 +19,19 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(amount) => "Amount paid ${amount}";
+
+  static String m1(number) => "You have ${number} Credits available";
+
+  static String m2(date) => "Date of purchase ${date}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "amountPaid": m0,
+        "backToMyDevices":
+            MessageLookupByLibrary.simpleMessage("Back to My Devices"),
         "buyCredits": MessageLookupByLibrary.simpleMessage("Buy credits"),
         "buyNow": MessageLookupByLibrary.simpleMessage("Buy now"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -33,9 +42,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "createAnAccount":
             MessageLookupByLibrary.simpleMessage("Create an account"),
+        "creditsCounter": m1,
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Current Password"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
+        "dateOfPurchase": m2,
         "datePicker": MessageLookupByLibrary.simpleMessage("Date picker"),
         "devices": MessageLookupByLibrary.simpleMessage("Devices"),
         "downloadManual":
@@ -69,10 +80,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newDevice": MessageLookupByLibrary.simpleMessage("New Device"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
+        "orderDetails": MessageLookupByLibrary.simpleMessage("Order details"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "products": MessageLookupByLibrary.simpleMessage("Products"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "purchaseCompleted":
+            MessageLookupByLibrary.simpleMessage("Purchase completed"),
         "qrCode": MessageLookupByLibrary.simpleMessage("QR CODE"),
+        "radiolifeco": MessageLookupByLibrary.simpleMessage("Radiolife.co"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "requiredField": MessageLookupByLibrary.simpleMessage("Required field"),
         "reset": MessageLookupByLibrary.simpleMessage("RESET"),

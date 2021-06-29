@@ -5,6 +5,6 @@ import '../my_devices_controller.dart';
 class MyDevicesBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => MyDevicesController());
+    Get.lazyPut(() => MyDevicesController(), fenix: true);
   }
 }

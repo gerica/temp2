@@ -60,5 +60,12 @@
   "success": "Success",
   "weSentATemporaryPasswordToYourEmailUseIt": "We sent a temporary password to your email. Use it to sign in the app.",
   "myDevice": "My Device",
-  "buyCredits": "Buy credits"
+  "buyCredits": "Buy credits",
+  "creditsCounter": "You have {number} Credits available",
+  "purchaseCompleted": "Purchase completed",
+  "orderDetails": "Order details",
+  "radiolifeco": "Radiolife.co",
+  "dateOfPurchase": "Date of purchase {date}",
+  "amountPaid": "Amount paid {amount}",
+  "backToMyDevices": "Back to My Devices"
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
@@ -44,34 +45,43 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           margin: const EdgeInsets.symmetric(vertical: AppSpacing.tiny),
                           color: data[index].backgroundColor,
-                          child: Container(
-                            padding: const EdgeInsets.all(AppSpacing.medium),
-                            child: Column(
-                              children: [
-                                Text(
-                                  data[index].name,
-                                  style: TextStyle(
-                                    fontSize: AppFontSize.medium,
-                                    color: data[index].textColor,
+                          child: InkWell(
+                            splashColor: data[index].backgroundColor == AppColorScheme.primarySwatch
+                                ? AppColorScheme.white.withOpacity(0.2)
+                                : AppColorScheme.primarySwatch.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(8),
+                            onTap: () {
+                              Get.toNamed(Routes.creditsTransactionSuccess);
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(AppSpacing.medium),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    data[index].name,
+                                    style: TextStyle(
+                                      fontSize: AppFontSize.medium,
+                                      color: data[index].textColor,
+                                    ),
                                   ),
-                                ),
-                                UIHelper.verticalSpaceExtraSmall,
-                                Text(
-                                  data[index].price,
-                                  style: TextStyle(
-                                    fontSize: AppFontSize.medium,
-                                    color: data[index].textColor,
+                                  UIHelper.verticalSpaceExtraSmall,
+                                  Text(
+                                    data[index].price,
+                                    style: TextStyle(
+                                      fontSize: AppFontSize.medium,
+                                      color: data[index].textColor,
+                                    ),
                                   ),
-                                ),
-                                UIHelper.verticalSpaceExtraSmall,
-                                Text(
-                                  data[index].amountOfCredits,
-                                  style: TextStyle(
-                                    fontSize: AppFontSize.medium,
-                                    color: data[index].textColor,
-                                  ),
-                                )
-                              ],
+                                  UIHelper.verticalSpaceExtraSmall,
+                                  Text(
+                                    data[index].amountOfCredits,
+                                    style: TextStyle(
+                                      fontSize: AppFontSize.medium,
+                                      color: data[index].textColor,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         )

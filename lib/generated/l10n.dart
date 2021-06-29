@@ -669,6 +669,76 @@ class S {
       args: [],
     );
   }
+
+  /// `You have {number} Credits available`
+  String creditsCounter(Object number) {
+    return Intl.message(
+      'You have $number Credits available',
+      name: 'creditsCounter',
+      desc: '',
+      args: [number],
+    );
+  }
+
+  /// `Purchase completed`
+  String get purchaseCompleted {
+    return Intl.message(
+      'Purchase completed',
+      name: 'purchaseCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order details`
+  String get orderDetails {
+    return Intl.message(
+      'Order details',
+      name: 'orderDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Radiolife.co`
+  String get radiolifeco {
+    return Intl.message(
+      'Radiolife.co',
+      name: 'radiolifeco',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of purchase {date}`
+  String dateOfPurchase(Object date) {
+    return Intl.message(
+      'Date of purchase $date',
+      name: 'dateOfPurchase',
+      desc: '',
+      args: [date],
+    );
+  }
+
+  /// `Amount paid {amount}`
+  String amountPaid(Object amount) {
+    return Intl.message(
+      'Amount paid $amount',
+      name: 'amountPaid',
+      desc: '',
+      args: [amount],
+    );
+  }
+
+  /// `Back to My Devices`
+  String get backToMyDevices {
+    return Intl.message(
+      'Back to My Devices',
+      name: 'backToMyDevices',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

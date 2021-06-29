@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
@@ -63,19 +64,22 @@ class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
                 Card(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   child: Container(
-                    height: 150,
+                    height: 190,
                     padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          'You have 549458 Credits',
-                          style: TextStyle(
+                      children: [
+                        PlatformSvg.asset(AppSvgImages.icTicker),
+                        UIHelper.verticalSpaceSmall,
+                        AutoSizeText(
+                          S.of(context).creditsCounter(546372),
+                          maxLines: 1,
+                          style: const TextStyle(
                             color: Color(0xFF2A0210),
-                            fontSize: AppFontSize.mega,
+                            fontSize: AppFontSize.large,
                           ),
                         ),
                       ],

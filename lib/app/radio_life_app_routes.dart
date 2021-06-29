@@ -6,6 +6,8 @@ import 'package:radio_life/app/pages/home/bindings/home_bindings.dart';
 import 'package:radio_life/app/pages/home/home_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/bindings/buy_credits_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/buy_credits_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/bindings/credits_transaction_success.dart';
+import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/credit_transaction_success_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/bindings/my_device_detail_binding.dart';
 import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/my_device_detail_page.dart';
 import 'package:radio_life/app/pages/qr_code_viewer/qr_code_viewer_page.dart';
@@ -54,6 +56,7 @@ abstract class Routes {
   static const changePasswordPage = '$forgotPassword/change-password';
   static const myDeviceDetail = '$myDevices/my-device-detail';
   static const buyCreditsPage = '$myDeviceDetail/buy-credits';
+  static const creditsTransactionSuccess = '$buyCreditsPage/credits-transaction-success';
 }
 
 mixin RadioLifeAppRoutes {
@@ -141,6 +144,11 @@ mixin RadioLifeAppRoutes {
         name: Routes.buyCreditsPage,
         page: () => BuyCreditsPage(),
         binding: BuyCreditsBinding(),
+        transition: Transition.fadeIn),
+    GetPage<String>(
+        name: Routes.creditsTransactionSuccess,
+        page: () => CreditTransactionSuccessPage(),
+        binding: CreditTransactionSuccessBinding(),
         transition: Transition.fadeIn)
   ];
 }
