@@ -1,2 +1,3 @@
-- Sign In and Sign Up integrations
-- Keep user local session
+- My Device Detail page
+- Buy Credits page
+- Credits Transaction Success page
