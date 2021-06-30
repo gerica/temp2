@@ -6,8 +6,8 @@ extension SignUpAdapter on SignUpModel {
         firstNameError: ValidationHelper.validateField(firstName),
         lastNameError: ValidationHelper.validateField(lastName),
         emailError: ValidationHelper.validateEmail(email),
-        isValid: firstNameError != null &&
-            lastNameError != null &&
-            emailError != null
+        isValid: firstNameError == null &&
+            lastNameError == null &&
+            emailError == null
       );
 }

@@ -55,35 +55,39 @@ class SignUpController extends GetxController {
   //region Functions
 
   Future performSignUp() async {
-    if (!_isValid) return;
-    AppUIBlock.blockUI(context: Get.context);
-    final response = await _doSignUpUseCase(
-      SignUpParams(
-          firstName: firstNameController.text,
-          lastName: lastNameController.text,
-          email: emailController.text),
-    );
-    AppUIBlock.unblock(context: Get.context);
+    _isValid;
+    if (firstNameController.text.isNotEmpty &&
+        lastNameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty){
+      AppUIBlock.blockUI(context: Get.context);
+      final response = await _doSignUpUseCase(
+        SignUpParams(
+            firstName: firstNameController.text,
+            lastName: lastNameController.text,
+            email: emailController.text),
+      );
+      AppUIBlock.unblock(context: Get.context);
 
-    if (response.status == Status.success && response.data != null) {
-      Get.appDialog(
-        pageChild: AppSimpleDialog(
-          title: S.current.success,
-          message: S.current.weSentATemporaryPasswordToYourEmailUseIt,
-          icon: Icon(Icons.check_circle_outline, size: 50, color: AppColorScheme.primarySwatch),
-          onButtonPressed: () {},
-        ),
-      );
-    } else if (response.status == Status.failed) {
-      final error = response.error ?? AppException.generic();
-      Get.appDialog(
-        pageChild: AppSimpleDialog(
-          title: error.title ?? '',
-          message: error.description ?? '',
-          icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
-          onButtonPressed: () {},
-        ),
-      );
+      if (response.status == Status.success && response.data != null) {
+        Get.appDialog(
+          pageChild: AppSimpleDialog(
+            title: S.current.success,
+            message: S.current.weSentATemporaryPasswordToYourEmailUseIt,
+            icon: Icon(Icons.check_circle_outline, size: 50, color: AppColorScheme.primarySwatch),
+            onButtonPressed: () {},
+          ),
+        );
+      } else if (response.status == Status.failed) {
+        final error = response.error ?? AppException.generic();
+        Get.appDialog(
+          pageChild: AppSimpleDialog(
+            title: error.title ?? '',
+            message: error.description ?? '',
+            icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
+            onButtonPressed: () {},
+          ),
+        );
+      }
     }
   }
 
