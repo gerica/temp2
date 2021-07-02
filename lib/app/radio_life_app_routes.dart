@@ -4,6 +4,8 @@ import 'package:radio_life/app/pages/forgot_password/forgot_password_page.dart';
 import 'package:radio_life/app/pages/forgot_password/pages/change_password_page.dart';
 import 'package:radio_life/app/pages/home/bindings/home_bindings.dart';
 import 'package:radio_life/app/pages/home/home_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/auto_scan_page/auto_scan_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/auto_scan_page/bindings/auto_scan_binding.dart';
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/bindings/buy_credits_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/buy_credits_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/bindings/credits_transaction_success.dart';
@@ -57,6 +59,7 @@ abstract class Routes {
   static const myDeviceDetail = '$myDevices/my-device-detail';
   static const buyCreditsPage = '$myDeviceDetail/buy-credits';
   static const creditsTransactionSuccess = '$buyCreditsPage/credits-transaction-success';
+  static const autoScanPage = '$addNewDevice/auto-scan-page';
 }
 
 mixin RadioLifeAppRoutes {
@@ -149,6 +152,11 @@ mixin RadioLifeAppRoutes {
         name: Routes.creditsTransactionSuccess,
         page: () => CreditTransactionSuccessPage(),
         binding: CreditTransactionSuccessBinding(),
+        transition: Transition.fadeIn),
+    GetPage<String>(
+        name: Routes.autoScanPage,
+        page: () => AutoScanPage(),
+        binding: AutoScanBinding(),
         transition: Transition.fadeIn)
   ];
 }

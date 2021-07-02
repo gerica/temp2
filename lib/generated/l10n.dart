@@ -739,6 +739,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Auto Scan`
+  String get autoScan {
+    return Intl.message(
+      'Auto Scan',
+      name: 'autoScan',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

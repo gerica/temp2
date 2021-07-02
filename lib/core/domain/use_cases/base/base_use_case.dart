@@ -19,6 +19,10 @@ class NoParams extends Equatable {
   List<Object> get props => [];
 }
 
+abstract class BaseStreamResourceUseCase<Param, Result> extends BaseUseCase {
+  Stream<Resource<Result?>> call(Param params);
+}
+
 abstract class BaseStreamUseCase<Param, Result> extends BaseUseCase {
   Stream<Result> call(Param params);
 }

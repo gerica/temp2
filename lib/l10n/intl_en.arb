@@ -67,5 +67,6 @@
   "radiolifeco": "Radiolife.co",
   "dateOfPurchase": "Date of purchase {date}",
   "amountPaid": "Amount paid {amount}",
-  "backToMyDevices": "Back to My Devices"
+  "backToMyDevices": "Back to My Devices",
+  "autoScan": "Auto Scan"
 }

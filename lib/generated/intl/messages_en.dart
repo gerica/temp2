@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "amountPaid": m0,
+        "autoScan": MessageLookupByLibrary.simpleMessage("Auto Scan"),
         "backToMyDevices":
             MessageLookupByLibrary.simpleMessage("Back to My Devices"),
         "buyCredits": MessageLookupByLibrary.simpleMessage("Buy credits"),
