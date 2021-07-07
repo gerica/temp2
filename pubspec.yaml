@@ -79,6 +79,7 @@ dependencies:
   share: ^2.0.4
   flinq: ^2.0.2
   flutter_blue: ^0.8.0
+  connectivity: ^3.0.6
   #endregion
 
   #region Utils
