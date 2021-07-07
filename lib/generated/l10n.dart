@@ -749,6 +749,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Bluetooth disabled.`
+  String get bluetoothDesativado {
+    return Intl.message(
+      'Bluetooth disabled.',
+      name: 'bluetoothDesativado',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Before continuing, please enable your mobile's bluetooth so that we can find your device.`
+  String get enableBluetoothMessage {
+    return Intl.message(
+      'Before continuing, please enable your mobile\'s bluetooth so that we can find your device.',
+      name: 'enableBluetoothMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No bluetooth device found`
+  String get noBluetoothDeviceFound {
+    return Intl.message(
+      'No bluetooth device found',
+      name: 'noBluetoothDeviceFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refresh`
+  String get refresh {
+    return Intl.message(
+      'Refresh',
+      name: 'refresh',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

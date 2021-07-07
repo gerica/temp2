@@ -13,9 +13,8 @@ class DeviceRepositoryImplementation extends DeviceRepository {
   DeviceRepositoryImplementation(this._flutterBlue);
 
   @override
-  Stream<Resource<List<ScanResult>>> scanBluetoothDevices() => _flutterBlue.scanResults.transform(
-        StreamTransformer<List<ScanResult>, Resource<List<ScanResult>>>.fromHandlers(
-            handleData: (data, sink) {
+  Stream<Resource<ScanResult>> scanBluetoothDevices() => _flutterBlue.scan().transform(
+        StreamTransformer<ScanResult, Resource<ScanResult>>.fromHandlers(handleData: (data, sink) {
           sink.add(Resource.success(data: data));
         }, handleError: (error, stackTrace, sink) {
           sink.add(Resource.failed(error: AppException.generic()));
@@ -27,4 +26,14 @@ class DeviceRepositoryImplementation extends DeviceRepository {
 
   @override
   Future get stopBluetoothScan => _flutterBlue.stopScan();
+
+  @override
+  Stream<Resource<BluetoothState>> get checkBluetoothState => _flutterBlue.state.transform(
+        StreamTransformer<BluetoothState, Resource<BluetoothState>>.fromHandlers(
+            handleData: (data, sink) {
+          sink.add(Resource.success(data: data));
+        }, handleError: (error, stackTrace, sink) {
+          sink.add(Resource.failed(error: AppException.generic()));
+        }),
+      );
 }

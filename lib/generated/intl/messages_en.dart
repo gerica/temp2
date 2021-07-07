@@ -33,6 +33,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "autoScan": MessageLookupByLibrary.simpleMessage("Auto Scan"),
         "backToMyDevices":
             MessageLookupByLibrary.simpleMessage("Back to My Devices"),
+        "bluetoothDesativado":
+            MessageLookupByLibrary.simpleMessage("Bluetooth disabled."),
         "buyCredits": MessageLookupByLibrary.simpleMessage("Buy credits"),
         "buyNow": MessageLookupByLibrary.simpleMessage("Buy now"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -53,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "downloadManual":
             MessageLookupByLibrary.simpleMessage("Download Manual"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "enableBluetoothMessage": MessageLookupByLibrary.simpleMessage(
+            "Before continuing, please enable your mobile\'s bluetooth so that we can find your device."),
         "faqUpperCase": MessageLookupByLibrary.simpleMessage("FAQ"),
         "firstName": MessageLookupByLibrary.simpleMessage("First name"),
         "forgotPassword":
@@ -81,6 +85,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newDevice": MessageLookupByLibrary.simpleMessage("New Device"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
+        "noBluetoothDeviceFound":
+            MessageLookupByLibrary.simpleMessage("No bluetooth device found"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("Order details"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "products": MessageLookupByLibrary.simpleMessage("Products"),
@@ -89,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Purchase completed"),
         "qrCode": MessageLookupByLibrary.simpleMessage("QR CODE"),
         "radiolifeco": MessageLookupByLibrary.simpleMessage("Radiolife.co"),
+        "refresh": MessageLookupByLibrary.simpleMessage("Refresh"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "requiredField": MessageLookupByLibrary.simpleMessage("Required field"),
         "reset": MessageLookupByLibrary.simpleMessage("RESET"),

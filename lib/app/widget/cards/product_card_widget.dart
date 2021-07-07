@@ -16,8 +16,8 @@ class ProductCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AspectRatio(
         aspectRatio: context.breakpoint > LayoutBreakpoint.xs
-            ? 600/150
-            : MediaQuery.of(context).size.width / 115,
+            ? 600/200
+            : MediaQuery.of(context).size.width / 130,
         child: Card(
           margin: const EdgeInsets.symmetric(vertical: 8),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

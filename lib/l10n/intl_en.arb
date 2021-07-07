@@ -68,5 +68,9 @@
   "dateOfPurchase": "Date of purchase {date}",
   "amountPaid": "Amount paid {amount}",
   "backToMyDevices": "Back to My Devices",
-  "autoScan": "Auto Scan"
+  "autoScan": "Auto Scan",
+  "bluetoothDesativado": "Bluetooth disabled.",
+  "enableBluetoothMessage": "Before continuing, please enable your mobile's bluetooth so that we can find your device.",
+  "noBluetoothDeviceFound": "No bluetooth device found",
+  "refresh": "Refresh"
 }

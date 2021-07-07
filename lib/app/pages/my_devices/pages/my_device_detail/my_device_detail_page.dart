@@ -92,7 +92,7 @@ class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
                       Get.toNamed(Routes.buyCreditsPage);
                     },
                     title: S.of(context).buyCredits,
-                    icon: PlatformSvg.asset(AppSvgImages.icMedal),
+                    icon: PlatformSvg.asset(AppSvgImages.icShop),
                     color: PrimaryButtonColor.secondary,
                     type: PrimaryButtonType.circular,
                     style: PrimaryButtonStyle.filled,

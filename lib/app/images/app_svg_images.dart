@@ -11,4 +11,5 @@ abstract class AppSvgImages {
   static const icProfile = 'assets/svg/ic_profile.svg';
   static const icMedal = 'assets/svg/ic_medal.svg';
   static const icTicker = 'assets/svg/ic_ticker.svg';
+  static const icShop = 'assets/svg/ic_shop.svg';
 }

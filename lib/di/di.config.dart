@@ -22,12 +22,12 @@ import '../core/data/helpers/secure_local_storage.dart' as _i7;
 import '../core/data/network/dio_client.dart' as _i16;
 import '../core/data/repositories/auth/auth_reposity_implementation.dart'
     as _i14;
+import '../core/device/repository/device_repository_implementation.dart'
+    as _i21;
 import '../core/domain/managers/user_manager.dart' as _i18;
 import '../core/domain/managers/user_manager_implementation.dart' as _i19;
 import '../core/domain/repositories/auth/auth_repository.dart' as _i13;
 import '../core/domain/repositories/device/device_repository.dart' as _i20;
-import '../core/domain/repositories/device/device_repository_implementation.dart'
-    as _i21;
 import '../core/domain/use_cases/auth/check_if_has_user_logged_in_use_case.dart'
     as _i15;
 import '../core/domain/use_cases/auth/set_user_use_case.dart' as _i17;

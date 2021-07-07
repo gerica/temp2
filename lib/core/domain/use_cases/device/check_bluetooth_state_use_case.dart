@@ -3,12 +3,11 @@ import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/repositories/device/device_repository.dart';
 import 'package:radio_life/core/domain/use_cases/base/base_use_case.dart';
 
-class ScanBluetoothDevicesUseCase extends BaseStreamResourceUseCase<dynamic, ScanResult> {
+class CheckBluetoothStateUseCase extends BaseStreamResourceUseCase<void, BluetoothState> {
   final DeviceRepository _deviceRepository;
 
-  ScanBluetoothDevicesUseCase(this._deviceRepository);
+  CheckBluetoothStateUseCase(this._deviceRepository);
 
   @override
-  Stream<Resource<ScanResult?>> call(dynamic params) =>
-      _deviceRepository.scanBluetoothDevices();
+  Stream<Resource<BluetoothState?>> call([void params]) => _deviceRepository.checkBluetoothState;
 }

@@ -51,7 +51,7 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
                                 : AppColorScheme.primarySwatch.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(8),
                             onTap: () {
-                              Get.toNamed(Routes.creditsTransactionSuccess);
+                              controller.selectPlan(index);
                             },
                             child: Container(
                               padding: const EdgeInsets.all(AppSpacing.medium),
@@ -88,7 +88,9 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
                       : Container(
                           margin: const EdgeInsets.only(top: AppSpacing.large),
                           child: PrimaryButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.toNamed(Routes.creditsTransactionSuccess);
+                            },
                             title: S.of(context).buyNow,
                             color: PrimaryButtonColor.secondary,
                             type: PrimaryButtonType.circular,
