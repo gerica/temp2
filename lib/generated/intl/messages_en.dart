@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bluetooth disabled."),
         "buyCredits": MessageLookupByLibrary.simpleMessage("Buy credits"),
         "buyNow": MessageLookupByLibrary.simpleMessage("Buy now"),
+        "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirmNewDevice":
@@ -63,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "forgotPasswordUpperCase":
             MessageLookupByLibrary.simpleMessage("FORGOT PASSWORD"),
+        "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "haveAnAccountSignIn":
             MessageLookupByLibrary.simpleMessage("Have an account? Sign In!"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),

@@ -1,1 +1,1 @@
-- UI adjustments
+- Image picker to user profile

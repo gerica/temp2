@@ -67,5 +67,11 @@
     <string>Radiolife needs location permission</string>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>Radiolife needs location permission</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Radiolife needs access to library</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Radiolife needs access to camera</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Radiolife needs access to microphone</string>
 </dict>
 </plist>

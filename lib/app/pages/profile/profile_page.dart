@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/helper/modal_helper.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
@@ -18,10 +20,10 @@ class ProfilePage extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: RadioLifeAppBarWidget(
-            showBackButton: false,
-            brightness: Brightness.dark,
-            titleText: S.of(context).profile,
-            backgroundColor: AppColorScheme.primarySwatch,
+          showBackButton: false,
+          brightness: Brightness.dark,
+          titleText: S.of(context).profile,
+          backgroundColor: AppColorScheme.primarySwatch,
         ),
         body: Center(
           child: Container(
@@ -39,9 +41,95 @@ class ProfilePage extends GetView<ProfileController> {
                   children: [
                     UIHelper.verticalSpaceLarge,
                     Center(
-                      child: Hero(
-                        tag: 'avatar',
-                        child: Image.asset(AppImages.avatar2, height: 96),
+                      child: InkWell(
+                        onTap: () {
+                          ModalHelper.modalBottomSheet(
+                            context: context,
+                            child: Container(
+                              color: AppColorScheme.white,
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    leading: const Icon(
+                                      Icons.camera_alt_outlined,
+                                      size: 30,
+                                    ),
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      controller.getImage(ImageSource.camera);
+                                    },
+                                    title: Text(S.of(context).camera),
+                                  ),
+                                  UIHelper.horizontalSpaceSmall,
+                                  Container(
+                                    height: 0.3,
+                                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                                    color: AppColorScheme.gray1,
+                                    width: MediaQuery.of(context).size.width,
+                                  ),
+                                  UIHelper.horizontalSpaceSmall,
+                                  ListTile(
+                                    leading: const Icon(
+                                      Icons.image_outlined,
+                                      size: 30,
+                                    ),
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      controller.getImage(ImageSource.gallery);
+                                    },
+                                    title: Text(S.of(context).gallery),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 100,
+                          child: Stack(
+                            fit: StackFit.loose,
+                            children: [
+                              Container(
+                                child: Hero(
+                                  tag: 'avatar',
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Obx(
+                                      () {
+                                        final file = controller.image.value;
+                                        return file == null
+                                            ? Container(
+                                                height: 90,
+                                                width: 90,
+                                                color: AppColorScheme.lightGray,
+                                                child: const Icon(Icons.person, size: 50),
+                                              )
+                                            : Image.file(
+                                                file,
+                                                fit: BoxFit.cover,
+                                                height: 90,
+                                                width: 90,
+                                              );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: Container(
+                                  padding: const EdgeInsets.all(7),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColorScheme.primarySwatch,
+                                  ),
+                                  child: const Icon(Icons.edit_outlined, color: AppColorScheme.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                     UIHelper.verticalSpaceLarge,
