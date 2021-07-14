@@ -8,6 +8,8 @@ import 'package:radio_life/app/pages/my_devices/pages/auto_scan_page/auto_scan_p
 import 'package:radio_life/app/pages/my_devices/pages/auto_scan_page/bindings/auto_scan_binding.dart';
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/bindings/buy_credits_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/buy_credits_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/configure_wifi/bindings/configure_wifi_binding.dart';
+import 'package:radio_life/app/pages/my_devices/pages/configure_wifi/configure_wifi_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/bindings/credits_transaction_success.dart';
 import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/credit_transaction_success_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/bindings/my_device_detail_binding.dart';
@@ -60,6 +62,7 @@ abstract class Routes {
   static const buyCreditsPage = '$myDeviceDetail/buy-credits';
   static const creditsTransactionSuccess = '$buyCreditsPage/credits-transaction-success';
   static const autoScanPage = '$addNewDevice/auto-scan-page';
+  static const configureWiFi = '$autoScanPage/configure-wifi';
 }
 
 mixin RadioLifeAppRoutes {
@@ -157,6 +160,11 @@ mixin RadioLifeAppRoutes {
         name: Routes.autoScanPage,
         page: () => AutoScanPage(),
         binding: AutoScanBinding(),
+        transition: Transition.fadeIn),
+    GetPage<String>(
+        name: Routes.configureWiFi,
+        page: () => ConfigureWiFiPage(),
+        binding: ConfigureWiFiBinding(),
         transition: Transition.fadeIn)
   ];
 }

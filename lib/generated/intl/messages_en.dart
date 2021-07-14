@@ -39,11 +39,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "buyNow": MessageLookupByLibrary.simpleMessage("Buy now"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "configureWifi":
+            MessageLookupByLibrary.simpleMessage("Configure Wi-Fi"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirmNewDevice":
             MessageLookupByLibrary.simpleMessage("Confirm new device"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "continue_label": MessageLookupByLibrary.simpleMessage("Continue"),
         "createAnAccount":
             MessageLookupByLibrary.simpleMessage("Create an account"),
         "creditsCounter": m1,
@@ -52,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "dateOfPurchase": m2,
         "datePicker": MessageLookupByLibrary.simpleMessage("Date picker"),
+        "deviceFound": MessageLookupByLibrary.simpleMessage("Device found"),
         "devices": MessageLookupByLibrary.simpleMessage("Devices"),
         "downloadManual":
             MessageLookupByLibrary.simpleMessage("Download Manual"),
@@ -87,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newDevice": MessageLookupByLibrary.simpleMessage("New Device"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
+        "next": MessageLookupByLibrary.simpleMessage("Next"),
         "noBluetoothDeviceFound":
             MessageLookupByLibrary.simpleMessage("No bluetooth device found"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("Order details"),
@@ -103,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reset": MessageLookupByLibrary.simpleMessage("RESET"),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "searchDevices": MessageLookupByLibrary.simpleMessage("Search Devices"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendEmailUpperCase":
             MessageLookupByLibrary.simpleMessage("SEND E-MAIL"),

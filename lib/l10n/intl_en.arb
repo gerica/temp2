@@ -74,5 +74,10 @@
   "noBluetoothDeviceFound": "No bluetooth device found",
   "refresh": "Refresh",
   "camera": "Camera",
-  "gallery": "Gallery"
+  "gallery": "Gallery",
+  "continue_label": "Continue",
+  "deviceFound": "Device found",
+  "searchDevices": "Search Devices",
+  "configureWifi": "Configure Wi-Fi",
+  "next": "Next"
 }

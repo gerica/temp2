@@ -809,6 +809,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Continue`
+  String get continue_label {
+    return Intl.message(
+      'Continue',
+      name: 'continue_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Device found`
+  String get deviceFound {
+    return Intl.message(
+      'Device found',
+      name: 'deviceFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Devices`
+  String get searchDevices {
+    return Intl.message(
+      'Search Devices',
+      name: 'searchDevices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Configure Wi-Fi`
+  String get configureWifi {
+    return Intl.message(
+      'Configure Wi-Fi',
+      name: 'configureWifi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
