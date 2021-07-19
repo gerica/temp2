@@ -36,8 +36,8 @@ class SignInController extends GetxController {
 
   //region Functions
   Future performSignIn() async {
-
-    if (!_isValid) return;
+    Get.offAllNamed(Routes.products);
+    /*if (!_isValid) return;
 
     AppUIBlock.blockUI(context: Get.context);
     final response = await _doSignInUseCase(
@@ -60,7 +60,7 @@ class SignInController extends GetxController {
           onClosePressed: () {},
         ),
       );
-    }
+    }*/
   }
 
   bool get _isValid {
