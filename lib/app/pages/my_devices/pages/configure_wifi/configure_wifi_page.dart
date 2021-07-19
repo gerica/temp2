@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
+import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
@@ -52,26 +54,35 @@ class ConfigureWiFiPage extends GetView<ConfigureWiFiController> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           InputTextWidget(
-            hintText: S.of(context).serialNumber,
+            hintText: S.of(context).wifiSsid,
             onFieldSubmitted: () {},
-            prefixIcon: const Icon(Icons.wifi),
-            suffixIcon: const Icon(Icons.search),
-            keyboardType: TextInputType.number,
+            prefixIcon: PlatformSvg.asset(AppSvgImages.icWiFi),
+            suffixIcon: InkWell(
+              onTap: () {
+                controller.openAppSettings();
+              },
+              child: PlatformSvg.asset(AppSvgImages.icSearch),
+            ),
+            keyboardType: TextInputType.text,
             textCapitalization: TextCapitalization.words,
-            controller: controller.serialNumberController,
+            controller: controller.wifiSSIDNumberController,
             errorText: null,
           ),
           UIHelper.verticalSpaceMedium,
-          InputTextWidget(
-            hintText: S.of(context).location,
-            onFieldSubmitted: () {},
-            prefixIcon: const Icon(Icons.vpn_key_outlined),
-            suffixIcon: const Icon(Icons.remove_red_eye_outlined),
-            keyboardType: TextInputType.text,
-            textCapitalization: TextCapitalization.words,
-            controller: controller.locationController,
-            errorText: null,
-          ),
+          Obx(() => InputTextWidget(
+                hintText: S.of(context).password,
+                onFieldSubmitted: () {},
+                obscureText: controller.hidePassword.value,
+                prefixIcon: PlatformSvg.asset(AppSvgImages.icKey),
+                suffixIcon: InkWell(
+                  onTap: () => controller.togglePasswordVisibility,
+                  child: PlatformSvg.asset(AppSvgImages.icEye),
+                ),
+                keyboardType: TextInputType.text,
+                textCapitalization: TextCapitalization.words,
+                controller: controller.wifiPasswordController,
+                errorText: null,
+              )),
         ],
       );
 }

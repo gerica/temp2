@@ -74,7 +74,7 @@ class SignUpController extends GetxController {
             title: S.current.success,
             message: S.current.weSentATemporaryPasswordToYourEmailUseIt,
             icon: Icon(Icons.check_circle_outline, size: 50, color: AppColorScheme.primarySwatch),
-            onButtonPressed: () {},
+            onClosePressed: () {},
           ),
         );
       } else if (response.status == Status.failed) {
@@ -84,7 +84,7 @@ class SignUpController extends GetxController {
             title: error.title ?? '',
             message: error.description ?? '',
             icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
-            onButtonPressed: () {},
+            onClosePressed: () {},
           ),
         );
       }

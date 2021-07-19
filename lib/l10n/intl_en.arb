@@ -79,5 +79,9 @@
   "deviceFound": "Device found",
   "searchDevices": "Search Devices",
   "configureWifi": "Configure Wi-Fi",
-  "next": "Next"
+  "next": "Next",
+  "wifiSsid": "WiFi SSID",
+  "wifiRequired": "WiFi Required",
+  "pleaseConnectToAWifiNetworkToContinue": "Please connect to a WiFi network to continue.",
+  "ok": "Ok"
 }

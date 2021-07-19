@@ -859,6 +859,46 @@ class S {
       args: [],
     );
   }
+
+  /// `WiFi SSID`
+  String get wifiSsid {
+    return Intl.message(
+      'WiFi SSID',
+      name: 'wifiSsid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WiFi Required`
+  String get wifiRequired {
+    return Intl.message(
+      'WiFi Required',
+      name: 'wifiRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please connect to a WiFi network to continue.`
+  String get pleaseConnectToAWifiNetworkToContinue {
+    return Intl.message(
+      'Please connect to a WiFi network to continue.',
+      name: 'pleaseConnectToAWifiNetworkToContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get ok {
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

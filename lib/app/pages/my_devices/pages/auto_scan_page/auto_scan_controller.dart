@@ -45,6 +45,7 @@ class AutoScanController extends GetxController {
         _checkBluetoothStateUseCase().listen(bluetoothStateListener);
     _scanDeviceStreamSubscription =
         _scanBluetoothDevicesUseCase(dynamic).listen(scanDeviceResultsListener);
+    startScan();
   }
 
   void scanDeviceResultsListener(Resource<ScanResult?> resource) {
@@ -70,7 +71,7 @@ class AutoScanController extends GetxController {
         case BluetoothState.turningOn:
           break;
         case BluetoothState.on:
-          //startScan();
+          startScan();
           break;
         case BluetoothState.turningOff:
           _stopBluetoothScanUseCase(dynamic);
@@ -82,9 +83,10 @@ class AutoScanController extends GetxController {
   }
 
   Future startScan() async {
-    await _stopBluetoothScanUseCase(dynamic);
+    /*await _stopBluetoothScanUseCase(dynamic);
     state.value = Resource.loading(data: state.value.data);
-    _startBluetoothScanUseCase(dynamic);
+    _startBluetoothScanUseCase(dynamic);*/
+    //w_startBluetoothScanUseCase(dynamic);
   }
 
   @override

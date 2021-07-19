@@ -94,8 +94,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "noBluetoothDeviceFound":
             MessageLookupByLibrary.simpleMessage("No bluetooth device found"),
+        "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("Order details"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "pleaseConnectToAWifiNetworkToContinue":
+            MessageLookupByLibrary.simpleMessage(
+                "Please connect to a WiFi network to continue."),
         "products": MessageLookupByLibrary.simpleMessage("Products"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "purchaseCompleted":
@@ -133,6 +137,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "weSentATemporaryPasswordToYourEmailUseIt":
             MessageLookupByLibrary.simpleMessage(
                 "We sent a temporary password to your email. Use it to sign in the app."),
+        "wifiRequired": MessageLookupByLibrary.simpleMessage("WiFi Required"),
+        "wifiSsid": MessageLookupByLibrary.simpleMessage("WiFi SSID"),
         "yourMessage": MessageLookupByLibrary.simpleMessage("Your Message"),
         "yourPasswordMustHaveAtLeast6Characters":
             MessageLookupByLibrary.simpleMessage(

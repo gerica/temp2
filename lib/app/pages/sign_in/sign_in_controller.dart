@@ -57,7 +57,7 @@ class SignInController extends GetxController {
           title: error.title ?? '',
           message: error.description ?? '',
           icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
-          onButtonPressed: () {},
+          onClosePressed: () {},
         ),
       );
     }
