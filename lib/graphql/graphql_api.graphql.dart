@@ -169,10 +169,7 @@ class SignInMutation extends GraphQLQuery<SignIn$Mutation, SignInArguments> {
 @JsonSerializable(explicitToJson: true)
 class SignUpArguments extends JsonSerializable with EquatableMixin {
   SignUpArguments(
-      {required this.firstName,
-      required this.lastName,
-      required this.email,
-      required this.password});
+      {required this.firstName, required this.lastName, required this.email});
 
   @override
   factory SignUpArguments.fromJson(Map<String, dynamic> json) =>
@@ -184,10 +181,8 @@ class SignUpArguments extends JsonSerializable with EquatableMixin {
 
   late String email;
 
-  late String password;
-
   @override
-  List<Object?> get props => [firstName, lastName, email, password];
+  List<Object?> get props => [firstName, lastName, email];
   @override
   Map<String, dynamic> toJson() => _$SignUpArgumentsToJson(this);
 }
@@ -214,12 +209,6 @@ final SIGN_UP_MUTATION_DOCUMENT = DocumentNode(definitions: [
             type:
                 NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
             defaultValue: DefaultValueNode(value: null),
-            directives: []),
-        VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'password')),
-            type:
-                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
-            defaultValue: DefaultValueNode(value: null),
             directives: [])
       ],
       directives: [],
@@ -240,10 +229,7 @@ final SIGN_UP_MUTATION_DOCUMENT = DocumentNode(definitions: [
                         value: VariableNode(name: NameNode(value: 'lastName'))),
                     ObjectFieldNode(
                         name: NameNode(value: 'email'),
-                        value: VariableNode(name: NameNode(value: 'email'))),
-                    ObjectFieldNode(
-                        name: NameNode(value: 'password'),
-                        value: VariableNode(name: NameNode(value: 'password')))
+                        value: VariableNode(name: NameNode(value: 'email')))
                   ]))
             ],
             directives: [],

@@ -49,4 +49,7 @@ class AuthRepositoryImplementation extends AuthRepository {
 
   @override
   Future<String?> get getToken => _authLocalDataSource.getToken;
+
+  @override
+  Future get logout => _authLocalDataSource.logout;
 }

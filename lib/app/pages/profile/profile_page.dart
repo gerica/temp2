@@ -177,7 +177,7 @@ class ProfilePage extends GetView<ProfileController> {
                   ],
                 ),
                 PrimaryButton(
-                    onPressed: () {},
+                    onPressed: () => controller.logout(),
                     title: S.of(context).logOut,
                     color: PrimaryButtonColor.secondary,
                     type: PrimaryButtonType.circular,

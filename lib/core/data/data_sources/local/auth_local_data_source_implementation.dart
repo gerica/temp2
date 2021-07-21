@@ -15,10 +15,12 @@ class AuthLocalDataSourceImplementation extends AuthLocalDataSource {
   }
 
   @override
-  Future<String?> get getEmail => _secureLocalStorage.getData(key: StorageKeys.userEmail);
+  Future<String?> get getEmail =>
+      _secureLocalStorage.getData(key: StorageKeys.userEmail);
 
   @override
-  Future<String?> get getToken => _secureLocalStorage.getData(key: StorageKeys.token);
+  Future<String?> get getToken =>
+      _secureLocalStorage.getData(key: StorageKeys.token);
 
   @override
   Future<void> saveEmail({required String email}) =>
@@ -31,4 +33,7 @@ class AuthLocalDataSourceImplementation extends AuthLocalDataSource {
   @override
   Future<void> saveToken({required String token}) =>
       _secureLocalStorage.saveData(key: StorageKeys.token, value: token);
+
+  @override
+  Future get logout => _secureLocalStorage.clearData();
 }

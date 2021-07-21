@@ -21,7 +21,6 @@ class AuthDataSourceImplementation extends AuthRemoteDataSource {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        password: ''
       ),
     );
     return _graphQLClient.mutate(

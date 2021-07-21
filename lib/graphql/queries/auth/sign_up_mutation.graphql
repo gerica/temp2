@@ -2,14 +2,12 @@ mutation SignUp(
     $firstName: String!,
     $lastName: String!,
     $email: String!,
-    $password: String!
 ) {
     userRegister(
         input: {
             firstName: $firstName,
             lastName: $lastName,
             email: $email,
-            password: $password
         }
     )
 }

@@ -15,5 +15,7 @@ abstract class AuthRepository {
 
   Future setDataAuthLocal(AuthEntity authEntity);
 
+  Future get logout;
+
   Future<String?> get getToken;
 }

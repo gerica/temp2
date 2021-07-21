@@ -9,7 +9,6 @@ class CheckIfUserIsLoggedInUseCase {
   CheckIfUserIsLoggedInUseCase(this._authRepository);
 
   Future<bool> call([void params]) async {
-    return true;
     final token = await _authRepository.getToken;
     return token != null && token.isNotEmpty;
   }

@@ -5,4 +5,5 @@ abstract class AuthLocalDataSource{
   Future<void> saveName({required String name});
   Future<String?> get getEmail;
   Future deleteUser();
+  Future get logout;
 }

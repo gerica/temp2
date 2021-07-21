@@ -24,21 +24,22 @@ import '../core/data/network/dio_client.dart' as _i20;
 import '../core/data/repositories/auth/auth_reposity_implementation.dart'
     as _i17;
 import '../core/device/repository/device_repository_implementation.dart'
-    as _i24;
+    as _i25;
 import '../core/domain/managers/user_manager.dart' as _i22;
-import '../core/domain/managers/user_manager_implementation.dart' as _i23;
+import '../core/domain/managers/user_manager_implementation.dart' as _i24;
 import '../core/domain/repositories/auth/auth_repository.dart' as _i16;
 import '../core/domain/repositories/device/device_repository.dart' as _i13;
 import '../core/domain/use_cases/auth/check_if_has_user_logged_in_use_case.dart'
     as _i19;
-import '../core/domain/use_cases/auth/set_user_use_case.dart' as _i21;
+import '../core/domain/use_cases/auth/log_out_use_case.dart' as _i21;
+import '../core/domain/use_cases/auth/set_user_use_case.dart' as _i23;
 import '../core/domain/use_cases/device/check_connectivity_use_case.dart'
     as _i18;
 import '../core/domain/use_cases/device/get_wifi_ssid_use_case.dart' as _i12;
-import 'modules/device_module.dart' as _i26;
-import 'modules/local_module.dart' as _i27;
+import 'modules/device_module.dart' as _i27;
+import 'modules/local_module.dart' as _i28;
 import 'modules/remote_module.dart'
-    as _i25; // ignore_for_file: unnecessary_lambdas
+    as _i26; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// an extension to register the provided dependencies inside of [GetIt]
@@ -79,11 +80,13 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i19.CheckIfUserIsLoggedInUseCase(get<_i16.AuthRepository>()));
     gh.factory<_i20.DioClient>(() => remoteModule.provideApi(
         get<_i3.Dio>(), get<_i3.InterceptorsWrapper>()));
-    gh.factory<_i21.SetUserUseCase>(() => _i21.SetUserUseCase(
+    gh.factory<_i21.LogOutUseCase>(() => _i21.LogOutUseCase(
         get<_i16.AuthRepository>(), get<_i22.UserManager>()));
-    gh.singleton<_i22.UserManager>(_i23.UserManagerImplementation());
+    gh.factory<_i23.SetUserUseCase>(() => _i23.SetUserUseCase(
+        get<_i16.AuthRepository>(), get<_i22.UserManager>()));
+    gh.singleton<_i22.UserManager>(_i24.UserManagerImplementation());
     gh.singleton<_i13.DeviceRepository>(
-        _i24.DeviceRepositoryImplementation(get<_i4.FlutterBlue>()));
+        _i25.DeviceRepositoryImplementation(get<_i4.FlutterBlue>()));
     gh.singleton<_i3.InterceptorsWrapper>(remoteModule.provideInterceptor(
         get<_i3.Dio>(),
         get<String>(instanceName: 'language'),
@@ -92,8 +95,8 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$RemoteModule extends _i25.RemoteModule {}
+class _$RemoteModule extends _i26.RemoteModule {}
 
-class _$DeviceModule extends _i26.DeviceModule {}
+class _$DeviceModule extends _i27.DeviceModule {}
 
-class _$LocalModule extends _i27.LocalModule {}
+class _$LocalModule extends _i28.LocalModule {}
