@@ -16,6 +16,8 @@ import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/bindings/
 import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/my_device_detail_page.dart';
 import 'package:radio_life/app/pages/qr_code_viewer/qr_code_viewer_page.dart';
 import 'package:radio_life/app/pages/sign_in/bindings/sign_in_bindings.dart';
+import 'package:radio_life/app/pages/sign_in/pages/create_password/bindings/create_password_binding.dart';
+import 'package:radio_life/app/pages/sign_in/pages/create_password/create_password_page.dart';
 import 'package:radio_life/app/pages/sign_in/sign_in_page.dart';
 import 'package:radio_life/app/pages/sign_up/bindings/sign_up_bindings.dart';
 import 'package:radio_life/app/pages/sign_up/sign_up_page.dart';
@@ -60,9 +62,11 @@ abstract class Routes {
   static const changePasswordPage = '$forgotPassword/change-password';
   static const myDeviceDetail = '$myDevices/my-device-detail';
   static const buyCreditsPage = '$myDeviceDetail/buy-credits';
-  static const creditsTransactionSuccess = '$buyCreditsPage/credits-transaction-success';
+  static const creditsTransactionSuccess =
+      '$buyCreditsPage/credits-transaction-success';
   static const autoScanPage = '$addNewDevice/auto-scan-page';
   static const configureWiFi = '$autoScanPage/configure-wifi';
+  static const createPassword = '$signIn/create-password';
 }
 
 mixin RadioLifeAppRoutes {
@@ -71,6 +75,11 @@ mixin RadioLifeAppRoutes {
       name: Routes.signUp,
       page: () => SignUpPage(),
       binding: SignUpBinding(),
+    ),
+    GetPage(
+      name: Routes.createPassword,
+      page: () => CreatePasswordPage(),
+      binding: CreatePasswordBinding(),
     ),
     GetPage(
       name: Routes.signIn,

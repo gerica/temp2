@@ -7,6 +7,11 @@ abstract class AuthRepository {
     required String password,
   });
 
+  Future<Resource<AuthEntity?>> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  });
+
   Future<Resource<String>> signUp({
     required String firstName,
     required String lastName,
@@ -14,6 +19,10 @@ abstract class AuthRepository {
   });
 
   Future setDataAuthLocal(AuthEntity authEntity);
+
+  Future<void> saveUserConfirmedValue({required bool confirmed});
+
+  Future<bool> get getUserConfirmedValue;
 
   Future get logout;
 

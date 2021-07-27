@@ -18,7 +18,9 @@ class SetUserUseCase extends BaseSimpleUseCase<AuthEntity, void> {
   Future call(AuthEntity params) async {
     await _loginRepository.setDataAuthLocal(params);
 
-    _userManager.setLoggedIn(isLoggedIn: params.token != null);
+    _userManager.setLoggedIn(
+      isLoggedIn: params.token != null && params.confirmed == true,
+    );
 
     return;
   }

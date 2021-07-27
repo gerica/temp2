@@ -40,22 +40,23 @@ class SignInController extends GetxController {
 
     AppUIBlock.blockUI(context: Get.context);
     final response = await _doSignInUseCase(
-      SignInParams(
-          email: emailController.text,
-        password: pwdController.text
-      ),
+      SignInParams(email: emailController.text, password: pwdController.text),
     );
     AppUIBlock.unblock(context: Get.context);
-
-    if (response.status == Status.success && response.data != null) {
-      Get.offAllNamed(Routes.products);
+    final data = response.data;
+    if (response.status == Status.success && data != null) {
+      if (data.confirmed == true)
+        Get.offAllNamed(Routes.products);
+      else
+        Get.toNamed(Routes.createPassword);
     } else if (response.status == Status.failed) {
       final error = response.error ?? AppException.generic();
       Get.appDialog(
         pageChild: AppSimpleDialog(
           title: error.title ?? '',
           message: error.description ?? '',
-          icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
+          icon:
+              Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
           onClosePressed: () {},
         ),
       );
@@ -64,7 +65,8 @@ class SignInController extends GetxController {
 
   bool get _isValid {
     signInModel.value =
-        SignInModel(email: emailController.text, password: pwdController.text).validate;
+        SignInModel(email: emailController.text, password: pwdController.text)
+            .validate;
     return signInModel.value.isValid;
   }
 }

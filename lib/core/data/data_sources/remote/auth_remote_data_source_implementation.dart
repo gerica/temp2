@@ -46,4 +46,23 @@ class AuthDataSourceImplementation extends AuthRemoteDataSource {
       ),
     );
   }
+
+  @override
+  Future<QueryResult> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) {
+    final mutation = ChangePasswordMutation(
+      variables: ChangePasswordArguments(
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+      ),
+    );
+    return _graphQLClient.mutate(
+      MutationOptions(
+        document: mutation.document,
+        variables: mutation.getVariablesMap(),
+      ),
+    );
+  }
 }

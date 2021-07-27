@@ -83,5 +83,7 @@
   "wifiSsid": "WiFi SSID",
   "wifiRequired": "WiFi Required",
   "pleaseConnectToAWifiNetworkToContinue": "Please connect to a WiFi network to continue.",
-  "ok": "Ok"
+  "ok": "Ok",
+  "passwordChanged": "Password changed",
+  "yourPasswordHasBeenSuccessfullyUpdated": "Your password has been successfully updated."
 }

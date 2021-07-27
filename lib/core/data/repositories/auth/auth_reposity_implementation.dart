@@ -13,7 +13,8 @@ class AuthRepositoryImplementation extends AuthRepository {
   final AuthRemoteDataSource _remoteDataSource;
   final AuthLocalDataSource _authLocalDataSource;
 
-  AuthRepositoryImplementation(this._remoteDataSource, this._authLocalDataSource);
+  AuthRepositoryImplementation(
+      this._remoteDataSource, this._authLocalDataSource);
 
   @override
   Future<Resource<AuthEntity?>> signIn({
@@ -52,4 +53,27 @@ class AuthRepositoryImplementation extends AuthRepository {
 
   @override
   Future get logout => _authLocalDataSource.logout;
+
+  @override
+  Future<bool> get getUserConfirmedValue =>
+      _authLocalDataSource.getUserConfirmedValue;
+
+  @override
+  Future<void> saveUserConfirmedValue({required bool confirmed}) =>
+      _authLocalDataSource.saveUserConfirmedValue(confirmed: confirmed);
+
+  @override
+  Future<Resource<AuthEntity?>> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) =>
+      Resource.asFuture(
+        () => _remoteDataSource.changePassword(
+          currentPassword: currentPassword,
+          newPassword: newPassword,
+        ),
+        (data) => ChangePassword$Mutation.fromJson(data)
+            .userChangePassword
+            ?.toAuthEntity(),
+      );
 }

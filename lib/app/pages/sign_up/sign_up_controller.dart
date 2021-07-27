@@ -10,6 +10,7 @@ import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/use_cases/auth/check_if_has_user_logged_in_use_case.dart';
+import 'package:radio_life/core/domain/use_cases/auth/check_if_user_was_confirmed.dart';
 import 'package:radio_life/core/domain/use_cases/auth/do_sign_up_use_case.dart';
 
 import '../../../generated/l10n.dart';
@@ -20,11 +21,13 @@ class SignUpController extends GetxController {
   SignUpController(
     this._doSignUpUseCase,
     this._userIsLoggedIn,
+    this._checkIfUserWasConfirmed,
   );
 
   //region Use Cases
   final DoSignUpUseCase _doSignUpUseCase;
   final CheckIfUserIsLoggedInUseCase _userIsLoggedIn;
+  final CheckIfUserWasConfirmed _checkIfUserWasConfirmed;
 
   //endregion
 
@@ -46,7 +49,9 @@ class SignUpController extends GetxController {
   @override
   Future onInit() async {
     if (await _userIsLoggedIn())
-      Get.offNamed(Routes.products);
+      if(await _checkIfUserWasConfirmed())
+        Get.offNamed(Routes.products);
+      else Get.offNamed(Routes.createPassword);
     else
       ready.value = true;
     super.onInit();
@@ -58,7 +63,7 @@ class SignUpController extends GetxController {
     _isValid;
     if (firstNameController.text.isNotEmpty &&
         lastNameController.text.isNotEmpty &&
-        emailController.text.isNotEmpty){
+        emailController.text.isNotEmpty) {
       AppUIBlock.blockUI(context: Get.context);
       final response = await _doSignUpUseCase(
         SignUpParams(
@@ -73,7 +78,8 @@ class SignUpController extends GetxController {
           pageChild: AppSimpleDialog(
             title: S.current.success,
             message: S.current.weSentATemporaryPasswordToYourEmailUseIt,
-            icon: Icon(Icons.check_circle_outline, size: 50, color: AppColorScheme.primarySwatch),
+            icon: Icon(Icons.check_circle_outline,
+                size: 50, color: AppColorScheme.primarySwatch),
             onClosePressed: () {},
           ),
         );
@@ -83,7 +89,8 @@ class SignUpController extends GetxController {
           pageChild: AppSimpleDialog(
             title: error.title ?? '',
             message: error.description ?? '',
-            icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
+            icon: Icon(Icons.error_outline,
+                size: 50, color: AppColorScheme.error),
             onClosePressed: () {},
           ),
         );

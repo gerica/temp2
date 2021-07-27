@@ -5,10 +5,10 @@ import 'package:radio_life/core/data/helpers/storage_keys.dart';
 class RadioLifeGraphQLClient {
   RadioLifeGraphQLClient._();
 
-  static Future<GraphQLClient> init(
-      HttpLink httpLink, WebSocketLink webSocketLink, SecureLocalStorage secureStorage) async {
-    final authLink = AuthLink(
-        getToken: () async => '${await secureStorage.getData(key: '${StorageKeys.token}')}');
+  static Future<GraphQLClient> init(HttpLink httpLink,
+      WebSocketLink webSocketLink, SecureLocalStorage secureStorage) async {
+    final token = await secureStorage.getData(key: StorageKeys.token);
+    final authLink = AuthLink(getToken: () async => 'authorization: $token');
 
     var link = authLink.concat(httpLink);
     link = Link.split((request) => request.isSubscription, webSocketLink, link);

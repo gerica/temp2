@@ -97,6 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("Order details"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordChanged":
+            MessageLookupByLibrary.simpleMessage("Password changed"),
         "pleaseConnectToAWifiNetworkToContinue":
             MessageLookupByLibrary.simpleMessage(
                 "Please connect to a WiFi network to continue."),
@@ -140,6 +142,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "wifiRequired": MessageLookupByLibrary.simpleMessage("WiFi Required"),
         "wifiSsid": MessageLookupByLibrary.simpleMessage("WiFi SSID"),
         "yourMessage": MessageLookupByLibrary.simpleMessage("Your Message"),
+        "yourPasswordHasBeenSuccessfullyUpdated":
+            MessageLookupByLibrary.simpleMessage(
+                "Your password has been successfully updated."),
         "yourPasswordMustHaveAtLeast6Characters":
             MessageLookupByLibrary.simpleMessage(
                 "Your password must have at least 6 characters")

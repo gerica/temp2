@@ -2,12 +2,15 @@ import 'package:injectable/injectable.dart';
 import 'package:radio_life/core/data/data_sources/local/auth_local_data_source.dart';
 import 'package:radio_life/core/data/helpers/secure_local_storage.dart';
 import 'package:radio_life/core/data/helpers/storage_keys.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @Injectable(as: AuthLocalDataSource)
 class AuthLocalDataSourceImplementation extends AuthLocalDataSource {
   final SecureLocalStorage _secureLocalStorage;
+  final SharedPreferences _sharedPreferences;
 
-  AuthLocalDataSourceImplementation(this._secureLocalStorage);
+  AuthLocalDataSourceImplementation(
+      this._secureLocalStorage, this._sharedPreferences);
 
   @override
   Future deleteUser() {
@@ -36,4 +39,12 @@ class AuthLocalDataSourceImplementation extends AuthLocalDataSource {
 
   @override
   Future get logout => _secureLocalStorage.clearData();
+
+  @override
+  Future<void> saveUserConfirmedValue({required bool confirmed}) =>
+      _sharedPreferences.setBool(StorageKeys.userConfirmed, confirmed);
+
+  @override
+  Future<bool> get getUserConfirmedValue async =>
+      _sharedPreferences.getBool(StorageKeys.userConfirmed) ?? false;
 }
