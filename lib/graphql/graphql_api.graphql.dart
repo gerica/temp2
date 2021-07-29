@@ -8,6 +8,47 @@ import 'package:gql/ast.dart';
 part 'graphql_api.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
+class ChangePassword$Mutation$User extends JsonSerializable
+    with EquatableMixin {
+  ChangePassword$Mutation$User();
+
+  factory ChangePassword$Mutation$User.fromJson(Map<String, dynamic> json) =>
+      _$ChangePassword$Mutation$UserFromJson(json);
+
+  @JsonKey(name: '_id')
+  late String $id;
+
+  String? token;
+
+  late String firstName;
+
+  late String lastName;
+
+  late String email;
+
+  bool? confirmed;
+
+  @override
+  List<Object?> get props =>
+      [$id, token, firstName, lastName, email, confirmed];
+  Map<String, dynamic> toJson() => _$ChangePassword$Mutation$UserToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class ChangePassword$Mutation extends JsonSerializable with EquatableMixin {
+  ChangePassword$Mutation();
+
+  factory ChangePassword$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$ChangePassword$MutationFromJson(json);
+
+  ChangePassword$Mutation$User? userChangePassword;
+
+  @override
+  List<Object?> get props => [userChangePassword];
+  Map<String, dynamic> toJson() => _$ChangePassword$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class SignIn$Mutation$User extends JsonSerializable with EquatableMixin {
   SignIn$Mutation$User();
 
@@ -62,44 +103,121 @@ class SignUp$Mutation extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ChangePassword$Mutation$User extends JsonSerializable
-    with EquatableMixin {
-  ChangePassword$Mutation$User();
-
-  factory ChangePassword$Mutation$User.fromJson(Map<String, dynamic> json) =>
-      _$ChangePassword$Mutation$UserFromJson(json);
-
-  @JsonKey(name: '_id')
-  late String $id;
-
-  String? token;
-
-  late String firstName;
-
-  late String lastName;
-
-  late String email;
-
-  bool? confirmed;
+class ChangePasswordArguments extends JsonSerializable with EquatableMixin {
+  ChangePasswordArguments(
+      {required this.currentPassword, required this.newPassword});
 
   @override
-  List<Object?> get props =>
-      [$id, token, firstName, lastName, email, confirmed];
-  Map<String, dynamic> toJson() => _$ChangePassword$Mutation$UserToJson(this);
+  factory ChangePasswordArguments.fromJson(Map<String, dynamic> json) =>
+      _$ChangePasswordArgumentsFromJson(json);
+
+  late String currentPassword;
+
+  late String newPassword;
+
+  @override
+  List<Object?> get props => [currentPassword, newPassword];
+  @override
+  Map<String, dynamic> toJson() => _$ChangePasswordArgumentsToJson(this);
 }
 
-@JsonSerializable(explicitToJson: true)
-class ChangePassword$Mutation extends JsonSerializable with EquatableMixin {
-  ChangePassword$Mutation();
+final CHANGE_PASSWORD_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'ChangePassword'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'currentPassword')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'newPassword')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'userChangePassword'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'input'),
+                  value: ObjectValueNode(fields: [
+                    ObjectFieldNode(
+                        name: NameNode(value: 'newPassword'),
+                        value:
+                            VariableNode(name: NameNode(value: 'newPassword'))),
+                    ObjectFieldNode(
+                        name: NameNode(value: 'oldPassword'),
+                        value: VariableNode(
+                            name: NameNode(value: 'currentPassword')))
+                  ]))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: '_id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'token'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'firstName'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'lastName'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'email'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'confirmed'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
 
-  factory ChangePassword$Mutation.fromJson(Map<String, dynamic> json) =>
-      _$ChangePassword$MutationFromJson(json);
-
-  ChangePassword$Mutation$User? userChangePassword;
+class ChangePasswordMutation
+    extends GraphQLQuery<ChangePassword$Mutation, ChangePasswordArguments> {
+  ChangePasswordMutation({required this.variables});
 
   @override
-  List<Object?> get props => [userChangePassword];
-  Map<String, dynamic> toJson() => _$ChangePassword$MutationToJson(this);
+  final DocumentNode document = CHANGE_PASSWORD_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = 'ChangePassword';
+
+  @override
+  final ChangePasswordArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  ChangePassword$Mutation parse(Map<String, dynamic> json) =>
+      ChangePassword$Mutation.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -304,122 +422,4 @@ class SignUpMutation extends GraphQLQuery<SignUp$Mutation, SignUpArguments> {
   @override
   SignUp$Mutation parse(Map<String, dynamic> json) =>
       SignUp$Mutation.fromJson(json);
-}
-
-@JsonSerializable(explicitToJson: true)
-class ChangePasswordArguments extends JsonSerializable with EquatableMixin {
-  ChangePasswordArguments(
-      {required this.currentPassword, required this.newPassword});
-
-  @override
-  factory ChangePasswordArguments.fromJson(Map<String, dynamic> json) =>
-      _$ChangePasswordArgumentsFromJson(json);
-
-  late String currentPassword;
-
-  late String newPassword;
-
-  @override
-  List<Object?> get props => [currentPassword, newPassword];
-  @override
-  Map<String, dynamic> toJson() => _$ChangePasswordArgumentsToJson(this);
-}
-
-final CHANGE_PASSWORD_MUTATION_DOCUMENT = DocumentNode(definitions: [
-  OperationDefinitionNode(
-      type: OperationType.mutation,
-      name: NameNode(value: 'ChangePassword'),
-      variableDefinitions: [
-        VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'currentPassword')),
-            type:
-                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
-            defaultValue: DefaultValueNode(value: null),
-            directives: []),
-        VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'newPassword')),
-            type:
-                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
-            defaultValue: DefaultValueNode(value: null),
-            directives: [])
-      ],
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-            name: NameNode(value: 'userChangePassword'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                  name: NameNode(value: 'input'),
-                  value: ObjectValueNode(fields: [
-                    ObjectFieldNode(
-                        name: NameNode(value: 'newPassword'),
-                        value:
-                            VariableNode(name: NameNode(value: 'newPassword'))),
-                    ObjectFieldNode(
-                        name: NameNode(value: 'oldPassword'),
-                        value: VariableNode(
-                            name: NameNode(value: 'currentPassword')))
-                  ]))
-            ],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: '_id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'token'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'firstName'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'lastName'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'email'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'confirmed'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null)
-            ]))
-      ]))
-]);
-
-class ChangePasswordMutation
-    extends GraphQLQuery<ChangePassword$Mutation, ChangePasswordArguments> {
-  ChangePasswordMutation({required this.variables});
-
-  @override
-  final DocumentNode document = CHANGE_PASSWORD_MUTATION_DOCUMENT;
-
-  @override
-  final String operationName = 'ChangePassword';
-
-  @override
-  final ChangePasswordArguments variables;
-
-  @override
-  List<Object?> get props => [document, operationName, variables];
-  @override
-  ChangePassword$Mutation parse(Map<String, dynamic> json) =>
-      ChangePassword$Mutation.fromJson(json);
 }

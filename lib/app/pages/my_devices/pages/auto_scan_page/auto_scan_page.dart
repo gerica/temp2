@@ -35,7 +35,6 @@ class AutoScanPage extends GetView<AutoScanController> {
                 ? _enableBluetoothWarning
                 : controller.bluetoothState.value == BluetoothState.on
                     ? Obx(() {
-                        final data = controller.state.value.data;
                         final error = controller.state.value.error;
                         return controller.state.value.status == Status.loading
                             ? Center(

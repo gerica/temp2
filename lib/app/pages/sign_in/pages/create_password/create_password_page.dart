@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
-import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_font_weight.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
