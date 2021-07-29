@@ -76,4 +76,12 @@ class AuthRepositoryImplementation extends AuthRepository {
             .userChangePassword
             ?.toAuthEntity(),
       );
+
+  @override
+  String? get getTokenFromLocalStorage =>
+      _authLocalDataSource.getTokenFromLocalStorage;
+
+  @override
+  Future<void> saveTokenAtLocalStorage({required String token}) =>
+      _authLocalDataSource.saveTokenAtLocalStorage(token: token);
 }

@@ -26,5 +26,9 @@ abstract class AuthRepository {
 
   Future get logout;
 
+  Future<void> saveTokenAtLocalStorage({required String token});
+
   Future<String?> get getToken;
+
+  String? get getTokenFromLocalStorage;
 }

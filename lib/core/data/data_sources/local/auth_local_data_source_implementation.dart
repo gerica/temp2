@@ -9,8 +9,8 @@ class AuthLocalDataSourceImplementation extends AuthLocalDataSource {
   final SecureLocalStorage _secureLocalStorage;
   final SharedPreferences _sharedPreferences;
 
-  AuthLocalDataSourceImplementation(
-      this._secureLocalStorage, this._sharedPreferences);
+  AuthLocalDataSourceImplementation(this._secureLocalStorage,
+      this._sharedPreferences);
 
   @override
   Future deleteUser() {
@@ -47,4 +47,12 @@ class AuthLocalDataSourceImplementation extends AuthLocalDataSource {
   @override
   Future<bool> get getUserConfirmedValue async =>
       _sharedPreferences.getBool(StorageKeys.userConfirmed) ?? false;
+
+  @override
+  String? get getTokenFromLocalStorage =>
+      _sharedPreferences.getString(StorageKeys.token);
+
+  @override
+  Future<void> saveTokenAtLocalStorage({required String token}) =>
+      _sharedPreferences.setString(StorageKeys.token, token);
 }

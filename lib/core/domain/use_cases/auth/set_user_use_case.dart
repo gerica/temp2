@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:radio_life/core/domain/entities/auth/auth_entity.dart';
 import 'package:radio_life/core/domain/managers/user_manager.dart';
@@ -16,7 +17,8 @@ class SetUserUseCase extends BaseSimpleUseCase<AuthEntity, void> {
 
   @override
   Future call(AuthEntity params) async {
-    await _loginRepository.setDataAuthLocal(params);
+    if (kIsWeb) _loginRepository.saveTokenAtLocalStorage(token: params.token ?? '');
+    else await _loginRepository.setDataAuthLocal(params);
 
     _userManager.setLoggedIn(
       isLoggedIn: params.token != null && params.confirmed == true,

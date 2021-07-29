@@ -70,8 +70,11 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i12.GetWiFiSSIDUseCase>(
         () => _i12.GetWiFiSSIDUseCase(get<_i13.DeviceRepository>()));
     await gh.factoryAsync<_i6.GraphQLClient>(
-        () => remoteModule.provideGraphQLClient(get<_i6.HttpLink>(),
-            get<_i6.WebSocketLink>(), get<_i8.SecureLocalStorage>()),
+        () => remoteModule.provideGraphQLClient(
+            get<_i6.HttpLink>(),
+            get<_i6.WebSocketLink>(),
+            get<_i8.SecureLocalStorage>(),
+            get<_i9.SharedPreferences>()),
         preResolve: true);
     gh.factory<_i14.AuthRemoteDataSource>(
         () => _i15.AuthDataSourceImplementation(get<_i6.GraphQLClient>()));
