@@ -103,6 +103,119 @@ class SignUp$Mutation extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class UpdateUser$Mutation$UpdateByIdUserPayload$ErrorInterface
+    extends JsonSerializable with EquatableMixin {
+  UpdateUser$Mutation$UpdateByIdUserPayload$ErrorInterface();
+
+  factory UpdateUser$Mutation$UpdateByIdUserPayload$ErrorInterface.fromJson(
+          Map<String, dynamic> json) =>
+      _$UpdateUser$Mutation$UpdateByIdUserPayload$ErrorInterfaceFromJson(json);
+
+  String? message;
+
+  @override
+  List<Object?> get props => [message];
+  Map<String, dynamic> toJson() =>
+      _$UpdateUser$Mutation$UpdateByIdUserPayload$ErrorInterfaceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UpdateUser$Mutation$UpdateByIdUserPayload$User extends JsonSerializable
+    with EquatableMixin {
+  UpdateUser$Mutation$UpdateByIdUserPayload$User();
+
+  factory UpdateUser$Mutation$UpdateByIdUserPayload$User.fromJson(
+          Map<String, dynamic> json) =>
+      _$UpdateUser$Mutation$UpdateByIdUserPayload$UserFromJson(json);
+
+  late String firstName;
+
+  late String lastName;
+
+  String? image;
+
+  late String email;
+
+  @override
+  List<Object?> get props => [firstName, lastName, image, email];
+  Map<String, dynamic> toJson() =>
+      _$UpdateUser$Mutation$UpdateByIdUserPayload$UserToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UpdateUser$Mutation$UpdateByIdUserPayload extends JsonSerializable
+    with EquatableMixin {
+  UpdateUser$Mutation$UpdateByIdUserPayload();
+
+  factory UpdateUser$Mutation$UpdateByIdUserPayload.fromJson(
+          Map<String, dynamic> json) =>
+      _$UpdateUser$Mutation$UpdateByIdUserPayloadFromJson(json);
+
+  UpdateUser$Mutation$UpdateByIdUserPayload$ErrorInterface? error;
+
+  UpdateUser$Mutation$UpdateByIdUserPayload$User? record;
+
+  @override
+  List<Object?> get props => [error, record];
+  Map<String, dynamic> toJson() =>
+      _$UpdateUser$Mutation$UpdateByIdUserPayloadToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UpdateUser$Mutation extends JsonSerializable with EquatableMixin {
+  UpdateUser$Mutation();
+
+  factory UpdateUser$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$UpdateUser$MutationFromJson(json);
+
+  UpdateUser$Mutation$UpdateByIdUserPayload? userUpdateById;
+
+  @override
+  List<Object?> get props => [userUpdateById];
+  Map<String, dynamic> toJson() => _$UpdateUser$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetUser$Query$User extends JsonSerializable with EquatableMixin {
+  GetUser$Query$User();
+
+  factory GetUser$Query$User.fromJson(Map<String, dynamic> json) =>
+      _$GetUser$Query$UserFromJson(json);
+
+  @JsonKey(name: '_id')
+  late String $id;
+
+  late String firstName;
+
+  late String lastName;
+
+  late String email;
+
+  String? image;
+
+  bool? confirmed;
+
+  @override
+  List<Object?> get props =>
+      [$id, firstName, lastName, email, image, confirmed];
+  Map<String, dynamic> toJson() => _$GetUser$Query$UserToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetUser$Query extends JsonSerializable with EquatableMixin {
+  GetUser$Query();
+
+  factory GetUser$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetUser$QueryFromJson(json);
+
+  GetUser$Query$User? userById;
+
+  @override
+  List<Object?> get props => [userById];
+  Map<String, dynamic> toJson() => _$GetUser$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class ChangePasswordArguments extends JsonSerializable with EquatableMixin {
   ChangePasswordArguments(
       {required this.currentPassword, required this.newPassword});
@@ -422,4 +535,253 @@ class SignUpMutation extends GraphQLQuery<SignUp$Mutation, SignUpArguments> {
   @override
   SignUp$Mutation parse(Map<String, dynamic> json) =>
       SignUp$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class UpdateUserArguments extends JsonSerializable with EquatableMixin {
+  UpdateUserArguments(
+      {required this.userId,
+      required this.firstName,
+      required this.lastName,
+      required this.image});
+
+  @override
+  factory UpdateUserArguments.fromJson(Map<String, dynamic> json) =>
+      _$UpdateUserArgumentsFromJson(json);
+
+  late String userId;
+
+  late String firstName;
+
+  late String lastName;
+
+  late String image;
+
+  @override
+  List<Object?> get props => [userId, firstName, lastName, image];
+  @override
+  Map<String, dynamic> toJson() => _$UpdateUserArgumentsToJson(this);
+}
+
+final UPDATE_USER_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'UpdateUser'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'userId')),
+            type: NamedTypeNode(
+                name: NameNode(value: 'MongoID'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'firstName')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'lastName')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'image')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'userUpdateById'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: '_id'),
+                  value: VariableNode(name: NameNode(value: 'userId'))),
+              ArgumentNode(
+                  name: NameNode(value: 'record'),
+                  value: ObjectValueNode(fields: [
+                    ObjectFieldNode(
+                        name: NameNode(value: 'firstName'),
+                        value:
+                            VariableNode(name: NameNode(value: 'firstName'))),
+                    ObjectFieldNode(
+                        name: NameNode(value: 'lastName'),
+                        value: VariableNode(name: NameNode(value: 'lastName'))),
+                    ObjectFieldNode(
+                        name: NameNode(value: 'image'),
+                        value: VariableNode(name: NameNode(value: 'image')))
+                  ]))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'error'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'message'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'record'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'firstName'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'lastName'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'image'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'email'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
+            ]))
+      ]))
+]);
+
+class UpdateUserMutation
+    extends GraphQLQuery<UpdateUser$Mutation, UpdateUserArguments> {
+  UpdateUserMutation({required this.variables});
+
+  @override
+  final DocumentNode document = UPDATE_USER_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = 'UpdateUser';
+
+  @override
+  final UpdateUserArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  UpdateUser$Mutation parse(Map<String, dynamic> json) =>
+      UpdateUser$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetUserArguments extends JsonSerializable with EquatableMixin {
+  GetUserArguments({required this.id});
+
+  @override
+  factory GetUserArguments.fromJson(Map<String, dynamic> json) =>
+      _$GetUserArgumentsFromJson(json);
+
+  late String id;
+
+  @override
+  List<Object?> get props => [id];
+  @override
+  Map<String, dynamic> toJson() => _$GetUserArgumentsToJson(this);
+}
+
+final GET_USER_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetUser'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'id')),
+            type: NamedTypeNode(
+                name: NameNode(value: 'MongoID'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'userById'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: '_id'),
+                  value: VariableNode(name: NameNode(value: 'id')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: '_id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'firstName'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'lastName'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'email'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'image'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'confirmed'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
+
+class GetUserQuery extends GraphQLQuery<GetUser$Query, GetUserArguments> {
+  GetUserQuery({required this.variables});
+
+  @override
+  final DocumentNode document = GET_USER_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'GetUser';
+
+  @override
+  final GetUserArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  GetUser$Query parse(Map<String, dynamic> json) =>
+      GetUser$Query.fromJson(json);
 }

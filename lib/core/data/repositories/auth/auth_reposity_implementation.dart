@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:radio_life/core/data/data_sources/local/auth_local_data_source.dart';
-import 'package:radio_life/core/data/data_sources/remote/auth_remote_data_source.dart';
+import 'package:radio_life/core/data/data_sources/auth/local/auth_local_data_source.dart';
+import 'package:radio_life/core/data/data_sources/auth/remote/auth_remote_data_source.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/entities/auth/auth_entity.dart';
 import 'package:radio_life/core/domain/repositories/auth/auth_repository.dart';

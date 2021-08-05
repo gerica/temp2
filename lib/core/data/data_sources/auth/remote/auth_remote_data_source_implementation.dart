@@ -1,8 +1,8 @@
 import 'package:graphql/client.dart';
 import 'package:injectable/injectable.dart';
-import 'package:radio_life/core/data/data_sources/remote/auth_remote_data_source.dart';
 
-import '../../../../graphql/graphql_api.dart';
+import '../../../../../graphql/graphql_api.dart';
+import 'auth_remote_data_source.dart';
 
 @Injectable(as: AuthRemoteDataSource)
 class AuthDataSourceImplementation extends AuthRemoteDataSource {

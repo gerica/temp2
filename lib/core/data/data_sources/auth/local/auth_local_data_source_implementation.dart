@@ -1,8 +1,9 @@
 import 'package:injectable/injectable.dart';
-import 'package:radio_life/core/data/data_sources/local/auth_local_data_source.dart';
 import 'package:radio_life/core/data/helpers/secure_local_storage.dart';
 import 'package:radio_life/core/data/helpers/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'auth_local_data_source.dart';
 
 @Injectable(as: AuthLocalDataSource)
 class AuthLocalDataSourceImplementation extends AuthLocalDataSource {
