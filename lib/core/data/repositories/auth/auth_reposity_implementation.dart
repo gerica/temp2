@@ -46,6 +46,9 @@ class AuthRepositoryImplementation extends AuthRepository {
     if (token != null) await _authLocalDataSource.saveToken(token: token);
     final email = authEntity.email;
     if (email != null) await _authLocalDataSource.saveEmail(email: email);
+    final confirmed = authEntity.confirmed;
+    if (confirmed != null)
+      await _authLocalDataSource.saveUserConfirmedValue(confirmed: confirmed);
   }
 
   @override

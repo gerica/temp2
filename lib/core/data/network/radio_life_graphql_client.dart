@@ -16,7 +16,7 @@ class RadioLifeGraphQLClient {
     final token = kIsWeb
         ? _sharedPreferences.getString(StorageKeys.token) ?? ''
         : await secureStorage.getData(key: StorageKeys.token);
-    final authLink = AuthLink(getToken: () async => 'authorization: $token');
+    final authLink = AuthLink(getToken: () async => '$token');
 
     var link = authLink.concat(httpLink);
     link = Link.split((request) => request.isSubscription, webSocketLink, link);

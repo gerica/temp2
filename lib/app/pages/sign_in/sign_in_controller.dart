@@ -9,16 +9,21 @@ import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/entities/user/user_entity.dart';
 import 'package:radio_life/core/domain/use_cases/auth/do_sign_in_use_case.dart';
+import 'package:radio_life/core/domain/use_cases/user/save_user_id_use_case.dart';
 
 import '../../helper/dialog_helper.dart';
 import '../../radio_life_app_routes.dart';
 import 'adapter/sign_in_adapter.dart';
 
 class SignInController extends GetxController {
-  SignInController(this._doSignInUseCase);
+  SignInController(
+    this._doSignInUseCase,
+    this._saveUserIdUseCase,
+  );
 
   //region Use Cases
   final DoSignInUseCase _doSignInUseCase;
+  final SaveUserIdUseCase _saveUserIdUseCase;
 
   //endregion
 
@@ -45,6 +50,7 @@ class SignInController extends GetxController {
     AppUIBlock.unblock(context: Get.context);
     final data = response.data;
     if (response.status == Status.success && data != null) {
+      await _saveUserIdUseCase(data.accountId ?? '');
       if (data.confirmed == true)
         Get.offAllNamed(Routes.products);
       else
