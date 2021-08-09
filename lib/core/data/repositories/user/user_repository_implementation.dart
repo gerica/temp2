@@ -5,7 +5,7 @@ import 'package:radio_life/core/data/data_sources/user/remote/user_remote_data_s
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/entities/user/user_entity.dart';
 import 'package:radio_life/core/domain/repositories/user/user_repository.dart';
-import '../../../../../graphql/graphql_api.graphql.dart';
+import 'package:radio_life/graphql/graphql_api.dart';
 
 @Injectable(as: UserRepository)
 class UserRepositoryImplementation extends UserRepository {
