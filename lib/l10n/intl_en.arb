@@ -85,5 +85,6 @@
   "pleaseConnectToAWifiNetworkToContinue": "Please connect to a WiFi network to continue.",
   "ok": "Ok",
   "passwordChanged": "Password changed",
-  "yourPasswordHasBeenSuccessfullyUpdated": "Your password has been successfully updated."
+  "yourPasswordHasBeenSuccessfullyUpdated": "Your password has been successfully updated.",
+  "yourProfileWasSuccessfullyUpdated": "Your profile was successfully updated"
 }

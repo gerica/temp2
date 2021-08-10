@@ -3,7 +3,7 @@ import 'package:radio_life/graphql/graphql_api.dart';
 
 extension GetUser$Query$UserExtension on GetUser$Query$User {
   UserEntity get toEntity => UserEntity(
-      id: $id ?? '',
+      id: $id,
       firstName: firstName,
       lastName: lastName,
       email: email,

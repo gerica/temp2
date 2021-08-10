@@ -919,6 +919,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Your profile was successfully updated`
+  String get yourProfileWasSuccessfullyUpdated {
+    return Intl.message(
+      'Your profile was successfully updated',
+      name: 'yourProfileWasSuccessfullyUpdated',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

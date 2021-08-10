@@ -15,6 +15,7 @@ import 'package:radio_life/core/domain/use_cases/user/get_user_id_use_case.dart'
 import 'package:radio_life/core/domain/use_cases/user/get_user_profile_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/user/image_to_base64_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/user/update_user_profile_use_case.dart';
+import 'package:radio_life/generated/l10n.dart';
 import '../../helper/dialog_helper.dart';
 
 class ProfileController extends GetxController {
@@ -79,7 +80,8 @@ class ProfileController extends GetxController {
   Future updateUserProfile() async {
     AppUIBlock.blockUI(context: Get.context);
     final file = this.file;
-    final base64 = file != null ? await _imageToBase64UseCase(file) : null;
+    final base64 =
+        file != null ? await _imageToBase64UseCase(file) : imageUrl.value;
     final response = await _updateUserProfileUseCase(
       UserEntity(
           id: _id,
@@ -94,8 +96,8 @@ class ProfileController extends GetxController {
         Get.appDialog(
           barrierDismissible: false,
           pageChild: AppSimpleDialog(
-            title: 'Success',
-            message: 'Your profile was successfully updated',
+            title: S.current.success,
+            message: S.current.yourProfileWasSuccessfullyUpdated,
             icon: Icon(Icons.error_outline,
                 size: 50, color: AppColorScheme.error),
             onClosePressed: () {
