@@ -187,6 +187,18 @@ Map<String, dynamic> _$GetUser$QueryToJson(GetUser$Query instance) =>
       'userById': instance.userById?.toJson(),
     };
 
+ResetPassword$Mutation _$ResetPassword$MutationFromJson(
+    Map<String, dynamic> json) {
+  return ResetPassword$Mutation()
+    ..userResetPassword = json['userResetPassword'] as String?;
+}
+
+Map<String, dynamic> _$ResetPassword$MutationToJson(
+        ResetPassword$Mutation instance) =>
+    <String, dynamic>{
+      'userResetPassword': instance.userResetPassword,
+    };
+
 ChangePasswordArguments _$ChangePasswordArgumentsFromJson(
     Map<String, dynamic> json) {
   return ChangePasswordArguments(
@@ -257,4 +269,17 @@ GetUserArguments _$GetUserArgumentsFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$GetUserArgumentsToJson(GetUserArguments instance) =>
     <String, dynamic>{
       'id': instance.id,
+    };
+
+ResetPasswordArguments _$ResetPasswordArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return ResetPasswordArguments(
+    email: json['email'] as String,
+  );
+}
+
+Map<String, dynamic> _$ResetPasswordArgumentsToJson(
+        ResetPasswordArguments instance) =>
+    <String, dynamic>{
+      'email': instance.email,
     };

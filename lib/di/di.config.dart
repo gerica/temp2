@@ -18,49 +18,60 @@ import '../core/data/data_sources/auth/local/auth_local_data_source.dart'
 import '../core/data/data_sources/auth/local/auth_local_data_source_implementation.dart'
     as _i14;
 import '../core/data/data_sources/auth/remote/auth_remote_data_source.dart'
-    as _i21;
+    as _i25;
 import '../core/data/data_sources/auth/remote/auth_remote_data_source_implementation.dart'
-    as _i22;
+    as _i26;
+import '../core/data/data_sources/my_device/remote/my_device_remote_data_source.dart'
+    as _i17;
+import '../core/data/data_sources/my_device/remote/my_device_remote_data_source_implementation.dart'
+    as _i18;
 import '../core/data/data_sources/user/local/user_local_data_source.dart'
     as _i11;
 import '../core/data/data_sources/user/local/user_local_data_source_implementation.dart'
     as _i12;
 import '../core/data/data_sources/user/remote/user_remote_data_source.dart'
-    as _i17;
+    as _i21;
 import '../core/data/data_sources/user/remote/user_remote_data_source_implementation.dart'
-    as _i18;
+    as _i22;
 import '../core/data/helpers/secure_local_storage.dart' as _i9;
-import '../core/data/network/dio_client.dart' as _i28;
+import '../core/data/network/dio_client.dart' as _i32;
 import '../core/data/repositories/auth/auth_reposity_implementation.dart'
-    as _i24;
-import '../core/data/repositories/user/user_repository_implementation.dart'
+    as _i28;
+import '../core/data/repositories/my_device/my_device_repository_implementation.dart'
     as _i20;
+import '../core/data/repositories/user/user_repository_implementation.dart'
+    as _i24;
 import '../core/device/repository/device_repository_implementation.dart'
-    as _i38;
-import '../core/domain/managers/user_manager.dart' as _i32;
-import '../core/domain/managers/user_manager_implementation.dart' as _i37;
-import '../core/domain/repositories/auth/auth_repository.dart' as _i23;
+    as _i44;
+import '../core/domain/managers/user_manager.dart' as _i37;
+import '../core/domain/managers/user_manager_implementation.dart' as _i43;
+import '../core/domain/repositories/auth/auth_repository.dart' as _i27;
 import '../core/domain/repositories/device/device_repository.dart' as _i16;
-import '../core/domain/repositories/user/user_repository.dart' as _i19;
-import '../core/domain/use_cases/auth/change_password_use_case.dart' as _i36;
+import '../core/domain/repositories/my_device/my_device_repository.dart'
+    as _i19;
+import '../core/domain/repositories/user/user_repository.dart' as _i23;
+import '../core/domain/use_cases/auth/change_password_use_case.dart' as _i42;
 import '../core/domain/use_cases/auth/check_if_has_user_logged_in_use_case.dart'
-    as _i26;
-import '../core/domain/use_cases/auth/check_if_user_was_confirmed.dart' as _i27;
-import '../core/domain/use_cases/auth/log_out_use_case.dart' as _i31;
-import '../core/domain/use_cases/auth/set_user_use_case.dart' as _i34;
+    as _i30;
+import '../core/domain/use_cases/auth/check_if_user_was_confirmed.dart' as _i31;
+import '../core/domain/use_cases/auth/log_out_use_case.dart' as _i36;
+import '../core/domain/use_cases/auth/reset_password_use_case.dart' as _i38;
+import '../core/domain/use_cases/auth/set_user_use_case.dart' as _i40;
 import '../core/domain/use_cases/device/check_connectivity_use_case.dart'
-    as _i25;
+    as _i29;
 import '../core/domain/use_cases/device/get_wifi_ssid_use_case.dart' as _i15;
-import '../core/domain/use_cases/user/get_user_id_use_case.dart' as _i29;
-import '../core/domain/use_cases/user/get_user_profile_use_case.dart' as _i30;
+import '../core/domain/use_cases/my_devices/get_my_devices_use_case.dart'
+    as _i33;
+import '../core/domain/use_cases/user/get_user_id_use_case.dart' as _i34;
+import '../core/domain/use_cases/user/get_user_profile_use_case.dart' as _i35;
 import '../core/domain/use_cases/user/image_to_base64_use_case.dart' as _i8;
-import '../core/domain/use_cases/user/save_user_id_use_case.dart' as _i33;
+import '../core/domain/use_cases/user/save_user_id_use_case.dart' as _i39;
 import '../core/domain/use_cases/user/update_user_profile_use_case.dart'
-    as _i35;
-import 'modules/device_module.dart' as _i40;
-import 'modules/local_module.dart' as _i41;
+    as _i41;
+import 'modules/device_module.dart' as _i46;
+import 'modules/local_module.dart' as _i47;
 import 'modules/remote_module.dart'
-    as _i39; // ignore_for_file: unnecessary_lambdas
+    as _i45; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// an extension to register the provided dependencies inside of [GetIt]
@@ -98,39 +109,48 @@ extension GetItInjectableX on _i1.GetIt {
             get<_i9.SecureLocalStorage>(),
             get<_i10.SharedPreferences>()),
         preResolve: true);
-    gh.factory<_i17.UserRemoteDataSource>(() =>
-        _i18.UserRemoteDataSourceImplementation(get<_i6.GraphQLClient>()));
-    gh.factory<_i19.UserRepository>(() => _i20.UserRepositoryImplementation(
-        get<_i17.UserRemoteDataSource>(), get<_i11.UserLocalDataSource>()));
-    gh.factory<_i21.AuthRemoteDataSource>(
-        () => _i22.AuthDataSourceImplementation(get<_i6.GraphQLClient>()));
-    gh.factory<_i23.AuthRepository>(() => _i24.AuthRepositoryImplementation(
-        get<_i21.AuthRemoteDataSource>(), get<_i13.AuthLocalDataSource>()));
-    gh.factory<_i25.CheckConnectivityUseCase>(
-        () => _i25.CheckConnectivityUseCase(get<_i16.DeviceRepository>()));
-    gh.factory<_i26.CheckIfUserIsLoggedInUseCase>(
-        () => _i26.CheckIfUserIsLoggedInUseCase(get<_i23.AuthRepository>()));
-    gh.factory<_i27.CheckIfUserWasConfirmed>(
-        () => _i27.CheckIfUserWasConfirmed(get<_i23.AuthRepository>()));
-    gh.factory<_i28.DioClient>(() => remoteModule.provideApi(
+    gh.factory<_i17.MyDeviceRemoteDataSource>(() =>
+        _i18.MyDeviceRemoteDataSourceImplementation(get<_i6.GraphQLClient>()));
+    gh.factory<_i19.MyDeviceRepository>(() =>
+        _i20.MyDeviceRepositoryImplementation(
+            get<_i17.MyDeviceRemoteDataSource>()));
+    gh.factory<_i21.UserRemoteDataSource>(() =>
+        _i22.UserRemoteDataSourceImplementation(get<_i6.GraphQLClient>()));
+    gh.factory<_i23.UserRepository>(() => _i24.UserRepositoryImplementation(
+        get<_i21.UserRemoteDataSource>(), get<_i11.UserLocalDataSource>()));
+    gh.factory<_i25.AuthRemoteDataSource>(
+        () => _i26.AuthDataSourceImplementation(get<_i6.GraphQLClient>()));
+    gh.factory<_i27.AuthRepository>(() => _i28.AuthRepositoryImplementation(
+        get<_i25.AuthRemoteDataSource>(), get<_i13.AuthLocalDataSource>()));
+    gh.factory<_i29.CheckConnectivityUseCase>(
+        () => _i29.CheckConnectivityUseCase(get<_i16.DeviceRepository>()));
+    gh.factory<_i30.CheckIfUserIsLoggedInUseCase>(
+        () => _i30.CheckIfUserIsLoggedInUseCase(get<_i27.AuthRepository>()));
+    gh.factory<_i31.CheckIfUserWasConfirmed>(
+        () => _i31.CheckIfUserWasConfirmed(get<_i27.AuthRepository>()));
+    gh.factory<_i32.DioClient>(() => remoteModule.provideApi(
         get<_i3.Dio>(), get<_i3.InterceptorsWrapper>()));
-    gh.factory<_i29.GetUserIdUseCase>(
-        () => _i29.GetUserIdUseCase(get<_i19.UserRepository>()));
-    gh.factory<_i30.GetUserProfileUseCase>(
-        () => _i30.GetUserProfileUseCase(get<_i19.UserRepository>()));
-    gh.factory<_i31.LogOutUseCase>(() => _i31.LogOutUseCase(
-        get<_i23.AuthRepository>(), get<_i32.UserManager>()));
-    gh.factory<_i33.SaveUserIdUseCase>(
-        () => _i33.SaveUserIdUseCase(get<_i19.UserRepository>()));
-    gh.factory<_i34.SetUserUseCase>(() => _i34.SetUserUseCase(
-        get<_i23.AuthRepository>(), get<_i32.UserManager>()));
-    gh.factory<_i35.UpdateUserProfileUseCase>(
-        () => _i35.UpdateUserProfileUseCase(get<_i19.UserRepository>()));
-    gh.factory<_i36.ChangePasswordUseCase>(() => _i36.ChangePasswordUseCase(
-        get<_i23.AuthRepository>(), get<_i34.SetUserUseCase>()));
-    gh.singleton<_i32.UserManager>(_i37.UserManagerImplementation());
+    gh.factory<_i33.GetMyDevicesUseCase>(
+        () => _i33.GetMyDevicesUseCase(get<_i19.MyDeviceRepository>()));
+    gh.factory<_i34.GetUserIdUseCase>(
+        () => _i34.GetUserIdUseCase(get<_i23.UserRepository>()));
+    gh.factory<_i35.GetUserProfileUseCase>(
+        () => _i35.GetUserProfileUseCase(get<_i23.UserRepository>()));
+    gh.factory<_i36.LogOutUseCase>(() => _i36.LogOutUseCase(
+        get<_i27.AuthRepository>(), get<_i37.UserManager>()));
+    gh.factory<_i38.ResetPasswordUseCase>(
+        () => _i38.ResetPasswordUseCase(get<_i27.AuthRepository>()));
+    gh.factory<_i39.SaveUserIdUseCase>(
+        () => _i39.SaveUserIdUseCase(get<_i23.UserRepository>()));
+    gh.factory<_i40.SetUserUseCase>(() => _i40.SetUserUseCase(
+        get<_i27.AuthRepository>(), get<_i37.UserManager>()));
+    gh.factory<_i41.UpdateUserProfileUseCase>(
+        () => _i41.UpdateUserProfileUseCase(get<_i23.UserRepository>()));
+    gh.factory<_i42.ChangePasswordUseCase>(() => _i42.ChangePasswordUseCase(
+        get<_i27.AuthRepository>(), get<_i40.SetUserUseCase>()));
+    gh.singleton<_i37.UserManager>(_i43.UserManagerImplementation());
     gh.singleton<_i16.DeviceRepository>(
-        _i38.DeviceRepositoryImplementation(get<_i4.FlutterBlue>()));
+        _i44.DeviceRepositoryImplementation(get<_i4.FlutterBlue>()));
     gh.singleton<_i3.InterceptorsWrapper>(remoteModule.provideInterceptor(
         get<_i3.Dio>(),
         get<String>(instanceName: 'language'),
@@ -139,8 +159,8 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$RemoteModule extends _i39.RemoteModule {}
+class _$RemoteModule extends _i45.RemoteModule {}
 
-class _$DeviceModule extends _i40.DeviceModule {}
+class _$DeviceModule extends _i46.DeviceModule {}
 
-class _$LocalModule extends _i41.LocalModule {}
+class _$LocalModule extends _i47.LocalModule {}

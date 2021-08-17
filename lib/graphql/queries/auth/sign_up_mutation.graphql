@@ -4,7 +4,7 @@ mutation SignUp(
     $email: String!,
 ) {
     userRegister(
-        input: {
+        record: {
             firstName: $firstName,
             lastName: $lastName,
             email: $email,

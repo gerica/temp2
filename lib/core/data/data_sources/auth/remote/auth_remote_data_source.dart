@@ -11,6 +11,10 @@ abstract class AuthRemoteDataSource {
     required String newPassword,
   });
 
+  Future<QueryResult> resetPassword({
+    required String email,
+  });
+
   Future<QueryResult> signUp({
     required String firstName,
     required String lastName,

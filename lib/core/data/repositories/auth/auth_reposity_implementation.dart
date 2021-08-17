@@ -87,4 +87,13 @@ class AuthRepositoryImplementation extends AuthRepository {
   @override
   Future<void> saveTokenAtLocalStorage({required String token}) =>
       _authLocalDataSource.saveTokenAtLocalStorage(token: token);
+
+  @override
+  Future<Resource<String?>> resetPassword({required String email}) =>
+      Resource.asFuture(
+        () => _remoteDataSource.resetPassword(
+          email: email,
+        ),
+        (data) => ResetPassword$Mutation.fromJson(data).userResetPassword,
+      );
 }

@@ -12,6 +12,10 @@ abstract class AuthRepository {
     required String newPassword,
   });
 
+  Future<Resource<String?>> resetPassword({
+    required String email,
+  });
+
   Future<Resource<String>> signUp({
     required String firstName,
     required String lastName,

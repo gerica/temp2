@@ -1,7 +1,12 @@
 import 'package:get/get.dart';
+import 'package:radio_life/core/domain/use_cases/my_devices/get_my_devices_use_case.dart';
 
 class MyDevicesController extends GetxController {
-  //region Private
+  MyDevicesController(this._getMyDevicesUseCase);
+
+  //region UseCase
+  final GetMyDevicesUseCase _getMyDevicesUseCase;
+
   //endregion
 
   //region Variables

@@ -11,4 +11,5 @@ abstract class DeviceRepository{
   Stream<Resource<BluetoothState>> get checkBluetoothState;
   Stream<ConnectivityResult> get checkConnectivity;
   Future<String?> get getWifiSSID;
+
 }

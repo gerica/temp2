@@ -216,6 +216,20 @@ class GetUser$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ResetPassword$Mutation extends JsonSerializable with EquatableMixin {
+  ResetPassword$Mutation();
+
+  factory ResetPassword$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$ResetPassword$MutationFromJson(json);
+
+  String? userResetPassword;
+
+  @override
+  List<Object?> get props => [userResetPassword];
+  Map<String, dynamic> toJson() => _$ResetPassword$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class ChangePasswordArguments extends JsonSerializable with EquatableMixin {
   ChangePasswordArguments(
       {required this.currentPassword, required this.newPassword});
@@ -259,7 +273,7 @@ final CHANGE_PASSWORD_MUTATION_DOCUMENT = DocumentNode(definitions: [
             alias: null,
             arguments: [
               ArgumentNode(
-                  name: NameNode(value: 'input'),
+                  name: NameNode(value: 'record'),
                   value: ObjectValueNode(fields: [
                     ObjectFieldNode(
                         name: NameNode(value: 'newPassword'),
@@ -376,7 +390,7 @@ final SIGN_IN_MUTATION_DOCUMENT = DocumentNode(definitions: [
             alias: null,
             arguments: [
               ArgumentNode(
-                  name: NameNode(value: 'input'),
+                  name: NameNode(value: 'record'),
                   value: ObjectValueNode(fields: [
                     ObjectFieldNode(
                         name: NameNode(value: 'email'),
@@ -499,7 +513,7 @@ final SIGN_UP_MUTATION_DOCUMENT = DocumentNode(definitions: [
             alias: null,
             arguments: [
               ArgumentNode(
-                  name: NameNode(value: 'input'),
+                  name: NameNode(value: 'record'),
                   value: ObjectValueNode(fields: [
                     ObjectFieldNode(
                         name: NameNode(value: 'firstName'),
@@ -784,4 +798,67 @@ class GetUserQuery extends GraphQLQuery<GetUser$Query, GetUserArguments> {
   @override
   GetUser$Query parse(Map<String, dynamic> json) =>
       GetUser$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class ResetPasswordArguments extends JsonSerializable with EquatableMixin {
+  ResetPasswordArguments({required this.email});
+
+  @override
+  factory ResetPasswordArguments.fromJson(Map<String, dynamic> json) =>
+      _$ResetPasswordArgumentsFromJson(json);
+
+  late String email;
+
+  @override
+  List<Object?> get props => [email];
+  @override
+  Map<String, dynamic> toJson() => _$ResetPasswordArgumentsToJson(this);
+}
+
+final RESET_PASSWORD_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'ResetPassword'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'email')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'userResetPassword'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'email'),
+                  value: VariableNode(name: NameNode(value: 'email')))
+            ],
+            directives: [],
+            selectionSet: null)
+      ]))
+]);
+
+class ResetPasswordMutation
+    extends GraphQLQuery<ResetPassword$Mutation, ResetPasswordArguments> {
+  ResetPasswordMutation({required this.variables});
+
+  @override
+  final DocumentNode document = RESET_PASSWORD_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = 'ResetPassword';
+
+  @override
+  final ResetPasswordArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  ResetPassword$Mutation parse(Map<String, dynamic> json) =>
+      ResetPassword$Mutation.fromJson(json);
 }

@@ -65,4 +65,19 @@ class AuthDataSourceImplementation extends AuthRemoteDataSource {
       ),
     );
   }
+
+  @override
+  Future<QueryResult> resetPassword({required String email}) {
+    final mutation = ResetPasswordMutation(
+      variables: ResetPasswordArguments(
+        email: email,
+      ),
+    );
+    return _graphQLClient.mutate(
+      MutationOptions(
+        document: mutation.document,
+        variables: mutation.getVariablesMap(),
+      ),
+    );
+  }
 }
