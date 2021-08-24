@@ -199,6 +199,46 @@ Map<String, dynamic> _$ResetPassword$MutationToJson(
       'userResetPassword': instance.userResetPassword,
     };
 
+GetMyDevices$Query$MyDevice _$GetMyDevices$Query$MyDeviceFromJson(
+    Map<String, dynamic> json) {
+  return GetMyDevices$Query$MyDevice()
+    ..name = json['name'] as String?
+    ..locate = json['locate'] as String?
+    ..serialNumber = json['serialNumber'] as String?
+    ..type = json['type'] as String?
+    ..balance = json['balance'] as int?
+    ..status = json['status'] as String?
+    ..lastUpdate = json['lastUpdate'] == null
+        ? null
+        : DateTime.parse(json['lastUpdate'] as String);
+}
+
+Map<String, dynamic> _$GetMyDevices$Query$MyDeviceToJson(
+        GetMyDevices$Query$MyDevice instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'locate': instance.locate,
+      'serialNumber': instance.serialNumber,
+      'type': instance.type,
+      'balance': instance.balance,
+      'status': instance.status,
+      'lastUpdate': instance.lastUpdate?.toIso8601String(),
+    };
+
+GetMyDevices$Query _$GetMyDevices$QueryFromJson(Map<String, dynamic> json) {
+  return GetMyDevices$Query()
+    ..myDevice = (json['myDevice'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : GetMyDevices$Query$MyDevice.fromJson(e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$GetMyDevices$QueryToJson(GetMyDevices$Query instance) =>
+    <String, dynamic>{
+      'myDevice': instance.myDevice?.map((e) => e?.toJson()).toList(),
+    };
+
 ChangePasswordArguments _$ChangePasswordArgumentsFromJson(
     Map<String, dynamic> json) {
   return ChangePasswordArguments(

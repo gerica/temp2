@@ -122,7 +122,7 @@ class AutoScanPage extends GetView<AutoScanController> {
                   ),
                 ),
                 UIHelper.verticalSpaceMedium,
-                DeviceCardWidget(name: 'Lorem ipsum', onTap: () {}),
+                //DeviceCardWidget(name: 'Lorem ipsum', onTap: () {}),
               ],
             ),
             Column(

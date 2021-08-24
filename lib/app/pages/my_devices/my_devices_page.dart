@@ -9,6 +9,7 @@ import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/cards/device_card_widget.dart';
 import 'package:radio_life/app/widget/dialog/reports_filter_dialog/show_reports_filter_dialog_widget.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
+import 'package:radio_life/core/data/enum/status.dart';
 
 import '../../../generated/l10n.dart';
 import '../../helper/dialog_helper.dart';
@@ -48,18 +49,28 @@ class MyDevicesPage extends GetView<MyDevicesController> {
                 maxWidth: context.breakpoint > LayoutBreakpoint.xs
                     ? 600
                     : MediaQuery.of(context).size.width),
-            child: ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: controller.devices.length,
-              itemBuilder: (context, index) => DeviceCardWidget(
-                onTap: () {
-                  MyDeviceDetailPage.navigateWith(
-                    params: MyDeviceDetailParam(deviceName: controller.devices[index]),
-                  );
-                },
-                name: controller.devices[index],
-              ),
-            ),
+            child: Obx(() {
+              final response = controller.state.value;
+              final data = response.data;
+              if (response.status == Status.success && data != null) {
+                return ListView.builder(
+                  padding: const EdgeInsets.all(16),
+                  itemCount: data.length,
+                  itemBuilder: (context, index) => data[index] != null
+                      ? DeviceCardWidget(
+                          onTap: () {
+                            MyDeviceDetailPage.navigateWith(
+                              params: MyDeviceDetailParam(
+                                  deviceName: data[index]?.name ?? ''),
+                            );
+                          },
+                          model: data[index]!,
+                        )
+                      : Container(),
+                );
+              } else
+                return Container();
+            }),
           ),
         ),
         bottomNavigationBar: const AppBottomNavigationBarWidget(

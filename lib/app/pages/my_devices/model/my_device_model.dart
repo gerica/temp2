@@ -1,14 +1,13 @@
-class MyDeviceEntity {
-  final String? id;
+class MyDeviceModel {
   final String? name;
   final String? locate;
   final String? serialNumber;
   final String? type;
-  final int? balance;
+  final String? balance;
   final String? status;
-  final DateTime? lastUpdate;
+  final String? lastUpdate;
 
-  MyDeviceEntity({
+  MyDeviceModel({
     required this.name,
     required this.locate,
     required this.serialNumber,
@@ -16,6 +15,5 @@ class MyDeviceEntity {
     required this.balance,
     required this.status,
     required this.lastUpdate,
-    this.id,
   });
 }

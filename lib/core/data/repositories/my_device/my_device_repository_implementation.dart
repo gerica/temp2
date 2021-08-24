@@ -3,6 +3,8 @@ import 'package:radio_life/core/data/data_sources/my_device/remote/my_device_rem
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 import 'package:radio_life/core/domain/repositories/my_device/my_device_repository.dart';
+import 'package:radio_life/graphql/graphql_api.graphql.dart';
+import 'package:radio_life/core/data/adapter/my_devices/my_devices_extensions.dart';
 
 @Injectable(as: MyDeviceRepository)
 class MyDeviceRepositoryImplementation extends MyDeviceRepository {
@@ -11,8 +13,8 @@ class MyDeviceRepositoryImplementation extends MyDeviceRepository {
   MyDeviceRepositoryImplementation(this._remoteDataSource);
 
   @override
-  Future<Resource<List<DeviceEntity>>> getMyDevices() => Resource.asFuture(
+  Future<Resource<List<MyDeviceEntity?>>> getMyDevices() => Resource.asFuture(
         () => _remoteDataSource.getMyDevices(),
-        (data) => data,
+        (data) => GetMyDevices$Query.fromJson(data).toEntityList,
       );
 }

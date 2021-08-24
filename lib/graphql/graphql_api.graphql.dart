@@ -230,6 +230,47 @@ class ResetPassword$Mutation extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class GetMyDevices$Query$MyDevice extends JsonSerializable with EquatableMixin {
+  GetMyDevices$Query$MyDevice();
+
+  factory GetMyDevices$Query$MyDevice.fromJson(Map<String, dynamic> json) =>
+      _$GetMyDevices$Query$MyDeviceFromJson(json);
+
+  String? name;
+
+  String? locate;
+
+  String? serialNumber;
+
+  String? type;
+
+  int? balance;
+
+  String? status;
+
+  DateTime? lastUpdate;
+
+  @override
+  List<Object?> get props =>
+      [name, locate, serialNumber, type, balance, status, lastUpdate];
+  Map<String, dynamic> toJson() => _$GetMyDevices$Query$MyDeviceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetMyDevices$Query extends JsonSerializable with EquatableMixin {
+  GetMyDevices$Query();
+
+  factory GetMyDevices$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetMyDevices$QueryFromJson(json);
+
+  List<GetMyDevices$Query$MyDevice?>? myDevice;
+
+  @override
+  List<Object?> get props => [myDevice];
+  Map<String, dynamic> toJson() => _$GetMyDevices$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class ChangePasswordArguments extends JsonSerializable with EquatableMixin {
   ChangePasswordArguments(
       {required this.currentPassword, required this.newPassword});
@@ -861,4 +902,80 @@ class ResetPasswordMutation
   @override
   ResetPassword$Mutation parse(Map<String, dynamic> json) =>
       ResetPassword$Mutation.fromJson(json);
+}
+
+final GET_MY_DEVICES_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetMyDevices'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'myDevice'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'locate'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'serialNumber'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'type'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'balance'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'status'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'lastUpdate'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
+
+class GetMyDevicesQuery
+    extends GraphQLQuery<GetMyDevices$Query, JsonSerializable> {
+  GetMyDevicesQuery();
+
+  @override
+  final DocumentNode document = GET_MY_DEVICES_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'GetMyDevices';
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  GetMyDevices$Query parse(Map<String, dynamic> json) =>
+      GetMyDevices$Query.fromJson(json);
 }

@@ -39,7 +39,10 @@ class AuthLocalDataSourceImplementation extends AuthLocalDataSource {
       _secureLocalStorage.saveData(key: StorageKeys.token, value: token);
 
   @override
-  Future get logout => _secureLocalStorage.clearData();
+  Future get logout async {
+    await _secureLocalStorage.clearData();
+    await _sharedPreferences.clear();
+  }
 
   @override
   Future<void> saveUserConfirmedValue({required bool confirmed}) =>
