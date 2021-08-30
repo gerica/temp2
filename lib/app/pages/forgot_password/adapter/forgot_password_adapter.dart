@@ -4,6 +4,6 @@ import 'package:radio_life/app/pages/forgot_password/model/forgort_password_mode
 extension ForgotPasswordAdapter on ForgotPasswordModel {
   ForgotPasswordModel get validate => ForgotPasswordModel(
         emailError: ValidationHelper.validateEmail(email),
-        isValid: emailError != null,
+        isValid: ValidationHelper.validateEmail(email) == null,
       );
 }

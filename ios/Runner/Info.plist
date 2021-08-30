@@ -57,5 +57,21 @@
     <true/>
     <key>NSCameraUsageDescription</key>
     <string>This app needs camera access to scan QR codes</string>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>Radiolife needs BLE permission to scan new devices</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>Radiolife needs BLE permission to scan new devices</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Radiolife needs location permission</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Radiolife needs location permission</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Radiolife needs location permission</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Radiolife needs access to library</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Radiolife needs access to camera</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Radiolife needs access to microphone</string>
 </dict>
 </plist>

@@ -9,6 +9,6 @@ class SignUpBinding extends Bindings {
   void dependencies() {
     Get.create(() => DoSignUpUseCase(getIt()));
     Get.create(() => CheckIfUserIsLoggedInUseCase(getIt()));
-    Get.lazyPut(() => SignUpController(Get.find(), Get.find()));
+    Get.lazyPut(() => SignUpController(Get.find(), Get.find(), getIt()));
   }
 }

@@ -7,6 +7,7 @@ import 'package:radio_life/core/data/interceptors/radio_life_interceptor.dart';
 import 'package:radio_life/core/data/network/dio_client.dart';
 import 'package:radio_life/core/data/network/radio_life_graphql_client.dart';
 import 'package:radio_life/flavors/flavor_values.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // Use this module to inject your third-party dependencies like [FirebaseAuth]
 // E.g. FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
@@ -38,12 +39,18 @@ abstract class RemoteModule {
 
   @preResolve
   Future<GraphQLClient> provideGraphQLClient(
-          HttpLink httpLink, WebSocketLink webSocketLink, SecureLocalStorage secureStorage) =>
-      RadioLifeGraphQLClient.init(httpLink, webSocketLink, secureStorage);
+          HttpLink httpLink,
+          WebSocketLink webSocketLink,
+          SecureLocalStorage secureStorage,
+          SharedPreferences sharedPreferences) =>
+      RadioLifeGraphQLClient.init(
+          httpLink, webSocketLink, secureStorage, sharedPreferences);
 
   @singleton
   InterceptorsWrapper provideInterceptor(
-          Dio dio, @Named('language') String language, FlutterSecureStorage flutterSecureStorage) =>
+          Dio dio,
+          @Named('language') String language,
+          FlutterSecureStorage flutterSecureStorage) =>
       RadioLifeInterceptor.init(dio, language, flutterSecureStorage);
 
   DioClient provideApi(Dio dio, InterceptorsWrapper interceptor) {

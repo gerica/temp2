@@ -9,4 +9,11 @@ abstract class AppSvgImages {
   static const icHome = 'assets/svg/ic_home.svg';
   static const logoVertical = 'assets/svg/logo_vertical.svg';
   static const icProfile = 'assets/svg/ic_profile.svg';
+  static const icMedal = 'assets/svg/ic_medal.svg';
+  static const icTicker = 'assets/svg/ic_ticker.svg';
+  static const icShop = 'assets/svg/ic_shop.svg';
+  static const icWiFi = 'assets/svg/ic_wifi.svg';
+  static const icKey = 'assets/svg/ic_eye.svg';
+  static const icSearch = 'assets/svg/ic_search.svg';
+  static const icEye = 'assets/svg/ic_eye.svg';
 }

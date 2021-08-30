@@ -33,8 +33,10 @@ class AddNewDevicePage extends GetView<AddNewDeviceController> {
                 _buildForms(context),
                 UIHelper.verticalSpaceLarge,
                 PrimaryButton(
-                  onPressed: () {},
-                  title: S.of(context).confirmNewDevice,
+                  onPressed: () {
+                    Get.toNamed(Routes.autoScanPage);
+                  },
+                  title: S.of(context).continue_label,
                   color: PrimaryButtonColor.primary,
                   type: PrimaryButtonType.circular,
                   style: PrimaryButtonStyle.filled,

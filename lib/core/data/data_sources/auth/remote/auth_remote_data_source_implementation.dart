@@ -1,8 +1,8 @@
 import 'package:graphql/client.dart';
 import 'package:injectable/injectable.dart';
-import 'package:radio_life/core/data/data_sources/remote/auth_remote_data_source.dart';
 
-import '../../../../graphql/graphql_api.dart';
+import '../../../../../graphql/graphql_api.dart';
+import 'auth_remote_data_source.dart';
 
 @Injectable(as: AuthRemoteDataSource)
 class AuthDataSourceImplementation extends AuthRemoteDataSource {
@@ -21,7 +21,6 @@ class AuthDataSourceImplementation extends AuthRemoteDataSource {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        password: ''
       ),
     );
     return _graphQLClient.mutate(
@@ -39,6 +38,40 @@ class AuthDataSourceImplementation extends AuthRemoteDataSource {
   }) {
     final mutation = SignInMutation(
       variables: SignInArguments(email: email, password: password),
+    );
+    return _graphQLClient.mutate(
+      MutationOptions(
+        document: mutation.document,
+        variables: mutation.getVariablesMap(),
+      ),
+    );
+  }
+
+  @override
+  Future<QueryResult> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) {
+    final mutation = ChangePasswordMutation(
+      variables: ChangePasswordArguments(
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+      ),
+    );
+    return _graphQLClient.mutate(
+      MutationOptions(
+        document: mutation.document,
+        variables: mutation.getVariablesMap(),
+      ),
+    );
+  }
+
+  @override
+  Future<QueryResult> resetPassword({required String email}) {
+    final mutation = ResetPasswordMutation(
+      variables: ResetPasswordArguments(
+        email: email,
+      ),
     );
     return _graphQLClient.mutate(
       MutationOptions(

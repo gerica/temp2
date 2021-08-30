@@ -7,17 +7,23 @@ import 'package:radio_life/app/styles/app_border_radius.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
+import 'package:radio_life/app/widget/buttons/primary_button.dart';
+import 'package:radio_life/core/data/enum/status.dart';
+
+import '../../../generated/l10n.dart';
 
 class AppSimpleDialog extends StatelessWidget {
   final String title;
   final String message;
-  final VoidCallback onButtonPressed;
+  final VoidCallback? onClosePressed;
+  final VoidCallback? onOkPressed;
   final Widget? icon;
 
   const AppSimpleDialog({
     required this.title,
     required this.message,
-    required this.onButtonPressed,
+    this.onClosePressed,
+    this.onOkPressed,
     this.icon,
   });
 
@@ -38,7 +44,8 @@ class AppSimpleDialog extends StatelessWidget {
           ),
         ),
         transitionBuilder: (context, anim1, anim2, child) => SlideTransition(
-          position: Tween(begin: const Offset(0, 1), end: const Offset(0, 0)).animate(anim1),
+          position: Tween(begin: const Offset(0, 1), end: const Offset(0, 0))
+              .animate(anim1),
           child: child,
         ),
       );
@@ -48,7 +55,9 @@ class AppSimpleDialog extends StatelessWidget {
         duration: const Duration(seconds: 1),
         child: Center(
           child: Container(
-            width: context.breakpoint > LayoutBreakpoint.xs ? 500 : double.infinity,
+            width: context.breakpoint > LayoutBreakpoint.xs
+                ? 500
+                : double.infinity,
             margin: const EdgeInsets.symmetric(horizontal: AppSpacing.medium),
             padding: const EdgeInsets.all(AppSpacing.medium),
             decoration: BoxDecoration(
@@ -73,16 +82,19 @@ class AppSimpleDialog extends StatelessWidget {
                           fontSize: AppFontSize.medium,
                           fontWeight: AppFontWeight.bold),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        Get.back();
-                        onButtonPressed();
-                      },
-                      icon: const Icon(
-                        Icons.close,
-                        color: Colors.black,
-                      ),
-                    )
+                    if (onClosePressed != null)
+                      IconButton(
+                        onPressed: () {
+                          Get.back();
+                          onClosePressed!();
+                        },
+                        icon: const Icon(
+                          Icons.close,
+                          color: Colors.black,
+                        ),
+                      )
+                    else
+                      Container()
                   ],
                 ),
                 Container(
@@ -98,8 +110,21 @@ class AppSimpleDialog extends StatelessWidget {
                 Text(
                   message,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.black, fontSize: AppFontSize.primary),
+                  style: const TextStyle(
+                      color: Colors.black, fontSize: AppFontSize.primary),
                 ),
+                UIHelper.verticalSpaceMedium,
+                if (onOkPressed != null)
+                  PrimaryButton(
+                      onPressed: () {
+                        Get.back();
+                        onOkPressed!();
+                      },
+                      title: S.of(context).ok,
+                      color: PrimaryButtonColor.primary,
+                      type: PrimaryButtonType.circular,
+                      style: PrimaryButtonStyle.filled,
+                      state: Status.success)
               ],
             ),
           ),
@@ -109,9 +134,12 @@ class AppSimpleDialog extends StatelessWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(ObjectFlagProperty<VoidCallback>.has('onCancel', onButtonPressed));
+    properties
+        .add(ObjectFlagProperty<VoidCallback>.has('onCancel', onClosePressed));
     properties.add(StringProperty('title', title));
     properties.add(StringProperty('message', message));
     properties.add(DiagnosticsProperty<Widget?>('icon', icon));
+    properties
+        .add(ObjectFlagProperty<VoidCallback?>.has('onOkPressed', onOkPressed));
   }
 }

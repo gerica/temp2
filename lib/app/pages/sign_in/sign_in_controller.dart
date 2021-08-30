@@ -9,16 +9,21 @@ import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/entities/user/user_entity.dart';
 import 'package:radio_life/core/domain/use_cases/auth/do_sign_in_use_case.dart';
+import 'package:radio_life/core/domain/use_cases/user/save_user_id_use_case.dart';
 
 import '../../helper/dialog_helper.dart';
 import '../../radio_life_app_routes.dart';
 import 'adapter/sign_in_adapter.dart';
 
 class SignInController extends GetxController {
-  SignInController(this._doSignInUseCase);
+  SignInController(
+    this._doSignInUseCase,
+    this._saveUserIdUseCase,
+  );
 
   //region Use Cases
   final DoSignInUseCase _doSignInUseCase;
+  final SaveUserIdUseCase _saveUserIdUseCase;
 
   //endregion
 
@@ -40,23 +45,25 @@ class SignInController extends GetxController {
 
     AppUIBlock.blockUI(context: Get.context);
     final response = await _doSignInUseCase(
-      SignInParams(
-          email: emailController.text,
-        password: pwdController.text
-      ),
+      SignInParams(email: emailController.text, password: pwdController.text),
     );
     AppUIBlock.unblock(context: Get.context);
-
-    if (response.status == Status.success && response.data != null) {
-      Get.offAllNamed(Routes.products);
+    final data = response.data;
+    if (response.status == Status.success && data != null) {
+      await _saveUserIdUseCase(data.accountId ?? '');
+      if (data.confirmed == true)
+        Get.offAllNamed(Routes.products);
+      else
+        Get.toNamed(Routes.createPassword);
     } else if (response.status == Status.failed) {
       final error = response.error ?? AppException.generic();
       Get.appDialog(
         pageChild: AppSimpleDialog(
           title: error.title ?? '',
           message: error.description ?? '',
-          icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
-          onButtonPressed: () {},
+          icon:
+              Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
+          onClosePressed: () {},
         ),
       );
     }
@@ -64,7 +71,8 @@ class SignInController extends GetxController {
 
   bool get _isValid {
     signInModel.value =
-        SignInModel(email: emailController.text, password: pwdController.text).validate;
+        SignInModel(email: emailController.text, password: pwdController.text)
+            .validate;
     return signInModel.value.isValid;
   }
 }

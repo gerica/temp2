@@ -4,8 +4,20 @@ import 'package:radio_life/app/pages/forgot_password/forgot_password_page.dart';
 import 'package:radio_life/app/pages/forgot_password/pages/change_password_page.dart';
 import 'package:radio_life/app/pages/home/bindings/home_bindings.dart';
 import 'package:radio_life/app/pages/home/home_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/auto_scan_page/auto_scan_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/auto_scan_page/bindings/auto_scan_binding.dart';
+import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/bindings/buy_credits_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/buy_credits_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/configure_wifi/bindings/configure_wifi_binding.dart';
+import 'package:radio_life/app/pages/my_devices/pages/configure_wifi/configure_wifi_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/bindings/credits_transaction_success.dart';
+import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/credit_transaction_success_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/bindings/my_device_detail_binding.dart';
+import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/my_device_detail_page.dart';
 import 'package:radio_life/app/pages/qr_code_viewer/qr_code_viewer_page.dart';
 import 'package:radio_life/app/pages/sign_in/bindings/sign_in_bindings.dart';
+import 'package:radio_life/app/pages/sign_in/pages/create_password/bindings/create_password_binding.dart';
+import 'package:radio_life/app/pages/sign_in/pages/create_password/create_password_page.dart';
 import 'package:radio_life/app/pages/sign_in/sign_in_page.dart';
 import 'package:radio_life/app/pages/sign_up/bindings/sign_up_bindings.dart';
 import 'package:radio_life/app/pages/sign_up/sign_up_page.dart';
@@ -48,6 +60,13 @@ abstract class Routes {
   static const addNewDevice = '$myDevices/newDevice';
   static const qrCodeViewer = 'qr-code-viewer';
   static const changePasswordPage = '$forgotPassword/change-password';
+  static const myDeviceDetail = '$myDevices/my-device-detail';
+  static const buyCreditsPage = '$myDeviceDetail/buy-credits';
+  static const creditsTransactionSuccess =
+      '$buyCreditsPage/credits-transaction-success';
+  static const autoScanPage = '$addNewDevice/auto-scan-page';
+  static const configureWiFi = '$autoScanPage/configure-wifi';
+  static const createPassword = '$signIn/create-password';
 }
 
 mixin RadioLifeAppRoutes {
@@ -56,6 +75,11 @@ mixin RadioLifeAppRoutes {
       name: Routes.signUp,
       page: () => SignUpPage(),
       binding: SignUpBinding(),
+    ),
+    GetPage(
+      name: Routes.createPassword,
+      page: () => CreatePasswordPage(),
+      binding: CreatePasswordBinding(),
     ),
     GetPage(
       name: Routes.signIn,
@@ -126,5 +150,30 @@ mixin RadioLifeAppRoutes {
         name: Routes.qrCodeViewer,
         page: () => const QRCodeViewerPage(),
         transition: Transition.fadeIn),
+    GetPage<String>(
+        name: Routes.myDeviceDetail,
+        page: () => MyDeviceDetailPage(),
+        binding: MyDeviceDetailBinding(),
+        transition: Transition.fadeIn),
+    GetPage<String>(
+        name: Routes.buyCreditsPage,
+        page: () => BuyCreditsPage(),
+        binding: BuyCreditsBinding(),
+        transition: Transition.fadeIn),
+    GetPage<String>(
+        name: Routes.creditsTransactionSuccess,
+        page: () => CreditTransactionSuccessPage(),
+        binding: CreditTransactionSuccessBinding(),
+        transition: Transition.fadeIn),
+    GetPage<String>(
+        name: Routes.autoScanPage,
+        page: () => AutoScanPage(),
+        binding: AutoScanBinding(),
+        transition: Transition.fadeIn),
+    GetPage<String>(
+        name: Routes.configureWiFi,
+        page: () => ConfigureWiFiPage(),
+        binding: ConfigureWiFiBinding(),
+        transition: Transition.fadeIn)
   ];
 }

@@ -1,2 +1,1 @@
-- Sign In and Sign Up integrations
-- Keep user local session
+- Image picker to user profile

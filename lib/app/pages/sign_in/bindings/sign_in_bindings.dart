@@ -7,6 +7,6 @@ class SignInBinding extends Bindings {
   @override
   void dependencies() {
     Get.create(() => DoSignInUseCase(getIt(), getIt()));
-    Get.lazyPut(() => SignInController(Get.find()));
+    Get.lazyPut(() => SignInController(Get.find(), getIt()));
   }
 }

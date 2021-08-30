@@ -649,6 +649,306 @@ class S {
       args: [],
     );
   }
+
+  /// `My Device`
+  String get myDevice {
+    return Intl.message(
+      'My Device',
+      name: 'myDevice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy credits`
+  String get buyCredits {
+    return Intl.message(
+      'Buy credits',
+      name: 'buyCredits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have {number} Credits available`
+  String creditsCounter(Object number) {
+    return Intl.message(
+      'You have $number Credits available',
+      name: 'creditsCounter',
+      desc: '',
+      args: [number],
+    );
+  }
+
+  /// `Purchase completed`
+  String get purchaseCompleted {
+    return Intl.message(
+      'Purchase completed',
+      name: 'purchaseCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order details`
+  String get orderDetails {
+    return Intl.message(
+      'Order details',
+      name: 'orderDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Radiolife.co`
+  String get radiolifeco {
+    return Intl.message(
+      'Radiolife.co',
+      name: 'radiolifeco',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of purchase {date}`
+  String dateOfPurchase(Object date) {
+    return Intl.message(
+      'Date of purchase $date',
+      name: 'dateOfPurchase',
+      desc: '',
+      args: [date],
+    );
+  }
+
+  /// `Amount paid {amount}`
+  String amountPaid(Object amount) {
+    return Intl.message(
+      'Amount paid $amount',
+      name: 'amountPaid',
+      desc: '',
+      args: [amount],
+    );
+  }
+
+  /// `Back to My Devices`
+  String get backToMyDevices {
+    return Intl.message(
+      'Back to My Devices',
+      name: 'backToMyDevices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Auto Scan`
+  String get autoScan {
+    return Intl.message(
+      'Auto Scan',
+      name: 'autoScan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bluetooth disabled.`
+  String get bluetoothDesativado {
+    return Intl.message(
+      'Bluetooth disabled.',
+      name: 'bluetoothDesativado',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Before continuing, please enable your mobile's bluetooth so that we can find your device.`
+  String get enableBluetoothMessage {
+    return Intl.message(
+      'Before continuing, please enable your mobile\'s bluetooth so that we can find your device.',
+      name: 'enableBluetoothMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No bluetooth device found`
+  String get noBluetoothDeviceFound {
+    return Intl.message(
+      'No bluetooth device found',
+      name: 'noBluetoothDeviceFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refresh`
+  String get refresh {
+    return Intl.message(
+      'Refresh',
+      name: 'refresh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera`
+  String get camera {
+    return Intl.message(
+      'Camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gallery`
+  String get gallery {
+    return Intl.message(
+      'Gallery',
+      name: 'gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get continue_label {
+    return Intl.message(
+      'Continue',
+      name: 'continue_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Device found`
+  String get deviceFound {
+    return Intl.message(
+      'Device found',
+      name: 'deviceFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Devices`
+  String get searchDevices {
+    return Intl.message(
+      'Search Devices',
+      name: 'searchDevices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Configure Wi-Fi`
+  String get configureWifi {
+    return Intl.message(
+      'Configure Wi-Fi',
+      name: 'configureWifi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WiFi SSID`
+  String get wifiSsid {
+    return Intl.message(
+      'WiFi SSID',
+      name: 'wifiSsid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WiFi Required`
+  String get wifiRequired {
+    return Intl.message(
+      'WiFi Required',
+      name: 'wifiRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please connect to a WiFi network to continue.`
+  String get pleaseConnectToAWifiNetworkToContinue {
+    return Intl.message(
+      'Please connect to a WiFi network to continue.',
+      name: 'pleaseConnectToAWifiNetworkToContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get ok {
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password changed`
+  String get passwordChanged {
+    return Intl.message(
+      'Password changed',
+      name: 'passwordChanged',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password has been successfully updated.`
+  String get yourPasswordHasBeenSuccessfullyUpdated {
+    return Intl.message(
+      'Your password has been successfully updated.',
+      name: 'yourPasswordHasBeenSuccessfullyUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your profile was successfully updated`
+  String get yourProfileWasSuccessfullyUpdated {
+    return Intl.message(
+      'Your profile was successfully updated',
+      name: 'yourProfileWasSuccessfullyUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have no devices.`
+  String get youHaveNoDevices {
+    return Intl.message(
+      'You have no devices.',
+      name: 'youHaveNoDevices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register new device`
+  String get registerNewDevice {
+    return Intl.message(
+      'Register new device',
+      name: 'registerNewDevice',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -120,8 +120,8 @@ class SupportPage extends GetView<SupportController> {
               ),
             ),
           ),
-          bottomNavigationBar: const AppBottomNavigationBarWidget(
-            currentIndex: 3,
+          bottomNavigationBar: isKeyboardVisible ? null : const AppBottomNavigationBarWidget(
+            currentIndex: 2,
           ),
         ),
       );

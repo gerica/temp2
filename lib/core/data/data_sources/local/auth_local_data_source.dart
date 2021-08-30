@@ -1,8 +1,0 @@
-abstract class AuthLocalDataSource{
-  Future<void> saveToken({required String token});
-  Future<String?> get getToken;
-  Future<void> saveEmail({required String email});
-  Future<void> saveName({required String name});
-  Future<String?> get getEmail;
-  Future deleteUser();
-}

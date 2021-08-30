@@ -10,6 +10,7 @@ class ReportCardWidget extends StatelessWidget {
   final String name;
   final String status;
   final Color color;
+  final String locate;
   final VoidCallback onTap;
 
   const ReportCardWidget({
@@ -17,12 +18,13 @@ class ReportCardWidget extends StatelessWidget {
     required this.status,
     required this.onTap,
     required this.color,
+    required this.locate,
   });
 
   @override
   Widget build(BuildContext context) => AspectRatio(
         aspectRatio: context.breakpoint > LayoutBreakpoint.xs
-            ? 600/170
+            ? 600 / 170
             : MediaQuery.of(context).size.width / 150,
         child: Card(
           margin: const EdgeInsets.symmetric(vertical: 8),
@@ -66,23 +68,26 @@ class ReportCardWidget extends StatelessWidget {
                         children: [
                           Text(
                             '23/04/2022',
-                            style:
-                                TextStyle(color: AppColorScheme.gray1, fontSize: AppFontSize.small),
+                            style: TextStyle(
+                                color: AppColorScheme.gray1,
+                                fontSize: AppFontSize.small),
                           ),
                           Text(
                             name,
-                            style:
-                                const TextStyle(color: Colors.black, fontSize: AppFontSize.primary),
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: AppFontSize.primary),
                           ),
                           Text(
                             'José Carlos da Silva',
-                            style:
-                                TextStyle(color: AppColorScheme.gray1, fontSize: AppFontSize.small),
+                            style: TextStyle(
+                                color: AppColorScheme.gray1,
+                                fontSize: AppFontSize.small),
                           ),
                           UIHelper.verticalSpaceMini,
                           Row(children: [
                             _chip('Covid-19'),
-                            _chip('São Paulo'),
+                            _chip(locate),
                             _chip(status, color: color),
                           ]),
                         ],
@@ -105,9 +110,8 @@ class ReportCardWidget extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: const TextStyle(
-              color: Colors.black,
-              fontSize: AppFontSize.small),
+          style:
+              const TextStyle(color: Colors.black, fontSize: AppFontSize.small),
         ),
       );
 
@@ -118,5 +122,6 @@ class ReportCardWidget extends StatelessWidget {
     properties.add(ObjectFlagProperty<VoidCallback>.has('onTap', onTap));
     properties.add(StringProperty('status', status));
     properties.add(ColorProperty('color', color));
+    properties.add(StringProperty('locate', locate));
   }
 }

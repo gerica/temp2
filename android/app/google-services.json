@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:643608033404:android:91ed75b81c2a1bc0cf31f9",
+        "mobilesdk_app_id": "1:643608033404:android:32ca2639c5bb4dc8cf31f9",
         "android_client_info": {
-          "package_name": "com.sisnet.radiolife"
+          "package_name": "co.radiolife"
         }
       },
       "oauth_client": [

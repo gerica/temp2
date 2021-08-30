@@ -7,6 +7,6 @@ class RadioLifeAppBinding implements Bindings {
   @override
   void dependencies() {
     Get.put<RadioLifeAppController>(RadioLifeAppController());
-    Get.put(AppBottomNavigationController(), permanent: true);
+    Get.put(AppBottomNavigationController());
   }
 }

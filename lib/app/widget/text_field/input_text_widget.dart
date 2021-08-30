@@ -114,11 +114,18 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
   InputDecoration _buildInputDecoration() => InputDecoration(
         fillColor: background ?? AppColorScheme.white,
         filled: true,
-        suffixIcon: suffixIcon ?? Container(height: 0, width: 0),
+        suffixIcon: Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: suffixIcon ?? Container(height: 0, width: 0),
+        ),
         labelText: hintText,
         labelStyle: TextStyle(color: AppColorScheme.gray1),
         disabledBorder: _buildBorderSide,
         enabledBorder: _buildBorderSide,
+        prefix: Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: prefixIcon,
+        ),
         prefixText: prefixText,
         suffixIconConstraints: BoxConstraints(minHeight: height ?? 50),
         prefixStyle: prefixStyle,

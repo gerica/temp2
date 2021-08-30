@@ -10,6 +10,7 @@ import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/use_cases/auth/check_if_has_user_logged_in_use_case.dart';
+import 'package:radio_life/core/domain/use_cases/auth/check_if_user_was_confirmed.dart';
 import 'package:radio_life/core/domain/use_cases/auth/do_sign_up_use_case.dart';
 
 import '../../../generated/l10n.dart';
@@ -20,11 +21,13 @@ class SignUpController extends GetxController {
   SignUpController(
     this._doSignUpUseCase,
     this._userIsLoggedIn,
+    this._checkIfUserWasConfirmed,
   );
 
   //region Use Cases
   final DoSignUpUseCase _doSignUpUseCase;
   final CheckIfUserIsLoggedInUseCase _userIsLoggedIn;
+  final CheckIfUserWasConfirmed _checkIfUserWasConfirmed;
 
   //endregion
 
@@ -45,8 +48,8 @@ class SignUpController extends GetxController {
 
   @override
   Future onInit() async {
-    if (await _userIsLoggedIn())
-      Get.offNamed(Routes.products);
+    if (await _userIsLoggedIn() && await _checkIfUserWasConfirmed())
+      Get.offNamed(Routes.myDevices);
     else
       ready.value = true;
     super.onInit();
@@ -55,35 +58,41 @@ class SignUpController extends GetxController {
   //region Functions
 
   Future performSignUp() async {
-    if (!_isValid) return;
-    AppUIBlock.blockUI(context: Get.context);
-    final response = await _doSignUpUseCase(
-      SignUpParams(
-          firstName: firstNameController.text,
-          lastName: lastNameController.text,
-          email: emailController.text),
-    );
-    AppUIBlock.unblock(context: Get.context);
+    _isValid;
+    if (firstNameController.text.isNotEmpty &&
+        lastNameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty) {
+      AppUIBlock.blockUI(context: Get.context);
+      final response = await _doSignUpUseCase(
+        SignUpParams(
+            firstName: firstNameController.text,
+            lastName: lastNameController.text,
+            email: emailController.text),
+      );
+      AppUIBlock.unblock(context: Get.context);
 
-    if (response.status == Status.success && response.data != null) {
-      Get.appDialog(
-        pageChild: AppSimpleDialog(
-          title: S.current.success,
-          message: S.current.weSentATemporaryPasswordToYourEmailUseIt,
-          icon: Icon(Icons.check_circle_outline, size: 50, color: AppColorScheme.primarySwatch),
-          onButtonPressed: () {},
-        ),
-      );
-    } else if (response.status == Status.failed) {
-      final error = response.error ?? AppException.generic();
-      Get.appDialog(
-        pageChild: AppSimpleDialog(
-          title: error.title ?? '',
-          message: error.description ?? '',
-          icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
-          onButtonPressed: () {},
-        ),
-      );
+      if (response.status == Status.success && response.data != null) {
+        Get.appDialog(
+          pageChild: AppSimpleDialog(
+            title: S.current.success,
+            message: S.current.weSentATemporaryPasswordToYourEmailUseIt,
+            icon: Icon(Icons.check_circle_outline,
+                size: 50, color: AppColorScheme.primarySwatch),
+            onClosePressed: () {},
+          ),
+        );
+      } else if (response.status == Status.failed) {
+        final error = response.error ?? AppException.generic();
+        Get.appDialog(
+          pageChild: AppSimpleDialog(
+            title: error.title ?? '',
+            message: error.description ?? '',
+            icon: Icon(Icons.error_outline,
+                size: 50, color: AppColorScheme.error),
+            onClosePressed: () {},
+          ),
+        );
+      }
     }
   }
 

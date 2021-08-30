@@ -1,14 +1,22 @@
+import 'package:flutter/foundation.dart';
 import 'package:graphql/client.dart';
 import 'package:radio_life/core/data/helpers/secure_local_storage.dart';
 import 'package:radio_life/core/data/helpers/storage_keys.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RadioLifeGraphQLClient {
   RadioLifeGraphQLClient._();
 
   static Future<GraphQLClient> init(
-      HttpLink httpLink, WebSocketLink webSocketLink, SecureLocalStorage secureStorage) async {
-    final authLink = AuthLink(
-        getToken: () async => '${await secureStorage.getData(key: '${StorageKeys.token}')}');
+    HttpLink httpLink,
+    WebSocketLink webSocketLink,
+    SecureLocalStorage secureStorage,
+    SharedPreferences _sharedPreferences,
+  ) async {
+    final token = kIsWeb
+        ? _sharedPreferences.getString(StorageKeys.token) ?? ''
+        : await secureStorage.getData(key: StorageKeys.token);
+    final authLink = AuthLink(getToken: () async => '$token');
 
     var link = authLink.concat(httpLink);
     link = Link.split((request) => request.isSubscription, webSocketLink, link);
