@@ -4,5 +4,5 @@ class HomeAdapter {
 
   HomeAdapter._();
 
-  static HomeModel get toModel => const HomeModel(userFirstName: 'Denis');
+  static HomeModel get toModel => const HomeModel(userFirstName: 'User');
 }

@@ -11,22 +11,19 @@ class AppBottomNavigationController extends GetxController {
   final bottomBarCurrentIndex = 0.obs;
 
   void changePage(int index) {
-    if(index == bottomBarCurrentIndex.value) return;
+    if (index == bottomBarCurrentIndex.value) return;
     bottomBarCurrentIndex.value = index;
     switch (index) {
       case 0:
-        Get.offAllNamed(Routes.products, predicate: ModalRoute.withName('/'));
-        break;
-      case 1:
         Get.offAllNamed(Routes.myDevices, predicate: ModalRoute.withName('/'));
         break;
-      case 2:
+      case 1:
         Get.offAllNamed(Routes.reports, predicate: ModalRoute.withName('/'));
         break;
-      case 3:
+      case 2:
         Get.offAllNamed(Routes.support, predicate: ModalRoute.withName('/'));
         break;
-      case 4:
+      case 3:
         Get.offAllNamed(Routes.profile, predicate: ModalRoute.withName('/'));
         break;
     }

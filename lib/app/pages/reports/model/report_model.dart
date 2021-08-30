@@ -1,14 +1,18 @@
-class ExamEntity {
+import 'dart:ui';
+
+class ReportModel {
   final String? id;
-  final DateTime date;
   final String examNumber;
   final String result;
+  final String date;
   final String locate;
+  final Color tagColor;
 
-  const ExamEntity({
-    required this.date,
+  ReportModel({
     required this.examNumber,
     required this.result,
+    required this.date,
+    required this.tagColor,
     required this.locate,
     this.id,
   });

@@ -244,6 +244,74 @@ class GetMyDevices$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class GetExams$Query$ExamResult$Device extends JsonSerializable
+    with EquatableMixin {
+  GetExams$Query$ExamResult$Device();
+
+  factory GetExams$Query$ExamResult$Device.fromJson(
+          Map<String, dynamic> json) =>
+      _$GetExams$Query$ExamResult$DeviceFromJson(json);
+
+  late String locate;
+
+  @JsonKey(unknownEnumValue: EnumDeviceType.artemisUnknown)
+  EnumDeviceType? type;
+
+  @override
+  List<Object?> get props => [locate, type];
+  Map<String, dynamic> toJson() =>
+      _$GetExams$Query$ExamResult$DeviceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetExams$Query$ExamResult extends JsonSerializable with EquatableMixin {
+  GetExams$Query$ExamResult();
+
+  factory GetExams$Query$ExamResult.fromJson(Map<String, dynamic> json) =>
+      _$GetExams$Query$ExamResultFromJson(json);
+
+  String? date;
+
+  late String examNumber;
+
+  late String result;
+
+  String? deviceId;
+
+  late String serialNumber;
+
+  String? phase;
+
+  GetExams$Query$ExamResult$Device? device;
+
+  @override
+  List<Object?> get props =>
+      [date, examNumber, result, deviceId, serialNumber, phase, device];
+  Map<String, dynamic> toJson() => _$GetExams$Query$ExamResultToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetExams$Query extends JsonSerializable with EquatableMixin {
+  GetExams$Query();
+
+  factory GetExams$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetExams$QueryFromJson(json);
+
+  late List<GetExams$Query$ExamResult> examResultMany;
+
+  @override
+  List<Object?> get props => [examResultMany];
+  Map<String, dynamic> toJson() => _$GetExams$QueryToJson(this);
+}
+
+enum EnumDeviceType {
+  @JsonValue('COVID19')
+  covid19,
+  @JsonValue('ARTEMIS_UNKNOWN')
+  artemisUnknown,
+}
+
+@JsonSerializable(explicitToJson: true)
 class ChangePasswordArguments extends JsonSerializable with EquatableMixin {
   ChangePasswordArguments(
       {required this.currentPassword, required this.newPassword});
@@ -300,44 +368,7 @@ final CHANGE_PASSWORD_MUTATION_DOCUMENT = DocumentNode(definitions: [
                   ]))
             ],
             directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: '_id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'token'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'firstName'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'lastName'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'email'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'confirmed'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null)
-            ]))
+            selectionSet: null)
       ]))
 ]);
 
@@ -951,4 +982,92 @@ class GetMyDevicesQuery
   @override
   GetMyDevices$Query parse(Map<String, dynamic> json) =>
       GetMyDevices$Query.fromJson(json);
+}
+
+final GET_EXAMS_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetExams'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'examResultMany'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'date'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'examNumber'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'result'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'deviceId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'serialNumber'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'phase'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'device'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'locate'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'type'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
+            ]))
+      ]))
+]);
+
+class GetExamsQuery extends GraphQLQuery<GetExams$Query, JsonSerializable> {
+  GetExamsQuery();
+
+  @override
+  final DocumentNode document = GET_EXAMS_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'GetExams';
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  GetExams$Query parse(Map<String, dynamic> json) =>
+      GetExams$Query.fromJson(json);
 }

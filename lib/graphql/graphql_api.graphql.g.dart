@@ -215,6 +215,103 @@ Map<String, dynamic> _$GetMyDevices$QueryToJson(GetMyDevices$Query instance) =>
       'myDevice': instance.myDevice?.map((e) => e?.toJson()).toList(),
     };
 
+GetExams$Query$ExamResult$Device _$GetExams$Query$ExamResult$DeviceFromJson(
+    Map<String, dynamic> json) {
+  return GetExams$Query$ExamResult$Device()
+    ..locate = json['locate'] as String
+    ..type = _$enumDecodeNullable(_$EnumDeviceTypeEnumMap, json['type'],
+        unknownValue: EnumDeviceType.artemisUnknown);
+}
+
+Map<String, dynamic> _$GetExams$Query$ExamResult$DeviceToJson(
+        GetExams$Query$ExamResult$Device instance) =>
+    <String, dynamic>{
+      'locate': instance.locate,
+      'type': _$EnumDeviceTypeEnumMap[instance.type],
+    };
+
+K _$enumDecode<K, V>(
+  Map<K, V> enumValues,
+  Object? source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    throw ArgumentError(
+      'A value must be provided. Supported values: '
+      '${enumValues.values.join(', ')}',
+    );
+  }
+
+  return enumValues.entries.singleWhere(
+    (e) => e.value == source,
+    orElse: () {
+      if (unknownValue == null) {
+        throw ArgumentError(
+          '`$source` is not one of the supported values: '
+          '${enumValues.values.join(', ')}',
+        );
+      }
+      return MapEntry(unknownValue, enumValues.values.first);
+    },
+  ).key;
+}
+
+K? _$enumDecodeNullable<K, V>(
+  Map<K, V> enumValues,
+  dynamic source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$EnumDeviceTypeEnumMap = {
+  EnumDeviceType.covid19: 'COVID19',
+  EnumDeviceType.artemisUnknown: 'ARTEMIS_UNKNOWN',
+};
+
+GetExams$Query$ExamResult _$GetExams$Query$ExamResultFromJson(
+    Map<String, dynamic> json) {
+  return GetExams$Query$ExamResult()
+    ..date = json['date'] as String?
+    ..examNumber = json['examNumber'] as String
+    ..result = json['result'] as String
+    ..deviceId = json['deviceId'] as String?
+    ..serialNumber = json['serialNumber'] as String
+    ..phase = json['phase'] as String?
+    ..device = json['device'] == null
+        ? null
+        : GetExams$Query$ExamResult$Device.fromJson(
+            json['device'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$GetExams$Query$ExamResultToJson(
+        GetExams$Query$ExamResult instance) =>
+    <String, dynamic>{
+      'date': instance.date,
+      'examNumber': instance.examNumber,
+      'result': instance.result,
+      'deviceId': instance.deviceId,
+      'serialNumber': instance.serialNumber,
+      'phase': instance.phase,
+      'device': instance.device?.toJson(),
+    };
+
+GetExams$Query _$GetExams$QueryFromJson(Map<String, dynamic> json) {
+  return GetExams$Query()
+    ..examResultMany = (json['examResultMany'] as List<dynamic>)
+        .map((e) =>
+            GetExams$Query$ExamResult.fromJson(e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$GetExams$QueryToJson(GetExams$Query instance) =>
+    <String, dynamic>{
+      'examResultMany': instance.examResultMany.map((e) => e.toJson()).toList(),
+    };
+
 ChangePasswordArguments _$ChangePasswordArgumentsFromJson(
     Map<String, dynamic> json) {
   return ChangePasswordArguments(

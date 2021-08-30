@@ -33,8 +33,6 @@ class MyDevicesController extends GetxController {
 
   //region Functions
 
-
-
   Future getMyDevices() async {
     AppUIBlock.blockUI(context: Get.context);
     final response = await _getMyDevicesUseCase();

@@ -212,7 +212,7 @@ class ProfilePage extends GetView<ProfileController> {
           ),
         ),
         bottomNavigationBar: const AppBottomNavigationBarWidget(
-          currentIndex: 4,
+          currentIndex: 3,
         ),
       );
 }

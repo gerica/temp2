@@ -49,7 +49,7 @@ class SignUpController extends GetxController {
   @override
   Future onInit() async {
     if (await _userIsLoggedIn() && await _checkIfUserWasConfirmed())
-      Get.offNamed(Routes.products);
+      Get.offNamed(Routes.myDevices);
     else
       ready.value = true;
     super.onInit();

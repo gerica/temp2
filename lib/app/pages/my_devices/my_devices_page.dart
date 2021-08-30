@@ -98,7 +98,7 @@ class MyDevicesPage extends GetView<MyDevicesController> {
           ),
         ),
         bottomNavigationBar: const AppBottomNavigationBarWidget(
-          currentIndex: 1,
+          currentIndex: 0,
         ),
       );
 }

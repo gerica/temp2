@@ -1,0 +1,14 @@
+query GetExams{
+    examResultMany {
+        date
+        examNumber
+        result
+        deviceId
+        serialNumber
+        phase
+        device {
+            locate
+            type
+        }
+    }
+}
