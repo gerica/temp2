@@ -17,8 +17,12 @@ class SetUserUseCase extends BaseSimpleUseCase<AuthEntity, void> {
 
   @override
   Future call(AuthEntity params) async {
-    if (kIsWeb) _loginRepository.saveTokenAtLocalStorage(token: params.token ?? '');
-    else await _loginRepository.setDataAuthLocal(params);
+    if (kIsWeb) {
+      await _loginRepository.saveTokenAtLocalStorage(token: params.token ?? '');
+      await _loginRepository.saveUserConfirmedValue(
+          confirmed: params.confirmed ?? false);
+    } else
+      await _loginRepository.setDataAuthLocal(params);
 
     _userManager.setLoggedIn(
       isLoggedIn: params.token != null && params.confirmed == true,

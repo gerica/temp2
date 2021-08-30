@@ -118,8 +118,8 @@ class ProfilePage extends GetView<ProfileController> {
                                                       Icons.person,
                                                       size: 50),
                                                 )
-                                              : Image.file(
-                                                  file,
+                                              : Image.memory(
+                                                  file.readAsBytesSync(),
                                                   fit: BoxFit.cover,
                                                   height: 90,
                                                   width: 90,

@@ -109,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "qrCode": MessageLookupByLibrary.simpleMessage("QR CODE"),
         "radiolifeco": MessageLookupByLibrary.simpleMessage("Radiolife.co"),
         "refresh": MessageLookupByLibrary.simpleMessage("Refresh"),
+        "registerNewDevice":
+            MessageLookupByLibrary.simpleMessage("Register new device"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "requiredField": MessageLookupByLibrary.simpleMessage("Required field"),
         "reset": MessageLookupByLibrary.simpleMessage("RESET"),
@@ -141,6 +143,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "We sent a temporary password to your email. Use it to sign in the app."),
         "wifiRequired": MessageLookupByLibrary.simpleMessage("WiFi Required"),
         "wifiSsid": MessageLookupByLibrary.simpleMessage("WiFi SSID"),
+        "youHaveNoDevices":
+            MessageLookupByLibrary.simpleMessage("You have no devices."),
         "yourMessage": MessageLookupByLibrary.simpleMessage("Your Message"),
         "yourPasswordHasBeenSuccessfullyUpdated":
             MessageLookupByLibrary.simpleMessage(

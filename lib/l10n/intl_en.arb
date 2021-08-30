@@ -86,5 +86,7 @@
   "ok": "Ok",
   "passwordChanged": "Password changed",
   "yourPasswordHasBeenSuccessfullyUpdated": "Your password has been successfully updated.",
-  "yourProfileWasSuccessfullyUpdated": "Your profile was successfully updated"
+  "yourProfileWasSuccessfullyUpdated": "Your profile was successfully updated",
+  "youHaveNoDevices": "You have no devices.",
+  "registerNewDevice": "Register new device"
 }

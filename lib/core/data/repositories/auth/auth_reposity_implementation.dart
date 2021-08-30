@@ -75,9 +75,7 @@ class AuthRepositoryImplementation extends AuthRepository {
           currentPassword: currentPassword,
           newPassword: newPassword,
         ),
-        (data) => ChangePassword$Mutation.fromJson(data)
-            .userChangePassword
-            ?.toAuthEntity(),
+        (data) => ChangePassword$Mutation.fromJson(data).toAuthEntity(),
       );
 
   @override

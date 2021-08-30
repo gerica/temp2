@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:radio_life/core/data/helpers/secure_local_storage.dart';
 import 'package:radio_life/core/data/helpers/storage_keys.dart';
@@ -10,8 +11,8 @@ class AuthLocalDataSourceImplementation extends AuthLocalDataSource {
   final SecureLocalStorage _secureLocalStorage;
   final SharedPreferences _sharedPreferences;
 
-  AuthLocalDataSourceImplementation(this._secureLocalStorage,
-      this._sharedPreferences);
+  AuthLocalDataSourceImplementation(
+      this._secureLocalStorage, this._sharedPreferences);
 
   @override
   Future deleteUser() {
@@ -40,8 +41,12 @@ class AuthLocalDataSourceImplementation extends AuthLocalDataSource {
 
   @override
   Future get logout async {
-    await _secureLocalStorage.clearData();
-    await _sharedPreferences.clear();
+    if (kIsWeb)
+      await _sharedPreferences.clear();
+    else {
+      await _secureLocalStorage.clearData();
+      await _sharedPreferences.clear();
+    }
   }
 
   @override

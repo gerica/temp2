@@ -929,6 +929,26 @@ class S {
       args: [],
     );
   }
+
+  /// `You have no devices.`
+  String get youHaveNoDevices {
+    return Intl.message(
+      'You have no devices.',
+      name: 'youHaveNoDevices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register new device`
+  String get registerNewDevice {
+    return Intl.message(
+      'Register new device',
+      name: 'registerNewDevice',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:universal_io/io.dart' as io;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,10 +41,10 @@ class ProfileController extends GetxController {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final ImagePicker _imagePicker;
-  final image = Rxn<File?>();
+  final image = Rxn<io.File?>();
   final imageUrl = Rxn<String?>();
   late String _id;
-  File? file;
+  io.File? file;
 
   @override
   void onReady() {
@@ -120,7 +120,7 @@ class ProfileController extends GetxController {
         maxHeight: 500,
         maxWidth: 500);
     if (pickedFile != null) {
-      file = File(pickedFile.path);
+      file = io.File(pickedFile.path);
       image.value = file;
     }
   }
@@ -141,7 +141,7 @@ class ProfileController extends GetxController {
 
   Future logout() async {
     await _logOutUseCase();
-    Get.offAllNamed(Routes.signIn, predicate: ModalRoute.withName('/'));
+    Get.offAllNamed(Routes.signIn);
   }
 
 //endregion

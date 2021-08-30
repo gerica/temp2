@@ -8,40 +8,13 @@ import 'package:gql/ast.dart';
 part 'graphql_api.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class ChangePassword$Mutation$User extends JsonSerializable
-    with EquatableMixin {
-  ChangePassword$Mutation$User();
-
-  factory ChangePassword$Mutation$User.fromJson(Map<String, dynamic> json) =>
-      _$ChangePassword$Mutation$UserFromJson(json);
-
-  @JsonKey(name: '_id')
-  late String $id;
-
-  String? token;
-
-  late String firstName;
-
-  late String lastName;
-
-  late String email;
-
-  bool? confirmed;
-
-  @override
-  List<Object?> get props =>
-      [$id, token, firstName, lastName, email, confirmed];
-  Map<String, dynamic> toJson() => _$ChangePassword$Mutation$UserToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
 class ChangePassword$Mutation extends JsonSerializable with EquatableMixin {
   ChangePassword$Mutation();
 
   factory ChangePassword$Mutation.fromJson(Map<String, dynamic> json) =>
       _$ChangePassword$MutationFromJson(json);
 
-  ChangePassword$Mutation$User? userChangePassword;
+  String? userChangePassword;
 
   @override
   List<Object?> get props => [userChangePassword];
@@ -49,11 +22,11 @@ class ChangePassword$Mutation extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class SignIn$Mutation$User extends JsonSerializable with EquatableMixin {
-  SignIn$Mutation$User();
+class SignIn$Mutation$UserLogin extends JsonSerializable with EquatableMixin {
+  SignIn$Mutation$UserLogin();
 
-  factory SignIn$Mutation$User.fromJson(Map<String, dynamic> json) =>
-      _$SignIn$Mutation$UserFromJson(json);
+  factory SignIn$Mutation$UserLogin.fromJson(Map<String, dynamic> json) =>
+      _$SignIn$Mutation$UserLoginFromJson(json);
 
   @JsonKey(name: '_id')
   late String $id;
@@ -71,7 +44,7 @@ class SignIn$Mutation$User extends JsonSerializable with EquatableMixin {
   @override
   List<Object?> get props =>
       [$id, token, firstName, lastName, email, confirmed];
-  Map<String, dynamic> toJson() => _$SignIn$Mutation$UserToJson(this);
+  Map<String, dynamic> toJson() => _$SignIn$Mutation$UserLoginToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -81,7 +54,7 @@ class SignIn$Mutation extends JsonSerializable with EquatableMixin {
   factory SignIn$Mutation.fromJson(Map<String, dynamic> json) =>
       _$SignIn$MutationFromJson(json);
 
-  SignIn$Mutation$User? userLogin;
+  SignIn$Mutation$UserLogin? userLogin;
 
   @override
   List<Object?> get props => [userLogin];
