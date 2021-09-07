@@ -37,6 +37,7 @@ class ReportsController extends GetxController {
 
   Future getExams() async {
     AppUIBlock.blockUI(context: Get.context);
+    await 1.delay();
     final response = await _getExamsUseCase('');
     AppUIBlock.unblock(context: Get.context);
     switch (response.status) {

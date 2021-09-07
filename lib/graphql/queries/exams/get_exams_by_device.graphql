@@ -1,0 +1,14 @@
+query GetExamsByDevice($deviceId: MongoID!){
+    examResultMany(filter: {deviceId: $deviceId}) {
+        date
+        examNumber
+        result
+        deviceId
+        serialNumber
+        phase
+        device {
+            locate
+            type
+        }
+    }
+}

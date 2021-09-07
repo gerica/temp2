@@ -4,21 +4,18 @@ import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
+import 'package:radio_life/app/pages/reports/model/report_model.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 
 class ReportCardWidget extends StatelessWidget {
-  final String name;
-  final String status;
+  final ReportModel model;
   final Color color;
-  final String locate;
   final VoidCallback onTap;
 
   const ReportCardWidget({
-    required this.name,
-    required this.status,
+    required this.model,
     required this.onTap,
     required this.color,
-    required this.locate,
   });
 
   @override
@@ -67,13 +64,13 @@ class ReportCardWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            '23/04/2022',
+                            model.date,
                             style: TextStyle(
                                 color: AppColorScheme.gray1,
                                 fontSize: AppFontSize.small),
                           ),
                           Text(
-                            name,
+                            model.examNumber,
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: AppFontSize.primary),
@@ -87,8 +84,8 @@ class ReportCardWidget extends StatelessWidget {
                           UIHelper.verticalSpaceMini,
                           Row(children: [
                             _chip('Covid-19'),
-                            _chip(locate),
-                            _chip(status, color: color),
+                            _chip(model.locate),
+                            _chip(model.result, color: color),
                           ]),
                         ],
                       ),
@@ -118,10 +115,8 @@ class ReportCardWidget extends StatelessWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(StringProperty('name', name));
     properties.add(ObjectFlagProperty<VoidCallback>.has('onTap', onTap));
-    properties.add(StringProperty('status', status));
     properties.add(ColorProperty('color', color));
-    properties.add(StringProperty('locate', locate));
+    properties.add(DiagnosticsProperty<ReportModel>('model', model));
   }
 }

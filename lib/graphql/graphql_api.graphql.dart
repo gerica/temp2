@@ -304,6 +304,70 @@ class GetExams$Query extends JsonSerializable with EquatableMixin {
   Map<String, dynamic> toJson() => _$GetExams$QueryToJson(this);
 }
 
+@JsonSerializable(explicitToJson: true)
+class GetExamsByDevice$Query$ExamResult$Device extends JsonSerializable
+    with EquatableMixin {
+  GetExamsByDevice$Query$ExamResult$Device();
+
+  factory GetExamsByDevice$Query$ExamResult$Device.fromJson(
+          Map<String, dynamic> json) =>
+      _$GetExamsByDevice$Query$ExamResult$DeviceFromJson(json);
+
+  late String locate;
+
+  @JsonKey(unknownEnumValue: EnumDeviceType.artemisUnknown)
+  EnumDeviceType? type;
+
+  @override
+  List<Object?> get props => [locate, type];
+  Map<String, dynamic> toJson() =>
+      _$GetExamsByDevice$Query$ExamResult$DeviceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetExamsByDevice$Query$ExamResult extends JsonSerializable
+    with EquatableMixin {
+  GetExamsByDevice$Query$ExamResult();
+
+  factory GetExamsByDevice$Query$ExamResult.fromJson(
+          Map<String, dynamic> json) =>
+      _$GetExamsByDevice$Query$ExamResultFromJson(json);
+
+  String? date;
+
+  late String examNumber;
+
+  late String result;
+
+  String? deviceId;
+
+  late String serialNumber;
+
+  String? phase;
+
+  GetExamsByDevice$Query$ExamResult$Device? device;
+
+  @override
+  List<Object?> get props =>
+      [date, examNumber, result, deviceId, serialNumber, phase, device];
+  Map<String, dynamic> toJson() =>
+      _$GetExamsByDevice$Query$ExamResultToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetExamsByDevice$Query extends JsonSerializable with EquatableMixin {
+  GetExamsByDevice$Query();
+
+  factory GetExamsByDevice$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetExamsByDevice$QueryFromJson(json);
+
+  late List<GetExamsByDevice$Query$ExamResult> examResultMany;
+
+  @override
+  List<Object?> get props => [examResultMany];
+  Map<String, dynamic> toJson() => _$GetExamsByDevice$QueryToJson(this);
+}
+
 enum EnumDeviceType {
   @JsonValue('COVID19')
   covid19,
@@ -1070,4 +1134,127 @@ class GetExamsQuery extends GraphQLQuery<GetExams$Query, JsonSerializable> {
   @override
   GetExams$Query parse(Map<String, dynamic> json) =>
       GetExams$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetExamsByDeviceArguments extends JsonSerializable with EquatableMixin {
+  GetExamsByDeviceArguments({required this.deviceId});
+
+  @override
+  factory GetExamsByDeviceArguments.fromJson(Map<String, dynamic> json) =>
+      _$GetExamsByDeviceArgumentsFromJson(json);
+
+  late String deviceId;
+
+  @override
+  List<Object?> get props => [deviceId];
+  @override
+  Map<String, dynamic> toJson() => _$GetExamsByDeviceArgumentsToJson(this);
+}
+
+final GET_EXAMS_BY_DEVICE_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetExamsByDevice'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'deviceId')),
+            type: NamedTypeNode(
+                name: NameNode(value: 'MongoID'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'examResultMany'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'filter'),
+                  value: ObjectValueNode(fields: [
+                    ObjectFieldNode(
+                        name: NameNode(value: 'deviceId'),
+                        value: VariableNode(name: NameNode(value: 'deviceId')))
+                  ]))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'date'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'examNumber'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'result'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'deviceId'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'serialNumber'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'phase'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'device'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'locate'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'type'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
+            ]))
+      ]))
+]);
+
+class GetExamsByDeviceQuery
+    extends GraphQLQuery<GetExamsByDevice$Query, GetExamsByDeviceArguments> {
+  GetExamsByDeviceQuery({required this.variables});
+
+  @override
+  final DocumentNode document = GET_EXAMS_BY_DEVICE_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'GetExamsByDevice';
+
+  @override
+  final GetExamsByDeviceArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  GetExamsByDevice$Query parse(Map<String, dynamic> json) =>
+      GetExamsByDevice$Query.fromJson(json);
 }

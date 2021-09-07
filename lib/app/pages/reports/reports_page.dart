@@ -49,9 +49,7 @@ class ReportsPage extends GetView<ReportsController> {
                       itemCount: data.length,
                       itemBuilder: (context, index) => ReportCardWidget(
                         onTap: () {},
-                        name: data[index].examNumber,
-                        status: data[index].result,
-                        locate: data[index].locate,
+                        model: data[index],
                         color: index == 0
                             ? AppColorScheme.yellow
                             : index == 1

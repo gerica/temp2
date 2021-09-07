@@ -312,6 +312,64 @@ Map<String, dynamic> _$GetExams$QueryToJson(GetExams$Query instance) =>
       'examResultMany': instance.examResultMany.map((e) => e.toJson()).toList(),
     };
 
+GetExamsByDevice$Query$ExamResult$Device
+    _$GetExamsByDevice$Query$ExamResult$DeviceFromJson(
+        Map<String, dynamic> json) {
+  return GetExamsByDevice$Query$ExamResult$Device()
+    ..locate = json['locate'] as String
+    ..type = _$enumDecodeNullable(_$EnumDeviceTypeEnumMap, json['type'],
+        unknownValue: EnumDeviceType.artemisUnknown);
+}
+
+Map<String, dynamic> _$GetExamsByDevice$Query$ExamResult$DeviceToJson(
+        GetExamsByDevice$Query$ExamResult$Device instance) =>
+    <String, dynamic>{
+      'locate': instance.locate,
+      'type': _$EnumDeviceTypeEnumMap[instance.type],
+    };
+
+GetExamsByDevice$Query$ExamResult _$GetExamsByDevice$Query$ExamResultFromJson(
+    Map<String, dynamic> json) {
+  return GetExamsByDevice$Query$ExamResult()
+    ..date = json['date'] as String?
+    ..examNumber = json['examNumber'] as String
+    ..result = json['result'] as String
+    ..deviceId = json['deviceId'] as String?
+    ..serialNumber = json['serialNumber'] as String
+    ..phase = json['phase'] as String?
+    ..device = json['device'] == null
+        ? null
+        : GetExamsByDevice$Query$ExamResult$Device.fromJson(
+            json['device'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$GetExamsByDevice$Query$ExamResultToJson(
+        GetExamsByDevice$Query$ExamResult instance) =>
+    <String, dynamic>{
+      'date': instance.date,
+      'examNumber': instance.examNumber,
+      'result': instance.result,
+      'deviceId': instance.deviceId,
+      'serialNumber': instance.serialNumber,
+      'phase': instance.phase,
+      'device': instance.device?.toJson(),
+    };
+
+GetExamsByDevice$Query _$GetExamsByDevice$QueryFromJson(
+    Map<String, dynamic> json) {
+  return GetExamsByDevice$Query()
+    ..examResultMany = (json['examResultMany'] as List<dynamic>)
+        .map((e) => GetExamsByDevice$Query$ExamResult.fromJson(
+            e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$GetExamsByDevice$QueryToJson(
+        GetExamsByDevice$Query instance) =>
+    <String, dynamic>{
+      'examResultMany': instance.examResultMany.map((e) => e.toJson()).toList(),
+    };
+
 ChangePasswordArguments _$ChangePasswordArgumentsFromJson(
     Map<String, dynamic> json) {
   return ChangePasswordArguments(
@@ -395,4 +453,17 @@ Map<String, dynamic> _$ResetPasswordArgumentsToJson(
         ResetPasswordArguments instance) =>
     <String, dynamic>{
       'email': instance.email,
+    };
+
+GetExamsByDeviceArguments _$GetExamsByDeviceArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return GetExamsByDeviceArguments(
+    deviceId: json['deviceId'] as String,
+  );
+}
+
+Map<String, dynamic> _$GetExamsByDeviceArgumentsToJson(
+        GetExamsByDeviceArguments instance) =>
+    <String, dynamic>{
+      'deviceId': instance.deviceId,
     };
