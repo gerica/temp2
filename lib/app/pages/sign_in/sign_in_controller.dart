@@ -4,6 +4,7 @@ import 'package:radio_life/app/pages/sign_in/model/sign_in_model.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
+import 'package:radio_life/app/widget/navigation/app_bottom_navitation_bar_controller.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
@@ -51,10 +52,15 @@ class SignInController extends GetxController {
     final data = response.data;
     if (response.status == Status.success && data != null) {
       await _saveUserIdUseCase(data.accountId ?? '');
-      if (data.confirmed == true)
-        Get.offAllNamed(Routes.products);
-      else
-        Get.toNamed(Routes.createPassword);
+      if (data.confirmed == true) {
+        final bottomNavigationController = Get.find<AppBottomNavigationController>();
+        bottomNavigationController.changePage(0);
+        Get.offAllNamed(
+          Routes.myDevices,
+          predicate: ModalRoute.withName('/'),
+        );
+      } else
+        Get.toNamed(Routes.createPassword, preventDuplicates: false);
     } else if (response.status == Status.failed) {
       final error = response.error ?? AppException.generic();
       Get.appDialog(

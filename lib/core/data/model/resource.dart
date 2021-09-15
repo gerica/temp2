@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:get/get.dart';
 import 'package:graphql/client.dart';
 import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/core/domain/use_cases/auth/log_out_use_case.dart';
+import 'package:radio_life/di/di.dart';
 
 import 'app_exception.dart';
 
@@ -24,7 +27,8 @@ class Resource<T> {
     _errorMapper = errorMapper;
   }
 
-  static Resource<T> loading<T>({T? data}) => Resource<T>(data: data, status: Status.loading);
+  static Resource<T> loading<T>({T? data}) =>
+      Resource<T>(data: data, status: Status.loading);
 
   static Resource<T> failed<T>({dynamic error, T? data}) => Resource<T>(
         error: error,
@@ -32,14 +36,22 @@ class Resource<T> {
         status: Status.failed,
       );
 
-  static Resource<T> success<T>({T? data}) => Resource<T>(data: data, status: Status.success);
+  static Resource<T> success<T>({T? data}) =>
+      Resource<T>(data: data, status: Status.success);
 
-  static Future<Resource<T>> asFuture<T>(
-      Future<dynamic> Function() req, FutureOr<T> Function(dynamic data) res) async {
+  static Future<Resource<T>> asFuture<T>(Future<dynamic> Function() req,
+      FutureOr<T> Function(dynamic data) res) async {
     try {
       final result = await req();
       if (result is QueryResult) {
         if (result.hasException && result.exception != null) {
+          final firstException = result.exception?.graphqlErrors.first;
+          if (firstException != null &&
+              firstException.message == 'Please Login Again!') {
+            final _logout = getIt<LogOutUseCase>();
+            await _logout();
+          }
+
           final _errorMapped = _errorMapper(result.exception);
           print(result.exception.toString());
           return failed(

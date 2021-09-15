@@ -13,10 +13,13 @@ class RadioLifeGraphQLClient {
     SecureLocalStorage secureStorage,
     SharedPreferences _sharedPreferences,
   ) async {
-    final token = kIsWeb
-        ? _sharedPreferences.getString(StorageKeys.token) ?? ''
-        : await secureStorage.getData(key: StorageKeys.token);
-    final authLink = AuthLink(getToken: () async => '$token');
+
+    final authLink = AuthLink(getToken: () async {
+      final token = kIsWeb
+          ? _sharedPreferences.getString(StorageKeys.token) ?? ''
+          : await secureStorage.getData(key: StorageKeys.token);
+      return '$token';
+    });
 
     var link = authLink.concat(httpLink);
     link = Link.split((request) => request.isSubscription, webSocketLink, link);

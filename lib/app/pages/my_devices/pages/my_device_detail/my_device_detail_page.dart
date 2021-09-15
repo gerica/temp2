@@ -102,7 +102,7 @@ class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
           ),
         ),
         bottomNavigationBar: const AppBottomNavigationBarWidget(
-          currentIndex: 1,
+          currentIndex: 0,
         ),
       );
 

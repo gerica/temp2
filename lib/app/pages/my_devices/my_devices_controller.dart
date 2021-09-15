@@ -11,11 +11,14 @@ import 'package:radio_life/core/domain/use_cases/my_devices/get_my_devices_use_c
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/my_devices/adapter/my_devices_adapter.dart';
 
+import '../../radio_life_app_routes.dart';
+
 class MyDevicesController extends GetxController {
   MyDevicesController(this._getMyDevicesUseCase);
 
   //region UseCase
   final GetMyDevicesUseCase _getMyDevicesUseCase;
+
   //endregion
 
   //region State
@@ -42,7 +45,7 @@ class MyDevicesController extends GetxController {
         break;
       case Status.success:
         final data = response.data;
-        if(data != null){
+        if (data != null) {
           state.value = Resource.success(data: data.toModelList);
         }
         break;
@@ -53,6 +56,9 @@ class MyDevicesController extends GetxController {
   }
 
   void handleError(AppException error) {
+    if (error.description == 'Please Login Again!') {
+      Get.offAllNamed(Routes.signIn);
+    }
     Get.appDialog(
       barrierDismissible: false,
       pageChild: AppSimpleDialog(
@@ -65,6 +71,6 @@ class MyDevicesController extends GetxController {
       ),
     );
   }
-  //endregion
+//endregion
 
 }

@@ -48,68 +48,72 @@ class SignInPage extends GetView<SignInController> {
         ),
       );
 
-  Widget _buildAppBody(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            S.of(context).login,
-            style: const TextStyle(
-                fontSize: 25, fontWeight: AppFontWeight.regular, color: Colors.black),
-          ),
-          UIHelper.verticalSpaceExtraLarge,
-          InputTextWidget(
-            hintText: S.of(context).email,
-            onFieldSubmitted: () {},
-            keyboardType: TextInputType.emailAddress,
-            controller: controller.emailController,
-            errorText: controller.signInModel.value.emailError,
-          ),
-          UIHelper.verticalSpaceMedium,
-          InputTextWidget(
-            hintText: S.of(context).password,
-            onFieldSubmitted: () {},
-            obscureText: true,
-            keyboardType: TextInputType.text,
-            controller: controller.pwdController,
-            errorText: controller.signInModel.value.passwordError,
-          ),
-          UIHelper.verticalSpaceLarge,
-          InkWell(
-            onTap: () {
-              ForgotPasswordPage.navigateTo;
-            },
-            child: Text(
-              S.of(context).forgotPassword,
-              style: TextStyle(
-                color: AppColorScheme.blue,
-                fontSize: 16,
-                fontWeight: AppFontWeight.regular,
+  Widget _buildAppBody(BuildContext context) => SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              S.of(context).login,
+              style: const TextStyle(
+                  fontSize: 25,
+                  fontWeight: AppFontWeight.regular,
+                  color: Colors.black),
+            ),
+            UIHelper.verticalSpaceExtraLarge,
+            InputTextWidget(
+              hintText: S.of(context).email,
+              onFieldSubmitted: () {},
+              keyboardType: TextInputType.emailAddress,
+              controller: controller.emailController,
+              errorText: controller.signInModel.value.emailError,
+            ),
+            UIHelper.verticalSpaceMedium,
+            InputTextWidget(
+              hintText: S.of(context).password,
+              onFieldSubmitted: () {},
+              obscureText: true,
+              keyboardType: TextInputType.text,
+              controller: controller.pwdController,
+              errorText: controller.signInModel.value.passwordError,
+            ),
+            UIHelper.verticalSpaceLarge,
+            InkWell(
+              onTap: () {
+                ForgotPasswordPage.navigateTo;
+              },
+              child: Text(
+                S.of(context).forgotPassword,
+                style: TextStyle(
+                  color: AppColorScheme.blue,
+                  fontSize: 16,
+                  fontWeight: AppFontWeight.regular,
+                ),
               ),
             ),
-          ),
-          UIHelper.verticalSpaceLarge,
-          PrimaryButton(
-              onPressed: () => controller.performSignIn(),
-              title: S.of(context).signIn,
-              color: PrimaryButtonColor.primary,
-              type: PrimaryButtonType.circular,
-              style: PrimaryButtonStyle.filled,
-              state: Status.success),
-          UIHelper.verticalSpaceLarge,
-          InkWell(
-            onTap: () {
-              Get.offNamed(Routes.signUp);
-            },
-            child: Text(
-              S.of(context).createAnAccount,
-              style: TextStyle(
-                color: AppColorScheme.blue,
-                fontSize: 16,
-                fontWeight: AppFontWeight.regular,
+            UIHelper.verticalSpaceLarge,
+            PrimaryButton(
+                onPressed: () => controller.performSignIn(),
+                title: S.of(context).signIn,
+                color: PrimaryButtonColor.primary,
+                type: PrimaryButtonType.circular,
+                style: PrimaryButtonStyle.filled,
+                state: Status.success),
+            UIHelper.verticalSpaceLarge,
+            InkWell(
+              onTap: () {
+                Get.offNamed(Routes.signUp);
+              },
+              child: Text(
+                S.of(context).createAnAccount,
+                style: TextStyle(
+                  color: AppColorScheme.blue,
+                  fontSize: 16,
+                  fontWeight: AppFontWeight.regular,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
 
   Widget _buildWebBody(BuildContext context) => Row(

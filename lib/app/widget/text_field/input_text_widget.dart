@@ -93,6 +93,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         enableSuggestions: keyboardSuggestions,
         autocorrect: keyboardSuggestions,
         maxLength: maxLength,
+        textInputAction: TextInputAction.done,
         maxLines: maxLines,
         readOnly: readOnly,
         minLines: minLines,
