@@ -1,4 +1,4 @@
-mutation UpdateUser($userId: MongoID!, $firstName: String!, $lastName: String!, $image: String!){
+mutation UpdateUser($userId: MongoID!, $firstName: String!, $lastName: String!, $image: String){
     userUpdateById(_id: $userId, record: {
         firstName: $firstName,
         lastName: $lastName,

@@ -57,6 +57,7 @@ class MyDevicesPage extends GetView<MyDevicesController> {
               if (response.status == Status.success && data != null) {
                 return data.isEmpty
                     ? Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,

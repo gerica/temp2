@@ -418,7 +418,7 @@ UpdateUserArguments _$UpdateUserArgumentsFromJson(Map<String, dynamic> json) {
     userId: json['userId'] as String,
     firstName: json['firstName'] as String,
     lastName: json['lastName'] as String,
-    image: json['image'] as String,
+    image: json['image'] as String?,
   );
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/cards/report_card_widget.dart';
@@ -48,7 +49,9 @@ class ReportsPage extends GetView<ReportsController> {
                       padding: const EdgeInsets.all(16),
                       itemCount: data.length,
                       itemBuilder: (context, index) => ReportCardWidget(
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(Routes.reportDetails);
+                        },
                         model: data[index],
                         color: index == 0
                             ? AppColorScheme.yellow

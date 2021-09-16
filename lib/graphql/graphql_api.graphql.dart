@@ -666,7 +666,7 @@ class UpdateUserArguments extends JsonSerializable with EquatableMixin {
       {required this.userId,
       required this.firstName,
       required this.lastName,
-      required this.image});
+      this.image});
 
   @override
   factory UpdateUserArguments.fromJson(Map<String, dynamic> json) =>
@@ -678,7 +678,7 @@ class UpdateUserArguments extends JsonSerializable with EquatableMixin {
 
   late String lastName;
 
-  late String image;
+  final String? image;
 
   @override
   List<Object?> get props => [userId, firstName, lastName, image];
@@ -711,8 +711,8 @@ final UPDATE_USER_MUTATION_DOCUMENT = DocumentNode(definitions: [
             directives: []),
         VariableDefinitionNode(
             variable: VariableNode(name: NameNode(value: 'image')),
-            type:
-                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            type: NamedTypeNode(
+                name: NameNode(value: 'String'), isNonNull: false),
             defaultValue: DefaultValueNode(value: null),
             directives: [])
       ],

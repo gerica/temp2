@@ -80,8 +80,7 @@ class ProfileController extends GetxController {
   Future updateUserProfile() async {
     AppUIBlock.blockUI(context: Get.context);
     final file = this.file;
-    final base64 =
-        file != null ? await _imageToBase64UseCase(file) : imageUrl.value;
+    final base64 = file != null ? await _imageToBase64UseCase(file) : null;
     final response = await _updateUserProfileUseCase(
       UserEntity(
           id: _id,
@@ -98,8 +97,8 @@ class ProfileController extends GetxController {
           pageChild: AppSimpleDialog(
             title: S.current.success,
             message: S.current.yourProfileWasSuccessfullyUpdated,
-            icon: Icon(Icons.error_outline,
-                size: 50, color: AppColorScheme.error),
+            icon: Icon(Icons.check_circle_outline,
+                size: 50, color: AppColorScheme.primarySwatch),
             onClosePressed: () {
               Get.back();
             },

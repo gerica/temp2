@@ -45,7 +45,7 @@ class CreatePasswordController extends GetxController {
             icon: Icon(Icons.check_circle_outline,
                 size: 50, color: AppColorScheme.primarySwatch),
             onOkPressed: () {
-              Get.offNamed(Routes.products);
+              Get.offNamed(Routes.myDevices);
             },
           ),
           barrierDismissible: false);

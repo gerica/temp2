@@ -104,7 +104,7 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
           ),
         ),
         bottomNavigationBar: const AppBottomNavigationBarWidget(
-          currentIndex: 1,
+          currentIndex: 0,
         ),
       );
 }

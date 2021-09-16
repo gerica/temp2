@@ -110,7 +110,7 @@ class ReportDetailsPage extends GetView<ReportDetailsController> {
           ),
         ),
         bottomNavigationBar: const AppBottomNavigationBarWidget(
-          currentIndex: 2,
+          currentIndex: 1,
         ),
       );
 

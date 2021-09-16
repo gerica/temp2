@@ -92,7 +92,7 @@ class UpdatePasswordPage extends GetView<UpdatePasswordController> {
           ),
         ),
         bottomNavigationBar: const AppBottomNavigationBarWidget(
-          currentIndex: 4,
+          currentIndex: 3,
         ),
       );
 }

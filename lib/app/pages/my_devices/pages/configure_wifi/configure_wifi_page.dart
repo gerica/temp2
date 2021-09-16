@@ -46,7 +46,7 @@ class ConfigureWiFiPage extends GetView<ConfigureWiFiController> {
           ),
         ),
         bottomNavigationBar: const AppBottomNavigationBarWidget(
-          currentIndex: 1,
+          currentIndex: 0,
         ),
       );
 
