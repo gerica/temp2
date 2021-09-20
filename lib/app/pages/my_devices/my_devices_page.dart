@@ -68,7 +68,9 @@ class MyDevicesPage extends GetView<MyDevicesController> {
                             ),
                             UIHelper.verticalSpaceMedium,
                             PrimaryButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed(Routes.addNewDevice);
+                              },
                               title: S.of(context).registerNewDevice,
                               color: PrimaryButtonColor.primary,
                               type: PrimaryButtonType.circular,

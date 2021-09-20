@@ -1,1 +1,1 @@
-- Image picker to user profile
+- Fix https://sprints.zoho.com/team/radiolife934#itemdetails/P4/I95

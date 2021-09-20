@@ -1,4 +1,3 @@
 Radiolife web: https://radiolife-bucket.s3.us-east-2.amazonaws.com/index.html
 Releases:
-    - Bottom Navigation Bar
-    - UI adjustments
+    - Fix https://sprints.zoho.com/team/radiolife934#itemdetails/P4/I95
