@@ -49,7 +49,7 @@ class AutoScanPage extends GetView<AutoScanController> {
           ),
         ),
         bottomNavigationBar: const AppBottomNavigationBarWidget(
-          currentIndex: 1,
+          currentIndex: 0,
         ),
       );
 
