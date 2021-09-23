@@ -1,14 +1,12 @@
 import 'package:get/get.dart';
-import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/model/my_device_detail_model.dart';
-import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/params/my_device_detail_param.dart';
+import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
+import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/model/resource.dart';
-
-import 'adapter/my_device_detail_adapter.dart';
 
 class MyDeviceDetailController extends GetxController {
   //region State
-  Rx<Resource<MyDeviceDetailModel>> state = Resource.loading<MyDeviceDetailModel>().obs;
+  Rx<Resource<MyDeviceModel>> state = Resource.loading<MyDeviceModel>().obs;
 
   //endregion
 
@@ -18,11 +16,14 @@ class MyDeviceDetailController extends GetxController {
 
   //region Functions
   @override
-  void onInit() {
-    super.onInit();
-    final param = tryCast<MyDeviceDetailParam>(Get.arguments);
-    if (param != null) state.value = Resource.success(data: param.toModel);
+  Future onReady() async {
+    super.onReady();
+    final param = tryCast<MyDeviceModel>(Get.arguments);
+    AppUIBlock.blockUI(context: Get.context);
+    await 1.delay();
+    AppUIBlock.unblock(context: Get.context);
+    if (param != null) state.value = Resource.success(data: param);
   }
-//endregion
+  //endregion
 
 }

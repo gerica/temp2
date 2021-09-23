@@ -5,7 +5,7 @@ import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
-import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/params/my_device_detail_param.dart';
+import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_font_size.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
@@ -19,7 +19,7 @@ import '../../../../radio_life_app_routes.dart';
 import 'my_device_detail_controller.dart';
 
 class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
-  static Future? navigateWith({required MyDeviceDetailParam params}) =>
+  static Future? navigateWith({required MyDeviceModel params}) =>
       Get.toNamed(Routes.myDeviceDetail, arguments: params);
 
   @override
@@ -33,74 +33,81 @@ class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
             Get.back();
           },
         ),
-        body: Center(
-          child: Container(
-            constraints: BoxConstraints(
-                maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                    ? 500
-                    : MediaQuery.of(context).size.width),
-            padding: const EdgeInsets.all(AppSpacing.medium),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Obx(
-                  () => Text(
-                    controller.state.value.data?.deviceName ?? '',
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: AppFontSize.mega,
-                    ),
-                  ),
-                ),
-                UIHelper.verticalSpaceLarge,
-                Row(
+        body: Obx(() => Center(
+              child: Container(
+                constraints: BoxConstraints(
+                    maxWidth: context.breakpoint > LayoutBreakpoint.xs
+                        ? 500
+                        : MediaQuery.of(context).size.width),
+                padding: const EdgeInsets.all(AppSpacing.medium),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    _chip('Covid 19'),
-                    _chip('Serial N 243224'),
-                    _chip('São Paulo'),
-                  ],
-                ),
-                UIHelper.verticalSpaceLarge,
-                Card(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  child: Container(
-                    height: 190,
-                    padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
+                    Text(
+                      controller.state.value.data?.name ?? '',
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: AppFontSize.mega,
+                      ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    UIHelper.verticalSpaceLarge,
+                    Row(
                       children: [
-                        PlatformSvg.asset(AppSvgImages.icTicker),
-                        UIHelper.verticalSpaceSmall,
-                        AutoSizeText(
-                          S.of(context).creditsCounter(546372),
-                          maxLines: 1,
-                          style: const TextStyle(
-                            color: Color(0xFF2A0210),
-                            fontSize: AppFontSize.large,
-                          ),
-                        ),
+                        _chip(controller.state.value.data?.type ?? ''),
+                        _chip(
+                            'Serial N ${controller.state.value.data?.serialNumber}'),
+                        _chip(controller.state.value.data?.locate ?? ''),
                       ],
                     ),
-                  ),
+                    UIHelper.verticalSpaceLarge,
+                    Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Container(
+                        height: 190,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 30, horizontal: 16),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            PlatformSvg.asset(AppSvgImages.icTicker),
+                            UIHelper.verticalSpaceSmall,
+                            AutoSizeText(
+                              S.of(context).creditsCounter(
+                                    int.tryParse(controller
+                                                .state.value.data?.balance ??
+                                            '') ??
+                                        0,
+                                  ),
+                              maxLines: 1,
+                              style: const TextStyle(
+                                color: Color(0xFF2A0210),
+                                fontSize: AppFontSize.large,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    UIHelper.verticalSpaceMedium,
+                    PrimaryButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.buyCreditsPage);
+                      },
+                      title: S.of(context).buyCredits,
+                      icon: PlatformSvg.asset(AppSvgImages.icShop),
+                      color: PrimaryButtonColor.secondary,
+                      type: PrimaryButtonType.circular,
+                      style: PrimaryButtonStyle.filled,
+                      state: Status.success,
+                    )
+                  ],
                 ),
-                UIHelper.verticalSpaceMedium,
-                PrimaryButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.buyCreditsPage);
-                    },
-                    title: S.of(context).buyCredits,
-                    icon: PlatformSvg.asset(AppSvgImages.icShop),
-                    color: PrimaryButtonColor.secondary,
-                    type: PrimaryButtonType.circular,
-                    style: PrimaryButtonStyle.filled,
-                    state: Status.success)
-              ],
-            ),
-          ),
-        ),
+              ),
+            )),
         bottomNavigationBar: const AppBottomNavigationBarWidget(
           currentIndex: 0,
         ),
@@ -115,7 +122,8 @@ class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
         ),
         child: Text(
           text,
-          style: const TextStyle(color: Colors.black, fontSize: AppFontSize.small),
+          style:
+              const TextStyle(color: Colors.black, fontSize: AppFontSize.small),
         ),
       );
 }

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/my_device_detail_page.dart';
-import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/params/my_device_detail_param.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
@@ -87,8 +86,7 @@ class MyDevicesPage extends GetView<MyDevicesController> {
                             ? DeviceCardWidget(
                                 onTap: () {
                                   MyDeviceDetailPage.navigateWith(
-                                    params: MyDeviceDetailParam(
-                                        deviceName: data[index]?.name ?? ''),
+                                    params: data[index]!,
                                   );
                                 },
                                 model: data[index]!,
