@@ -1,0 +1,6 @@
+mutation SignDevicePlan($idDevice: String!, $idPlan: String!){
+    deviceAddCreditByPlan(idDevice: $idDevice, idPlan: $idPlan){
+        balance
+        device
+    }
+}

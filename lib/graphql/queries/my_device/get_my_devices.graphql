@@ -7,5 +7,6 @@ query GetMyDevices{
         balance
         status
         lastUpdate
+        device
     }
 }

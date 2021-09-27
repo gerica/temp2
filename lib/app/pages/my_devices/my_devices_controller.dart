@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/helper/dialog_helper.dart';
+import 'package:radio_life/app/pages/my_devices/adapter/my_devices_adapter.dart';
 import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
@@ -8,8 +10,6 @@ import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/use_cases/my_devices/get_my_devices_use_case.dart';
-import 'package:radio_life/app/helper/dialog_helper.dart';
-import 'package:radio_life/app/pages/my_devices/adapter/my_devices_adapter.dart';
 
 import '../../radio_life_app_routes.dart';
 

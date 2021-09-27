@@ -1,0 +1,8 @@
+query GetPlans{
+    planCreditGetAll{
+        _id
+        name
+        value
+        credit
+    }
+}

@@ -23,7 +23,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(number) => "You have ${number} Credits available";
 
-  static String m2(date) => "Date of purchase ${date}";
+  static String m2(quantity) => "${quantity} credits";
+
+  static String m3(date) => "Date of purchase ${date}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -50,10 +52,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "createAnAccount":
             MessageLookupByLibrary.simpleMessage("Create an account"),
         "creditsCounter": m1,
+        "creditsQuantity": m2,
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Current Password"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
-        "dateOfPurchase": m2,
+        "dateOfPurchase": m3,
         "datePicker": MessageLookupByLibrary.simpleMessage("Date picker"),
         "deviceFound": MessageLookupByLibrary.simpleMessage("Device found"),
         "devices": MessageLookupByLibrary.simpleMessage("Devices"),

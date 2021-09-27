@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:get/get.dart';
 import 'package:graphql/client.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/domain/use_cases/auth/log_out_use_case.dart';

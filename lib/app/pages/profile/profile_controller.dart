@@ -1,5 +1,3 @@
-import 'package:universal_io/io.dart' as io;
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,6 +14,8 @@ import 'package:radio_life/core/domain/use_cases/user/get_user_profile_use_case.
 import 'package:radio_life/core/domain/use_cases/user/image_to_base64_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/user/update_user_profile_use_case.dart';
 import 'package:radio_life/generated/l10n.dart';
+import 'package:universal_io/io.dart' as io;
+
 import '../../helper/dialog_helper.dart';
 
 class ProfileController extends GetxController {

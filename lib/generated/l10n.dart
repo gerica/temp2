@@ -949,6 +949,16 @@ class S {
       args: [],
     );
   }
+
+  /// `{quantity} credits`
+  String creditsQuantity(Object quantity) {
+    return Intl.message(
+      '$quantity credits',
+      name: 'creditsQuantity',
+      desc: '',
+      args: [quantity],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -6,6 +6,7 @@ import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
+import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/buy_credits_page.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_font_size.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
@@ -95,7 +96,9 @@ class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
                     UIHelper.verticalSpaceMedium,
                     PrimaryButton(
                       onPressed: () {
-                        Get.toNamed(Routes.buyCreditsPage);
+                        BuyCreditsPage.navigateWith(
+                          deviceId: controller.state.value.data?.id ?? '',
+                        );
                       },
                       title: S.of(context).buyCredits,
                       icon: PlatformSvg.asset(AppSvgImages.icShop),

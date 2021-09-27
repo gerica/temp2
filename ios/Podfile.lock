@@ -163,7 +163,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 61384f54989065b15c36b5922b65112e86811d3c
   FirebaseCrashlytics: 69cddb6bfa7656c5346e603bc85b029392252ee6
   FirebaseInstallations: 9394ea09e242bf0816e95ac30e56a9214cc86ced
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_blue: eeb381dc4727a0954dede73515f683865494b370
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
@@ -184,4 +184,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7adbc9d59f05e1b01f554ea99b6c79e97f2214a2
 
-COCOAPODS: 1.11.0
+COCOAPODS: 1.11.2

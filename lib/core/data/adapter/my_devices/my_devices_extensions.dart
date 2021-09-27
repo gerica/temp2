@@ -1,6 +1,6 @@
+import 'package:flinq/flinq.dart';
 import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 import 'package:radio_life/graphql/graphql_api.graphql.dart';
-import 'package:flinq/flinq.dart';
 
 extension GetMyDevices$Query$Extension on GetMyDevices$Query {
   List<MyDeviceEntity?> get toEntityList =>
@@ -9,6 +9,7 @@ extension GetMyDevices$Query$Extension on GetMyDevices$Query {
 
 extension GetMyDevices$Query$MyDeviceExtension on GetMyDevices$Query$MyDevice {
   MyDeviceEntity get toEntity => MyDeviceEntity(
+        id: device,
         name: name,
         locate: locate,
         serialNumber: serialNumber,

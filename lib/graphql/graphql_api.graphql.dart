@@ -8,6 +8,88 @@ import 'package:gql/ast.dart';
 part 'graphql_api.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
+class SignDevicePlan$Mutation$DeviceAddCreditPlanResult extends JsonSerializable
+    with EquatableMixin {
+  SignDevicePlan$Mutation$DeviceAddCreditPlanResult();
+
+  factory SignDevicePlan$Mutation$DeviceAddCreditPlanResult.fromJson(
+          Map<String, dynamic> json) =>
+      _$SignDevicePlan$Mutation$DeviceAddCreditPlanResultFromJson(json);
+
+  int? balance;
+
+  String? device;
+
+  @override
+  List<Object?> get props => [balance, device];
+  Map<String, dynamic> toJson() =>
+      _$SignDevicePlan$Mutation$DeviceAddCreditPlanResultToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignDevicePlan$Mutation extends JsonSerializable with EquatableMixin {
+  SignDevicePlan$Mutation();
+
+  factory SignDevicePlan$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$SignDevicePlan$MutationFromJson(json);
+
+  SignDevicePlan$Mutation$DeviceAddCreditPlanResult? deviceAddCreditByPlan;
+
+  @override
+  List<Object?> get props => [deviceAddCreditByPlan];
+  Map<String, dynamic> toJson() => _$SignDevicePlan$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPlans$Query$PlanCredit extends JsonSerializable with EquatableMixin {
+  GetPlans$Query$PlanCredit();
+
+  factory GetPlans$Query$PlanCredit.fromJson(Map<String, dynamic> json) =>
+      _$GetPlans$Query$PlanCreditFromJson(json);
+
+  @JsonKey(name: '_id')
+  late String $id;
+
+  late String name;
+
+  late double value;
+
+  late double credit;
+
+  @override
+  List<Object?> get props => [$id, name, value, credit];
+  Map<String, dynamic> toJson() => _$GetPlans$Query$PlanCreditToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPlans$Query extends JsonSerializable with EquatableMixin {
+  GetPlans$Query();
+
+  factory GetPlans$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetPlans$QueryFromJson(json);
+
+  List<GetPlans$Query$PlanCredit?>? planCreditGetAll;
+
+  @override
+  List<Object?> get props => [planCreditGetAll];
+  Map<String, dynamic> toJson() => _$GetPlans$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class ResetPassword$Mutation extends JsonSerializable with EquatableMixin {
+  ResetPassword$Mutation();
+
+  factory ResetPassword$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$ResetPassword$MutationFromJson(json);
+
+  String? userResetPassword;
+
+  @override
+  List<Object?> get props => [userResetPassword];
+  Map<String, dynamic> toJson() => _$ResetPassword$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class ChangePassword$Mutation extends JsonSerializable with EquatableMixin {
   ChangePassword$Mutation();
 
@@ -189,61 +271,6 @@ class GetUser$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ResetPassword$Mutation extends JsonSerializable with EquatableMixin {
-  ResetPassword$Mutation();
-
-  factory ResetPassword$Mutation.fromJson(Map<String, dynamic> json) =>
-      _$ResetPassword$MutationFromJson(json);
-
-  String? userResetPassword;
-
-  @override
-  List<Object?> get props => [userResetPassword];
-  Map<String, dynamic> toJson() => _$ResetPassword$MutationToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetMyDevices$Query$MyDevice extends JsonSerializable with EquatableMixin {
-  GetMyDevices$Query$MyDevice();
-
-  factory GetMyDevices$Query$MyDevice.fromJson(Map<String, dynamic> json) =>
-      _$GetMyDevices$Query$MyDeviceFromJson(json);
-
-  String? name;
-
-  String? locate;
-
-  String? serialNumber;
-
-  String? type;
-
-  int? balance;
-
-  String? status;
-
-  DateTime? lastUpdate;
-
-  @override
-  List<Object?> get props =>
-      [name, locate, serialNumber, type, balance, status, lastUpdate];
-  Map<String, dynamic> toJson() => _$GetMyDevices$Query$MyDeviceToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetMyDevices$Query extends JsonSerializable with EquatableMixin {
-  GetMyDevices$Query();
-
-  factory GetMyDevices$Query.fromJson(Map<String, dynamic> json) =>
-      _$GetMyDevices$QueryFromJson(json);
-
-  List<GetMyDevices$Query$MyDevice?>? myDevice;
-
-  @override
-  List<Object?> get props => [myDevice];
-  Map<String, dynamic> toJson() => _$GetMyDevices$QueryToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
 class GetExams$Query$ExamResult$Device extends JsonSerializable
     with EquatableMixin {
   GetExams$Query$ExamResult$Device();
@@ -368,11 +395,261 @@ class GetExamsByDevice$Query extends JsonSerializable with EquatableMixin {
   Map<String, dynamic> toJson() => _$GetExamsByDevice$QueryToJson(this);
 }
 
+@JsonSerializable(explicitToJson: true)
+class GetMyDevices$Query$MyDevice extends JsonSerializable with EquatableMixin {
+  GetMyDevices$Query$MyDevice();
+
+  factory GetMyDevices$Query$MyDevice.fromJson(Map<String, dynamic> json) =>
+      _$GetMyDevices$Query$MyDeviceFromJson(json);
+
+  String? name;
+
+  String? locate;
+
+  String? serialNumber;
+
+  String? type;
+
+  int? balance;
+
+  String? status;
+
+  DateTime? lastUpdate;
+
+  String? device;
+
+  @override
+  List<Object?> get props =>
+      [name, locate, serialNumber, type, balance, status, lastUpdate, device];
+  Map<String, dynamic> toJson() => _$GetMyDevices$Query$MyDeviceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetMyDevices$Query extends JsonSerializable with EquatableMixin {
+  GetMyDevices$Query();
+
+  factory GetMyDevices$Query.fromJson(Map<String, dynamic> json) =>
+      _$GetMyDevices$QueryFromJson(json);
+
+  List<GetMyDevices$Query$MyDevice?>? myDevice;
+
+  @override
+  List<Object?> get props => [myDevice];
+  Map<String, dynamic> toJson() => _$GetMyDevices$QueryToJson(this);
+}
+
 enum EnumDeviceType {
   @JsonValue('COVID19')
   covid19,
   @JsonValue('ARTEMIS_UNKNOWN')
   artemisUnknown,
+}
+
+@JsonSerializable(explicitToJson: true)
+class SignDevicePlanArguments extends JsonSerializable with EquatableMixin {
+  SignDevicePlanArguments({required this.idDevice, required this.idPlan});
+
+  @override
+  factory SignDevicePlanArguments.fromJson(Map<String, dynamic> json) =>
+      _$SignDevicePlanArgumentsFromJson(json);
+
+  late String idDevice;
+
+  late String idPlan;
+
+  @override
+  List<Object?> get props => [idDevice, idPlan];
+  @override
+  Map<String, dynamic> toJson() => _$SignDevicePlanArgumentsToJson(this);
+}
+
+final SIGN_DEVICE_PLAN_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'SignDevicePlan'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'idDevice')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'idPlan')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'deviceAddCreditByPlan'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'idDevice'),
+                  value: VariableNode(name: NameNode(value: 'idDevice'))),
+              ArgumentNode(
+                  name: NameNode(value: 'idPlan'),
+                  value: VariableNode(name: NameNode(value: 'idPlan')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'balance'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'device'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
+
+class SignDevicePlanMutation
+    extends GraphQLQuery<SignDevicePlan$Mutation, SignDevicePlanArguments> {
+  SignDevicePlanMutation({required this.variables});
+
+  @override
+  final DocumentNode document = SIGN_DEVICE_PLAN_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = 'SignDevicePlan';
+
+  @override
+  final SignDevicePlanArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  SignDevicePlan$Mutation parse(Map<String, dynamic> json) =>
+      SignDevicePlan$Mutation.fromJson(json);
+}
+
+final GET_PLANS_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetPlans'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'planCreditGetAll'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: '_id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'value'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'credit'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
+
+class GetPlansQuery extends GraphQLQuery<GetPlans$Query, JsonSerializable> {
+  GetPlansQuery();
+
+  @override
+  final DocumentNode document = GET_PLANS_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'GetPlans';
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  GetPlans$Query parse(Map<String, dynamic> json) =>
+      GetPlans$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class ResetPasswordArguments extends JsonSerializable with EquatableMixin {
+  ResetPasswordArguments({required this.email});
+
+  @override
+  factory ResetPasswordArguments.fromJson(Map<String, dynamic> json) =>
+      _$ResetPasswordArgumentsFromJson(json);
+
+  late String email;
+
+  @override
+  List<Object?> get props => [email];
+  @override
+  Map<String, dynamic> toJson() => _$ResetPasswordArgumentsToJson(this);
+}
+
+final RESET_PASSWORD_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'ResetPassword'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'email')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'userResetPassword'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'email'),
+                  value: VariableNode(name: NameNode(value: 'email')))
+            ],
+            directives: [],
+            selectionSet: null)
+      ]))
+]);
+
+class ResetPasswordMutation
+    extends GraphQLQuery<ResetPassword$Mutation, ResetPasswordArguments> {
+  ResetPasswordMutation({required this.variables});
+
+  @override
+  final DocumentNode document = RESET_PASSWORD_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = 'ResetPassword';
+
+  @override
+  final ResetPasswordArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  ResetPassword$Mutation parse(Map<String, dynamic> json) =>
+      ResetPassword$Mutation.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -909,145 +1186,6 @@ class GetUserQuery extends GraphQLQuery<GetUser$Query, GetUserArguments> {
       GetUser$Query.fromJson(json);
 }
 
-@JsonSerializable(explicitToJson: true)
-class ResetPasswordArguments extends JsonSerializable with EquatableMixin {
-  ResetPasswordArguments({required this.email});
-
-  @override
-  factory ResetPasswordArguments.fromJson(Map<String, dynamic> json) =>
-      _$ResetPasswordArgumentsFromJson(json);
-
-  late String email;
-
-  @override
-  List<Object?> get props => [email];
-  @override
-  Map<String, dynamic> toJson() => _$ResetPasswordArgumentsToJson(this);
-}
-
-final RESET_PASSWORD_MUTATION_DOCUMENT = DocumentNode(definitions: [
-  OperationDefinitionNode(
-      type: OperationType.mutation,
-      name: NameNode(value: 'ResetPassword'),
-      variableDefinitions: [
-        VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'email')),
-            type:
-                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
-            defaultValue: DefaultValueNode(value: null),
-            directives: [])
-      ],
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-            name: NameNode(value: 'userResetPassword'),
-            alias: null,
-            arguments: [
-              ArgumentNode(
-                  name: NameNode(value: 'email'),
-                  value: VariableNode(name: NameNode(value: 'email')))
-            ],
-            directives: [],
-            selectionSet: null)
-      ]))
-]);
-
-class ResetPasswordMutation
-    extends GraphQLQuery<ResetPassword$Mutation, ResetPasswordArguments> {
-  ResetPasswordMutation({required this.variables});
-
-  @override
-  final DocumentNode document = RESET_PASSWORD_MUTATION_DOCUMENT;
-
-  @override
-  final String operationName = 'ResetPassword';
-
-  @override
-  final ResetPasswordArguments variables;
-
-  @override
-  List<Object?> get props => [document, operationName, variables];
-  @override
-  ResetPassword$Mutation parse(Map<String, dynamic> json) =>
-      ResetPassword$Mutation.fromJson(json);
-}
-
-final GET_MY_DEVICES_QUERY_DOCUMENT = DocumentNode(definitions: [
-  OperationDefinitionNode(
-      type: OperationType.query,
-      name: NameNode(value: 'GetMyDevices'),
-      variableDefinitions: [],
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-            name: NameNode(value: 'myDevice'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: 'name'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'locate'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'serialNumber'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'type'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'balance'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'status'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'lastUpdate'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null)
-            ]))
-      ]))
-]);
-
-class GetMyDevicesQuery
-    extends GraphQLQuery<GetMyDevices$Query, JsonSerializable> {
-  GetMyDevicesQuery();
-
-  @override
-  final DocumentNode document = GET_MY_DEVICES_QUERY_DOCUMENT;
-
-  @override
-  final String operationName = 'GetMyDevices';
-
-  @override
-  List<Object?> get props => [document, operationName];
-  @override
-  GetMyDevices$Query parse(Map<String, dynamic> json) =>
-      GetMyDevices$Query.fromJson(json);
-}
-
 final GET_EXAMS_QUERY_DOCUMENT = DocumentNode(definitions: [
   OperationDefinitionNode(
       type: OperationType.query,
@@ -1257,4 +1395,86 @@ class GetExamsByDeviceQuery
   @override
   GetExamsByDevice$Query parse(Map<String, dynamic> json) =>
       GetExamsByDevice$Query.fromJson(json);
+}
+
+final GET_MY_DEVICES_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetMyDevices'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'myDevice'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'locate'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'serialNumber'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'type'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'balance'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'status'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'lastUpdate'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'device'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
+
+class GetMyDevicesQuery
+    extends GraphQLQuery<GetMyDevices$Query, JsonSerializable> {
+  GetMyDevicesQuery();
+
+  @override
+  final DocumentNode document = GET_MY_DEVICES_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = 'GetMyDevices';
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  GetMyDevices$Query parse(Map<String, dynamic> json) =>
+      GetMyDevices$Query.fromJson(json);
 }

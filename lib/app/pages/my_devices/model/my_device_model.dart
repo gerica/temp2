@@ -1,4 +1,5 @@
 class MyDeviceModel {
+  final String id;
   final String? name;
   final String? locate;
   final String? serialNumber;
@@ -8,6 +9,7 @@ class MyDeviceModel {
   final String? lastUpdate;
 
   MyDeviceModel({
+    required this.id,
     required this.name,
     required this.locate,
     required this.serialNumber,

@@ -7,6 +7,81 @@ part of 'graphql_api.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+SignDevicePlan$Mutation$DeviceAddCreditPlanResult
+    _$SignDevicePlan$Mutation$DeviceAddCreditPlanResultFromJson(
+        Map<String, dynamic> json) {
+  return SignDevicePlan$Mutation$DeviceAddCreditPlanResult()
+    ..balance = json['balance'] as int?
+    ..device = json['device'] as String?;
+}
+
+Map<String, dynamic> _$SignDevicePlan$Mutation$DeviceAddCreditPlanResultToJson(
+        SignDevicePlan$Mutation$DeviceAddCreditPlanResult instance) =>
+    <String, dynamic>{
+      'balance': instance.balance,
+      'device': instance.device,
+    };
+
+SignDevicePlan$Mutation _$SignDevicePlan$MutationFromJson(
+    Map<String, dynamic> json) {
+  return SignDevicePlan$Mutation()
+    ..deviceAddCreditByPlan = json['deviceAddCreditByPlan'] == null
+        ? null
+        : SignDevicePlan$Mutation$DeviceAddCreditPlanResult.fromJson(
+            json['deviceAddCreditByPlan'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$SignDevicePlan$MutationToJson(
+        SignDevicePlan$Mutation instance) =>
+    <String, dynamic>{
+      'deviceAddCreditByPlan': instance.deviceAddCreditByPlan?.toJson(),
+    };
+
+GetPlans$Query$PlanCredit _$GetPlans$Query$PlanCreditFromJson(
+    Map<String, dynamic> json) {
+  return GetPlans$Query$PlanCredit()
+    ..$id = json['_id'] as String
+    ..name = json['name'] as String
+    ..value = (json['value'] as num).toDouble()
+    ..credit = (json['credit'] as num).toDouble();
+}
+
+Map<String, dynamic> _$GetPlans$Query$PlanCreditToJson(
+        GetPlans$Query$PlanCredit instance) =>
+    <String, dynamic>{
+      '_id': instance.$id,
+      'name': instance.name,
+      'value': instance.value,
+      'credit': instance.credit,
+    };
+
+GetPlans$Query _$GetPlans$QueryFromJson(Map<String, dynamic> json) {
+  return GetPlans$Query()
+    ..planCreditGetAll = (json['planCreditGetAll'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : GetPlans$Query$PlanCredit.fromJson(e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$GetPlans$QueryToJson(GetPlans$Query instance) =>
+    <String, dynamic>{
+      'planCreditGetAll':
+          instance.planCreditGetAll?.map((e) => e?.toJson()).toList(),
+    };
+
+ResetPassword$Mutation _$ResetPassword$MutationFromJson(
+    Map<String, dynamic> json) {
+  return ResetPassword$Mutation()
+    ..userResetPassword = json['userResetPassword'] as String?;
+}
+
+Map<String, dynamic> _$ResetPassword$MutationToJson(
+        ResetPassword$Mutation instance) =>
+    <String, dynamic>{
+      'userResetPassword': instance.userResetPassword,
+    };
+
 ChangePassword$Mutation _$ChangePassword$MutationFromJson(
     Map<String, dynamic> json) {
   return ChangePassword$Mutation()
@@ -161,58 +236,6 @@ GetUser$Query _$GetUser$QueryFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$GetUser$QueryToJson(GetUser$Query instance) =>
     <String, dynamic>{
       'userById': instance.userById?.toJson(),
-    };
-
-ResetPassword$Mutation _$ResetPassword$MutationFromJson(
-    Map<String, dynamic> json) {
-  return ResetPassword$Mutation()
-    ..userResetPassword = json['userResetPassword'] as String?;
-}
-
-Map<String, dynamic> _$ResetPassword$MutationToJson(
-        ResetPassword$Mutation instance) =>
-    <String, dynamic>{
-      'userResetPassword': instance.userResetPassword,
-    };
-
-GetMyDevices$Query$MyDevice _$GetMyDevices$Query$MyDeviceFromJson(
-    Map<String, dynamic> json) {
-  return GetMyDevices$Query$MyDevice()
-    ..name = json['name'] as String?
-    ..locate = json['locate'] as String?
-    ..serialNumber = json['serialNumber'] as String?
-    ..type = json['type'] as String?
-    ..balance = json['balance'] as int?
-    ..status = json['status'] as String?
-    ..lastUpdate = json['lastUpdate'] == null
-        ? null
-        : DateTime.parse(json['lastUpdate'] as String);
-}
-
-Map<String, dynamic> _$GetMyDevices$Query$MyDeviceToJson(
-        GetMyDevices$Query$MyDevice instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'locate': instance.locate,
-      'serialNumber': instance.serialNumber,
-      'type': instance.type,
-      'balance': instance.balance,
-      'status': instance.status,
-      'lastUpdate': instance.lastUpdate?.toIso8601String(),
-    };
-
-GetMyDevices$Query _$GetMyDevices$QueryFromJson(Map<String, dynamic> json) {
-  return GetMyDevices$Query()
-    ..myDevice = (json['myDevice'] as List<dynamic>?)
-        ?.map((e) => e == null
-            ? null
-            : GetMyDevices$Query$MyDevice.fromJson(e as Map<String, dynamic>))
-        .toList();
-}
-
-Map<String, dynamic> _$GetMyDevices$QueryToJson(GetMyDevices$Query instance) =>
-    <String, dynamic>{
-      'myDevice': instance.myDevice?.map((e) => e?.toJson()).toList(),
     };
 
 GetExams$Query$ExamResult$Device _$GetExams$Query$ExamResult$DeviceFromJson(
@@ -370,6 +393,76 @@ Map<String, dynamic> _$GetExamsByDevice$QueryToJson(
       'examResultMany': instance.examResultMany.map((e) => e.toJson()).toList(),
     };
 
+GetMyDevices$Query$MyDevice _$GetMyDevices$Query$MyDeviceFromJson(
+    Map<String, dynamic> json) {
+  return GetMyDevices$Query$MyDevice()
+    ..name = json['name'] as String?
+    ..locate = json['locate'] as String?
+    ..serialNumber = json['serialNumber'] as String?
+    ..type = json['type'] as String?
+    ..balance = json['balance'] as int?
+    ..status = json['status'] as String?
+    ..lastUpdate = json['lastUpdate'] == null
+        ? null
+        : DateTime.parse(json['lastUpdate'] as String)
+    ..device = json['device'] as String?;
+}
+
+Map<String, dynamic> _$GetMyDevices$Query$MyDeviceToJson(
+        GetMyDevices$Query$MyDevice instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'locate': instance.locate,
+      'serialNumber': instance.serialNumber,
+      'type': instance.type,
+      'balance': instance.balance,
+      'status': instance.status,
+      'lastUpdate': instance.lastUpdate?.toIso8601String(),
+      'device': instance.device,
+    };
+
+GetMyDevices$Query _$GetMyDevices$QueryFromJson(Map<String, dynamic> json) {
+  return GetMyDevices$Query()
+    ..myDevice = (json['myDevice'] as List<dynamic>?)
+        ?.map((e) => e == null
+            ? null
+            : GetMyDevices$Query$MyDevice.fromJson(e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$GetMyDevices$QueryToJson(GetMyDevices$Query instance) =>
+    <String, dynamic>{
+      'myDevice': instance.myDevice?.map((e) => e?.toJson()).toList(),
+    };
+
+SignDevicePlanArguments _$SignDevicePlanArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return SignDevicePlanArguments(
+    idDevice: json['idDevice'] as String,
+    idPlan: json['idPlan'] as String,
+  );
+}
+
+Map<String, dynamic> _$SignDevicePlanArgumentsToJson(
+        SignDevicePlanArguments instance) =>
+    <String, dynamic>{
+      'idDevice': instance.idDevice,
+      'idPlan': instance.idPlan,
+    };
+
+ResetPasswordArguments _$ResetPasswordArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return ResetPasswordArguments(
+    email: json['email'] as String,
+  );
+}
+
+Map<String, dynamic> _$ResetPasswordArgumentsToJson(
+        ResetPasswordArguments instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+    };
+
 ChangePasswordArguments _$ChangePasswordArgumentsFromJson(
     Map<String, dynamic> json) {
   return ChangePasswordArguments(
@@ -440,19 +533,6 @@ GetUserArguments _$GetUserArgumentsFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$GetUserArgumentsToJson(GetUserArguments instance) =>
     <String, dynamic>{
       'id': instance.id,
-    };
-
-ResetPasswordArguments _$ResetPasswordArgumentsFromJson(
-    Map<String, dynamic> json) {
-  return ResetPasswordArguments(
-    email: json['email'] as String,
-  );
-}
-
-Map<String, dynamic> _$ResetPasswordArgumentsToJson(
-        ResetPasswordArguments instance) =>
-    <String, dynamic>{
-      'email': instance.email,
     };
 
 GetExamsByDeviceArguments _$GetExamsByDeviceArgumentsFromJson(

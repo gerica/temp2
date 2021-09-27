@@ -15,6 +15,9 @@ import '../../../../../generated/l10n.dart';
 import 'buy_credits_controller.dart';
 
 class BuyCreditsPage extends GetView<BuyCreditsController> {
+  static Future? navigateWith({required String deviceId}) =>
+      Get.toNamed(Routes.buyCreditsPage, arguments: deviceId);
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: RadioLifeAppBarWidget(
@@ -42,11 +45,14 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
                   itemCount: data.length + 1,
                   itemBuilder: (context, index) => index < data.length
                       ? Card(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                          margin: const EdgeInsets.symmetric(vertical: AppSpacing.tiny),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          margin: const EdgeInsets.symmetric(
+                              vertical: AppSpacing.tiny),
                           color: data[index].backgroundColor,
                           child: InkWell(
-                            splashColor: data[index].backgroundColor == AppColorScheme.primarySwatch
+                            splashColor: data[index].backgroundColor ==
+                                    AppColorScheme.primarySwatch
                                 ? AppColorScheme.white.withOpacity(0.2)
                                 : AppColorScheme.primarySwatch.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(8),
@@ -89,7 +95,7 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
                           margin: const EdgeInsets.only(top: AppSpacing.large),
                           child: PrimaryButton(
                             onPressed: () {
-                              Get.toNamed(Routes.creditsTransactionSuccess);
+                              controller.signDevicePlan();
                             },
                             title: S.of(context).buyNow,
                             color: PrimaryButtonColor.secondary,
