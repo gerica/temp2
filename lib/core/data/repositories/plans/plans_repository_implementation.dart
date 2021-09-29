@@ -20,13 +20,17 @@ class PlansRepositoryImplementation extends PlansRepository {
       );
 
   @override
-  Future<Resource<void>> signDevicePlan({
+  Future<Resource<int>> signDevicePlan({
     required String deviceId,
     required String planId,
   }) =>
       Resource.asFuture(
         () => _remoteDataSource.signDevicePlan(
             deviceId: deviceId, planId: planId),
-        (data) => SignDevicePlan$Mutation.fromJson(data),
+        (data) =>
+            SignDevicePlan$Mutation.fromJson(data)
+                .deviceAddCreditByPlan
+                ?.balance ??
+            0,
       );
 }

@@ -15,13 +15,13 @@ class SignDevicePlanParams {
 
 @injectable
 class SignDevicePlanUseCase
-    extends BaseFutureResourceUseCase<SignDevicePlanParams, void> {
+    extends BaseFutureResourceUseCase<SignDevicePlanParams, int> {
   final PlansRepository _plansRepository;
 
   SignDevicePlanUseCase(this._plansRepository);
 
   @override
-  Future<Resource<void>> call(SignDevicePlanParams params) =>
+  Future<Resource<int>> call(SignDevicePlanParams params) =>
       _plansRepository.signDevicePlan(
         deviceId: params.deviceId,
         planId: params.planId,

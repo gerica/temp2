@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/adapter/plans_adapter.dart';
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/model/plan_model.dart';
+import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/credit_transaction_success_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/my_device_detail_controller.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
@@ -35,6 +37,7 @@ class BuyCreditsController extends GetxController {
   //region Variables
   PlanModel? _selectedPlan;
   late String deviceId;
+  final myDeviceDetailController = Get.find<MyDeviceDetailController>();
 
   //endregion
 
@@ -82,7 +85,13 @@ class BuyCreditsController extends GetxController {
       case Status.loading:
         break;
       case Status.success:
-        Get.offNamed(Routes.creditsTransactionSuccess);
+        final int? balance = response.data;
+        if (balance != null)
+          myDeviceDetailController.state.value = Resource.success(
+              data: myDeviceDetailController.state.value.data
+                  ?.copyWith(balance: balance.toString()));
+        await CreditTransactionSuccessPage.navigateWith(
+            arguments: _selectedPlan!);
         break;
       case Status.failed:
         handleError(response.error ?? AppException.generic());

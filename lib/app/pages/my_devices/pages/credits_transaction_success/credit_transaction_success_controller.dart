@@ -1,14 +1,25 @@
 import 'package:get/get.dart';
+import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/model/plan_model.dart';
+import 'package:radio_life/app/utils/try_cast.dart';
+import 'package:radio_life/core/data/model/resource.dart';
 
 class CreditTransactionSuccessController extends GetxController {
+  //region State
+  final state = Resource.loading<PlanModel>().obs;
 
-  //region Private
   //endregion
 
   //region Public
   //endregion
 
   //region Functions
-  //endregion
+  @override
+  Future onReady() async {
+    super.onReady();
+    final param = tryCast<PlanModel>(Get.arguments);
+    await 1.delay();
+    if (param != null) state.value = Resource.success(data: param);
+  }
+//endregion
 
 }
