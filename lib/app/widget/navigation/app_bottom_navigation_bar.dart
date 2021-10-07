@@ -8,17 +8,16 @@ import 'package:radio_life/app/styles/app_color_scheme.dart';
 import '../../../generated/l10n.dart';
 import 'app_bottom_navitation_bar_controller.dart';
 
-class AppBottomNavigationBarWidget
-    extends GetView<AppBottomNavigationController> {
+class AppBottomNavigationBarWidget extends GetView<AppBottomNavigationController> {
   final int currentIndex;
 
   const AppBottomNavigationBarWidget({required this.currentIndex});
 
   @override
-  Widget build(BuildContext context) =>
-      GetBuilder<AppBottomNavigationController>(
+  Widget build(BuildContext context) => GetBuilder<AppBottomNavigationController>(
         initState: (_) {
-          controller.changePage(currentIndex);
+          // Sof-I111
+          // controller.changePage(currentIndex);
         },
         builder: (_) => Container(
           color: AppColorScheme.white,
@@ -54,20 +53,16 @@ class AppBottomNavigationBarWidget
         ),
       );
 
-  BottomNavigationBarItem buildBottomNavigationBarItem(
-          String assetSvgImages, String label) =>
-      BottomNavigationBarItem(
+  BottomNavigationBarItem buildBottomNavigationBarItem(String assetSvgImages, String label) => BottomNavigationBarItem(
         icon: Opacity(
           opacity: 0.4,
-          child:
-              PlatformSvg.asset(assetSvgImages, height: 25, fit: BoxFit.cover),
+          child: PlatformSvg.asset(assetSvgImages, height: 25, fit: BoxFit.cover),
         ),
         activeIcon: PlatformSvg.asset(assetSvgImages, height: 25),
         label: label,
       );
 
-  void _changeBottomBarNavigationIndex(int index) =>
-      controller.changePage(index);
+  void _changeBottomBarNavigationIndex(int index) => controller.changePage(index);
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

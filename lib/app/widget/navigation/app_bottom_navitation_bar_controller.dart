@@ -11,7 +11,8 @@ class AppBottomNavigationController extends GetxController {
   final bottomBarCurrentIndex = 0.obs;
 
   void changePage(int index) {
-    if (index == bottomBarCurrentIndex.value) return;
+    // Sof-I111
+    // if (index == bottomBarCurrentIndex.value) return;
     bottomBarCurrentIndex.value = index;
     switch (index) {
       case 0:
