@@ -959,6 +959,26 @@ class S {
       args: [quantity],
     );
   }
+
+  /// `Error`
+  String get titleUpdatePassword {
+    return Intl.message(
+      'Error',
+      name: 'titleUpdatePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `new password and confirm password need to be equals`
+  String get messageUpdatePassword {
+    return Intl.message(
+      'new password and confirm password need to be equals',
+      name: 'messageUpdatePassword',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

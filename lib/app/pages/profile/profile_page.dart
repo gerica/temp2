@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/modal_helper.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
+import 'package:radio_life/app/pages/profile/pages/update_password/update_password_controller.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
@@ -25,30 +26,28 @@ class ProfilePage extends GetView<ProfileController> {
         titleText: S.of(context).profile,
         backgroundColor: AppColorScheme.primarySwatch,
       ),
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(AppSpacing.medium),
-          constraints: BoxConstraints(maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    UIHelper.verticalSpaceLarge,
-                    _buildImage(context),
-                    UIHelper.verticalSpaceLarge,
-                    ..._buildProfileTexts(context),
-                    UIHelper.verticalSpaceLarge,
-                    _buildUpadtePassword(context),
-                    UIHelper.verticalSpaceSmall,
-                  ],
-                ),
-                _buildLogout(context),
-              ],
-            ),
+      body: Container(
+        padding: const EdgeInsets.all(AppSpacing.medium),
+        constraints: BoxConstraints(maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  UIHelper.verticalSpaceLarge,
+                  _buildImage(context),
+                  UIHelper.verticalSpaceLarge,
+                  ..._buildForm(context),
+                  UIHelper.verticalSpaceLarge,
+                  _buildUpadtePassword(context),
+                  UIHelper.verticalSpaceSmall,
+                ],
+              ),
+              _buildLogout(context),
+            ],
           ),
         ),
       ),
@@ -58,7 +57,7 @@ class ProfilePage extends GetView<ProfileController> {
     );
   }
 
-  PrimaryButton _buildLogout(BuildContext context) {
+  Widget _buildLogout(BuildContext context) {
     return PrimaryButton(
         onPressed: () => controller.logout(),
         title: S.of(context).logOut,
@@ -68,9 +67,14 @@ class ProfilePage extends GetView<ProfileController> {
         state: Status.success);
   }
 
-  PrimaryButton _buildUpadtePassword(BuildContext context) {
+  Widget _buildUpadtePassword(BuildContext context) {
     return PrimaryButton(
         onPressed: () {
+          final contPage = UpdatePasswordController();
+          contPage.image = controller.image;
+          contPage.imageUrl = controller.imageUrl;
+          contPage.clear();
+          Get.lazyPut(() => contPage);
           Get.toNamed(Routes.updatePassword);
         },
         title: S.of(context).updatePassword,
@@ -183,7 +187,7 @@ class ProfilePage extends GetView<ProfileController> {
     );
   }
 
-  List<Widget> _buildProfileTexts(BuildContext context) {
+  List<Widget> _buildForm(BuildContext context) {
     final List<Widget> result = [];
     result.add(Text(
       S.of(context).profile,
@@ -194,15 +198,20 @@ class ProfilePage extends GetView<ProfileController> {
     result.add(UIHelper.verticalSpaceMedium);
     result.add(InputTextWidget(
       hintText: S.of(context).firstName,
-      onFieldSubmitted: () {},
+      focusNode: controller.firstNameFocus,
+      onFieldSubmitted: () {
+        _fieldFocusChange(context, controller.firstNameFocus, controller.lastNameFocus);
+      },
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.words,
       controller: controller.firstNameController,
       errorText: null,
+      textInputAction: TextInputAction.next,
     ));
     result.add(UIHelper.verticalSpaceMedium);
     result.add(InputTextWidget(
       hintText: S.of(context).lastName,
+      focusNode: controller.lastNameFocus,
       onFieldSubmitted: () {},
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.words,
@@ -225,5 +234,10 @@ class ProfilePage extends GetView<ProfileController> {
       ),
     ));
     return result;
+  }
+
+  void _fieldFocusChange(BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
   }
 }

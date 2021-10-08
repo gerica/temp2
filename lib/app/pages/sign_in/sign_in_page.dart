@@ -22,31 +22,28 @@ class SignInPage extends GetView<SignInController> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: context.breakpoint <= LayoutBreakpoint.xs
-            ? RadioLifeAppBarWidget(
-                showBackButton: false,
-                leadingWidth: 0,
-                title: Hero(
-                  tag: 'logo',
-                  child: Image.asset(AppImages.logoHorizontalColor, height: 40),
-                ),
-                centerTitle: true,
-              )
-            : null,
-        body: Center(
-          child: Obx(() => Container(
-                constraints: BoxConstraints(
-                    maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                        ? 1000
-                        : MediaQuery.of(context).size.width),
-                padding: const EdgeInsets.all(AppSpacing.medium),
-                child: context.breakpoint > LayoutBreakpoint.xs
-                    ? _buildWebBody(context)
-                    : _buildAppBody(context),
-              )),
-        ),
-      );
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: context.breakpoint <= LayoutBreakpoint.xs
+          ? RadioLifeAppBarWidget(
+              showBackButton: false,
+              leadingWidth: 0,
+              title: Hero(
+                tag: 'logo',
+                child: Image.asset(AppImages.logoHorizontalColor, height: 40),
+              ),
+              centerTitle: true,
+            )
+          : null,
+      body: Center(
+        child: Obx(() => Container(
+              constraints: BoxConstraints(maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 1000 : MediaQuery.of(context).size.width),
+              padding: const EdgeInsets.all(AppSpacing.medium),
+              child: context.breakpoint > LayoutBreakpoint.xs ? _buildWebBody(context) : _buildAppBody(context),
+            )),
+      ),
+    );
+  }
 
   Widget _buildAppBody(BuildContext context) => SingleChildScrollView(
         child: Column(
@@ -54,10 +51,7 @@ class SignInPage extends GetView<SignInController> {
           children: [
             Text(
               S.of(context).login,
-              style: const TextStyle(
-                  fontSize: 25,
-                  fontWeight: AppFontWeight.regular,
-                  color: Colors.black),
+              style: const TextStyle(fontSize: 25, fontWeight: AppFontWeight.regular, color: Colors.black),
             ),
             UIHelper.verticalSpaceExtraLarge,
             InputTextWidget(

@@ -41,6 +41,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
   final bool autofocus;
   final Color? background;
   final Color? borderColor;
+  final TextInputAction textInputAction;
 
   const InputTextWidget({
     required this.onFieldSubmitted,
@@ -73,6 +74,7 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
     this.padding,
     this.style,
     this.autofocus = false,
+    this.textInputAction = TextInputAction.done,
     Key? key,
   }) : super(key: key);
 
@@ -93,14 +95,11 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         enableSuggestions: keyboardSuggestions,
         autocorrect: keyboardSuggestions,
         maxLength: maxLength,
-        textInputAction: TextInputAction.done,
+        textInputAction: textInputAction,
         maxLines: maxLines,
         readOnly: readOnly,
         minLines: minLines,
-        style: style ??
-            TextStyle(
-                fontSize: AppFontSize.primary,
-                color: AppColorScheme.textPrimary),
+        style: style ?? TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.textPrimary),
         onEditingComplete: () {
           FocusScope.of(context).unfocus();
           if (onEditingComplete != null) onEditingComplete!();
@@ -137,21 +136,15 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
         focusedBorder: _buildFocusedBorderSide,
         focusedErrorBorder: _buildInputErrorBorderSide,
         border: _buildBorderSide,
-        hintStyle: hintStyle ??
-            TextStyle(
-                fontSize: AppFontSize.primary,
-                color: AppColorScheme.textSecondary),
-        errorStyle: TextStyle(
-            fontSize: AppFontSize.secondary, color: AppColorScheme.error),
+        hintStyle: hintStyle ?? TextStyle(fontSize: AppFontSize.primary, color: AppColorScheme.textSecondary),
+        errorStyle: TextStyle(fontSize: AppFontSize.secondary, color: AppColorScheme.error),
         errorText: errorText,
-        contentPadding: const EdgeInsets.only(
-            left: AppSpacing.extraMedium, top: AppSpacing.small),
+        contentPadding: const EdgeInsets.only(left: AppSpacing.extraMedium, top: AppSpacing.small),
       );
 
   InputBorder get _buildFocusedBorderSide => OutlineInputBorder(
         borderRadius: const BorderRadius.all(AppCornerRadius.mini),
-        borderSide:
-            BorderSide(width: 2, color: borderColor ?? AppColorScheme.darkBlue),
+        borderSide: BorderSide(width: 2, color: borderColor ?? AppColorScheme.darkBlue),
       );
 
   InputBorder get _buildInputErrorBorderSide => OutlineInputBorder(
@@ -177,36 +170,31 @@ class InputTextWidget extends StatelessWidget implements FieldWidget {
       ..add(DiagnosticsProperty<bool>('obscureText', obscureText))
       ..add(StringProperty('hintText', hintText))
       ..add(DiagnosticsProperty<TextInputType>('keyboardType', keyboardType))
-      ..add(
-          DiagnosticsProperty<TextEditingController>('controller', controller))
+      ..add(DiagnosticsProperty<TextEditingController>('controller', controller))
       ..add(IterableProperty<TextInputFormatter>('formatters', formatters))
-      ..add(
-          DiagnosticsProperty<bool>('keyboardSuggestions', keyboardSuggestions))
+      ..add(DiagnosticsProperty<bool>('keyboardSuggestions', keyboardSuggestions))
       ..add(DiagnosticsProperty<FocusNode>('focusNode', focusNode))
       ..add(IntProperty('maxLength', maxLength))
       ..add(IntProperty('maxLines', maxLines))
       ..add(IntProperty('heightMultiplier', heightMultiplier))
-      ..add(DiagnosticsProperty<Function()>(
-          'onEditingComplete', onEditingComplete))
-      ..add(
-          DiagnosticsProperty<Function()>('onFieldSubmitted', onFieldSubmitted))
+      ..add(DiagnosticsProperty<Function()>('onEditingComplete', onEditingComplete))
+      ..add(DiagnosticsProperty<Function()>('onFieldSubmitted', onFieldSubmitted))
       ..add(DiagnosticsProperty<EdgeInsets>('padding', padding))
       ..add(EnumProperty<TextAlign>('textAlign', textAlign))
       ..add(StringProperty('errorText', errorText));
     properties.add(DiagnosticsProperty<TextStyle>('style', style));
-    properties
-        .add(DiagnosticsProperty<Function(String p1)>('onChanged', onChanged));
+    properties.add(DiagnosticsProperty<Function(String p1)>('onChanged', onChanged));
     properties.add(DoubleProperty('height', height));
     properties.add(DiagnosticsProperty<EdgeInsets?>('margin', margin));
     properties.add(DiagnosticsProperty<TextStyle?>('hintStyle', hintStyle));
     properties.add(DiagnosticsProperty<TextStyle?>('prefixStyle', prefixStyle));
     properties.add(StringProperty('prefixText', prefixText));
-    properties.add(EnumProperty<TextCapitalization?>(
-        'textCapitalization', textCapitalization));
+    properties.add(EnumProperty<TextCapitalization?>('textCapitalization', textCapitalization));
     properties.add(DiagnosticsProperty<bool>('autofocus', autofocus));
     properties.add(ColorProperty('background', background));
     properties.add(DiagnosticsProperty<bool>('readOnly', readOnly));
     properties.add(IntProperty('minLines', minLines));
     properties.add(ColorProperty('borderColor', borderColor));
+    properties.add(DiagnosticsProperty('textInputAction', textInputAction));
   }
 }

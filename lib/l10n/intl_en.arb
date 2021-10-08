@@ -89,5 +89,7 @@
   "yourProfileWasSuccessfullyUpdated": "Your profile was successfully updated",
   "youHaveNoDevices": "You have no devices.",
   "registerNewDevice": "Register new device",
-  "creditsQuantity": "{quantity} credits"
+  "creditsQuantity": "{quantity} credits",
+  "titleUpdatePassword": "Error",
+  "messageUpdatePassword": "new password and confirm password need to be equals"
 }

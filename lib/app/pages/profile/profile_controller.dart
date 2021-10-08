@@ -39,7 +39,9 @@ class ProfileController extends GetxController {
 
   //region Variables
   final TextEditingController firstNameController = TextEditingController();
+  final FocusNode firstNameFocus = FocusNode();
   final TextEditingController lastNameController = TextEditingController();
+  final FocusNode lastNameFocus = FocusNode();
   final ImagePicker _imagePicker;
   final image = Rxn<io.File?>();
   final imageUrl = Rxn<String?>();
@@ -83,10 +85,11 @@ class ProfileController extends GetxController {
     final base64 = file != null ? await _imageToBase64UseCase(file) : null;
     final response = await _updateUserProfileUseCase(
       UserEntity(
-          id: _id,
-          firstName: firstNameController.text,
-          lastName: lastNameController.text,
-          image: base64),
+        id: _id,
+        firstName: firstNameController.text,
+        lastName: lastNameController.text,
+        image: base64,
+      ),
     );
     switch (response.status) {
       case Status.loading:
@@ -97,8 +100,7 @@ class ProfileController extends GetxController {
           pageChild: AppSimpleDialog(
             title: S.current.success,
             message: S.current.yourProfileWasSuccessfullyUpdated,
-            icon: Icon(Icons.check_circle_outline,
-                size: 50, color: AppColorScheme.primarySwatch),
+            icon: Icon(Icons.check_circle_outline, size: 50, color: AppColorScheme.primarySwatch),
             onClosePressed: () {
               Get.back();
             },
@@ -112,12 +114,8 @@ class ProfileController extends GetxController {
   }
 
   Future getImage(ImageSource source) async {
-    final pickedFile = await _imagePicker.getImage(
-        source: source,
-        preferredCameraDevice: CameraDevice.rear,
-        imageQuality: 90,
-        maxHeight: 500,
-        maxWidth: 500);
+    final pickedFile =
+        await _imagePicker.getImage(source: source, preferredCameraDevice: CameraDevice.rear, imageQuality: 90, maxHeight: 500, maxWidth: 500);
     if (pickedFile != null) {
       file = io.File(pickedFile.path);
       image.value = file;

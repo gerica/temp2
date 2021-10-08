@@ -89,6 +89,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loremIpsum": MessageLookupByLibrary.simpleMessage(
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+        "messageUpdatePassword": MessageLookupByLibrary.simpleMessage(
+            "new password and confirm password need to be equals"),
         "myDevice": MessageLookupByLibrary.simpleMessage("My Device"),
         "myDevices": MessageLookupByLibrary.simpleMessage("My Devices"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
@@ -139,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tests": MessageLookupByLibrary.simpleMessage("Tests"),
         "theEnteredEmailIsNotValid": MessageLookupByLibrary.simpleMessage(
             "The entered email is not valid"),
+        "titleUpdatePassword": MessageLookupByLibrary.simpleMessage("Error"),
         "updatePassword":
             MessageLookupByLibrary.simpleMessage("Update password"),
         "weSentATemporaryPasswordToYourEmailUseIt":
