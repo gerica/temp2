@@ -59,6 +59,9 @@ class UpdatePasswordController extends GetxController {
             icon: Icon(Icons.check_circle_outline, size: 50, color: AppColorScheme.primarySwatch),
             onClosePressed: () {
               Get.back(); // close dialog
+            },
+            onOkPressed: () {
+              Get.back(); // close dialog
               Get.back(); // back page
             },
           ),
@@ -69,16 +72,6 @@ class UpdatePasswordController extends GetxController {
         handleError(response.error ?? AppException.generic());
         break;
     }
-
-    // Get.snackbar(
-    //   'Teste',
-    //   'Sucesso',
-    //   snackPosition: SnackPosition.BOTTOM,
-    //   colorText: Colors.black,
-    //   margin: const EdgeInsets.all(16),
-    //   backgroundColor: Colors.green[100],
-    // );
-    // AppUIBlock.unblock(context: Get.context);
   }
 
   void clear() {
