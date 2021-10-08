@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:graphql/client.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
-import 'package:radio_life/core/data/data_sources/user/remote/user_remote_data_source_implementation.dart';
 import 'package:radio_life/core/data/enum/status.dart';
-import 'package:radio_life/core/data/helpers/secure_local_storage.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
-import 'package:radio_life/core/data/network/radio_life_graphql_client.dart';
 import 'package:radio_life/core/domain/entities/user/user_entity_password.dart';
 import 'package:radio_life/core/domain/use_cases/user/update_user_password_use_case.dart';
-import 'package:radio_life/di/modules/local_module.dart';
-import 'package:radio_life/flavors/environment.dart';
-import 'package:radio_life/flavors/flavor_values.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:universal_io/io.dart' as io;
 import '../../../../../generated/l10n.dart';
 
