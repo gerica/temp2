@@ -12,6 +12,7 @@ import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/di/di.dart';
 
 import '../../../generated/l10n.dart';
 import 'profile_controller.dart';
@@ -70,7 +71,7 @@ class ProfilePage extends GetView<ProfileController> {
   Widget _buildUpadtePassword(BuildContext context) {
     return PrimaryButton(
         onPressed: () {
-          final contPage = UpdatePasswordController();
+          final contPage = UpdatePasswordController(getIt());
           contPage.image = controller.image;
           contPage.imageUrl = controller.imageUrl;
           contPage.clear();

@@ -1,7 +1,9 @@
 import 'package:graphql/client.dart';
 import 'package:injectable/injectable.dart';
+import 'package:radio_life/core/data/data_sources/user/remote/update_user_password_mutation.dart';
 import 'package:radio_life/core/data/data_sources/user/remote/user_remote_data_source.dart';
 import 'package:radio_life/core/domain/entities/user/user_entity.dart';
+import 'package:radio_life/core/domain/entities/user/user_entity_password.dart';
 import 'package:radio_life/graphql/graphql_api.dart';
 
 @Injectable(as: UserRemoteDataSource)
@@ -25,20 +27,24 @@ class UserRemoteDataSourceImplementation extends UserRemoteDataSource {
   Future<QueryResult> updateUserProfile({required UserEntity user}) {
     final mutation = UpdateUserMutation(
       variables: user.image != null
-          ? UpdateUserArguments(
-              userId: user.id,
-              firstName: user.firstName,
-              lastName: user.lastName,
-              image: user.image)
-          : UpdateUserArguments(
-              userId: user.id,
-              firstName: user.firstName,
-              lastName: user.lastName),
+          ? UpdateUserArguments(userId: user.id, firstName: user.firstName, lastName: user.lastName, image: user.image)
+          : UpdateUserArguments(userId: user.id, firstName: user.firstName, lastName: user.lastName),
     );
     return _graphQLClient.mutate(
       MutationOptions(
         document: mutation.document,
         variables: mutation.getVariablesMap(),
+      ),
+    );
+  }
+
+  @override
+  Future<QueryResult> updateUserPassword({required UserEntityPassword user}) {
+    final mutation = UpdateUserPasswordMutation(entity: user);
+    return _graphQLClient.mutate(
+      MutationOptions(
+        document: mutation.document,
+        variables: mutation.variables,
       ),
     );
   }

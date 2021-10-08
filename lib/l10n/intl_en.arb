@@ -91,5 +91,6 @@
   "registerNewDevice": "Register new device",
   "creditsQuantity": "{quantity} credits",
   "titleUpdatePassword": "Error",
-  "messageUpdatePassword": "new password and confirm password need to be equals"
+  "messageUpdatePassword": "new password and confirm password need to be equals",
+  "yourPasswordWasSuccessfullyUpdated": "Your password was successfully changed"
 }

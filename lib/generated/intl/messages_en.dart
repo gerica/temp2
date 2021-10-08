@@ -158,6 +158,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourPasswordMustHaveAtLeast6Characters":
             MessageLookupByLibrary.simpleMessage(
                 "Your password must have at least 6 characters"),
+        "yourPasswordWasSuccessfullyUpdated":
+            MessageLookupByLibrary.simpleMessage(
+                "Your password was successfully changed"),
         "yourProfileWasSuccessfullyUpdated":
             MessageLookupByLibrary.simpleMessage(
                 "Your profile was successfully updated")
