@@ -35,7 +35,9 @@ class SignInController extends GetxController {
 
   //region Public
   TextEditingController emailController = TextEditingController();
+  final FocusNode emailFocus = FocusNode();
   TextEditingController pwdController = TextEditingController();
+  final FocusNode pwdFocus = FocusNode();
   final signInModel = const SignInModel().obs;
 
   //endregion

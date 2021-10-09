@@ -41,9 +41,12 @@ class SignUpController extends GetxController {
 
   //region Public
   final TextEditingController firstNameController = TextEditingController();
+  final FocusNode firstNameFocus = FocusNode();
   final TextEditingController lastNameController = TextEditingController();
+  final FocusNode lastNameFocus = FocusNode();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController pwdController = TextEditingController();
+  final FocusNode emailFocus = FocusNode();
+
   final signUpModel = const SignUpModel().obs;
 
   @override
@@ -59,15 +62,10 @@ class SignUpController extends GetxController {
 
   Future performSignUp() async {
     _isValid;
-    if (firstNameController.text.isNotEmpty &&
-        lastNameController.text.isNotEmpty &&
-        emailController.text.isNotEmpty) {
+    if (firstNameController.text.isNotEmpty && lastNameController.text.isNotEmpty && emailController.text.isNotEmpty) {
       AppUIBlock.blockUI(context: Get.context);
       final response = await _doSignUpUseCase(
-        SignUpParams(
-            firstName: firstNameController.text,
-            lastName: lastNameController.text,
-            email: emailController.text),
+        SignUpParams(firstName: firstNameController.text, lastName: lastNameController.text, email: emailController.text),
       );
       AppUIBlock.unblock(context: Get.context);
 
@@ -76,8 +74,7 @@ class SignUpController extends GetxController {
           pageChild: AppSimpleDialog(
             title: S.current.success,
             message: S.current.weSentATemporaryPasswordToYourEmailUseIt,
-            icon: Icon(Icons.check_circle_outline,
-                size: 50, color: AppColorScheme.primarySwatch),
+            icon: Icon(Icons.check_circle_outline, size: 50, color: AppColorScheme.primarySwatch),
             onClosePressed: () {},
           ),
         );
@@ -87,8 +84,7 @@ class SignUpController extends GetxController {
           pageChild: AppSimpleDialog(
             title: error.title ?? '',
             message: error.description ?? '',
-            icon: Icon(Icons.error_outline,
-                size: 50, color: AppColorScheme.error),
+            icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
             onClosePressed: () {},
           ),
         );
@@ -97,12 +93,7 @@ class SignUpController extends GetxController {
   }
 
   bool get _isValid {
-    signUpModel.value = SignUpModel(
-            firstName: firstNameController.text,
-            lastName: lastNameController.text,
-            email: emailController.text,
-            password: pwdController.text)
-        .validate;
+    signUpModel.value = SignUpModel(firstName: firstNameController.text, lastName: lastNameController.text, email: emailController.text).validate;
     return signUpModel.value.isValid;
   }
 
