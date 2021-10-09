@@ -1,3 +1,5 @@
 Radiolife web: https://radiolife-bucket.s3.us-east-2.amazonaws.com/index.html
 Releases:
-    - My Device Details
+    - After select one device, the app go to another page, but the navbar in bottom doesn't work for the first option.
+    - After buy credit and back to my devices, the value of credits doesn't update.
+    - Update password

@@ -1,6 +1,6 @@
 # Automatically generated on 2021-05-07 UTC from https://codemagic.io/app/60947f1a2149abb02e7b5e1d/settings
 # Note that this configuration is not an exact match to UI settings. Review and adjust as necessary.
-# VERSION: 1.0.4 
+# VERSION: 1.0.54+50 
 
 workflows:
   default-workflow:
