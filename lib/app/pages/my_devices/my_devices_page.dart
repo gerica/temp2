@@ -14,93 +14,97 @@ import 'package:radio_life/core/data/enum/status.dart';
 
 import '../../../generated/l10n.dart';
 import '../../helper/dialog_helper.dart';
+import 'model/my_device_model.dart';
 import 'my_devices_controller.dart';
 
 class MyDevicesPage extends GetView<MyDevicesController> {
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: RadioLifeAppBarWidget(
-          showBackButton: false,
-          brightness: Brightness.dark,
-          titleText: S.of(context).myDevices,
-          backgroundColor: AppColorScheme.primarySwatch,
-          actions: [
-            IconButton(
-              onPressed: () {
-                Get.toNamed(Routes.addNewDevice);
-              },
-              icon: const Icon(Icons.add, color: AppColorScheme.white),
-            ),
-            IconButton(
-              onPressed: () {
-                Get.appDialog(
-                  pageChild: ReportsFilterDialogWidget(
-                    onApplyFilter: (filterData) {},
-                    onCancel: () {},
-                  ),
-                );
-              },
-              icon: const Icon(Icons.filter_list, color: AppColorScheme.white),
-            ),
-          ],
-        ),
-        body: Center(
-          child: Container(
-            constraints: BoxConstraints(
-                maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                    ? 600
-                    : MediaQuery.of(context).size.width),
-            child: Obx(() {
-              final response = controller.state.value;
-              final data = response.data;
-              if (response.status == Status.success && data != null) {
-                return data.isEmpty
-                    ? Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              S.of(context).youHaveNoDevices,
-                              style: const TextStyle(color: Colors.black),
-                            ),
-                            UIHelper.verticalSpaceMedium,
-                            PrimaryButton(
-                              onPressed: () {
-                                Get.toNamed(Routes.addNewDevice);
-                              },
-                              title: S.of(context).registerNewDevice,
-                              color: PrimaryButtonColor.primary,
-                              type: PrimaryButtonType.circular,
-                              style: PrimaryButtonStyle.filled,
-                              state: Status.success,
-                            )
-                          ],
-                        ),
-                      )
-                    : ListView.builder(
-                        padding: const EdgeInsets.all(16),
-                        itemCount: data.length,
-                        itemBuilder: (context, index) => data[index] != null
-                            ? DeviceCardWidget(
-                                onTap: () async {
-                                  await MyDeviceDetailPage.navigateWith(
-                                    params: data[index]!,
-                                  );
-                                  controller.getMyDevices();
-                                },
-                                model: data[index]!,
-                              )
-                            : Container(),
-                      );
-              } else
-                return Container();
-            }),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: RadioLifeAppBarWidget(
+        showBackButton: false,
+        brightness: Brightness.dark,
+        titleText: S.of(context).myDevices,
+        backgroundColor: AppColorScheme.primarySwatch,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.toNamed(Routes.addNewDevice);
+            },
+            icon: const Icon(Icons.add, color: AppColorScheme.white),
           ),
+          IconButton(
+            onPressed: () {
+              Get.appDialog(
+                pageChild: ReportsFilterDialogWidget(
+                  onApplyFilter: (filterData) {},
+                  onCancel: () {},
+                ),
+              );
+            },
+            icon: const Icon(Icons.filter_list, color: AppColorScheme.white),
+          ),
+        ],
+      ),
+      body: Center(
+        child: Container(
+          constraints: BoxConstraints(maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 600 : MediaQuery.of(context).size.width),
+          child: Obx(() {
+            final response = controller.state.value;
+            final data = response.data;
+            if (response.status == Status.success && data != null) {
+              return data.isEmpty
+                  ? Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            S.of(context).youHaveNoDevices,
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                          UIHelper.verticalSpaceMedium,
+                          PrimaryButton(
+                            onPressed: () {
+                              Get.toNamed(Routes.addNewDevice);
+                            },
+                            title: S.of(context).registerNewDevice,
+                            color: PrimaryButtonColor.primary,
+                            type: PrimaryButtonType.circular,
+                            style: PrimaryButtonStyle.filled,
+                            state: Status.success,
+                          )
+                        ],
+                      ),
+                    )
+                  : _buildList(data);
+            } else
+              return Container();
+          }),
         ),
-        bottomNavigationBar: const AppBottomNavigationBarWidget(
-          currentIndex: 0,
-        ),
-      );
+      ),
+      bottomNavigationBar: const AppBottomNavigationBarWidget(
+        currentIndex: 0,
+      ),
+    );
+  }
+
+  Widget _buildList(List<MyDeviceModel?> data) {
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: data.length,
+      itemBuilder: (context, index) => data[index] != null
+          ? DeviceCardWidget(
+              onTap: () async {
+                await MyDeviceDetailPage.navigateWith(
+                  params: data[index]!,
+                );
+                controller.getMyDevices();
+              },
+              model: data[index]!,
+            )
+          : Container(),
+    );
+  }
 }
