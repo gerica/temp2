@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "643608033404",
-    "project_id": "radio-life-8c295",
-    "storage_bucket": "radio-life-8c295.appspot.com"
+    "project_number": "724547037719",
+    "project_id": "radiolife-labs",
+    "storage_bucket": "radiolife-labs.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:643608033404:android:32ca2639c5bb4dc8cf31f9",
+        "mobilesdk_app_id": "1:724547037719:android:5f8f89a8f2a2c66b118a52",
         "android_client_info": {
-          "package_name": "co.radiolife"
+          "package_name": "com.sisnet.radiolifelabs"
         }
       },
       "oauth_client": [
         {
-          "client_id": "643608033404-arb3u6ee39obhmkopgjj2odb4p6hqjik.apps.googleusercontent.com",
+          "client_id": "724547037719-ld7sm170thu9pspoh925ontk21612io5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDi_K_xi-PgO1PLrCv-ow8pXD1HxmrHl5M"
+          "current_key": "AIzaSyC230RolrK1Bkxl1ShdUE4UmSp4nBk61F0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "643608033404-arb3u6ee39obhmkopgjj2odb4p6hqjik.apps.googleusercontent.com",
+              "client_id": "724547037719-ld7sm170thu9pspoh925ontk21612io5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
