@@ -1,7 +1,8 @@
 Radiolife web: https://radiolife-bucket.s3.us-east-2.amazonaws.com/index.html
 Releases:
-    - After select one device, the app go to another page, but the navbar in bottom doesn't work for the first option.
-    - After buy credit and back to my devices, the value of credits doesn't update.
-    - Update password
+    - I117 - Report - show every
+    - I114 WEB - sign in: I type the non-existent e-mail
+    - I118 Read QR CODE
+    - I119 New Device valide fields
 
-New version
+New version: 1.0.54+51
