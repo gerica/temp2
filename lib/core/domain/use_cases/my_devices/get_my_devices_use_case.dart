@@ -5,13 +5,11 @@ import 'package:radio_life/core/domain/repositories/my_device/my_device_reposito
 import 'package:radio_life/core/domain/use_cases/base/base_use_case.dart';
 
 @injectable
-class GetMyDevicesUseCase
-    extends BaseFutureResourceUseCase<void, List<MyDeviceEntity?>> {
+class GetMyDevicesUseCase extends BaseFutureResourceUseCase<void, List<MyDeviceEntity?>> {
   final MyDeviceRepository _myDeviceRepository;
 
   GetMyDevicesUseCase(this._myDeviceRepository);
 
   @override
-  Future<Resource<List<MyDeviceEntity?>>> call([void params]) =>
-      _myDeviceRepository.getMyDevices();
+  Future<Resource<List<MyDeviceEntity?>>> call([void params]) => _myDeviceRepository.getMyDevices();
 }

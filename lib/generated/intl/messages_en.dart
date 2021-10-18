@@ -144,6 +144,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "titleUpdatePassword": MessageLookupByLibrary.simpleMessage("Error"),
         "updatePassword":
             MessageLookupByLibrary.simpleMessage("Update password"),
+        "warning": MessageLookupByLibrary.simpleMessage("Warning"),
         "weSentATemporaryPasswordToYourEmailUseIt":
             MessageLookupByLibrary.simpleMessage(
                 "We sent a temporary password to your email. Use it to sign in the app."),

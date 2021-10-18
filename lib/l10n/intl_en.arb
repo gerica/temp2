@@ -92,5 +92,6 @@
   "creditsQuantity": "{quantity} credits",
   "titleUpdatePassword": "Error",
   "messageUpdatePassword": "new password and confirm password need to be equals",
-  "yourPasswordWasSuccessfullyUpdated": "Your password was successfully changed"
+  "yourPasswordWasSuccessfullyUpdated": "Your password was successfully changed",
+  "warning": "Warning"
 }
