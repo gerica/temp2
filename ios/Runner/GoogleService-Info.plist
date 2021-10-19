@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.sisnet.radiolifelabs</string>
+	<string>com.radiolifelabs</string>
 	<key>PROJECT_ID</key>
 	<string>radio-life-8c295</string>
 	<key>STORAGE_BUCKET</key>
