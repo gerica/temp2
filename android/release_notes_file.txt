@@ -1,1 +1,1 @@
-- My Device Details
+- I122 - Change package name

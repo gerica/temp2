@@ -11,7 +11,7 @@ platform :android do
            app: FIREBASE_APP_ID,
             firebase_cli_token: FIREBASE_TOKEN,
             apk_path: "../build/app/outputs/flutter-apk/app-release.apk",
-            release_notes_file: "../../release_notes.txt",
+            release_notes_file: "../android/release_notes_file.txt",
             groups: "mobile-team"
         )
 
