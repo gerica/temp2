@@ -62,12 +62,12 @@ class AddNewDeviceController extends GetxController {
     }
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-    serialNumberController.text = '9000';
-    locationController.text = 'Scholl';
-  }
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  //   serialNumberController.text = '9000';
+  //   locationController.text = 'Scholl';
+  // }
 
   bool get _isValid {
     bool result = true;
