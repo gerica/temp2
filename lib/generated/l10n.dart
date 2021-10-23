@@ -999,6 +999,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Are you sure, you want to register Cube {serialNmber} to you account?`
+  String titleConfirmRegisterDevice(Object serialNmber) {
+    return Intl.message(
+      'Are you sure, you want to register Cube $serialNmber to you account?',
+      name: 'titleConfirmRegisterDevice',
+      desc: '',
+      args: [serialNmber],
+    );
+  }
+
+  /// `This cube will be configured to you, not would be configured again.`
+  String get textConfirmRegisterDevice {
+    return Intl.message(
+      'This cube will be configured to you, not would be configured again.',
+      name: 'textConfirmRegisterDevice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register device`
+  String get btnRegister {
+    return Intl.message(
+      'Register device',
+      name: 'btnRegister',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

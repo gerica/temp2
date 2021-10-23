@@ -27,6 +27,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m3(date) => "Date of purchase ${date}";
 
+  static String m4(serialNmber) =>
+      "Are you sure, you want to register Cube ${serialNmber} to you account?";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alreadyHaveAnAccount":
@@ -37,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Back to My Devices"),
         "bluetoothDesativado":
             MessageLookupByLibrary.simpleMessage("Bluetooth disabled."),
+        "btnRegister": MessageLookupByLibrary.simpleMessage("Register device"),
         "buyCredits": MessageLookupByLibrary.simpleMessage("Buy credits"),
         "buyNow": MessageLookupByLibrary.simpleMessage("Buy now"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
@@ -139,8 +143,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "temporaryPassword":
             MessageLookupByLibrary.simpleMessage("Temporary Password"),
         "tests": MessageLookupByLibrary.simpleMessage("Tests"),
+        "textConfirmRegisterDevice": MessageLookupByLibrary.simpleMessage(
+            "This cube will be configured to you, not would be configured again."),
         "theEnteredEmailIsNotValid": MessageLookupByLibrary.simpleMessage(
             "The entered email is not valid"),
+        "titleConfirmRegisterDevice": m4,
         "titleUpdatePassword": MessageLookupByLibrary.simpleMessage("Error"),
         "updatePassword":
             MessageLookupByLibrary.simpleMessage("Update password"),

@@ -10,6 +10,8 @@ import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/bindings/
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/buy_credits_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/configure_wifi/bindings/configure_wifi_binding.dart';
 import 'package:radio_life/app/pages/my_devices/pages/configure_wifi/configure_wifi_page.dart';
+import 'package:radio_life/app/pages/my_devices/pages/confirm_register/bindings/confirm_register_binding.dart';
+import 'package:radio_life/app/pages/my_devices/pages/confirm_register/confirm_register_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/bindings/credits_transaction_success.dart';
 import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/credit_transaction_success_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/bindings/my_device_detail_binding.dart';
@@ -58,12 +60,12 @@ abstract class Routes {
   static const profile = '$home/profile';
   static const updatePassword = '$profile/update-password';
   static const addNewDevice = '$myDevices/newDevice';
+  static const confirmRegister = '$myDevices/confirmRegister';
   static const qrCodeViewer = 'qr-code-viewer';
   static const changePasswordPage = '$forgotPassword/change-password';
   static const myDeviceDetail = '$myDevices/my-device-detail';
   static const buyCreditsPage = '$myDeviceDetail/buy-credits';
-  static const creditsTransactionSuccess =
-      '$buyCreditsPage/credits-transaction-success';
+  static const creditsTransactionSuccess = '$buyCreditsPage/credits-transaction-success';
   static const autoScanPage = '$addNewDevice/auto-scan-page';
   static const configureWiFi = '$autoScanPage/configure-wifi';
   static const createPassword = '$signIn/create-password';
@@ -102,78 +104,98 @@ mixin RadioLifeAppRoutes {
       binding: HomeBinding(),
     ),
     GetPage(
-        name: Routes.products,
-        page: () => ProductsPage(),
-        binding: ProductsBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.products,
+      page: () => ProductsPage(),
+      binding: ProductsBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
-        name: Routes.myDevices,
-        page: () => MyDevicesPage(),
-        binding: MyDevicesBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.myDevices,
+      page: () => MyDevicesPage(),
+      binding: MyDevicesBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
-        name: Routes.reports,
-        page: () => ReportsPage(),
-        binding: ReportsBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.reports,
+      page: () => ReportsPage(),
+      binding: ReportsBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
-        name: Routes.support,
-        page: () => SupportPage(),
-        binding: SupportBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.support,
+      page: () => SupportPage(),
+      binding: SupportBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
-        name: Routes.productDetails,
-        page: () => ProductDetailsPage(),
-        binding: ProductDetailsBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.productDetails,
+      page: () => ProductDetailsPage(),
+      binding: ProductDetailsBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
-        name: Routes.reportDetails,
-        page: () => ReportDetailsPage(),
-        binding: ReportDetailsBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.reportDetails,
+      page: () => ReportDetailsPage(),
+      binding: ReportDetailsBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
-        name: Routes.profile,
-        page: () => ProfilePage(),
-        binding: ProfileBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.profile,
+      page: () => ProfilePage(),
+      binding: ProfileBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
-        name: Routes.updatePassword,
-        page: () => UpdatePasswordPage(),
-        binding: UpdatePasswordBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.updatePassword,
+      page: () => UpdatePasswordPage(),
+      binding: UpdatePasswordBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
-        name: Routes.addNewDevice,
-        page: () => AddNewDevicePage(),
-        binding: AddNewDeviceBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.addNewDevice,
+      page: () => AddNewDevicePage(),
+      binding: AddNewDeviceBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage<String>(
-        name: Routes.qrCodeViewer,
-        page: () => const QRCodeViewerPage(),
-        transition: Transition.fadeIn),
+      name: Routes.qrCodeViewer,
+      page: () => const QRCodeViewerPage(),
+      transition: Transition.fadeIn,
+    ),
     GetPage<String>(
-        name: Routes.myDeviceDetail,
-        page: () => MyDeviceDetailPage(),
-        binding: MyDeviceDetailBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.myDeviceDetail,
+      page: () => MyDeviceDetailPage(),
+      binding: MyDeviceDetailBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage<String>(
-        name: Routes.buyCreditsPage,
-        page: () => BuyCreditsPage(),
-        binding: BuyCreditsBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.buyCreditsPage,
+      page: () => BuyCreditsPage(),
+      binding: BuyCreditsBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage<String>(
         name: Routes.creditsTransactionSuccess,
         page: () => CreditTransactionSuccessPage(),
         binding: CreditTransactionSuccessBinding(),
         transition: Transition.fadeIn),
     GetPage<String>(
-        name: Routes.autoScanPage,
-        page: () => AutoScanPage(),
-        binding: AutoScanBinding(),
-        transition: Transition.fadeIn),
+      name: Routes.autoScanPage,
+      page: () => AutoScanPage(),
+      binding: AutoScanBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage<String>(
-        name: Routes.configureWiFi,
-        page: () => ConfigureWiFiPage(),
-        binding: ConfigureWiFiBinding(),
-        transition: Transition.fadeIn)
+      name: Routes.configureWiFi,
+      page: () => ConfigureWiFiPage(),
+      binding: ConfigureWiFiBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage<String>(
+      name: Routes.confirmRegister,
+      page: () => ConfirmRegisterPage(),
+      binding: ConfirmRegisterBinding(),
+      transition: Transition.fadeIn,
+    ),
   ];
 }

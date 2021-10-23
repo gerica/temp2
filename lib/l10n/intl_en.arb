@@ -93,5 +93,8 @@
   "titleUpdatePassword": "Error",
   "messageUpdatePassword": "new password and confirm password need to be equals",
   "yourPasswordWasSuccessfullyUpdated": "Your password was successfully changed",
-  "warning": "Warning"
+  "warning": "Warning",
+  "titleConfirmRegisterDevice": "Are you sure, you want to register Cube {serialNmber} to you account?",
+  "textConfirmRegisterDevice": "This cube will be configured to you, not would be configured again.",
+  "btnRegister": "Register device"
 }

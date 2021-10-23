@@ -8,6 +8,8 @@ import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
+import 'package:radio_life/core/data/model/resource.dart';
+import 'package:radio_life/core/domain/entities/device/device_check_register.dart';
 import 'package:radio_life/core/domain/use_cases/my_devices/get_device_check_register_use_case.dart';
 import '../../../../../generated/l10n.dart';
 
@@ -25,6 +27,13 @@ class AddNewDeviceController extends GetxController {
 
   AddNewDeviceController(this._getDeviceCheckRegisterUseCase);
 
+  @override
+  void onReady() {
+    super.onReady();
+    serialNumberController.text = '90000';
+    locationController.text = 'Scholl';
+  }
+
   Future<void> pressContinue() async {
     if (!_isValid) return;
     AppUIBlock.blockUI(context: Get.context);
@@ -38,7 +47,7 @@ class AddNewDeviceController extends GetxController {
       case Status.success:
         final deviceCheckRegister = response.data;
         if (deviceCheckRegister!.canUse) {
-          Get.toNamed(Routes.autoScanPage);
+          _nextPage(response);
         } else {
           Get.appDialog(
             barrierDismissible: false,
@@ -62,12 +71,13 @@ class AddNewDeviceController extends GetxController {
     }
   }
 
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  //   serialNumberController.text = '9000';
-  //   locationController.text = 'Scholl';
-  // }
+  void _nextPage(Resource<DeviceCheckRegister> response) {
+    if (response.data!.status == 'online') {
+      Get.toNamed(Routes.confirmRegister, arguments: serialNumberController.text);
+    } else {
+      Get.toNamed(Routes.autoScanPage);
+    }
+  }
 
   bool get _isValid {
     bool result = true;
