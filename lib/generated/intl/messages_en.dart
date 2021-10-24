@@ -145,6 +145,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tests": MessageLookupByLibrary.simpleMessage("Tests"),
         "textConfirmRegisterDevice": MessageLookupByLibrary.simpleMessage(
             "This cube will be configured to you, not would be configured again."),
+        "textConfirmRegisterDeviceName":
+            MessageLookupByLibrary.simpleMessage("Type the name of device."),
         "theEnteredEmailIsNotValid": MessageLookupByLibrary.simpleMessage(
             "The entered email is not valid"),
         "titleConfirmRegisterDevice": m4,

@@ -6,4 +6,8 @@ abstract class MyDeviceRemoteDataSource {
   Future<QueryResult> getDeviceCheckRegister({
     required String serialNumber,
   });
+
+  Future<QueryResult> confirmRegister({
+    required String serialNumber,
+  });
 }

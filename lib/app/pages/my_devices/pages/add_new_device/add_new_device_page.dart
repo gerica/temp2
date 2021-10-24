@@ -51,11 +51,6 @@ class AddNewDevicePage extends GetView<AddNewDeviceController> {
                           controller.serialNumberController.text = result.substring(initSerialNumber + 4, initSerialNumber + 9);
                           controller.serialNumberError('');
                         }
-                        final initLocation = result.indexOf('lt:');
-                        if (initLocation >= 0) {
-                          controller.locationController.text = result.substring(initLocation + 4, result.length);
-                          controller.locationError('');
-                        }
                       }
                     },
                     title: S.of(context).qrCode,
@@ -86,33 +81,13 @@ class AddNewDevicePage extends GetView<AddNewDeviceController> {
           errorText: controller.serialNumberError.value == '' ? null : controller.serialNumberError.value,
           focusNode: controller.serialNumberFocus,
           onFieldSubmitted: () {
-            _fieldFocusChange(context, controller.serialNumberFocus, controller.locationFocus);
             if (controller.serialNumberError.value.isNotEmpty) {
               controller.serialNumberError('');
             }
           },
           textInputAction: TextInputAction.next,
         ),
-        UIHelper.verticalSpaceMedium,
-        InputTextWidget(
-          hintText: S.of(context).location,
-          keyboardType: TextInputType.text,
-          textCapitalization: TextCapitalization.words,
-          controller: controller.locationController,
-          errorText: controller.locationError.value == '' ? null : controller.locationError.value,
-          focusNode: controller.locationFocus,
-          onFieldSubmitted: () {
-            if (controller.locationError.value.isNotEmpty) {
-              controller.locationError('');
-            }
-          },
-        ),
       ],
     );
-  }
-
-  void _fieldFocusChange(BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
-    currentFocus.unfocus();
-    FocusScope.of(context).requestFocus(nextFocus);
   }
 }

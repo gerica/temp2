@@ -1020,6 +1020,16 @@ class S {
     );
   }
 
+  /// `Type the name of device.`
+  String get textConfirmRegisterDeviceName {
+    return Intl.message(
+      'Type the name of device.',
+      name: 'textConfirmRegisterDeviceName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Register device`
   String get btnRegister {
     return Intl.message(

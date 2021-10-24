@@ -27,4 +27,9 @@ class MyDeviceRemoteDataSourceImplementation extends MyDeviceRemoteDataSource {
       ),
     );
   }
+
+  @override
+  Future<QueryResult> confirmRegister({required String serialNumber}) {
+    throw UnimplementedError();
+  }
 }

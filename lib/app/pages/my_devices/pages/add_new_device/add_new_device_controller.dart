@@ -19,9 +19,6 @@ class AddNewDeviceController extends GetxController {
   TextEditingController serialNumberController = TextEditingController();
   final FocusNode serialNumberFocus = FocusNode();
   final serialNumberError = ''.obs;
-  TextEditingController locationController = TextEditingController();
-  final FocusNode locationFocus = FocusNode();
-  final locationError = ''.obs;
 
   final GetDeviceCheckRegisterUseCase _getDeviceCheckRegisterUseCase;
 
@@ -31,7 +28,6 @@ class AddNewDeviceController extends GetxController {
   void onReady() {
     super.onReady();
     serialNumberController.text = '90000';
-    locationController.text = 'Scholl';
   }
 
   Future<void> pressContinue() async {
@@ -82,17 +78,13 @@ class AddNewDeviceController extends GetxController {
   bool get _isValid {
     bool result = true;
     serialNumberError('');
-    locationError('');
+
     final tempSN = ValidationHelper.validateField(serialNumberController.text);
     if (tempSN != null) {
       serialNumberError(tempSN);
       result = false;
     }
-    final tempLocation = ValidationHelper.validateField(locationController.text);
-    if (tempLocation != null) {
-      locationError(tempLocation);
-      result = false;
-    }
+
     return result;
   }
 

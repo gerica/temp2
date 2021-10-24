@@ -5,10 +5,20 @@ import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
+import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
+import 'package:radio_life/core/domain/use_cases/my_devices/confirm_regiser_use_case.dart';
 
 class ConfirmRegisterController extends GetxController {
-  ConfirmRegisterController();
+  final ConfirmRegisterUseCase _confirmRegisterUseCase;
+
+  TextEditingController nameController = TextEditingController();
+
+  ConfirmRegisterController(this._confirmRegisterUseCase);
+
+  TextEditingController locationController = TextEditingController();
+  final FocusNode locationFocus = FocusNode();
+  final locationError = ''.obs;
   final serialNumber = ''.obs;
 
   @override
@@ -23,6 +33,11 @@ class ConfirmRegisterController extends GetxController {
 
   Future<void> pressRegister() async {
     print('ConfirmRegisterController.pressRegister');
+    // if (!_isValid) return;
+    AppUIBlock.blockUI(context: Get.context);
+
+    final response = await _confirmRegisterUseCase(serialNumber.value);
+    AppUIBlock.unblock(context: Get.context);
   }
 
   void handleError(AppException error) {

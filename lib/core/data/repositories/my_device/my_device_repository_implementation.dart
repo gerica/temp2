@@ -26,4 +26,20 @@ class MyDeviceRepositoryImplementation extends MyDeviceRepository {
       (data) => DeviceCheckRegister.fromJson(data),
     );
   }
+
+  @override
+  Future<Resource<String>> confirmRegister({required String serialNumber}) {
+    return Resource.asFuture(
+      () => _remoteDataSource.confirmRegister(serialNumber: serialNumber),
+      (data) => data,
+    );
+  }
+
+  // @override
+  // Future<Resource> confirmRegister({required String serialNumber}) {
+  //   return Resource.asFuture(
+  //     () => _remoteDataSource.confirmRegister(serialNumber: serialNumber),
+  //     (data) => data,
+  //   );
+  // }
 }
