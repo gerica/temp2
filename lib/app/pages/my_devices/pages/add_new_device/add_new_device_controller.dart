@@ -24,11 +24,11 @@ class AddNewDeviceController extends GetxController {
 
   AddNewDeviceController(this._getDeviceCheckRegisterUseCase);
 
-  @override
-  void onReady() {
-    super.onReady();
-    serialNumberController.text = '90000';
-  }
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  //   // serialNumberController.text = '90000';
+  // }
 
   Future<void> pressContinue() async {
     if (!_isValid) return;
@@ -68,7 +68,7 @@ class AddNewDeviceController extends GetxController {
   }
 
   void _nextPage(Resource<DeviceCheckRegister> response) {
-    if (response.data!.status == 'online') {
+    if (response.data!.status != null && response.data!.status == 'online') {
       Get.toNamed(Routes.confirmRegister, arguments: serialNumberController.text);
     } else {
       Get.toNamed(Routes.autoScanPage);

@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_unused_constructor_parameters
 class DeviceCheckRegister {
   late bool canUse;
-  late String status;
+  String? status;
   late String description;
 
   DeviceCheckRegister({required this.canUse, required this.status, required this.description});

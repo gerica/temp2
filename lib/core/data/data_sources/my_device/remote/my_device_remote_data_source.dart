@@ -1,4 +1,5 @@
 import 'package:graphql/client.dart';
+import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 abstract class MyDeviceRemoteDataSource {
   Future<QueryResult> getMyDevices();
@@ -7,7 +8,5 @@ abstract class MyDeviceRemoteDataSource {
     required String serialNumber,
   });
 
-  Future<QueryResult> confirmRegister({
-    required String serialNumber,
-  });
+  Future<QueryResult> confirmRegister({required MyDeviceEntity entity});
 }

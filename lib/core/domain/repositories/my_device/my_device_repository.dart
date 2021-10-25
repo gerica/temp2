@@ -7,5 +7,5 @@ abstract class MyDeviceRepository {
 
   Future<Resource<DeviceCheckRegister>> getDeviceCheckRegister({required String serialNumber});
 
-  Future<Resource<String>> confirmRegister({required String serialNumber});
+  Future<Resource<String>> confirmRegister({required MyDeviceEntity entity});
 }

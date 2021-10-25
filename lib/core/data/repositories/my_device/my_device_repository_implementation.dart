@@ -28,10 +28,13 @@ class MyDeviceRepositoryImplementation extends MyDeviceRepository {
   }
 
   @override
-  Future<Resource<String>> confirmRegister({required String serialNumber}) {
+  Future<Resource<String>> confirmRegister({required MyDeviceEntity entity}) {
     return Resource.asFuture(
-      () => _remoteDataSource.confirmRegister(serialNumber: serialNumber),
-      (data) => data,
+      () => _remoteDataSource.confirmRegister(entity: entity),
+      (data) {
+        print(data);
+        return data['deviceRegister'];
+      },
     );
   }
 
