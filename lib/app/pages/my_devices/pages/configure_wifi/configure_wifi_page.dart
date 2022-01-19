@@ -34,7 +34,7 @@ class ConfigureWiFiPage extends GetView<ConfigureWiFiController> {
                 _buildForms(context),
                 UIHelper.verticalSpaceLarge,
                 PrimaryButton(
-                  onPressed: () {},
+                  onPressed: () => controller.nextPage(),
                   title: S.of(context).next,
                   color: PrimaryButtonColor.primary,
                   type: PrimaryButtonType.circular,

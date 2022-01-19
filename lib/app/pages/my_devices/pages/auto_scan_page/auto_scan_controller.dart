@@ -114,7 +114,7 @@ class AutoScanController extends GetxController {
     state.value = Resource.success(data: data);
     state.refresh();
     if (response) {
-      Get.toNamed(Routes.configureWiFi);
+      Get.toNamed(Routes.configureWiFi, arguments: discoveryResult);
     }
   }
 }
