@@ -27,6 +27,7 @@ class ProductsPage extends GetView<ProductsController> {
               onPressed: () {
                 Get.appDialog(
                   pageChild: ReportsFilterDialogWidget(
+                    devices: const [],
                     onApplyFilter: (filterData) {},
                     onCancel: () {},
                   ),
@@ -39,9 +40,7 @@ class ProductsPage extends GetView<ProductsController> {
         body: Center(
           child: Container(
             constraints: BoxConstraints(
-                maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                    ? 800
-                    : MediaQuery.of(context).size.width),
+                maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 800 : MediaQuery.of(context).size.width),
             child: ListView.builder(
               padding: const EdgeInsets.all(16),
               itemCount: controller.products.length,

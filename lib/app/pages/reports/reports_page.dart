@@ -26,21 +26,19 @@ class ReportsPage extends GetView<ReportsController> {
                 onPressed: () {
                   Get.appDialog(
                     pageChild: ReportsFilterDialogWidget(
+                      devices: const [],
                       onApplyFilter: (filterData) {},
                       onCancel: () {},
                     ),
                   );
                 },
-                icon:
-                    const Icon(Icons.filter_list, color: AppColorScheme.white))
+                icon: const Icon(Icons.filter_list, color: AppColorScheme.white))
           ],
         ),
         body: Center(
           child: Container(
             constraints: BoxConstraints(
-                maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                    ? 600
-                    : MediaQuery.of(context).size.width),
+                maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 600 : MediaQuery.of(context).size.width),
             child: Obx(() {
               final data = controller.state.value.data;
               final status = controller.state.value.status;

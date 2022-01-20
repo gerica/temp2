@@ -35,8 +35,12 @@ class MyDevicesPage extends GetView<MyDevicesController> {
           ),
           IconButton(
             onPressed: () {
+              final response = controller.state.value;
+              final data = response.data;
+
               Get.appDialog(
                 pageChild: ReportsFilterDialogWidget(
+                  devices: data,
                   onApplyFilter: (filterData) {},
                   onCancel: () {},
                 ),
@@ -48,7 +52,8 @@ class MyDevicesPage extends GetView<MyDevicesController> {
       ),
       body: Center(
         child: Container(
-          constraints: BoxConstraints(maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 600 : MediaQuery.of(context).size.width),
+          constraints: BoxConstraints(
+              maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 600 : MediaQuery.of(context).size.width),
           child: Obx(() {
             final response = controller.state.value;
             final data = response.data;
