@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
+import 'package:radio_life/app/pages/my_devices/model/device_filter_model.dart';
 import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/my_device_detail_page.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/cards/device_card_widget.dart';
-import 'package:radio_life/app/widget/dialog/reports_filter_dialog/show_reports_filter_dialog_widget.dart';
+import 'package:radio_life/app/widget/dialog/device_filter_dialog_widget.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 
@@ -35,14 +36,15 @@ class MyDevicesPage extends GetView<MyDevicesController> {
           ),
           IconButton(
             onPressed: () {
-              final response = controller.state.value;
+              final response = controller.mydevices.value;
               final data = response.data;
-
+              controller.deviceFilter(DeviceFilter.empty());
               Get.appDialog(
-                pageChild: ReportsFilterDialogWidget(
+                pageChild: DeviceFilterDialogWidget(
                   devices: data,
-                  onApplyFilter: (filterData) {},
+                  onApplyFilter: () => controller.applyFilter(),
                   onCancel: () {},
+                  deviceFilter: controller.deviceFilter.value,
                 ),
               );
             },

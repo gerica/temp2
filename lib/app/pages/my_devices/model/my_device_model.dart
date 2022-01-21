@@ -1,12 +1,12 @@
 class MyDeviceModel {
-  final String id;
-  final String? name;
-  final String? locate;
-  final String? serialNumber;
-  final String? type;
-  final String? balance;
-  final String? status;
-  final String? lastUpdate;
+  String id;
+  String? name;
+  String? locate;
+  String? serialNumber;
+  String? type;
+  String? balance;
+  String? status;
+  String? lastUpdate;
 
   MyDeviceModel({
     required this.id,
@@ -39,4 +39,6 @@ class MyDeviceModel {
         status: status ?? this.status,
         lastUpdate: lastUpdate ?? this.lastUpdate,
       );
+
+  MyDeviceModel.empty(this.id);
 }

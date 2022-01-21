@@ -10,15 +10,14 @@ import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
-import 'package:radio_life/app/widget/dialog/reports_filter_dialog/model/reports_filter_data.dart';
 import 'package:radio_life/app/widget/text_field/dropdown_button_form_field_widget.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 
-import '../../../../generated/l10n.dart';
+import '../../../generated/l10n.dart';
 
 class ReportsFilterDialogWidget extends StatelessWidget {
-  final ValueSetter<ReportsFilterData> onApplyFilter;
+  final ValueSetter<dynamic> onApplyFilter;
   final VoidCallback onCancel;
   List<MyDeviceModel?>? devices;
   MyDeviceModel? deviceSelected;
@@ -202,7 +201,7 @@ class ReportsFilterDialogWidget extends StatelessWidget {
                     child: PrimaryButton(
                         onPressed: () {
                           Get.back();
-                          onApplyFilter(ReportsFilterData());
+                          // onApplyFilter(ReportsFilterData());
                         },
                         title: 'Apply',
                         color: PrimaryButtonColor.primary,
@@ -239,7 +238,6 @@ class ReportsFilterDialogWidget extends StatelessWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(ObjectFlagProperty<ValueSetter<ReportsFilterData>>.has('onApplyFilter', onApplyFilter));
     properties.add(ObjectFlagProperty<VoidCallback>.has('onCancel', onCancel));
   }
 }

@@ -81,13 +81,13 @@ git clone git@github.com:radiolife-labs/Radio-Life-Flutter.git
 Get packages
 ```
 flutter packages get
-or
-flutter packages pub run build_runner build  
 ```
 
 Run build_runner
 ```
 flutter pub run build_runner build
+or
+flutter packages pub run build_runner build  
 ```
 
 #### CI/CD
