@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
+import 'package:radio_life/app/pages/my_devices/model/report_filter_model.dart';
 import 'package:radio_life/app/styles/app_border_radius.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
@@ -17,85 +18,82 @@ import 'package:radio_life/core/data/enum/status.dart';
 import '../../../generated/l10n.dart';
 
 class ReportsFilterDialogWidget extends StatelessWidget {
-  final ValueSetter<dynamic> onApplyFilter;
+  final VoidCallback onApplyFilter;
   final VoidCallback onCancel;
-  List<MyDeviceModel?>? devices;
-  MyDeviceModel? deviceSelected;
+  final ReportFilterData filterData;
 
   ReportsFilterDialogWidget({
     required this.onApplyFilter,
     required this.onCancel,
-    required this.devices,
+    required this.filterData,
   });
 
-  final TextEditingController _devicesController = TextEditingController();
-  final TextEditingController _testsController = TextEditingController();
   final TextEditingController _datePickerController = TextEditingController();
 
-  Future<void> showAlert(BuildContext context) async {
-    showGeneralDialog(
-      barrierLabel: 'Label',
-      barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: const Duration(milliseconds: 700),
-      context: context,
-      pageBuilder: (context, anim1, anim2) => Align(
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: const SizedBox.expand(child: FlutterLogo()),
-        ),
-      ),
-      transitionBuilder: (context, anim1, anim2, child) => SlideTransition(
-        position: Tween(begin: const Offset(0, 1), end: const Offset(0, 0)).animate(anim1),
-        child: child,
-      ),
-    );
-  }
-
-  void showCustomDialog(BuildContext context, Widget widget) {
-    final height = context.size?.height ?? 500;
-    showGeneralDialog(
-      context: context,
-      barrierLabel: 'DialogInfoF',
-      barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: const Duration(milliseconds: 300),
-      pageBuilder: (_, __, ___) {
-        return Container(
-          height: height / 1.5,
-          width: context.breakpoint > LayoutBreakpoint.xs ? 500 : double.infinity,
-          // margin: const EdgeInsets.symmetric(horizontal: 20),
-          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
-          child: widget,
-          // child: Column(
-          //   children: const [
-          //     Text('teste'),
-          //   ],
-          // ),
-        );
-      },
-      transitionBuilder: (_, anim, __, child) {
-        Tween<Offset> tween;
-        if (anim.status == AnimationStatus.reverse) {
-          tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
-        } else {
-          tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
-        }
-
-        return SlideTransition(
-          position: tween.animate(anim),
-          child: FadeTransition(
-            opacity: anim,
-            child: child,
-          ),
-        );
-      },
-    );
-  }
+  // Future<void> showAlert(BuildContext context) async {
+  //   showGeneralDialog(
+  //     barrierLabel: 'Label',
+  //     barrierDismissible: true,
+  //     barrierColor: Colors.black.withOpacity(0.5),
+  //     transitionDuration: const Duration(milliseconds: 700),
+  //     context: context,
+  //     pageBuilder: (context, anim1, anim2) => Align(
+  //       alignment: Alignment.bottomCenter,
+  //       child: Container(
+  //         decoration: BoxDecoration(
+  //           color: Colors.white,
+  //           borderRadius: BorderRadius.circular(20),
+  //         ),
+  //         child: const SizedBox.expand(child: FlutterLogo()),
+  //       ),
+  //     ),
+  //     transitionBuilder: (context, anim1, anim2, child) => SlideTransition(
+  //       position: Tween(begin: const Offset(0, 1), end: const Offset(0, 0)).animate(anim1),
+  //       child: child,
+  //     ),
+  //   );
+  // }
+  //
+  // void showCustomDialog(BuildContext context, Widget widget) {
+  //   final height = context.size?.height ?? 500;
+  //   showGeneralDialog(
+  //     context: context,
+  //     barrierLabel: 'DialogInfoF',
+  //     barrierDismissible: true,
+  //     barrierColor: Colors.black.withOpacity(0.5),
+  //     transitionDuration: const Duration(milliseconds: 300),
+  //     pageBuilder: (_, __, ___) {
+  //       return Container(
+  //         height: height / 1.5,
+  //         width: context.breakpoint > LayoutBreakpoint.xs ? 500 : double.infinity,
+  //         // margin: const EdgeInsets.symmetric(horizontal: 20),
+  //         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
+  //         child: widget,
+  //         // child: Column(
+  //         //   children: const [
+  //         //     Text('teste'),
+  //         //   ],
+  //         // ),
+  //       );
+  //     },
+  //     transitionBuilder: (_, anim, __, child) {
+  //       Tween<Offset> tween;
+  //       if (anim.status == AnimationStatus.reverse) {
+  //         tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
+  //       } else {
+  //         tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
+  //       }
+  //
+  //       return SlideTransition(
+  //         position: tween.animate(anim),
+  //         child: FadeTransition(
+  //           opacity: anim,
+  //           child: child,
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -117,25 +115,27 @@ class ReportsFilterDialogWidget extends StatelessWidget {
             children: [
               _buildItemDevice(context),
               UIHelper.verticalSpaceMedium,
-              GestureDetector(
-                onTap: () {
-                  showCustomDialog(context, const Text('tests'));
-                },
-                child: AbsorbPointer(
-                  child: InputTextWidget(
-                    hintText: S.of(context).tests,
-                    onFieldSubmitted: () {},
-                    readOnly: true,
-                    borderColor: AppColorScheme.primarySwatch,
-                    controller: _testsController,
-                    suffixIcon: const Icon(
-                      Icons.arrow_drop_down,
-                      size: 30,
-                    ),
-                  ),
-                ),
-              ),
+              _buildItemTest(context),
               UIHelper.verticalSpaceMedium,
+              // GestureDetector(
+              //   onTap: () {
+              //     showCustomDialog(context, const Text('tests'));
+              //   },
+              //   child: AbsorbPointer(
+              //     child: InputTextWidget(
+              //       hintText: S.of(context).tests,
+              //       onFieldSubmitted: () {},
+              //       readOnly: true,
+              //       borderColor: AppColorScheme.primarySwatch,
+              //       controller: _testsController,
+              //       suffixIcon: const Icon(
+              //         Icons.arrow_drop_down,
+              //         size: 30,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // UIHelper.verticalSpaceMedium,
               GestureDetector(
                 onTap: () async {
                   final result = await showDateRangePicker(
@@ -193,7 +193,7 @@ class ReportsFilterDialogWidget extends StatelessWidget {
                         title: S.of(context).cancel,
                         color: PrimaryButtonColor.primary,
                         type: PrimaryButtonType.circular,
-                        style: PrimaryButtonStyle.filled,
+                        style: PrimaryButtonStyle.bordered,
                         state: Status.success),
                   ),
                   UIHelper.horizontalSpaceSmall,
@@ -201,12 +201,12 @@ class ReportsFilterDialogWidget extends StatelessWidget {
                     child: PrimaryButton(
                         onPressed: () {
                           Get.back();
-                          // onApplyFilter(ReportsFilterData());
+                          onApplyFilter();
                         },
                         title: 'Apply',
                         color: PrimaryButtonColor.primary,
                         type: PrimaryButtonType.circular,
-                        style: PrimaryButtonStyle.bordered,
+                        style: PrimaryButtonStyle.filled,
                         state: Status.success),
                   )
                 ],
@@ -221,15 +221,32 @@ class ReportsFilterDialogWidget extends StatelessWidget {
   Widget _buildItemDevice(BuildContext context) {
     return DropdownButtonFormFieldWidget(
       hintText: S.of(context).devices,
-      selected: deviceSelected,
+      selected: filterData.reportFilter.device,
       borderColor: AppColorScheme.primarySwatch,
       onChanged: (dynamic newValue) {
-        print('ReportsFilterDialogWidget._buildDropboxDevice: ${newValue?.name}');
+        filterData.reportFilter.device = newValue;
       },
-      itens: devices!.map((dynamic value) {
+      itens: filterData.devices!.map((dynamic value) {
         return DropdownMenuItem<dynamic>(
           value: value,
           child: Text(value?.name ?? ''),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildItemTest(BuildContext context) {
+    return DropdownButtonFormFieldWidget(
+      hintText: S.of(context).tests,
+      selected: filterData.reportFilter.device,
+      borderColor: AppColorScheme.primarySwatch,
+      onChanged: (dynamic newValue) {
+        filterData.reportFilter.resultTest = newValue;
+      },
+      itens: filterData.getTests(context).map((dynamic value) {
+        return DropdownMenuItem<dynamic>(
+          value: value,
+          child: Text(value.label),
         );
       }).toList(),
     );
@@ -240,4 +257,24 @@ class ReportsFilterDialogWidget extends StatelessWidget {
     super.debugFillProperties(properties);
     properties.add(ObjectFlagProperty<VoidCallback>.has('onCancel', onCancel));
   }
+}
+
+class ReportFilterData {
+  List<MyDeviceModel?>? devices;
+  ReportFilter reportFilter;
+
+  ReportFilterData({required this.devices, required this.reportFilter});
+  List<ItemResultTest> getTests(BuildContext context) {
+    final List<ItemResultTest> result = [];
+    result.add(ItemResultTest(value: 'P', label: S.of(context).positive));
+    result.add(ItemResultTest(value: 'N', label: S.of(context).negative));
+    return result;
+  }
+}
+
+class ItemResultTest {
+  String value;
+  String label;
+
+  ItemResultTest({required this.value, required this.label});
 }

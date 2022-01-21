@@ -100,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "myDevice": MessageLookupByLibrary.simpleMessage("My Device"),
         "myDevices": MessageLookupByLibrary.simpleMessage("My Devices"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "negative": MessageLookupByLibrary.simpleMessage("negative"),
         "newDevice": MessageLookupByLibrary.simpleMessage("New Device"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
@@ -113,6 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseConnectToAWifiNetworkToContinue":
             MessageLookupByLibrary.simpleMessage(
                 "Please connect to a WiFi network to continue."),
+        "positive": MessageLookupByLibrary.simpleMessage("Positive"),
         "products": MessageLookupByLibrary.simpleMessage("Products"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "purchaseCompleted":
@@ -163,6 +165,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "wifiSsid": MessageLookupByLibrary.simpleMessage("WiFi SSID"),
         "youHaveNoDevices":
             MessageLookupByLibrary.simpleMessage("You have no devices."),
+        "youHaveNoReports":
+            MessageLookupByLibrary.simpleMessage("You have no reports"),
         "yourMessage": MessageLookupByLibrary.simpleMessage("Your Message"),
         "yourPasswordHasBeenSuccessfullyUpdated":
             MessageLookupByLibrary.simpleMessage(

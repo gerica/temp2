@@ -6,6 +6,11 @@ import '../reports_controller.dart';
 class ReportsBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => ReportsController(getIt()));
+    Get.lazyPut(
+      () => ReportsController(
+        getIt(),
+        getIt(),
+      ),
+    );
   }
 }

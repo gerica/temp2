@@ -20,6 +20,7 @@ abstract class ReportsAdapter {
             locate: exams.locate,
             date: DateFormat('MM/dd/yyyy').format(exams.date),
             tagColor: AppColorScheme.success,
+            deviceId: exams.deviceId,
           ))
       .toList();
 }

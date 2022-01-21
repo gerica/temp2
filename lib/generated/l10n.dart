@@ -1049,6 +1049,36 @@ class S {
       args: [],
     );
   }
+
+  /// `You have no reports`
+  String get youHaveNoReports {
+    return Intl.message(
+      'You have no reports',
+      name: 'youHaveNoReports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Positive`
+  String get positive {
+    return Intl.message(
+      'Positive',
+      name: 'positive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `negative`
+  String get negative {
+    return Intl.message(
+      'negative',
+      name: 'negative',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

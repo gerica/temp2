@@ -7,6 +7,7 @@ class ReportModel {
   final String date;
   final String locate;
   final Color tagColor;
+  final String? deviceId;
 
   ReportModel({
     required this.examNumber,
@@ -14,6 +15,7 @@ class ReportModel {
     required this.date,
     required this.tagColor,
     required this.locate,
+    required this.deviceId,
     this.id,
   });
 }

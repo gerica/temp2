@@ -98,5 +98,8 @@
   "textConfirmRegisterDevice": "This cube will be configured to you, not would be configured again.",
   "textConfirmRegisterDeviceName": "Type the name of device.",
   "btnRegister": "Register device",
-  "emptyList": "Empty list"
+  "emptyList": "Empty list",
+  "youHaveNoReports": "You have no reports",
+  "positive": "Positive",
+  "negative": "negative"
 }
