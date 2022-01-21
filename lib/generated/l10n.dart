@@ -1070,10 +1070,10 @@ class S {
     );
   }
 
-  /// `negative`
+  /// `Negative`
   String get negative {
     return Intl.message(
-      'negative',
+      'Negative',
       name: 'negative',
       desc: '',
       args: [],

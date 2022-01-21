@@ -117,100 +117,9 @@ class ReportsFilterDialogWidget extends StatelessWidget {
               UIHelper.verticalSpaceMedium,
               _buildItemTest(context),
               UIHelper.verticalSpaceMedium,
-              // GestureDetector(
-              //   onTap: () {
-              //     showCustomDialog(context, const Text('tests'));
-              //   },
-              //   child: AbsorbPointer(
-              //     child: InputTextWidget(
-              //       hintText: S.of(context).tests,
-              //       onFieldSubmitted: () {},
-              //       readOnly: true,
-              //       borderColor: AppColorScheme.primarySwatch,
-              //       controller: _testsController,
-              //       suffixIcon: const Icon(
-              //         Icons.arrow_drop_down,
-              //         size: 30,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // UIHelper.verticalSpaceMedium,
-              GestureDetector(
-                onTap: () async {
-                  final result = await showDateRangePicker(
-                    context: context,
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime(2030),
-                    confirmText: S.of(context).confirm,
-                    saveText: S.of(context).save,
-                    cancelText: S.of(context).cancel,
-                    builder: (BuildContext context, Widget? child) => Theme(
-                      data: Theme.of(context).copyWith(
-                        colorScheme: ColorScheme.dark(
-                          primary: AppColorScheme.primarySwatch,
-                          onPrimary: AppColorScheme.white,
-                          surface: AppColorScheme.primarySwatch,
-                          onSurface: Colors.black,
-                        ),
-                      ),
-                      child: child ?? Container(),
-                    ),
-                  );
-                  final start = result?.start;
-                  final end = result?.end;
-                  if (start != null && end != null) {
-                    final startDate = DateFormat(DateFormat.YEAR_MONTH_DAY).format(start);
-                    final endDate = DateFormat(DateFormat.YEAR_MONTH_DAY).format(end);
-                    _datePickerController.text = '$startDate - $endDate';
-                  }
-                },
-                child: AbsorbPointer(
-                  child: InputTextWidget(
-                    hintText: S.of(context).datePicker,
-                    onFieldSubmitted: () {},
-                    readOnly: true,
-                    borderColor: AppColorScheme.primarySwatch,
-                    keyboardType: TextInputType.text,
-                    textCapitalization: TextCapitalization.words,
-                    controller: _datePickerController,
-                    suffixIcon: const Icon(
-                      Icons.arrow_drop_down,
-                      size: 30,
-                    ),
-                  ),
-                ),
-              ),
+              _buildItemDate(context),
               UIHelper.verticalSpaceLarge,
-              Row(
-                children: [
-                  Flexible(
-                    child: PrimaryButton(
-                        onPressed: () {
-                          Get.back();
-                          onCancel();
-                        },
-                        title: S.of(context).cancel,
-                        color: PrimaryButtonColor.primary,
-                        type: PrimaryButtonType.circular,
-                        style: PrimaryButtonStyle.bordered,
-                        state: Status.success),
-                  ),
-                  UIHelper.horizontalSpaceSmall,
-                  Flexible(
-                    child: PrimaryButton(
-                        onPressed: () {
-                          Get.back();
-                          onApplyFilter();
-                        },
-                        title: 'Apply',
-                        color: PrimaryButtonColor.primary,
-                        type: PrimaryButtonType.circular,
-                        style: PrimaryButtonStyle.filled,
-                        state: Status.success),
-                  )
-                ],
-              )
+              _buildButtons(context),
             ],
           ),
         ),
@@ -252,10 +161,87 @@ class ReportsFilterDialogWidget extends StatelessWidget {
     );
   }
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(ObjectFlagProperty<VoidCallback>.has('onCancel', onCancel));
+  Widget _buildItemDate(BuildContext context) {
+    return GestureDetector(
+      onTap: () async {
+        final result = await showDateRangePicker(
+            context: context,
+            firstDate: DateTime(2021),
+            lastDate: DateTime(2030),
+            confirmText: S.of(context).confirm,
+            saveText: S.of(context).save,
+            cancelText: S.of(context).cancel,
+            builder: (BuildContext context, Widget? child) {
+              return Theme(
+                data: ThemeData.light().copyWith(
+                  colorScheme: ColorScheme.dark(
+                    primary: AppColorScheme.primarySwatch,
+                    onPrimary: AppColorScheme.white,
+                    surface: AppColorScheme.primarySwatch,
+                    onSurface: Colors.black,
+                  ),
+                ),
+                child: child ?? Container(),
+              );
+            });
+        final start = result?.start;
+        final end = result?.end;
+        if (start != null && end != null) {
+          final startDate = DateFormat(DateFormat.YEAR_MONTH_DAY).format(start);
+          final endDate = DateFormat(DateFormat.YEAR_MONTH_DAY).format(end);
+          filterData.reportFilter.startDate = start;
+          filterData.reportFilter.endDate = end;
+          _datePickerController.text = '$startDate - $endDate';
+        }
+      },
+      child: AbsorbPointer(
+        child: InputTextWidget(
+          hintText: S.of(context).datePicker,
+          onFieldSubmitted: () {},
+          readOnly: true,
+          borderColor: AppColorScheme.primarySwatch,
+          keyboardType: TextInputType.text,
+          textCapitalization: TextCapitalization.words,
+          controller: _datePickerController,
+          suffixIcon: const Icon(
+            Icons.arrow_drop_down,
+            size: 30,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildButtons(BuildContext context) {
+    return Row(
+      children: [
+        Flexible(
+          child: PrimaryButton(
+              onPressed: () {
+                Get.back();
+                onCancel();
+              },
+              title: S.of(context).cancel,
+              color: PrimaryButtonColor.primary,
+              type: PrimaryButtonType.circular,
+              style: PrimaryButtonStyle.bordered,
+              state: Status.success),
+        ),
+        UIHelper.horizontalSpaceSmall,
+        Flexible(
+          child: PrimaryButton(
+              onPressed: () {
+                Get.back();
+                onApplyFilter();
+              },
+              title: 'Apply',
+              color: PrimaryButtonColor.primary,
+              type: PrimaryButtonType.circular,
+              style: PrimaryButtonStyle.filled,
+              state: Status.success),
+        )
+      ],
+    );
   }
 }
 

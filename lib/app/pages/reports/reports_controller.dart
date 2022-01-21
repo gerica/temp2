@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/my_devices/adapter/my_devices_adapter.dart';
 import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
@@ -98,15 +99,26 @@ class ReportsController extends GetxController {
 
   Future<void> _applyFilter() async {
     final List<ReportModel> result = [...?myExams.value.data];
+    final ReportFilter report = reportFilter.value;
 
-    if (reportFilter.value.device != null) {
-      result.removeWhere((element) => element.deviceId != reportFilter.value.device?.id);
+    if (report.device != null) {
+      result.removeWhere((element) => element.deviceId != report.device?.id);
     }
 
-    if (reportFilter.value.resultTest != null) {
-      result.removeWhere((element) => element.result != reportFilter.value.resultTest.value);
+    if (report.resultTest != null) {
+      result.removeWhere((element) => element.result != report.resultTest?.value);
     }
 
+    if (report.startDate != null && report.endDate != null) {
+      result.removeWhere((element) {
+        final DateTime dateExam = DateFormat('MM/DD/yyyy').parse(element.date);
+        if (dateExam.compareTo(report.startDate as DateTime) >= 0 &&
+            dateExam.compareTo(report.endDate as DateTime) <= 0) {
+          return false;
+        }
+        return true;
+      });
+    }
     state.value = Resource.success(data: result);
   }
 }

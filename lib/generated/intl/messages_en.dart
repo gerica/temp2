@@ -100,7 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "myDevice": MessageLookupByLibrary.simpleMessage("My Device"),
         "myDevices": MessageLookupByLibrary.simpleMessage("My Devices"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
-        "negative": MessageLookupByLibrary.simpleMessage("negative"),
+        "negative": MessageLookupByLibrary.simpleMessage("Negative"),
         "newDevice": MessageLookupByLibrary.simpleMessage("New Device"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
