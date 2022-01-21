@@ -5,6 +5,7 @@ import 'package:radio_life/app/pages/my_devices/adapter/my_devices_adapter.dart'
 import 'package:radio_life/app/pages/my_devices/model/device_filter_model.dart';
 import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
+import 'package:radio_life/app/widget/dialog/device_filter_dialog_widget.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/enum/status.dart';
@@ -75,6 +76,22 @@ class MyDevicesController extends GetxController {
       result?.removeWhere((element) => element?.id != deviceFilter.value.device?.id);
     }
 
+    if (deviceFilter.value.locale != null) {
+      result?.removeWhere((element) => element?.locate != deviceFilter.value.locale);
+    }
+
     state.value = Resource.success(data: result);
+  }
+
+  void openFilterDialog() {
+    deviceFilter(DeviceFilter.empty());
+    final filterData = DeviceFilterData(devices: mydevices.value.data, deviceFilter: deviceFilter.value);
+    Get.appDialog(
+      pageChild: DeviceFilterDialogWidget(
+        filterData: filterData,
+        onApplyFilter: () => applyFilter(),
+        onCancel: () {},
+      ),
+    );
   }
 }

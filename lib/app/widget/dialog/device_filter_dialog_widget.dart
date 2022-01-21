@@ -19,14 +19,12 @@ class DeviceFilterDialogWidget extends StatelessWidget {
   // final ValueSetter<dynamic> onApplyFilter;
   final VoidCallback onApplyFilter;
   final VoidCallback onCancel;
-  List<MyDeviceModel?>? devices;
-  DeviceFilter deviceFilter;
+  final DeviceFilterData filterData;
 
-  DeviceFilterDialogWidget({
+  const DeviceFilterDialogWidget({
     required this.onApplyFilter,
     required this.onCancel,
-    required this.devices,
-    required this.deviceFilter,
+    required this.filterData,
   });
 
   @override
@@ -48,6 +46,8 @@ class DeviceFilterDialogWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               _buildItemDevice(context),
+              UIHelper.verticalSpaceMedium,
+              _buildItemLocation(context),
               UIHelper.verticalSpaceMedium,
               Row(
                 children: [
@@ -88,15 +88,32 @@ class DeviceFilterDialogWidget extends StatelessWidget {
   Widget _buildItemDevice(BuildContext context) {
     return DropdownButtonFormFieldWidget(
       hintText: S.of(context).devices,
-      selected: deviceFilter.device,
+      selected: filterData.deviceFilter.device,
       borderColor: AppColorScheme.primarySwatch,
       onChanged: (dynamic newValue) {
-        deviceFilter.device = newValue;
+        filterData.deviceFilter.device = newValue;
       },
-      itens: devices!.map((dynamic value) {
+      itens: filterData.devices!.map((dynamic value) {
         return DropdownMenuItem<dynamic>(
           value: value,
           child: Text(value?.name ?? ''),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildItemLocation(BuildContext context) {
+    return DropdownButtonFormFieldWidget(
+      hintText: S.of(context).location,
+      selected: filterData.deviceFilter.locale,
+      borderColor: AppColorScheme.primarySwatch,
+      onChanged: (dynamic newValue) {
+        filterData.deviceFilter.locale = newValue;
+      },
+      itens: filterData.locales.map((dynamic value) {
+        return DropdownMenuItem<dynamic>(
+          value: value,
+          child: Text(value ?? ''),
         );
       }).toList(),
     );
@@ -106,5 +123,24 @@ class DeviceFilterDialogWidget extends StatelessWidget {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(ObjectFlagProperty<VoidCallback>.has('onCancel', onCancel));
+  }
+}
+
+class DeviceFilterData {
+  List<MyDeviceModel?>? devices;
+  DeviceFilter deviceFilter;
+
+  DeviceFilterData({required this.devices, required this.deviceFilter});
+
+  List<String?> get locales {
+    final List<String?> result = [];
+    if (devices != null) {
+      for (final MyDeviceModel? device in devices!) {
+        if (!result.contains(device?.locate)) {
+          result.add(device?.locate);
+        }
+      }
+    }
+    return result;
   }
 }
