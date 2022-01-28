@@ -1,3 +1,4 @@
+// TODO APAGAR ESSA CLASSE
 class MyDeviceModel {
   String id;
   String? name;
@@ -16,7 +17,6 @@ class MyDeviceModel {
     required this.type,
     required this.balance,
     required this.status,
-    required this.lastUpdate,
   });
 
   MyDeviceModel copyWith({
@@ -37,7 +37,6 @@ class MyDeviceModel {
         type: type ?? this.type,
         balance: balance ?? this.balance,
         status: status ?? this.status,
-        lastUpdate: lastUpdate ?? this.lastUpdate,
       );
 
   MyDeviceModel.empty(this.id);

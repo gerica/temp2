@@ -3,8 +3,7 @@ import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 import 'package:radio_life/graphql/graphql_api.graphql.dart';
 
 extension GetMyDevices$Query$Extension on GetMyDevices$Query {
-  List<MyDeviceEntity?> get toEntityList =>
-      myDevice == null ? [] : myDevice!.mapList((device) => device?.toEntity);
+  List<MyDeviceEntity?> get toEntityList => myDevice == null ? [] : myDevice!.mapList((device) => device?.toEntity);
 }
 
 extension GetMyDevices$Query$MyDeviceExtension on GetMyDevices$Query$MyDevice {
@@ -16,6 +15,5 @@ extension GetMyDevices$Query$MyDeviceExtension on GetMyDevices$Query$MyDevice {
         type: type,
         balance: balance,
         status: status,
-        lastUpdate: lastUpdate,
       );
 }

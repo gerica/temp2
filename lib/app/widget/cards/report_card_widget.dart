@@ -1,14 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
-import 'package:radio_life/app/pages/reports/model/report_model.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
+import 'package:radio_life/core/domain/entities/exam/exam_entity.dart';
+import '../../../../../generated/l10n.dart';
 
 class ReportCardWidget extends StatelessWidget {
-  final ReportModel model;
+  final ExamEntity model;
   final VoidCallback onTap;
 
   const ReportCardWidget({
@@ -61,22 +63,22 @@ class ReportCardWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          model.date,
+                          '${DateFormat('MM/dd/yyyy').format(model.date as DateTime)}',
                           style: TextStyle(color: AppColorScheme.gray1, fontSize: AppFontSize.small),
                         ),
                         Text(
-                          model.examNumber,
+                          '${S.of(context).textExam} ${model.examNumber ?? ''}',
                           style: const TextStyle(color: Colors.black, fontSize: AppFontSize.primary),
                         ),
                         Text(
-                          'José Carlos da Silva',
+                          model.myDeviceEntity?.name ?? '',
                           style: TextStyle(color: AppColorScheme.gray1, fontSize: AppFontSize.small),
                         ),
                         UIHelper.verticalSpaceMini,
                         Row(children: [
                           _chip('Covid-19'),
-                          _chip(model.locate),
-                          _chip(model.result, color: _getColorResult(), colorText: Colors.white),
+                          _chip(model.myDeviceEntity?.locate ?? ''),
+                          _chip(model.result ?? '', color: _getColorResult(), colorText: Colors.white),
                         ]),
                       ],
                     ),
@@ -116,6 +118,6 @@ class ReportCardWidget extends StatelessWidget {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(ObjectFlagProperty<VoidCallback>.has('onTap', onTap));
-    properties.add(DiagnosticsProperty<ReportModel>('model', model));
+    properties.add(DiagnosticsProperty<ExamEntity>('model', model));
   }
 }

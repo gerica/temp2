@@ -43,7 +43,6 @@ class ConfirmRegisterController extends GetxController {
         name: nameController.text,
         balance: null,
         id: null,
-        lastUpdate: null,
         locate: null,
         status: null,
         type: null);

@@ -90,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "joinUs": MessageLookupByLibrary.simpleMessage("Join us"),
         "key": MessageLookupByLibrary.simpleMessage("value"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
+        "loading": MessageLookupByLibrary.simpleMessage("Loading"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
         "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
@@ -106,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "noBluetoothDeviceFound":
             MessageLookupByLibrary.simpleMessage("No bluetooth device found"),
+        "noMoreExams":
+            MessageLookupByLibrary.simpleMessage("Don\'t have more exams"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("Order details"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -151,6 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "This cube will be configured to you, not would be configured again."),
         "textConfirmRegisterDeviceName":
             MessageLookupByLibrary.simpleMessage("Type the name of device."),
+        "textExam": MessageLookupByLibrary.simpleMessage("Exam"),
         "theEnteredEmailIsNotValid": MessageLookupByLibrary.simpleMessage(
             "The entered email is not valid"),
         "titleConfirmRegisterDevice": m4,

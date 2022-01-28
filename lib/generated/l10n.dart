@@ -1079,6 +1079,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Loading`
+  String get loading {
+    return Intl.message(
+      'Loading',
+      name: 'loading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have more exams`
+  String get noMoreExams {
+    return Intl.message(
+      'Don\'t have more exams',
+      name: 'noMoreExams',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exam`
+  String get textExam {
+    return Intl.message(
+      'Exam',
+      name: 'textExam',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

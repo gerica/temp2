@@ -1,6 +1,8 @@
+import 'package:radio_life/core/data/adapter/exams/exams_extension.dart';
 import 'package:radio_life/core/data/model/resource.dart';
-import 'package:radio_life/core/domain/entities/exam/exam_entity.dart';
+
+import '../use_cases/exams/get_exams_use_case.dart';
 
 abstract class ExamsRepository {
-  Future<Resource<List<ExamEntity>>> getExams({required String device});
+  Future<Resource<GetExams$Query$Extension>> getExams({required FilterParams filter});
 }

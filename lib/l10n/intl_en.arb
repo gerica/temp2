@@ -101,5 +101,8 @@
   "emptyList": "Empty list",
   "youHaveNoReports": "You have no reports",
   "positive": "Positive",
-  "negative": "Negative"
+  "negative": "Negative",
+  "loading": "Loading",
+  "noMoreExams": "Don't have more exams",
+  "textExam": "Exam"
 }

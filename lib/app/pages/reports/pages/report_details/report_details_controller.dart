@@ -3,7 +3,6 @@ import 'package:radio_life/app/pages/reports/pages/report_details/params/report_
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 
-import '../../pages/../adapter/reports_adapter.dart';
 import 'model/report_details_model.dart';
 
 class ReportDetailsController extends GetxController {
@@ -21,7 +20,7 @@ class ReportDetailsController extends GetxController {
   void onInit() {
     super.onInit();
     final param = tryCast<ReportDetailsParams>(Get.arguments);
-    if (param != null) state.value = Resource.success(data: param.toReportDetailsModel);
+    // if (param != null) state.value = Resource.success(data: param.toReportDetailsModel);
   }
 //endregion
 
