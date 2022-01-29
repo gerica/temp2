@@ -1,1 +1,2 @@
--Rad-144 - Implements infinite scroll in reports page
+-Rad-144 - Implements filter in device page
+-Rad-144 - Implements details report page
