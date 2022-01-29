@@ -22,18 +22,18 @@ class ReportsController extends GetxController {
   final GetExamsUseCase _getExamsUseCase;
   final GetMyDevicesUseCase _getMyDevicesUseCase;
   final state = Resource.loading<List<ExamEntity>>().obs;
-  final myExams = Resource.loading<List<ExamEntity>>().obs;
   final myDevices = Resource.loading<List<MyDeviceModel?>>().obs;
-  final reportFilter = ReportFilter.empty().obs;
+  final reportFilter = ReportFilter(page: 1, perPage: _perPage).obs;
 
   // infinite scroll
   static const _perPage = 20;
+  static const _initPage = 1;
   final PagingController<int, ExamEntity> pagingController = PagingController(firstPageKey: 0);
 
   @override
   void onReady() {
     super.onReady();
-    getExams(0);
+    getExams(_initPage);
     pagingController.addPageRequestListener((pageKey) {
       getExams(pageKey);
     });
@@ -49,7 +49,8 @@ class ReportsController extends GetxController {
   Future getExams(int pageKey) async {
     AppUIBlock.blockUI(context: Get.context);
     await 1.delay();
-    final response = await _getExamsUseCase(FilterParams(page: pageKey, perPage: _perPage));
+    reportFilter.value.page = pageKey;
+    final response = await _getExamsUseCase(reportFilter.value);
     AppUIBlock.unblock(context: Get.context);
     switch (response.status) {
       case Status.loading:
@@ -58,7 +59,6 @@ class ReportsController extends GetxController {
         final data = response.data;
 
         if (data != null) {
-          // DateFormat('MM/dd/yyyy').format(exams.date as DateTime),
           final newItems = data.items;
           final isLastPage = data.items.length < _perPage;
 
@@ -68,8 +68,6 @@ class ReportsController extends GetxController {
             final nextPageKey = pageKey + newItems.length;
             pagingController.appendPage(newItems, nextPageKey);
           }
-          // state.value = Resource.success(data: newItems);
-          myExams.value = Resource.success(data: newItems);
         }
         break;
       case Status.failed:
@@ -110,7 +108,7 @@ class ReportsController extends GetxController {
   }
 
   void openFilterDialog() {
-    reportFilter(ReportFilter.empty());
+    reportFilter(ReportFilter(page: 1, perPage: _perPage));
     final filterData = ReportFilterData(devices: myDevices.value.data, reportFilter: reportFilter.value);
     Get.appDialog(
       pageChild: ReportsFilterDialogWidget(
@@ -122,28 +120,8 @@ class ReportsController extends GetxController {
   }
 
   Future<void> _applyFilter() async {
-    final List<ExamEntity> result = [...?myExams.value.data];
-    final ReportFilter report = reportFilter.value;
-
-    if (report.device != null) {
-      result.removeWhere((element) => element.deviceId != report.device?.id);
-    }
-
-    if (report.resultTest != null) {
-      result.removeWhere((element) => element.result != report.resultTest?.value);
-    }
-
-    if (report.startDate != null && report.endDate != null) {
-      result.removeWhere((element) {
-        // final DateTime dateExam = DateFormat('MM/DD/yyyy').parse(element.date);
-        final DateTime dateExam = element.date as DateTime;
-        if (dateExam.compareTo(report.startDate as DateTime) >= 0 &&
-            dateExam.compareTo(report.endDate as DateTime) <= 0) {
-          return false;
-        }
-        return true;
-      });
-    }
-    state.value = Resource.success(data: result);
+    state(Resource.loading<List<ExamEntity>>());
+    pagingController.refresh();
+    await getExams(_initPage);
   }
 }

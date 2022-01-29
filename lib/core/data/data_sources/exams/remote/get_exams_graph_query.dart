@@ -1,25 +1,23 @@
 // ignore_for_file: join_return_with_assignment
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart';
-import 'package:radio_life/core/domain/use_cases/exams/get_exams_use_case.dart';
+import 'package:radio_life/app/pages/my_devices/model/report_filter_model.dart';
 
 class GetExamsGraphQuery {
-  final FilterParams filter;
+  final ReportFilter filter;
 
   GetExamsGraphQuery({required this.filter});
 
   Map<String, dynamic> get variables {
     final variables = {
-      // 'sort': sort,
       'perPage': filter.perPage,
       'page': filter.page,
-      'deviceId': filter.deviceId,
-      'location': filter.location,
-      'status': filter.status
+      'deviceId': filter.device?.id,
+      'result': filter.resultTest?.value,
+      'startDate': filter.startDate?.toIso8601String(),
+      'endDate': filter.endDate?.toIso8601String()
     };
-    // if (filter != null) {
-    //   variables.addAll({"filter": filter});
-    // }
+
     return variables;
   }
 
@@ -73,8 +71,28 @@ class GetExamsGraphQuery {
   }
 
   String _queryWithFilter() {
-    return r'''query ExamResultPagination($perPage: Int!, $page: Int!) {
-               examResultPagination(sort: CREATEDAT_DESC, perPage:$perPage, page:$page, filter:{deviceId:$deviceId}) {''';
+    String filterHeader = '';
+    String filterBody = 'filter:{';
+    if (filter.device != null) {
+      filterHeader += '\$deviceId: MongoID!,';
+      filterBody += 'deviceId:\$deviceId, ';
+    }
+    if (filter.resultTest != null) {
+      filterHeader += '\$result: String!,';
+      filterBody += 'result:\$result, ';
+    }
+    if (filter.startDate != null && filter.endDate != null) {
+      filterHeader += '\$startDate: Date!, \$ endDate: Date!,';
+      filterBody += 'AND: [ '
+          '{_operators: {createdAt: {gte: \$startDate}}},'
+          '{_operators: {createdAt: {lte: \$endDate}}},'
+          ']';
+    }
+
+    filterBody += '}';
+
+    return 'query ExamResultPagination(\$perPage: Int!, \$page: Int!, $filterHeader) {'
+        ' examResultPagination(sort: CREATEDAT_DESC, perPage:\$perPage, page:\$page, $filterBody ) {';
   }
 
   String _queryWithOutFilter() {
@@ -84,7 +102,7 @@ class GetExamsGraphQuery {
 
   DocumentNode get document {
     var initQuery = _queryWithOutFilter();
-    if (filter.deviceId != null) {
+    if (filter.haveFilter) {
       initQuery = _queryWithFilter();
     }
     final query = initQuery + _getParameters() + r'}}';
