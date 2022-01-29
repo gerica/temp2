@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/pages/my_devices/model/device_filter_model.dart';
-import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
 import 'package:radio_life/app/styles/app_border_radius.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
@@ -12,6 +11,7 @@ import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/text_field/dropdown_button_form_field_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 import '../../../generated/l10n.dart';
 
@@ -127,7 +127,7 @@ class DeviceFilterDialogWidget extends StatelessWidget {
 }
 
 class DeviceFilterData {
-  List<MyDeviceModel?>? devices;
+  List<MyDeviceEntity?>? devices;
   DeviceFilter deviceFilter;
 
   DeviceFilterData({required this.devices, required this.deviceFilter});
@@ -135,7 +135,7 @@ class DeviceFilterData {
   List<String?> get locales {
     final List<String?> result = [];
     if (devices != null) {
-      for (final MyDeviceModel? device in devices!) {
+      for (final MyDeviceEntity? device in devices!) {
         if (!result.contains(device?.locate)) {
           result.add(device?.locate);
         }

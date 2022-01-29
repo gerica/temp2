@@ -4,11 +4,11 @@ import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
-import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
+import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 class DeviceCardWidget extends StatelessWidget {
-  final MyDeviceModel model;
+  final MyDeviceEntity model;
   final VoidCallback onTap;
 
   const DeviceCardWidget({required this.model, required this.onTap});
@@ -57,7 +57,7 @@ class DeviceCardWidget extends StatelessWidget {
                         _chip(model.locate ?? ''),
                       ]),
                       Row(children: [
-                        _footer('Credits', model.balance ?? ''),
+                        _footer('Credits', model.balance.toString()),
                         _footer('Serial Number', model.serialNumber ?? ''),
                       ]),
                     ],
@@ -110,6 +110,6 @@ class DeviceCardWidget extends StatelessWidget {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(ObjectFlagProperty<VoidCallback>.has('onTap', onTap));
-    properties.add(DiagnosticsProperty<MyDeviceModel>('model', model));
+    properties.add(DiagnosticsProperty<MyDeviceEntity>('model', model));
   }
 }

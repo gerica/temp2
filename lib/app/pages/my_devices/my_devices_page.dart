@@ -10,9 +10,9 @@ import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/cards/device_card_widget.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 import '../../../generated/l10n.dart';
-import 'model/my_device_model.dart';
 import 'my_devices_controller.dart';
 
 class MyDevicesPage extends GetView<MyDevicesController> {
@@ -82,7 +82,7 @@ class MyDevicesPage extends GetView<MyDevicesController> {
     );
   }
 
-  Widget _buildList(List<MyDeviceModel?> data) {
+  Widget _buildList(List<MyDeviceEntity?> data) {
     return ListView.builder(
       padding: const EdgeInsets.all(16),
       itemCount: data.length,

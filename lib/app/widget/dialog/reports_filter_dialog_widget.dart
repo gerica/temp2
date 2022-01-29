@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
-import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
 import 'package:radio_life/app/pages/my_devices/model/report_filter_model.dart';
 import 'package:radio_life/app/styles/app_border_radius.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
@@ -14,6 +13,7 @@ import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/text_field/dropdown_button_form_field_widget.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 import '../../../generated/l10n.dart';
 
@@ -246,7 +246,7 @@ class ReportsFilterDialogWidget extends StatelessWidget {
 }
 
 class ReportFilterData {
-  List<MyDeviceModel?>? devices;
+  List<MyDeviceEntity?>? devices;
   ReportFilter reportFilter;
 
   ReportFilterData({required this.devices, required this.reportFilter});

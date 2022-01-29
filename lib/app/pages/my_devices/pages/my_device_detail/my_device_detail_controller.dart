@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/core/data/model/resource.dart';
+import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 class MyDeviceDetailController extends GetxController {
   //region State
-  Rx<Resource<MyDeviceModel>> state = Resource.loading<MyDeviceModel>().obs;
+  Rx<Resource<MyDeviceEntity>> state = Resource.loading<MyDeviceEntity>().obs;
 
   //endregion
 
@@ -17,7 +17,7 @@ class MyDeviceDetailController extends GetxController {
   @override
   Future onReady() async {
     super.onReady();
-    final param = tryCast<MyDeviceModel>(Get.arguments);
+    final param = tryCast<MyDeviceEntity>(Get.arguments);
     // don't need wait, because have the data
     // AppUIBlock.blockUI(context: Get.context);
     // await 1.delay();

@@ -77,8 +77,8 @@ class BuyCreditsController extends GetxController {
   Future signDevicePlan() async {
     if (_selectedPlan == null) return;
     AppUIBlock.blockUI(context: Get.context);
-    final response = await _signDevicePlanUseCase(SignDevicePlanParams(
-        deviceId: deviceId, planId: _selectedPlan?.id ?? ''));
+    final response =
+        await _signDevicePlanUseCase(SignDevicePlanParams(deviceId: deviceId, planId: _selectedPlan?.id ?? ''));
     AppUIBlock.unblock(context: Get.context);
 
     switch (response.status) {
@@ -86,12 +86,10 @@ class BuyCreditsController extends GetxController {
         break;
       case Status.success:
         final int? balance = response.data;
-        if (balance != null)
-          myDeviceDetailController.state.value = Resource.success(
-              data: myDeviceDetailController.state.value.data
-                  ?.copyWith(balance: balance.toString()));
-        await CreditTransactionSuccessPage.navigateWith(
-            arguments: _selectedPlan!);
+        if (balance != null) {
+          myDeviceDetailController.state.value = Resource.success(data: myDeviceDetailController.state.value.data);
+        }
+        await CreditTransactionSuccessPage.navigateWith(arguments: _selectedPlan!);
         break;
       case Status.failed:
         handleError(response.error ?? AppException.generic());
@@ -108,12 +106,8 @@ class BuyCreditsController extends GetxController {
               .map(
                 (plan) => plan.copyWith(
                   isSelected: plan.id == _selectedPlan?.id,
-                  backgroundColor: plan.id == _selectedPlan?.id
-                      ? AppColorScheme.primarySwatch
-                      : AppColorScheme.white,
-                  textColor: plan.id == _selectedPlan?.id
-                      ? AppColorScheme.white
-                      : Colors.black,
+                  backgroundColor: plan.id == _selectedPlan?.id ? AppColorScheme.primarySwatch : AppColorScheme.white,
+                  textColor: plan.id == _selectedPlan?.id ? AppColorScheme.white : Colors.black,
                 ),
               )
               .toList());

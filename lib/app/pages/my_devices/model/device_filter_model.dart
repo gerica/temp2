@@ -1,7 +1,7 @@
-import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
+import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 class DeviceFilter {
-  MyDeviceModel? device;
+  MyDeviceEntity? device;
   String? locale;
 
   DeviceFilter.empty();

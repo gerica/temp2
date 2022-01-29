@@ -33,4 +33,23 @@ class MyDeviceEntity extends Base {
       balance = account['balance'] == null ? null : account['balance'] as int;
     }
   }
+
+  // MyDeviceEntity copyWith({
+  //   String? id,
+  //   String? name,
+  //   String? locate,
+  //   String? serialNumber,
+  //   String? type,
+  //   int? balance,
+  //   String? status,
+  // }) =>
+  //     MyDeviceEntity(
+  //       id: id ?? this.id,
+  //       name: name ?? this.name,
+  //       locate: locate ?? this.locate,
+  //       serialNumber: serialNumber ?? this.serialNumber,
+  //       type: type ?? this.type,
+  //       balance: balance ?? this.balance,
+  //       status: status ?? this.status,
+  //     );
 }

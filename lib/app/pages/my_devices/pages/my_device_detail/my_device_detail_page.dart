@@ -5,7 +5,6 @@ import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
-import 'package:radio_life/app/pages/my_devices/model/my_device_model.dart';
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/buy_credits_page.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_font_size.dart';
@@ -14,13 +13,15 @@ import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../radio_life_app_routes.dart';
 import 'my_device_detail_controller.dart';
 
 class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
-  static Future? navigateWith({required MyDeviceModel params}) => Get.toNamed(Routes.myDeviceDetail, arguments: params);
+  static Future? navigateWith({required MyDeviceEntity params}) =>
+      Get.toNamed(Routes.myDeviceDetail, arguments: params);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,8 @@ class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
       ),
       body: Obx(() => Center(
             child: Container(
-              constraints: BoxConstraints(maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
+              constraints: BoxConstraints(
+                  maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
               padding: const EdgeInsets.all(AppSpacing.medium),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -72,7 +74,7 @@ class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
                           UIHelper.verticalSpaceSmall,
                           AutoSizeText(
                             S.of(context).creditsCounter(
-                                  int.tryParse(controller.state.value.data?.balance ?? '') ?? 0,
+                                  int.tryParse(controller.state.value.data?.balance.toString() as String) ?? 0,
                                 ),
                             maxLines: 1,
                             style: const TextStyle(
