@@ -1119,6 +1119,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Please see a doctor.`
+  String get textResultPositive {
+    return Intl.message(
+      'Please see a doctor.',
+      name: 'textResultPositive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All right with you.`
+  String get textResultNegative {
+    return Intl.message(
+      'All right with you.',
+      name: 'textResultNegative',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Device`
+  String get textDevice {
+    return Intl.message(
+      'Device',
+      name: 'textDevice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details exam`
+  String get titleReportDetails {
+    return Intl.message(
+      'Details exam',
+      name: 'titleReportDetails',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

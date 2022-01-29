@@ -59,7 +59,7 @@ class ReportsPage extends GetView<ReportsController> {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ReportCardWidget(
         onTap: () {
-          Get.toNamed(Routes.reportDetails);
+          Get.toNamed(Routes.reportDetails, arguments: item);
         },
         model: item,
       ),

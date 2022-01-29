@@ -11,5 +11,6 @@ abstract class AppImages {
   static const productImage = 'assets/images/product_image.png';
   static const avatar = 'assets/images/avatar.png';
   static const avatar2 = 'assets/images/avatar2.png';
-
+  static const faceHappy = 'assets/images/face_happy.png';
+  static const faceSad = 'assets/images/face_sad.png';
 }

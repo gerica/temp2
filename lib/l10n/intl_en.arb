@@ -105,5 +105,10 @@
   "loading": "Loading",
   "noMoreExams": "Don't have more exams",
   "textExam": "Exam",
-  "textStatus": "Status"
+  "textStatus": "Status",
+  "textResultPositive": "Please see a doctor.",
+  "textResultNegative": "All right with you.",
+  "textDevice": "Device",
+  "titleReportDetails": "Details exam"
+
 }

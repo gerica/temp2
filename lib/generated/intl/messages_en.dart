@@ -154,11 +154,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "This cube will be configured to you, not would be configured again."),
         "textConfirmRegisterDeviceName":
             MessageLookupByLibrary.simpleMessage("Type the name of device."),
+        "textDevice": MessageLookupByLibrary.simpleMessage("Device"),
         "textExam": MessageLookupByLibrary.simpleMessage("Exam"),
+        "textResultNegative":
+            MessageLookupByLibrary.simpleMessage("All right with you."),
+        "textResultPositive":
+            MessageLookupByLibrary.simpleMessage("Please see a doctor."),
         "textStatus": MessageLookupByLibrary.simpleMessage("Status"),
         "theEnteredEmailIsNotValid": MessageLookupByLibrary.simpleMessage(
             "The entered email is not valid"),
         "titleConfirmRegisterDevice": m4,
+        "titleReportDetails":
+            MessageLookupByLibrary.simpleMessage("Details exam"),
         "titleUpdatePassword": MessageLookupByLibrary.simpleMessage("Error"),
         "updatePassword":
             MessageLookupByLibrary.simpleMessage("Update password"),

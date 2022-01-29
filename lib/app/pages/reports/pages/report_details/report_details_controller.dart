@@ -1,27 +1,22 @@
 import 'package:get/get.dart';
-import 'package:radio_life/app/pages/reports/pages/report_details/params/report_details_params.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/core/data/model/resource.dart';
-
-import 'model/report_details_model.dart';
+import 'package:radio_life/core/domain/entities/exam/exam_entity.dart';
 
 class ReportDetailsController extends GetxController {
   //region State
-  Rx<Resource<ReportDetailsModel>> state = Resource.loading<ReportDetailsModel>().obs;
+  Rx<Resource<ExamEntity>> state = Resource.loading<ExamEntity>().obs;
 
-  //endregion
-
-  //region Variables
-
-  //endregion
-
-  //region Functions
   @override
   void onInit() {
     super.onInit();
-    final param = tryCast<ReportDetailsParams>(Get.arguments);
-    // if (param != null) state.value = Resource.success(data: param.toReportDetailsModel);
+    final param = tryCast<ExamEntity>(Get.arguments);
+    if (param != null) {
+      state.value = Resource.success(data: param);
+    }
   }
-//endregion
 
+  bool get result {
+    return state.value.data?.result == 'P';
+  }
 }
