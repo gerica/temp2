@@ -55,6 +55,12 @@ class DeviceCardWidget extends StatelessWidget {
                       Row(children: [
                         _chip(model.type ?? ''),
                         _chip(model.locate ?? ''),
+                        _chip(
+                          model.status ?? '',
+                          colorDecoration:
+                              model.status == 'online' ? RadiolifeThemeColors.success : RadiolifeThemeColors.yellow,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ]),
                       Row(children: [
                         _footer('Credits', model.balance.toString()),
@@ -71,16 +77,21 @@ class DeviceCardWidget extends StatelessWidget {
     );
   }
 
-  Widget _chip(String text) {
+  Widget _chip(
+    String text, {
+    Color colorDecoration = RadiolifeThemeColors.blueLight,
+    FontWeight fontWeight = FontWeight.normal,
+  }) {
     return Container(
       margin: const EdgeInsets.only(right: 10),
       padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
-      decoration: BoxDecoration(color: AppColorScheme.blueLight, borderRadius: BorderRadius.circular(4)),
+      decoration: BoxDecoration(color: colorDecoration, borderRadius: BorderRadius.circular(4)),
       child: Text(
         text,
         style: TextStyle(
           color: AppColorScheme.textPrimary,
           fontSize: AppFontSize.small,
+          fontWeight: fontWeight,
         ),
       ),
     );

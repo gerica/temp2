@@ -80,6 +80,10 @@ class MyDevicesController extends GetxController {
       result?.removeWhere((element) => element?.locate != deviceFilter.value.locale);
     }
 
+    if (deviceFilter.value.status != null) {
+      result?.removeWhere((element) => element?.status != deviceFilter.value.status);
+    }
+
     state.value = Resource.success(data: result);
   }
 

@@ -155,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "textConfirmRegisterDeviceName":
             MessageLookupByLibrary.simpleMessage("Type the name of device."),
         "textExam": MessageLookupByLibrary.simpleMessage("Exam"),
+        "textStatus": MessageLookupByLibrary.simpleMessage("Status"),
         "theEnteredEmailIsNotValid": MessageLookupByLibrary.simpleMessage(
             "The entered email is not valid"),
         "titleConfirmRegisterDevice": m4,

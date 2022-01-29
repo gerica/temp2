@@ -104,5 +104,6 @@
   "negative": "Negative",
   "loading": "Loading",
   "noMoreExams": "Don't have more exams",
-  "textExam": "Exam"
+  "textExam": "Exam",
+  "textStatus": "Status"
 }

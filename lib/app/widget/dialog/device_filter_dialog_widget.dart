@@ -49,35 +49,9 @@ class DeviceFilterDialogWidget extends StatelessWidget {
               UIHelper.verticalSpaceMedium,
               _buildItemLocation(context),
               UIHelper.verticalSpaceMedium,
-              Row(
-                children: [
-                  Flexible(
-                    child: PrimaryButton(
-                        onPressed: () {
-                          Get.back();
-                          onCancel();
-                        },
-                        title: S.of(context).cancel,
-                        color: PrimaryButtonColor.primary,
-                        type: PrimaryButtonType.circular,
-                        style: PrimaryButtonStyle.bordered,
-                        state: Status.success),
-                  ),
-                  UIHelper.horizontalSpaceSmall,
-                  Flexible(
-                    child: PrimaryButton(
-                        onPressed: () {
-                          Get.back();
-                          onApplyFilter();
-                        },
-                        title: 'Apply',
-                        color: PrimaryButtonColor.primary,
-                        type: PrimaryButtonType.circular,
-                        style: PrimaryButtonStyle.filled,
-                        state: Status.success),
-                  )
-                ],
-              )
+              _buildItemStatus(context),
+              UIHelper.verticalSpaceMedium,
+              _buildButtons(context),
             ],
           ),
         ),
@@ -119,10 +93,53 @@ class DeviceFilterDialogWidget extends StatelessWidget {
     );
   }
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(ObjectFlagProperty<VoidCallback>.has('onCancel', onCancel));
+  Widget _buildItemStatus(BuildContext context) {
+    return DropdownButtonFormFieldWidget(
+      hintText: S.of(context).textStatus,
+      selected: filterData.deviceFilter.status,
+      borderColor: AppColorScheme.primarySwatch,
+      onChanged: (dynamic newValue) {
+        filterData.deviceFilter.status = newValue;
+      },
+      itens: filterData.status.map((dynamic value) {
+        return DropdownMenuItem<dynamic>(
+          value: value,
+          child: Text(value ?? ''),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildButtons(BuildContext context) {
+    return Row(
+      children: [
+        Flexible(
+          child: PrimaryButton(
+              onPressed: () {
+                Get.back();
+                onCancel();
+              },
+              title: S.of(context).cancel,
+              color: PrimaryButtonColor.primary,
+              type: PrimaryButtonType.circular,
+              style: PrimaryButtonStyle.bordered,
+              state: Status.success),
+        ),
+        UIHelper.horizontalSpaceSmall,
+        Flexible(
+          child: PrimaryButton(
+              onPressed: () {
+                Get.back();
+                onApplyFilter();
+              },
+              title: 'Apply',
+              color: PrimaryButtonColor.primary,
+              type: PrimaryButtonType.circular,
+              style: PrimaryButtonStyle.filled,
+              state: Status.success),
+        )
+      ],
+    );
   }
 }
 
@@ -138,6 +155,18 @@ class DeviceFilterData {
       for (final MyDeviceEntity? device in devices!) {
         if (!result.contains(device?.locate)) {
           result.add(device?.locate);
+        }
+      }
+    }
+    return result;
+  }
+
+  List<String?> get status {
+    final List<String?> result = [];
+    if (devices != null) {
+      for (final MyDeviceEntity? device in devices!) {
+        if (!result.contains(device?.status)) {
+          result.add(device?.status);
         }
       }
     }
