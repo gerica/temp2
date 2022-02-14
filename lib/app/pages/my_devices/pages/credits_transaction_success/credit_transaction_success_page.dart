@@ -13,7 +13,7 @@ import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 
-import '../../../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'credit_transaction_success_controller.dart';
 
 class CreditTransactionSuccessPage

@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-import '../../../data/model/resource.dart';
+import 'package:radio_life/core/data/model/resource.dart';
 
 abstract class BaseFutureResourceUseCase<Param, Result> extends BaseUseCase {
   Future<Resource<Result?>> call(Param params);

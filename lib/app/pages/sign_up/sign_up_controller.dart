@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/sign_up/model/sign_up_model.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
@@ -13,8 +14,7 @@ import 'package:radio_life/core/domain/use_cases/auth/check_if_has_user_logged_i
 import 'package:radio_life/core/domain/use_cases/auth/check_if_user_was_confirmed.dart';
 import 'package:radio_life/core/domain/use_cases/auth/do_sign_up_use_case.dart';
 
-import '../../../generated/l10n.dart';
-import '../../helper/dialog_helper.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'adapter/sign_up_adapter.dart';
 
 class SignUpController extends GetxController {
@@ -65,7 +65,8 @@ class SignUpController extends GetxController {
     if (firstNameController.text.isNotEmpty && lastNameController.text.isNotEmpty && emailController.text.isNotEmpty) {
       AppUIBlock.blockUI(context: Get.context);
       final response = await _doSignUpUseCase(
-        SignUpParams(firstName: firstNameController.text, lastName: lastNameController.text, email: emailController.text),
+        SignUpParams(
+            firstName: firstNameController.text, lastName: lastNameController.text, email: emailController.text),
       );
       AppUIBlock.unblock(context: Get.context);
 
@@ -93,7 +94,9 @@ class SignUpController extends GetxController {
   }
 
   bool get _isValid {
-    signUpModel.value = SignUpModel(firstName: firstNameController.text, lastName: lastNameController.text, email: emailController.text).validate;
+    signUpModel.value =
+        SignUpModel(firstName: firstNameController.text, lastName: lastNameController.text, email: emailController.text)
+            .validate;
     return signUpModel.value.isValid;
   }
 

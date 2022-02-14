@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:graphql/client.dart';
+import 'package:radio_life/core/data/model/app_exception.dart';
 
-import '../model/app_exception.dart';
 import 'get_error_title_and_descripton_helper.dart';
 
 class ErrorMapper {
@@ -18,8 +18,7 @@ class ErrorMapper {
               : AppException(exception: e, title: e.toString());
 
   static String _graphQlErrorMapper(List<GraphQLError> errorList) {
-    if (errorList.isEmpty)
-      return 'Unexpected error'; //ToDo maybe customize this error message and export string
+    if (errorList.isEmpty) return 'Unexpected error'; //ToDo maybe customize this error message and export string
 
     if (errorList.length == 1) {
       return GetErrorTitleAndDescriptionHelper.getTitleError(errorList);
@@ -28,8 +27,7 @@ class ErrorMapper {
   }
 
   static String _graphQlErrorMapperDescription(List<GraphQLError> errorList) {
-    if (errorList.isEmpty)
-      return 'Unexpected error'; //ToDo maybe customize this error message and export string
+    if (errorList.isEmpty) return 'Unexpected error'; //ToDo maybe customize this error message and export string
 
     if (errorList.length == 1) {
       return GetErrorTitleAndDescriptionHelper.getDescriptionError(errorList);

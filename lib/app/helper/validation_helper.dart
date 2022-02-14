@@ -1,4 +1,4 @@
-import '../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 
 abstract class ValidationHelper {
   static bool hasUppercase(String text) {

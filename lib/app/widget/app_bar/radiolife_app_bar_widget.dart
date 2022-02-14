@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
-
-import '../../styles/app_color_scheme.dart';
 
 class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final bool automaticallyImplyLeading;
@@ -117,8 +116,7 @@ class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidg
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty<bool>('automaticallyImplyLeading', automaticallyImplyLeading));
+    properties.add(DiagnosticsProperty<bool>('automaticallyImplyLeading', automaticallyImplyLeading));
     properties.add(StringProperty('titleText', titleText));
     properties.add(DoubleProperty('elevation', elevation));
     properties.add(ColorProperty('backgroundColor', backgroundColor));
@@ -131,8 +129,7 @@ class RadioLifeAppBarWidget extends StatelessWidget implements PreferredSizeWidg
     properties.add(DoubleProperty('bottomOpacity', bottomOpacity));
     properties.add(DiagnosticsProperty<bool>('centerTitle', centerTitle));
     properties.add(DiagnosticsProperty<bool>('showBackButton', showBackButton));
-    properties
-        .add(ObjectFlagProperty<VoidCallback>.has('onBackButtonPressed', onBackButtonPressed));
+    properties.add(ObjectFlagProperty<VoidCallback>.has('onBackButtonPressed', onBackButtonPressed));
     properties.add(DiagnosticsProperty<TextStyle>('style', style));
     properties.add(DiagnosticsProperty<bool>('hideTitle', hideTitle));
     properties.add(DoubleProperty('leadingWidth', leadingWidth));

@@ -14,7 +14,7 @@ import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 
-import '../../../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'params/product_details_params.dart';
 import 'product_details_controller.dart';
 

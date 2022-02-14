@@ -13,7 +13,7 @@ import 'package:radio_life/app/widget/text_field/dropdown_button_form_field_widg
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
-import '../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 
 class DeviceFilterDialogWidget extends StatelessWidget {
   // final ValueSetter<dynamic> onApplyFilter;

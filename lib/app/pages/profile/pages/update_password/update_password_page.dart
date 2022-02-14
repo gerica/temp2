@@ -10,7 +10,7 @@ import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart'
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 
-import '../../../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 
 class UpdatePasswordPage extends GetView<UpdatePasswordController> {
   @override

@@ -8,7 +8,7 @@ import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/cards/product_card_widget.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 
-import '../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'pages/product_details/params/product_details_params.dart';
 import 'products_controller.dart';
 

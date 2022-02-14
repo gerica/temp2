@@ -6,6 +6,7 @@ import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/buy_credits_page.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_font_size.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
@@ -15,8 +16,7 @@ import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart'
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
-import '../../../../../generated/l10n.dart';
-import '../../../../radio_life_app_routes.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'my_device_detail_controller.dart';
 
 class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {

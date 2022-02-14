@@ -10,7 +10,7 @@ import 'package:radio_life/app/widget/cards/report_card_widget.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/core/domain/entities/exam/exam_entity.dart';
 
-import '../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'reports_controller.dart';
 
 class ReportsPage extends GetView<ReportsController> {

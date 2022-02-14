@@ -3,7 +3,7 @@ import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 
-import '../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'adapter/home_adapter.dart';
 import 'model/home_model.dart';
 

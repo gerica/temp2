@@ -5,6 +5,7 @@ import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/adapter/p
 import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/model/plan_model.dart';
 import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/credit_transaction_success_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/my_device_detail_controller.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
@@ -14,8 +15,6 @@ import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/repositories/plans/sign_device_plan_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/plans/get_plans_use_case.dart';
-
-import '../../../../radio_life_app_routes.dart';
 
 class BuyCreditsController extends GetxController {
   BuyCreditsController(

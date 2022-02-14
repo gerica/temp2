@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
@@ -15,8 +16,6 @@ import 'package:radio_life/core/domain/use_cases/user/image_to_base64_use_case.d
 import 'package:radio_life/core/domain/use_cases/user/update_user_profile_use_case.dart';
 import 'package:radio_life/generated/l10n.dart';
 import 'package:universal_io/io.dart' as io;
-
-import '../../helper/dialog_helper.dart';
 
 class ProfileController extends GetxController {
   ProfileController(
@@ -114,8 +113,8 @@ class ProfileController extends GetxController {
   }
 
   Future getImage(ImageSource source) async {
-    final pickedFile =
-        await _imagePicker.getImage(source: source, preferredCameraDevice: CameraDevice.rear, imageQuality: 90, maxHeight: 500, maxWidth: 500);
+    final pickedFile = await _imagePicker.getImage(
+        source: source, preferredCameraDevice: CameraDevice.rear, imageQuality: 90, maxHeight: 500, maxWidth: 500);
     if (pickedFile != null) {
       file = io.File(pickedFile.path);
       image.value = file;

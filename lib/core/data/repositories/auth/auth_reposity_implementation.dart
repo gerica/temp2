@@ -1,20 +1,18 @@
 import 'package:injectable/injectable.dart';
+import 'package:radio_life/core/data/adapter/auth/auth_entensions.dart';
 import 'package:radio_life/core/data/data_sources/auth/local/auth_local_data_source.dart';
 import 'package:radio_life/core/data/data_sources/auth/remote/auth_remote_data_source.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/entities/auth/auth_entity.dart';
 import 'package:radio_life/core/domain/repositories/auth/auth_repository.dart';
-
-import '../../../../graphql/graphql_api.dart';
-import '../../adapter/auth/auth_entensions.dart';
+import 'package:radio_life/graphql/graphql_api.graphql.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImplementation extends AuthRepository {
   final AuthRemoteDataSource _remoteDataSource;
   final AuthLocalDataSource _authLocalDataSource;
 
-  AuthRepositoryImplementation(
-      this._remoteDataSource, this._authLocalDataSource);
+  AuthRepositoryImplementation(this._remoteDataSource, this._authLocalDataSource);
 
   @override
   Future<Resource<AuthEntity?>> signIn({
@@ -47,8 +45,7 @@ class AuthRepositoryImplementation extends AuthRepository {
     final email = authEntity.email;
     if (email != null) await _authLocalDataSource.saveEmail(email: email);
     final confirmed = authEntity.confirmed;
-    if (confirmed != null)
-      await _authLocalDataSource.saveUserConfirmedValue(confirmed: confirmed);
+    if (confirmed != null) await _authLocalDataSource.saveUserConfirmedValue(confirmed: confirmed);
   }
 
   @override
@@ -58,8 +55,7 @@ class AuthRepositoryImplementation extends AuthRepository {
   Future get logout => _authLocalDataSource.logout;
 
   @override
-  Future<bool> get getUserConfirmedValue =>
-      _authLocalDataSource.getUserConfirmedValue;
+  Future<bool> get getUserConfirmedValue => _authLocalDataSource.getUserConfirmedValue;
 
   @override
   Future<void> saveUserConfirmedValue({required bool confirmed}) =>
@@ -79,16 +75,14 @@ class AuthRepositoryImplementation extends AuthRepository {
       );
 
   @override
-  String? get getTokenFromLocalStorage =>
-      _authLocalDataSource.getTokenFromLocalStorage;
+  String? get getTokenFromLocalStorage => _authLocalDataSource.getTokenFromLocalStorage;
 
   @override
   Future<void> saveTokenAtLocalStorage({required String token}) =>
       _authLocalDataSource.saveTokenAtLocalStorage(token: token);
 
   @override
-  Future<Resource<String?>> resetPassword({required String email}) =>
-      Resource.asFuture(
+  Future<Resource<String?>> resetPassword({required String email}) => Resource.asFuture(
         () => _remoteDataSource.resetPassword(
           email: email,
         ),

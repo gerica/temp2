@@ -1,7 +1,7 @@
 import 'package:graphql/client.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../graphql/graphql_api.dart';
+import 'package:radio_life/graphql/graphql_api.dart';
 import 'auth_remote_data_source.dart';
 
 @Injectable(as: AuthRemoteDataSource)

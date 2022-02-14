@@ -11,7 +11,7 @@ import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 
-import '../../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'change_password_controller.dart';
 
 class ChangePasswordPage extends GetView<ChangePasswordController> {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/forgot_password/model/forgort_password_model.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
@@ -10,7 +11,6 @@ import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/domain/use_cases/auth/reset_password_use_case.dart';
 import 'package:radio_life/generated/l10n.dart';
 
-import '../../helper/dialog_helper.dart';
 import 'adapter/forgot_password_adapter.dart';
 
 class ForgotPasswordController extends GetxController {
@@ -43,8 +43,7 @@ class ForgotPasswordController extends GetxController {
           pageChild: AppSimpleDialog(
             title: S.current.success,
             message: S.current.weSentATemporaryPasswordToYourEmailUseIt,
-            icon: Icon(Icons.error_outline,
-                size: 50, color: AppColorScheme.error),
+            icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
             onClosePressed: () {
               Get.back();
               Get.offNamed(Routes.signIn);

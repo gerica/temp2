@@ -8,8 +8,8 @@ import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/domain/entities/user/user_entity_password.dart';
 import 'package:radio_life/core/domain/use_cases/user/update_user_password_use_case.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'package:universal_io/io.dart' as io;
-import '../../../../../generated/l10n.dart';
 
 class UpdatePasswordController extends GetxController {
   final UpdateUserPasswordUseCase _updateUserPasswordUseCase;

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/helper/validation_helper.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
@@ -11,9 +12,7 @@ import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/entities/device/device_check_register.dart';
 import 'package:radio_life/core/domain/use_cases/my_devices/get_device_check_register_use_case.dart';
-import '../../../../../generated/l10n.dart';
-
-import '../../../../radio_life_app_routes.dart';
+import 'package:radio_life/generated/l10n.dart';
 
 class AddNewDeviceController extends GetxController {
   TextEditingController serialNumberController = TextEditingController();

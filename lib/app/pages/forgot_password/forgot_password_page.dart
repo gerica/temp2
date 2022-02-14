@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_font_size.dart';
 import 'package:radio_life/app/styles/app_font_weight.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
@@ -12,8 +13,7 @@ import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 
-import '../../../generated/l10n.dart';
-import '../../radio_life_app_routes.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'forgot_password_controller.dart';
 
 class ForgotPasswordPage extends GetView<ForgotPasswordController> {
@@ -38,13 +38,9 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
         body: Center(
           child: Obx(() => Container(
                 constraints: BoxConstraints(
-                    maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                        ? 1000
-                        : MediaQuery.of(context).size.width),
+                    maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 1000 : MediaQuery.of(context).size.width),
                 padding: const EdgeInsets.all(AppSpacing.medium),
-                child: context.breakpoint > LayoutBreakpoint.xs
-                    ? _buildWebBody(context)
-                    : _buildAppBody(context),
+                child: context.breakpoint > LayoutBreakpoint.xs ? _buildWebBody(context) : _buildAppBody(context),
               )),
         ),
       );
@@ -57,10 +53,8 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
             children: [
               Text(
                 S.of(context).resetPassword,
-                style: const TextStyle(
-                    fontSize: AppFontSize.mega,
-                    fontWeight: AppFontWeight.regular,
-                    color: Colors.black),
+                style:
+                    const TextStyle(fontSize: AppFontSize.mega, fontWeight: AppFontWeight.regular, color: Colors.black),
               ),
               UIHelper.verticalSpaceExtraLarge,
               InputTextWidget(
@@ -111,9 +105,7 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                     Text(
                       S.of(context).resetPassword,
                       style: const TextStyle(
-                          fontSize: AppFontSize.mega,
-                          fontWeight: AppFontWeight.bold,
-                          color: Colors.black),
+                          fontSize: AppFontSize.mega, fontWeight: AppFontWeight.bold, color: Colors.black),
                     ),
                     UIHelper.verticalSpaceLarge,
                     UIHelper.verticalSpaceLarge,

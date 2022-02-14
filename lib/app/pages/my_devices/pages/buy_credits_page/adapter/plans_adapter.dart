@@ -4,7 +4,7 @@ import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/model/pla
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/core/domain/entities/plans/plan_entity.dart';
 
-import '../../../../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 
 abstract class PlansAdapter {
   PlansAdapter._();

@@ -9,7 +9,7 @@ import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 
-import '../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'home_controller.dart';
 
 class HomePage extends GetView<HomeController> {

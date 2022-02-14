@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/sign_in/model/sign_in_model.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
@@ -12,8 +14,6 @@ import 'package:radio_life/core/domain/entities/user/user_entity.dart';
 import 'package:radio_life/core/domain/use_cases/auth/do_sign_in_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/user/save_user_id_use_case.dart';
 
-import '../../helper/dialog_helper.dart';
-import '../../radio_life_app_routes.dart';
 import 'adapter/sign_in_adapter.dart';
 
 class SignInController extends GetxController {
@@ -69,8 +69,7 @@ class SignInController extends GetxController {
         pageChild: AppSimpleDialog(
           title: error.title ?? '',
           message: error.description ?? '',
-          icon:
-              Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
+          icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
           onClosePressed: () {},
         ),
       );
@@ -78,9 +77,7 @@ class SignInController extends GetxController {
   }
 
   bool get _isValid {
-    signInModel.value =
-        SignInModel(email: emailController.text, password: pwdController.text)
-            .validate;
+    signInModel.value = SignInModel(email: emailController.text, password: pwdController.text).validate;
     return signInModel.value.isValid;
   }
 }

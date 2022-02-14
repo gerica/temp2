@@ -4,13 +4,13 @@ import 'package:app_settings/app_settings.dart';
 import 'package:connectivity_plus/connectivity_plus.dart' as connectivity;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/core/domain/use_cases/device/check_connectivity_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/device/get_wifi_ssid_use_case.dart';
 
-import '../../../../../generated/l10n.dart';
-import '../../../../helper/dialog_helper.dart';
+import 'package:radio_life/generated/l10n.dart';
 
 class ConfigureWiFiController extends GetxController {
   ConfigureWiFiController(

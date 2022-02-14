@@ -15,7 +15,7 @@ import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
-import '../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 
 class ReportsFilterDialogWidget extends StatelessWidget {
   final VoidCallback onApplyFilter;

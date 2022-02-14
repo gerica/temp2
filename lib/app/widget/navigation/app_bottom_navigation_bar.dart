@@ -5,7 +5,7 @@ import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 
-import '../../../generated/l10n.dart';
+import 'package:radio_life/generated/l10n.dart';
 import 'app_bottom_navitation_bar_controller.dart';
 
 class AppBottomNavigationBarWidget extends GetView<AppBottomNavigationController> {
