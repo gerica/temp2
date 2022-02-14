@@ -5,7 +5,7 @@
 // **************************************************************************
 
 import 'package:dio/dio.dart' as _i3;
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart' as _i4;
+import 'package:flutter_blue/flutter_blue.dart' as _i4;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:graphql/client.dart' as _i6;
@@ -108,7 +108,7 @@ extension GetItInjectableX on _i1.GetIt {
     final deviceModule = _$DeviceModule();
     final localModule = _$LocalModule();
     gh.factory<_i3.Dio>(() => remoteModule.provideDio());
-    gh.factory<_i4.FlutterBluetoothSerial>(() => deviceModule.bluetoothSerial);
+    gh.factory<_i4.FlutterBlue>(() => deviceModule.flutterBlue);
     gh.lazySingleton<_i5.FlutterSecureStorage>(() => localModule.storage);
     gh.factory<_i6.HttpLink>(() => remoteModule.provideHttpLink());
     gh.factory<_i7.ImagePicker>(() => deviceModule.picker);
@@ -194,7 +194,7 @@ extension GetItInjectableX on _i1.GetIt {
         get<_i32.AuthRepository>(), get<_i53.SetUserUseCase>()));
     gh.singleton<_i50.UserManager>(_i57.UserManagerImplementation());
     gh.singleton<_i16.DeviceRepository>(
-        _i58.DeviceRepositoryImplementation(get<_i4.FlutterBluetoothSerial>()));
+        _i58.DeviceRepositoryImplementation(get<_i4.FlutterBlue>()));
     gh.singleton<_i3.InterceptorsWrapper>(remoteModule.provideInterceptor(
         get<_i3.Dio>(),
         get<String>(instanceName: 'language'),

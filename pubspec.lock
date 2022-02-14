@@ -363,13 +363,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_bluetooth_serial:
+  flutter_blue:
     dependency: "direct main"
     description:
-      name: flutter_bluetooth_serial
+      name: flutter_blue
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.0"
+    version: "0.8.0"
   flutter_holo_date_picker:
     dependency: "direct main"
     description:
@@ -875,6 +875,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.1"
+  protobuf:
+    dependency: transitive
+    description:
+      name: protobuf
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   pub_semver:
     dependency: transitive
     description:

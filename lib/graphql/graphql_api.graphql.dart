@@ -271,6 +271,26 @@ class GetUser$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class GetExams$Query$ExamResult$Device extends JsonSerializable
+    with EquatableMixin {
+  GetExams$Query$ExamResult$Device();
+
+  factory GetExams$Query$ExamResult$Device.fromJson(
+          Map<String, dynamic> json) =>
+      _$GetExams$Query$ExamResult$DeviceFromJson(json);
+
+  String? locate;
+
+  @JsonKey(unknownEnumValue: EnumDeviceType.artemisUnknown)
+  EnumDeviceType? type;
+
+  @override
+  List<Object?> get props => [locate, type];
+  Map<String, dynamic> toJson() =>
+      _$GetExams$Query$ExamResult$DeviceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class GetExams$Query$ExamResult extends JsonSerializable with EquatableMixin {
   GetExams$Query$ExamResult();
 
@@ -285,8 +305,15 @@ class GetExams$Query$ExamResult extends JsonSerializable with EquatableMixin {
 
   String? deviceId;
 
+  late String serialNumber;
+
+  String? phase;
+
+  GetExams$Query$ExamResult$Device? device;
+
   @override
-  List<Object?> get props => [date, examNumber, result, deviceId];
+  List<Object?> get props =>
+      [date, examNumber, result, deviceId, serialNumber, phase, device];
   Map<String, dynamic> toJson() => _$GetExams$Query$ExamResultToJson(this);
 }
 
@@ -1195,7 +1222,38 @@ final GET_EXAMS_QUERY_DOCUMENT = DocumentNode(definitions: [
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null)
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'serialNumber'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'phase'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'device'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'locate'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'type'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
             ]))
       ]))
 ]);

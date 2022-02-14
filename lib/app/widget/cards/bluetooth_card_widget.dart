@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 
 class BluetoothDeviceCardWidget extends StatelessWidget {
-  final BluetoothDiscoveryResult scanResult;
+  final ScanResult scanResult;
   final VoidCallback onTap;
 
   const BluetoothDeviceCardWidget({required this.scanResult, required this.onTap});
@@ -24,7 +24,7 @@ class BluetoothDeviceCardWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           splashColor: AppColorScheme.pinkDark.withOpacity(0.1),
           child: Container(
-            color: scanResult.device.bondState.isBonded ? Colors.yellow : Colors.white,
+            // color: scanResult.device.bondState.isBonded ? Colors.yellow : Colors.white,
             child: Row(
               children: [
                 Flexible(
@@ -59,7 +59,10 @@ class BluetoothDeviceCardWidget extends StatelessWidget {
                       ]),
                       Row(children: [
                         _footer('Rssi', scanResult.rssi.toString()),
-                        _footer('Address', scanResult.device.address),
+                        if (scanResult.device.name.isEmpty)
+                          _footer('Id', '${scanResult.device.id}')
+                        else
+                          _footer('Name', scanResult.device.name),
                       ]),
                     ],
                   ),
@@ -88,8 +91,12 @@ class BluetoothDeviceCardWidget extends StatelessWidget {
   }
 
   Widget _footer(String label, String text) {
+    var textFinal = text;
+    if (text.length > 21) {
+      textFinal = '${text.substring(0, 21)}...';
+    }
     return Container(
-      margin: const EdgeInsets.only(right: 10),
+      margin: const EdgeInsets.only(right: 5),
       padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,7 +106,7 @@ class BluetoothDeviceCardWidget extends StatelessWidget {
             style: const TextStyle(color: Colors.black, fontSize: AppFontSize.small),
           ),
           Text(
-            text,
+            textFinal,
             style: TextStyle(color: AppColorScheme.gray1, fontSize: AppFontSize.small),
           ),
         ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
@@ -41,9 +41,9 @@ class AutoScanPage extends GetView<AutoScanController> {
   }
 
   Widget get _containerBluetooth {
-    if (controller.bluetoothState.value == BluetoothState.STATE_OFF) {
+    if (controller.bluetoothState.value == BluetoothState.off) {
       return _enableBluetoothWarning;
-    } else if (controller.bluetoothState.value == BluetoothState.STATE_ON) {
+    } else if (controller.bluetoothState.value == BluetoothState.on) {
       return _showDevice;
     }
 
@@ -94,7 +94,7 @@ class AutoScanPage extends GetView<AutoScanController> {
   }
 
   Widget get _deviceFoundWidget {
-    final listBluetooth = controller.state.value.data as List<BluetoothDiscoveryResult>;
+    final listBluetooth = controller.state.value.data as List<ScanResult>;
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -110,16 +110,7 @@ class AutoScanPage extends GetView<AutoScanController> {
           ),
           Column(
             children: [
-              PrimaryButton(
-                title: S.current.searchDevices,
-                color: PrimaryButtonColor.primary,
-                type: PrimaryButtonType.circular,
-                style: PrimaryButtonStyle.filled,
-                state: Status.success,
-                onPressed: () {
-                  controller.startScan();
-                },
-              ),
+              _buildSearchButton(),
               UIHelper.verticalSpaceExtraLarge,
               InkWell(
                 onTap: () {
@@ -138,7 +129,7 @@ class AutoScanPage extends GetView<AutoScanController> {
     );
   }
 
-  Widget renderList(List<BluetoothDiscoveryResult> listBluetooth) {
+  Widget renderList(List<ScanResult> listBluetooth) {
     if (listBluetooth.isEmpty) {
       return Container(
         child: Text(
@@ -161,6 +152,24 @@ class AutoScanPage extends GetView<AutoScanController> {
               controller.connectToDevice(listBluetooth[index]);
             },
             scanResult: listBluetooth[index]);
+      },
+    );
+  }
+
+  Widget _buildSearchButton() {
+    if (controller.isScanning.value) {
+      return const CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(RadiolifeThemeColors.pink),
+      );
+    }
+    return PrimaryButton(
+      title: S.current.searchDevices,
+      color: PrimaryButtonColor.primary,
+      type: PrimaryButtonType.circular,
+      style: PrimaryButtonStyle.filled,
+      state: Status.success,
+      onPressed: () {
+        controller.startScan();
       },
     );
   }

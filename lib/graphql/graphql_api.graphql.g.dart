@@ -238,48 +238,16 @@ Map<String, dynamic> _$GetUser$QueryToJson(GetUser$Query instance) =>
       'userById': instance.userById?.toJson(),
     };
 
-GetExams$Query$ExamResult _$GetExams$Query$ExamResultFromJson(
+GetExams$Query$ExamResult$Device _$GetExams$Query$ExamResult$DeviceFromJson(
     Map<String, dynamic> json) {
-  return GetExams$Query$ExamResult()
-    ..date = json['date'] as String?
-    ..examNumber = json['examNumber'] as String
-    ..result = json['result'] as String
-    ..deviceId = json['deviceId'] as String?;
-}
-
-Map<String, dynamic> _$GetExams$Query$ExamResultToJson(
-        GetExams$Query$ExamResult instance) =>
-    <String, dynamic>{
-      'date': instance.date,
-      'examNumber': instance.examNumber,
-      'result': instance.result,
-      'deviceId': instance.deviceId,
-    };
-
-GetExams$Query _$GetExams$QueryFromJson(Map<String, dynamic> json) {
-  return GetExams$Query()
-    ..examResultMany = (json['examResultMany'] as List<dynamic>)
-        .map((e) =>
-            GetExams$Query$ExamResult.fromJson(e as Map<String, dynamic>))
-        .toList();
-}
-
-Map<String, dynamic> _$GetExams$QueryToJson(GetExams$Query instance) =>
-    <String, dynamic>{
-      'examResultMany': instance.examResultMany.map((e) => e.toJson()).toList(),
-    };
-
-GetExamsByDevice$Query$ExamResult$Device
-    _$GetExamsByDevice$Query$ExamResult$DeviceFromJson(
-        Map<String, dynamic> json) {
-  return GetExamsByDevice$Query$ExamResult$Device()
+  return GetExams$Query$ExamResult$Device()
     ..locate = json['locate'] as String?
     ..type = _$enumDecodeNullable(_$EnumDeviceTypeEnumMap, json['type'],
         unknownValue: EnumDeviceType.artemisUnknown);
 }
 
-Map<String, dynamic> _$GetExamsByDevice$Query$ExamResult$DeviceToJson(
-        GetExamsByDevice$Query$ExamResult$Device instance) =>
+Map<String, dynamic> _$GetExams$Query$ExamResult$DeviceToJson(
+        GetExams$Query$ExamResult$Device instance) =>
     <String, dynamic>{
       'locate': instance.locate,
       'type': _$EnumDeviceTypeEnumMap[instance.type],
@@ -326,6 +294,62 @@ const _$EnumDeviceTypeEnumMap = {
   EnumDeviceType.covid19: 'COVID19',
   EnumDeviceType.artemisUnknown: 'ARTEMIS_UNKNOWN',
 };
+
+GetExams$Query$ExamResult _$GetExams$Query$ExamResultFromJson(
+    Map<String, dynamic> json) {
+  return GetExams$Query$ExamResult()
+    ..date = json['date'] as String?
+    ..examNumber = json['examNumber'] as String
+    ..result = json['result'] as String
+    ..deviceId = json['deviceId'] as String?
+    ..serialNumber = json['serialNumber'] as String
+    ..phase = json['phase'] as String?
+    ..device = json['device'] == null
+        ? null
+        : GetExams$Query$ExamResult$Device.fromJson(
+            json['device'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$GetExams$Query$ExamResultToJson(
+        GetExams$Query$ExamResult instance) =>
+    <String, dynamic>{
+      'date': instance.date,
+      'examNumber': instance.examNumber,
+      'result': instance.result,
+      'deviceId': instance.deviceId,
+      'serialNumber': instance.serialNumber,
+      'phase': instance.phase,
+      'device': instance.device?.toJson(),
+    };
+
+GetExams$Query _$GetExams$QueryFromJson(Map<String, dynamic> json) {
+  return GetExams$Query()
+    ..examResultMany = (json['examResultMany'] as List<dynamic>)
+        .map((e) =>
+            GetExams$Query$ExamResult.fromJson(e as Map<String, dynamic>))
+        .toList();
+}
+
+Map<String, dynamic> _$GetExams$QueryToJson(GetExams$Query instance) =>
+    <String, dynamic>{
+      'examResultMany': instance.examResultMany.map((e) => e.toJson()).toList(),
+    };
+
+GetExamsByDevice$Query$ExamResult$Device
+    _$GetExamsByDevice$Query$ExamResult$DeviceFromJson(
+        Map<String, dynamic> json) {
+  return GetExamsByDevice$Query$ExamResult$Device()
+    ..locate = json['locate'] as String?
+    ..type = _$enumDecodeNullable(_$EnumDeviceTypeEnumMap, json['type'],
+        unknownValue: EnumDeviceType.artemisUnknown);
+}
+
+Map<String, dynamic> _$GetExamsByDevice$Query$ExamResult$DeviceToJson(
+        GetExamsByDevice$Query$ExamResult$Device instance) =>
+    <String, dynamic>{
+      'locate': instance.locate,
+      'type': _$EnumDeviceTypeEnumMap[instance.type],
+    };
 
 GetExamsByDevice$Query$ExamResult _$GetExamsByDevice$Query$ExamResultFromJson(
     Map<String, dynamic> json) {

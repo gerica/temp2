@@ -82,7 +82,7 @@ dependencies:
   intl: ^0.17.0
   share: ^2.0.4
   flinq: ^2.0.2
-  flutter_bluetooth_serial: ^0.4.0
+  flutter_blue: ^0.8.0
   connectivity: ^3.0.6
   universal_io: ^2.0.4
   #endregion
