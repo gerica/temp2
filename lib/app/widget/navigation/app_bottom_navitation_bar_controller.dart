@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 
@@ -16,16 +15,16 @@ class AppBottomNavigationController extends GetxController {
     bottomBarCurrentIndex.value = index;
     switch (index) {
       case 0:
-        Get.offAllNamed(Routes.myDevices, predicate: ModalRoute.withName('/'));
+        Get.offAllNamed(Routes.myDevices);
         break;
       case 1:
-        Get.offAllNamed(Routes.reports, predicate: ModalRoute.withName('/'));
+        Get.offAllNamed(Routes.reports);
         break;
       case 2:
-        Get.offAllNamed(Routes.support, predicate: ModalRoute.withName('/'));
+        Get.offAllNamed(Routes.support);
         break;
       case 3:
-        Get.offAllNamed(Routes.profile, predicate: ModalRoute.withName('/'));
+        Get.offAllNamed(Routes.profile);
         break;
     }
   }
