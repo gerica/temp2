@@ -1,2 +1,1 @@
--Rad-144 - Implements filter in device page
--Rad-144 - Implements details report page
+-Rad-I178 - force reload device list

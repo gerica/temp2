@@ -1,6 +1,5 @@
 Radiolife web: https://radiolife-bucket.s3.us-east-2.amazonaws.com/index.html
 Releases:
-    -Rad-144 - Implements filter in device page
-    -Rad-144 - Implements details report page
+    -Rad-I178 - force reload device list
 
-New version: 1.0.54+54
+New version: 1.0.55+55
