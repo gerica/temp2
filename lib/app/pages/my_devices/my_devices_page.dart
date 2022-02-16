@@ -26,8 +26,9 @@ class MyDevicesPage extends GetView<MyDevicesController> {
         backgroundColor: AppColorScheme.primarySwatch,
         actions: [
           IconButton(
-            onPressed: () {
-              Get.toNamed(Routes.addNewDevice);
+            onPressed: () async {
+              await Get.toNamed(Routes.addNewDevice);
+              controller.getMyDevices();
             },
             icon: const Icon(Icons.add, color: AppColorScheme.white),
           ),
