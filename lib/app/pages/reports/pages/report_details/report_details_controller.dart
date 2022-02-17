@@ -17,6 +17,6 @@ class ReportDetailsController extends GetxController {
   }
 
   bool get result {
-    return state.value.data?.result == 'P';
+    return state.value.data?.resultDesc == 'P';
   }
 }
