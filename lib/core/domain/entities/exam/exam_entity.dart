@@ -69,4 +69,15 @@ class ExamEntity extends Base {
       myDeviceEntity = MyDeviceEntity.fromJson(device);
     }
   }
+
+  String get resultDesc {
+    if (result != null) {
+      if (result == '0' || result?.toUpperCase() == 'N') {
+        return 'N';
+      } else if (result == '1' || result?.toUpperCase() == 'P') {
+        return 'P';
+      }
+    }
+    return '';
+  }
 }

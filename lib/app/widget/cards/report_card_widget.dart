@@ -78,7 +78,7 @@ class ReportCardWidget extends StatelessWidget {
                         Row(children: [
                           _chip('Covid-19'),
                           _chip(model.myDeviceEntity?.locate ?? ''),
-                          _chip(model.result ?? '', color: _getColorResult(), colorText: Colors.white),
+                          _chip(model.resultDesc, color: _getColorResult(), colorText: Colors.white),
                         ]),
                       ],
                     ),
