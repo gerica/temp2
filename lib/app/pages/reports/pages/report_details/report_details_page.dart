@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
-import 'package:radio_life/app/images/app_images.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_font_size.dart';
@@ -59,10 +58,10 @@ class ReportDetailsPage extends GetView<ReportDetailsController> {
                     fontSize: AppFontSize.medium,
                   ),
                 ),
-                trailing: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: controller.result ? Image.asset(AppImages.faceSad) : Image.asset(AppImages.faceHappy),
-                ),
+                // trailing: ClipRRect(
+                //   borderRadius: BorderRadius.circular(50),
+                //   child: controller.result ? Image.asset(AppImages.faceSad) : Image.asset(AppImages.faceHappy),
+                // ),
               ),
               UIHelper.verticalSpaceLarge,
               Row(
@@ -88,14 +87,14 @@ class ReportDetailsPage extends GetView<ReportDetailsController> {
                         fontSize: AppFontSize.mega,
                       ),
                     ),
-                    UIHelper.verticalSpaceMedium,
-                    Text(
-                      controller.result ? S.of(context).textResultPositive : S.of(context).textResultNegative,
-                      style: const TextStyle(
-                        color: Color(0xFF2A0210),
-                        fontSize: AppFontSize.secondary,
-                      ),
-                    ),
+                    // UIHelper.verticalSpaceMedium,
+                    // Text(
+                    //   controller.result ? S.of(context).textResultPositive : S.of(context).textResultNegative,
+                    //   style: const TextStyle(
+                    //     color: Color(0xFF2A0210),
+                    //     fontSize: AppFontSize.secondary,
+                    //   ),
+                    // ),
                   ],
                 ),
               )

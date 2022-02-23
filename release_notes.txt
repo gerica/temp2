@@ -1,6 +1,5 @@
 Radiolife web: https://radiolife-bucket.s3.us-east-2.amazonaws.com/index.html
 Releases:
-    -Rad-I178 - order exam by created
-    -Rad-I178 - show result correct
+    -Rad-I178 - remove image and text
 
-New version: 1.0.56+01
+New version: 1.0.56+02
