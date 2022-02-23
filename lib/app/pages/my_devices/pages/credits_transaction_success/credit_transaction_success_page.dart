@@ -16,10 +16,8 @@ import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/generated/l10n.dart';
 import 'credit_transaction_success_controller.dart';
 
-class CreditTransactionSuccessPage
-    extends GetView<CreditTransactionSuccessController> {
-  static Future? navigateWith({required PlanModel arguments}) =>
-      Get.offNamedUntil(
+class CreditTransactionSuccessPage extends GetView<CreditTransactionSuccessController> {
+  static Future? navigateWith({required PlanModel arguments}) => Get.offNamedUntil(
         Routes.creditsTransactionSuccess,
         ModalRoute.withName('/'),
         arguments: arguments,
@@ -32,19 +30,12 @@ class CreditTransactionSuccessPage
           brightness: Brightness.dark,
           titleText: 'Order',
           backgroundColor: AppColorScheme.primarySwatch,
-          onBackButtonPressed: () {
-            Get.offAllNamed(
-              Routes.myDevices,
-              predicate: ModalRoute.withName('/'),
-            );
-          },
+          onBackButtonPressed: () => controller.goToMyDevicePage(),
         ),
         body: Obx(() => Center(
               child: Container(
                 constraints: BoxConstraints(
-                    maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                        ? 500
-                        : MediaQuery.of(context).size.width),
+                    maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
                 padding: const EdgeInsets.all(AppSpacing.medium),
                 child: SingleChildScrollView(
                   child: Column(
@@ -61,8 +52,7 @@ class CreditTransactionSuccessPage
                       UIHelper.verticalSpaceMedium,
                       Text(
                         S.of(context).purchaseCompleted,
-                        style: const TextStyle(
-                            fontSize: AppFontSize.mega, color: Colors.black),
+                        style: const TextStyle(fontSize: AppFontSize.mega, color: Colors.black),
                       ),
                       UIHelper.verticalSpaceMedium,
                       Row(
@@ -85,32 +75,23 @@ class CreditTransactionSuccessPage
                       UIHelper.verticalSpaceSmall,
                       Text(
                         S.of(context).loremIpsum,
-                        style: TextStyle(
-                            color: AppColorScheme.gray1,
-                            fontSize: AppFontSize.secondary),
+                        style: TextStyle(color: AppColorScheme.gray1, fontSize: AppFontSize.secondary),
                       ),
                       UIHelper.verticalSpaceMedium,
                       Text(
                         S.of(context).dateOfPurchase(
-                              DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY)
-                                  .format(DateTime.now()),
+                              DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY).format(DateTime.now()),
                             ),
                         style: const TextStyle(color: Colors.black),
                       ),
                       UIHelper.verticalSpaceMedium,
                       Text(
-                        S.of(context).amountPaid(
-                            controller.state.value.data?.price ?? ''),
+                        S.of(context).amountPaid(controller.state.value.data?.price ?? ''),
                         style: const TextStyle(color: Colors.black),
                       ),
                       UIHelper.verticalSpaceLarge,
                       PrimaryButton(
-                        onPressed: () {
-                          Get.offAllNamed(
-                            Routes.myDevices,
-                            predicate: ModalRoute.withName('/'),
-                          );
-                        },
+                        onPressed: () => controller.goToMyDevicePage(),
                         title: S.of(context).backToMyDevices,
                         color: PrimaryButtonColor.primary,
                         type: PrimaryButtonType.circular,

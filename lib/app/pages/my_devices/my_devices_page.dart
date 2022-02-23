@@ -90,10 +90,9 @@ class MyDevicesPage extends GetView<MyDevicesController> {
       itemBuilder: (context, index) => data[index] != null
           ? DeviceCardWidget(
               onTap: () async {
-                await MyDeviceDetailPage.navigateWith(
+                MyDeviceDetailPage.navigateWith(
                   params: data[index]!,
                 );
-                controller.getMyDevices();
               },
               model: data[index]!,
             )

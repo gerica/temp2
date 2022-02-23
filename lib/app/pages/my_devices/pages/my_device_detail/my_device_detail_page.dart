@@ -31,9 +31,7 @@ class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
         brightness: Brightness.dark,
         titleText: S.of(context).myDevice,
         backgroundColor: AppColorScheme.primarySwatch,
-        onBackButtonPressed: () {
-          Get.back();
-        },
+        onBackButtonPressed: () => controller.goToMyDevicePage(),
       ),
       body: Obx(() => Center(
             child: Container(
@@ -73,9 +71,7 @@ class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
                           PlatformSvg.asset(AppSvgImages.icTicker),
                           UIHelper.verticalSpaceSmall,
                           AutoSizeText(
-                            S.of(context).creditsCounter(
-                                  int.tryParse(controller.state.value.data?.balance.toString() as String) ?? 0,
-                                ),
+                            S.of(context).creditsCounter(controller.balance),
                             maxLines: 1,
                             style: const TextStyle(
                               color: Color(0xFF2A0210),
