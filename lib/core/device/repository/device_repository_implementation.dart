@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/repositories/device/device_repository.dart';
+import 'package:radio_life/core/domain/use_cases/device/configure_wifi_use_case.dart';
 import 'package:wifi_iot/wifi_iot.dart';
 
 @Singleton(as: DeviceRepository)
@@ -123,17 +124,16 @@ class DeviceRepositoryImplementation extends DeviceRepository {
   }
 
   @override
-  Future<void> configureWifi(BluetoothDevice device) async {
-    final List<BluetoothService> services = await device.discoverServices();
+  Future<void> configureWifi(ConfigureWifiParam param) async {
+    final List<BluetoothService> services = await param.device.discoverServices();
 
     final service = services.firstWhere((s) => s.uuid.toString() == uuidDeviceCustomService);
 
     if (service != null) {
-      // print('Info service bluetooth: ${service.isPrimary}');
       final characteristics = service.characteristics;
       final targetCharacteristic = characteristics[0];
 
-      final List<int> bytes = utf8.encode('l0');
+      final List<int> bytes = utf8.encode(param.password);
       targetCharacteristic.write(bytes);
     }
   }

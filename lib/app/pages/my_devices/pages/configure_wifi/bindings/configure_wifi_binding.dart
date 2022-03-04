@@ -5,6 +5,10 @@ import 'package:radio_life/di/di.dart';
 class ConfigureWiFiBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => ConfigureWiFiController(getIt(), getIt()));
+    Get.lazyPut(() => ConfigureWiFiController(
+          getIt(),
+          getIt(),
+          getIt(),
+        ));
   }
 }

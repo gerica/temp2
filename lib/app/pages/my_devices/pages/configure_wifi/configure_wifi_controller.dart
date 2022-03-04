@@ -3,11 +3,14 @@ import 'dart:async';
 import 'package:app_settings/app_settings.dart';
 import 'package:connectivity_plus/connectivity_plus.dart' as connectivity;
 import 'package:flutter/material.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
+import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/core/domain/use_cases/device/check_connectivity_use_case.dart';
+import 'package:radio_life/core/domain/use_cases/device/configure_wifi_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/device/get_wifi_ssid_use_case.dart';
 
 import 'package:radio_life/generated/l10n.dart';
@@ -16,11 +19,14 @@ class ConfigureWiFiController extends GetxController {
   ConfigureWiFiController(
     this._checkConnectivityUseCase,
     this._getWiFiSSIDUseCase,
+    this._configureWifiUseCase,
   );
 
   //region Use cases
   final CheckConnectivityUseCase _checkConnectivityUseCase;
   final GetWiFiSSIDUseCase _getWiFiSSIDUseCase;
+  final ConfigureWifiUseCase _configureWifiUseCase;
+  late BluetoothDevice device;
 
   //endregion
 
@@ -39,7 +45,13 @@ class ConfigureWiFiController extends GetxController {
     _streamSubscription = _checkConnectivityUseCase().listen((event) {
       _connectivityStateListener(event);
     });
+
     _updateWiFiSSID();
+    final param = tryCast<BluetoothDevice>(Get.arguments);
+
+    if (param != null) {
+      device = param;
+    }
   }
 
   void get togglePasswordVisibility {
@@ -78,8 +90,12 @@ class ConfigureWiFiController extends GetxController {
     await _streamSubscription.cancel();
   }
 
-  Future<void> nextPage() async{
-
+  Future<void> nextPage() async {
+    await _configureWifiUseCase(ConfigureWifiParam(
+      device: device,
+      ssid: wifiSSIDNumberController.text,
+      password: wifiPasswordController.text,
+    ));
   }
 
 //endregion
