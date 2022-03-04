@@ -78,7 +78,9 @@ class ConfigureWiFiController extends GetxController {
     await _streamSubscription.cancel();
   }
 
-  void nextPage() {}
+  Future<void> nextPage() async{
+
+  }
 
 //endregion
 

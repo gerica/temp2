@@ -8,6 +8,7 @@ import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/use_cases/device/bluetooth_scanning_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/device/check_bluetooth_state_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/device/connect_to_device_use_case.dart';
+import 'package:radio_life/core/domain/use_cases/device/device_connected_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/device/start_scan_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/device/stop_scan_use_case.dart';
 
@@ -19,6 +20,7 @@ class AutoScanController extends GetxController {
     this._checkBluetoothStateUseCase,
     this._connectToDeviceUseCase,
     this._bluetoothScanningUseCase,
+    this._deviceConnectedUseCase,
   );
 
   //region Use Cases
@@ -28,11 +30,12 @@ class AutoScanController extends GetxController {
   final CheckBluetoothStateUseCase _checkBluetoothStateUseCase;
   final ConnectToDeviceUseCase _connectToDeviceUseCase;
   final BluetoothScanningUseCase _bluetoothScanningUseCase;
+  final DeviceConnectedUseCase _deviceConnectedUseCase;
 
   //endregion
 
   //region State
-  final state = Resource.loading<List<ScanResult>?>().obs;
+  final state = Resource.loading<List<BluetoothDevice>?>().obs;
   final bluetoothState = BluetoothState.unknown.obs;
 
   //endregion
@@ -80,6 +83,8 @@ class AutoScanController extends GetxController {
   Future startScan() async {
     // await _stopBluetoothScanUseCase(dynamic);
     state.value = Resource.loading(data: []);
+    final values = await _deviceConnectedUseCase.call(null);
+    state.value = Resource.success(data: values);
     _startBluetoothScanUseCase(dynamic).listen(_scanDeviceResultsListener);
     _bluetoothScanningUseCase(dynamic).listen(_bluetoothScanningListener);
   }
@@ -91,7 +96,7 @@ class AutoScanController extends GetxController {
     await _stopBluetoothScanUseCase(dynamic);
   }
 
-  Future<void> connectToDevice(ScanResult discoveryResult) async {
+  Future<void> connectToDevice(BluetoothDevice discoveryResult) async {
     // final device = discoveryResult.device;
     AppUIBlock.blockUI(context: Get.context);
 
@@ -122,8 +127,10 @@ class AutoScanController extends GetxController {
     final data = state.value.data ?? [];
     final result = resource.data;
     if (result != null) {
-      data.add(result);
-      state.value = Resource.success(data: data);
+      if (BluetoothDeviceType.unknown != result.device.type && result.device.name != '') {
+        data.add(result.device);
+        state.value = Resource.success(data: data);
+      }
     }
     // if (result != null && result.device.name != null) {
     //   print('AutoScanController._scanDeviceResultsListener: ${result.device.name}');

@@ -6,10 +6,10 @@ import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 
 class BluetoothDeviceCardWidget extends StatelessWidget {
-  final ScanResult scanResult;
+  final BluetoothDevice bluetoothDevice;
   final VoidCallback onTap;
 
-  const BluetoothDeviceCardWidget({required this.scanResult, required this.onTap});
+  const BluetoothDeviceCardWidget({required this.bluetoothDevice, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -50,19 +50,16 @@ class BluetoothDeviceCardWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        scanResult.device.name == null ? 'Empty' : scanResult.device.name as String,
+                        bluetoothDevice.name == null ? 'Empty' : bluetoothDevice.name as String,
                         style: const TextStyle(color: Colors.black, fontSize: 15),
                       ),
                       Row(children: [
-                        _chip(scanResult.device.type.toString()),
+                        _chip(bluetoothDevice.type.toString()),
                         // _chip(model.locate ?? ''),
                       ]),
                       Row(children: [
-                        _footer('Rssi', scanResult.rssi.toString()),
-                        if (scanResult.device.name.isEmpty)
-                          _footer('Id', '${scanResult.device.id}')
-                        else
-                          _footer('Name', scanResult.device.name),
+                        _footer('Id', '${bluetoothDevice.id}'),
+                        // _footer('Name', bluetoothDevice.name),
                       ]),
                     ],
                   ),

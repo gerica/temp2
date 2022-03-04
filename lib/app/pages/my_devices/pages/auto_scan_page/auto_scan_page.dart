@@ -94,7 +94,7 @@ class AutoScanPage extends GetView<AutoScanController> {
   }
 
   Widget get _deviceFoundWidget {
-    final listBluetooth = controller.state.value.data as List<ScanResult>;
+    final listBluetooth = controller.state.value.data as List<BluetoothDevice>;
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -129,7 +129,7 @@ class AutoScanPage extends GetView<AutoScanController> {
     );
   }
 
-  Widget renderList(List<ScanResult> listBluetooth) {
+  Widget renderList(List<BluetoothDevice> listBluetooth) {
     if (listBluetooth.isEmpty) {
       return Container(
         child: Text(
@@ -151,7 +151,7 @@ class AutoScanPage extends GetView<AutoScanController> {
             onTap: () async {
               controller.connectToDevice(listBluetooth[index]);
             },
-            scanResult: listBluetooth[index]);
+            bluetoothDevice: listBluetooth[index]);
       },
     );
   }
