@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/pages/my_devices/model/add_new_device_model.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
+import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/use_cases/device/bluetooth_scanning_use_case.dart';
@@ -43,10 +45,22 @@ class AutoScanController extends GetxController {
   //region Variables
   late StreamSubscription _bluetoothStateStreamSubscription;
   final isScanning = false.obs;
+  final serialNumber = ''.obs;
 
   //endregion
 
   //region Functions
+
+  @override
+  void onReady() {
+    super.onReady();
+    final param = tryCast<String>(Get.arguments);
+
+    if (param != null) {
+      serialNumber(param);
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -103,23 +117,12 @@ class AutoScanController extends GetxController {
     final response = await _connectToDeviceUseCase(discoveryResult);
     AppUIBlock.unblock(context: Get.context);
 
-    // final data = state.value.data ?? [];
-    // final existingIndex = data.indexWhere((element) => element.device.address == device.address);
-    // if (existingIndex >= 0)
-    //   data[existingIndex] = BluetoothDiscoveryResult(
-    //     device: BluetoothDevice(
-    //       name: device.name ?? '',
-    //       address: device.address,
-    //       type: device.type,
-    //       bondState: response ? BluetoothBondState.bonded : BluetoothBondState.none,
-    //     ),
-    //     rssi: discoveryResult.rssi,
-    //   );
-
-    // state.value = Resource.success(data: data);
-    // state.refresh();
     if (response) {
-      Get.toNamed(Routes.configureWiFi, arguments: discoveryResult);
+      Get.toNamed(Routes.configureWiFi,
+          arguments: AddNewDevice(
+            device: discoveryResult,
+            serialNumber: serialNumber.value,
+          ));
     }
   }
 

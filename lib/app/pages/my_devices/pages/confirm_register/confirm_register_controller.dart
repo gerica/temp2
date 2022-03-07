@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
+import 'package:radio_life/app/pages/my_devices/my_devices_controller.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
@@ -52,10 +53,8 @@ class ConfirmRegisterController extends GetxController {
       case Status.loading:
         break;
       case Status.success:
-        Get.offAllNamed(
-          Routes.myDevices,
-          predicate: ModalRoute.withName('/'),
-        );
+        await Get.delete<MyDevicesController>();
+        Get.offAllNamed(Routes.myDevices);
         break;
       case Status.failed:
         handleError(response.error ?? AppException.generic());

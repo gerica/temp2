@@ -70,7 +70,7 @@ class AddNewDeviceController extends GetxController {
     if (response.data!.status != null && response.data!.status == 'online') {
       Get.toNamed(Routes.confirmRegister, arguments: serialNumberController.text);
     } else {
-      Get.toNamed(Routes.autoScanPage);
+      Get.toNamed(Routes.autoScanPage, arguments: serialNumberController.text);
     }
   }
 

@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:app_settings/app_settings.dart';
 import 'package:connectivity_plus/connectivity_plus.dart' as connectivity;
 import 'package:flutter/material.dart';
-import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
+import 'package:radio_life/app/pages/my_devices/model/add_new_device_model.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
@@ -26,7 +27,7 @@ class ConfigureWiFiController extends GetxController {
   final CheckConnectivityUseCase _checkConnectivityUseCase;
   final GetWiFiSSIDUseCase _getWiFiSSIDUseCase;
   final ConfigureWifiUseCase _configureWifiUseCase;
-  late BluetoothDevice device;
+  late AddNewDevice paramsNewDevice;
 
   //endregion
 
@@ -47,10 +48,10 @@ class ConfigureWiFiController extends GetxController {
     });
 
     _updateWiFiSSID();
-    final param = tryCast<BluetoothDevice>(Get.arguments);
+    final param = tryCast<AddNewDevice>(Get.arguments);
 
     if (param != null) {
-      device = param;
+      paramsNewDevice = param;
     }
   }
 
@@ -92,10 +93,11 @@ class ConfigureWiFiController extends GetxController {
 
   Future<void> nextPage() async {
     await _configureWifiUseCase(ConfigureWifiParam(
-      device: device,
+      device: paramsNewDevice.device,
       ssid: wifiSSIDNumberController.text,
       password: wifiPasswordController.text,
     ));
+    Get.toNamed(Routes.confirmRegister, arguments: paramsNewDevice.serialNumber);
   }
 
 //endregion
