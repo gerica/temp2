@@ -3,7 +3,6 @@ import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
-import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
@@ -113,12 +112,16 @@ class AutoScanPage extends GetView<AutoScanController> {
               _buildSearchButton(),
               UIHelper.verticalSpaceExtraLarge,
               InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.configureWiFi);
+                onTap: () async {
+                  if (controller.deviceSelected()) {
+                    await controller.connectToDevice();
+                  }
                 },
                 child: Text(
                   S.current.configureWifi,
-                  style: TextStyle(color: AppColorScheme.primarySwatch, fontWeight: AppFontWeight.bold),
+                  style: TextStyle(
+                      color: controller.deviceSelected() ? AppColorScheme.primarySwatch : AppColorScheme.gray1,
+                      fontWeight: AppFontWeight.bold),
                 ),
               ),
               UIHelper.verticalSpaceMedium,
@@ -147,11 +150,12 @@ class AutoScanPage extends GetView<AutoScanController> {
       padding: const EdgeInsets.all(16),
       itemCount: listBluetooth.length,
       itemBuilder: (context, index) {
-        return BluetoothDeviceCardWidget(
+        return Obx(() => BluetoothDeviceCardWidget(
             onTap: () async {
-              controller.connectToDevice(listBluetooth[index]);
+              controller.selectDevice(index);
             },
-            bluetoothDevice: listBluetooth[index]);
+            selected: controller.indexDevice.value == index,
+            bluetoothDevice: listBluetooth[index]));
       },
     );
   }

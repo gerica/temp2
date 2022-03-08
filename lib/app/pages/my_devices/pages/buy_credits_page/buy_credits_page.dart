@@ -15,8 +15,7 @@ import 'package:radio_life/generated/l10n.dart';
 import 'buy_credits_controller.dart';
 
 class BuyCreditsPage extends GetView<BuyCreditsController> {
-  static Future? navigateWith({required String deviceId}) =>
-      Get.toNamed(Routes.buyCreditsPage, arguments: deviceId);
+  static Future? navigateWith({required String deviceId}) => Get.toNamed(Routes.buyCreditsPage, arguments: deviceId);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -32,9 +31,7 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
         body: Center(
           child: Container(
             constraints: BoxConstraints(
-                maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                    ? 500
-                    : MediaQuery.of(context).size.width),
+                maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
             padding: const EdgeInsets.all(AppSpacing.medium),
             child: Obx(
               () {
@@ -45,10 +42,8 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
                   itemCount: data.length + 1,
                   itemBuilder: (context, index) => index < data.length
                       ? Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          margin: const EdgeInsets.symmetric(
-                              vertical: AppSpacing.tiny),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          margin: const EdgeInsets.symmetric(vertical: AppSpacing.tiny),
                           color: data[index].backgroundColor,
                           child: InkWell(
                             splashColor: data[index].backgroundColor ==

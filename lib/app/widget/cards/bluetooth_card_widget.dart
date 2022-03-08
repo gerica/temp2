@@ -8,8 +8,9 @@ import 'package:radio_life/app/styles/app_theme.dart';
 class BluetoothDeviceCardWidget extends StatelessWidget {
   final BluetoothDevice bluetoothDevice;
   final VoidCallback onTap;
+  final bool selected;
 
-  const BluetoothDeviceCardWidget({required this.bluetoothDevice, required this.onTap});
+  const BluetoothDeviceCardWidget({required this.bluetoothDevice, required this.onTap, required this.selected});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class BluetoothDeviceCardWidget extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         elevation: 2,
+        color: selected ? AppColorScheme.pinkDark : AppColorScheme.white,
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(8),
@@ -51,7 +53,7 @@ class BluetoothDeviceCardWidget extends StatelessWidget {
                     children: [
                       Text(
                         bluetoothDevice.name == null ? 'Empty' : bluetoothDevice.name as String,
-                        style: const TextStyle(color: Colors.black, fontSize: 15),
+                        style: TextStyle(color: selected ? Colors.white : Colors.black, fontSize: 15),
                       ),
                       Row(children: [
                         _chip(bluetoothDevice.type.toString()),
@@ -100,11 +102,11 @@ class BluetoothDeviceCardWidget extends StatelessWidget {
         children: [
           Text(
             label,
-            style: const TextStyle(color: Colors.black, fontSize: AppFontSize.small),
+            style: TextStyle(color: selected ? Colors.white : Colors.black, fontSize: AppFontSize.small),
           ),
           Text(
             textFinal,
-            style: TextStyle(color: AppColorScheme.gray1, fontSize: AppFontSize.small),
+            style: TextStyle(color: selected ? Colors.white : AppColorScheme.gray1, fontSize: AppFontSize.small),
           ),
         ],
       ),

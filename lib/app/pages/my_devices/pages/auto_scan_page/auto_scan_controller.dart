@@ -37,8 +37,10 @@ class AutoScanController extends GetxController {
   //endregion
 
   //region State
+  static const initDevice = 99999;
   final state = Resource.loading<List<BluetoothDevice>?>().obs;
   final bluetoothState = BluetoothState.unknown.obs;
+  final indexDevice = initDevice.obs;
 
   //endregion
 
@@ -110,8 +112,8 @@ class AutoScanController extends GetxController {
     await _stopBluetoothScanUseCase(dynamic);
   }
 
-  Future<void> connectToDevice(BluetoothDevice discoveryResult) async {
-    // final device = discoveryResult.device;
+  Future<void> connectToDevice() async {
+    final discoveryResult = state.value.data![indexDevice.value];
     AppUIBlock.blockUI(context: Get.context);
 
     final response = await _connectToDeviceUseCase(discoveryResult);
@@ -126,6 +128,10 @@ class AutoScanController extends GetxController {
     }
   }
 
+  void selectDevice(int indexSelected) {
+    indexDevice(indexSelected);
+  }
+
   void _scanDeviceResultsListener(Resource<dynamic> resource) {
     final data = state.value.data ?? [];
     final result = resource.data;
@@ -135,22 +141,13 @@ class AutoScanController extends GetxController {
         state.value = Resource.success(data: data);
       }
     }
-    // if (result != null && result.device.name != null) {
-    //   print('AutoScanController._scanDeviceResultsListener: ${result.device.name}');
-    //
-    //   final existingIndex = data.indexWhere((element) => element.device.address == result.device.address);
-    //   if (existingIndex >= 0)
-    //     data[existingIndex] = result;
-    //   else
-    //     data.add(result);
-    //
-    //   state.value = Resource.success(data: data);
-    // }
-    // _stopBluetoothScanUseCase(dynamic);
   }
 
   void _bluetoothScanningListener(Resource<bool> resource) {
-    print('AutoScanController.startScan: ${resource.data}');
     isScanning(resource.data);
+  }
+
+  bool deviceSelected() {
+    return indexDevice.value != initDevice;
   }
 }
