@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
+import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/pages/my_devices/adapter/my_devices_adapter.dart';
 import 'package:radio_life/app/pages/my_devices/model/device_filter_model.dart';
-import 'package:radio_life/app/radio_life_app_routes.dart';
-import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/device_filter_dialog_widget.dart';
-import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
@@ -14,7 +11,7 @@ import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 import 'package:radio_life/core/domain/use_cases/my_devices/get_my_devices_use_case.dart';
 
-class MyDevicesController extends GetxController {
+class MyDevicesController extends BaseController {
   MyDevicesController(
     this._getMyDevicesUseCase,
   );
@@ -49,23 +46,6 @@ class MyDevicesController extends GetxController {
         handleError(response.error ?? AppException.generic());
         break;
     }
-  }
-
-  void handleError(AppException error) {
-    if (error.description == 'Please Login Again!') {
-      Get.offAllNamed(Routes.signIn);
-    }
-    Get.appDialog(
-      barrierDismissible: false,
-      pageChild: AppSimpleDialog(
-        title: error.title ?? '',
-        message: error.description ?? '',
-        icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
-        onClosePressed: () {
-          Get.back();
-        },
-      ),
-    );
   }
 
   Future<void> applyFilter() async {

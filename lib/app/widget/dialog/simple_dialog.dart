@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
-import 'package:radio_life/app/styles/app_border_radius.dart';
-import 'package:radio_life/app/styles/app_color_scheme.dart';
-import 'package:radio_life/app/styles/app_spacing.dart';
+// import 'package:radio_life/app/styles/app_border_radius.dart';
+// import 'package:radio_life/app/styles/app_color_scheme.dart';
+// import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/core/data/enum/status.dart';
@@ -44,8 +44,7 @@ class AppSimpleDialog extends StatelessWidget {
           ),
         ),
         transitionBuilder: (context, anim1, anim2, child) => SlideTransition(
-          position: Tween(begin: const Offset(0, 1), end: const Offset(0, 0))
-              .animate(anim1),
+          position: Tween(begin: const Offset(0, 1), end: const Offset(0, 0)).animate(anim1),
           child: child,
         ),
       );
@@ -55,9 +54,7 @@ class AppSimpleDialog extends StatelessWidget {
         duration: const Duration(seconds: 1),
         child: Center(
           child: Container(
-            width: context.breakpoint > LayoutBreakpoint.xs
-                ? 500
-                : double.infinity,
+            width: context.breakpoint > LayoutBreakpoint.xs ? 500 : double.infinity,
             margin: const EdgeInsets.symmetric(horizontal: AppSpacing.medium),
             padding: const EdgeInsets.all(AppSpacing.medium),
             decoration: BoxDecoration(
@@ -78,9 +75,7 @@ class AppSimpleDialog extends StatelessWidget {
                       title,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: AppFontSize.medium,
-                          fontWeight: AppFontWeight.bold),
+                          color: Colors.black, fontSize: AppFontSize.medium, fontWeight: AppFontWeight.bold),
                     ),
                     if (onClosePressed != null)
                       IconButton(
@@ -110,8 +105,7 @@ class AppSimpleDialog extends StatelessWidget {
                 Text(
                   message,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: Colors.black, fontSize: AppFontSize.primary),
+                  style: const TextStyle(color: Colors.black, fontSize: AppFontSize.primary),
                 ),
                 UIHelper.verticalSpaceMedium,
                 if (onOkPressed != null)
@@ -134,12 +128,10 @@ class AppSimpleDialog extends StatelessWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-        .add(ObjectFlagProperty<VoidCallback>.has('onCancel', onClosePressed));
+    properties.add(ObjectFlagProperty<VoidCallback>.has('onCancel', onClosePressed));
     properties.add(StringProperty('title', title));
     properties.add(StringProperty('message', message));
     properties.add(DiagnosticsProperty<Widget?>('icon', icon));
-    properties
-        .add(ObjectFlagProperty<VoidCallback?>.has('onOkPressed', onOkPressed));
+    properties.add(ObjectFlagProperty<VoidCallback?>.has('onOkPressed', onOkPressed));
   }
 }

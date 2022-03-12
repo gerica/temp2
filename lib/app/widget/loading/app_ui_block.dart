@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:uiblock/uiblock.dart';
@@ -31,6 +30,5 @@ class AppUIBlock {
         )
       : null;
 
-  static void unblock({BuildContext? context}) =>
-      (context != null) ? UIBlock.unblock(context) : null;
+  static void unblock({BuildContext? context}) => (context != null) ? UIBlock.unblock(context) : null;
 }

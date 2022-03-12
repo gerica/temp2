@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/styles/theme_data_radio_life.dart';
 
-import 'app_color_scheme.dart';
-import 'app_font_size.dart';
-import 'app_font_weight.dart';
-import 'app_spacing.dart';
-import 'app_text_theme.dart';
+// import 'app_color_scheme.dart';
+// import 'app_font_size.dart';
+// import 'app_font_weight.dart';
+// import 'app_spacing.dart';
+// import 'app_text_theme.dart';
 
 /// https://medium.com/flutter-community/page-transitions-using-themedata-in-flutter-c24afadb0b5d
 class AppThemeData extends ThemeDataRadioLife {
@@ -28,7 +28,7 @@ class AppThemeData extends ThemeDataRadioLife {
   static final ThemeData themeDataLight = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
     primarySwatch: AppColorScheme.primarySwatch,
-    accentColor: AppColorScheme.accentColor,
+    // accentColor: AppColorScheme.accentColor,
     textTheme: AppTextTheme.textTheme,
     bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent),
     tabBarTheme: const TabBarTheme(
@@ -48,12 +48,11 @@ class AppThemeData extends ThemeDataRadioLife {
     colorScheme: AppColorScheme.colorScheme,
     splashColor: Colors.transparent,
     appBarTheme: AppBarTheme(
-      backgroundColor: RadiolifeThemeColors.background,
-      elevation: 0,
-      brightness: Brightness.light,
-      centerTitle: true,
-      titleTextStyle: TextStyle(color: AppColorScheme.textPrimary)
-    ),
+        backgroundColor: RadiolifeThemeColors.background,
+        elevation: 0,
+        // brightness: Brightness.light,
+        centerTitle: true,
+        titleTextStyle: TextStyle(color: AppColorScheme.textPrimary)),
     highlightColor: Colors.transparent,
     textSelectionTheme: TextSelectionThemeData(
       selectionColor: AppColorScheme.success,
@@ -75,26 +74,21 @@ class AppThemeData extends ThemeDataRadioLife {
       showSelectedLabels: true,
       elevation: 0,
     ),
-    buttonTheme: ButtonThemeData(
-        colorScheme: AppColorScheme.colorScheme, textTheme: ButtonTextTheme.primary),
+    buttonTheme: ButtonThemeData(colorScheme: AppColorScheme.colorScheme, textTheme: ButtonTextTheme.primary),
   );
 
   static final ThemeData themeDataDark = ThemeData(
     brightness: Brightness.dark,
-    accentColorBrightness: Brightness.dark,
+    // accentColorBrightness: Brightness.dark,
     primarySwatch: AppColorScheme.primarySwatch,
-    accentColor: AppColorScheme.accentColor,
+    // accentColor: AppColorScheme.accentColor,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     tabBarTheme: const TabBarTheme(
-      labelStyle: TextStyle(
-          fontSize: AppFontSize.primary,
-          fontWeight: AppFontWeight.semiBold,
-          fontFamily: 'Montserrat'),
-      unselectedLabelStyle: TextStyle(
-          fontSize: AppFontSize.primary,
-          fontWeight: AppFontWeight.semiBold,
-          fontFamily: 'Montserrat'),
+      labelStyle:
+          TextStyle(fontSize: AppFontSize.primary, fontWeight: AppFontWeight.semiBold, fontFamily: 'Montserrat'),
+      unselectedLabelStyle:
+          TextStyle(fontSize: AppFontSize.primary, fontWeight: AppFontWeight.semiBold, fontFamily: 'Montserrat'),
       labelPadding: EdgeInsets.symmetric(horizontal: AppSpacing.extraSmall),
     ),
     textTheme: AppTextTheme.textTheme,
@@ -109,10 +103,9 @@ class AppThemeData extends ThemeDataRadioLife {
     appBarTheme: AppBarTheme(
         backgroundColor: RadiolifeThemeColors.background,
         elevation: 0,
-        brightness: Brightness.dark,
+        // brightness: Brightness.dark,
         centerTitle: true,
-        titleTextStyle: TextStyle(color: AppColorScheme.textPrimary)
-    ),
+        titleTextStyle: TextStyle(color: AppColorScheme.textPrimary)),
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
@@ -130,7 +123,6 @@ class AppThemeData extends ThemeDataRadioLife {
       unselectedItemColor: RadiolifeThemeColors.darkBlue.withOpacity(0.3),
       elevation: 0,
     ),
-    buttonTheme: ButtonThemeData(
-        colorScheme: AppColorScheme.colorScheme, textTheme: ButtonTextTheme.primary),
+    buttonTheme: ButtonThemeData(colorScheme: AppColorScheme.colorScheme, textTheme: ButtonTextTheme.primary),
   );
 }

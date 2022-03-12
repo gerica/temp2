@@ -52,7 +52,7 @@ class BluetoothDeviceCardWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        bluetoothDevice.name == null ? 'Empty' : bluetoothDevice.name as String,
+                        bluetoothDevice.name,
                         style: TextStyle(color: selected ? Colors.white : Colors.black, fontSize: 15),
                       ),
                       Row(children: [
@@ -111,5 +111,13 @@ class BluetoothDeviceCardWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<BluetoothDevice>('bluetoothDevice', bluetoothDevice));
+    properties.add(DiagnosticsProperty<bool>('selected', selected));
+    properties.add(ObjectFlagProperty<VoidCallback>.has('onTap', onTap));
   }
 }

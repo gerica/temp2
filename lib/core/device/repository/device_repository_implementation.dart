@@ -98,7 +98,7 @@ class DeviceRepositoryImplementation extends DeviceRepository {
   Future<void> _connectToDevice(BluetoothDevice device) async {
     final connectedDevices = await _flutterBlue.connectedDevices;
     if (connectedDevices.isNotEmpty) {
-      final connectedDevice = connectedDevices.firstWhere((d) => d.id == device.id);
+      final connectedDevice = connectedDevices.firstWhereOrNull((d) => d.id == device.id);
 
       if (connectedDevice == null) {
         await device.connect();

@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
-import 'package:radio_life/app/styles/app_color_scheme.dart';
-import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
@@ -46,8 +44,7 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
                           margin: const EdgeInsets.symmetric(vertical: AppSpacing.tiny),
                           color: data[index].backgroundColor,
                           child: InkWell(
-                            splashColor: data[index].backgroundColor ==
-                                    AppColorScheme.primarySwatch
+                            splashColor: data[index].backgroundColor == AppColorScheme.primarySwatch
                                 ? AppColorScheme.white.withOpacity(0.2)
                                 : AppColorScheme.primarySwatch.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(8),

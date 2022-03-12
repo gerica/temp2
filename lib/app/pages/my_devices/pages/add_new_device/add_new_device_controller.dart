@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/helper/validation_helper.dart';
+import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
@@ -14,7 +14,7 @@ import 'package:radio_life/core/domain/entities/device/device_check_register.dar
 import 'package:radio_life/core/domain/use_cases/my_devices/get_device_check_register_use_case.dart';
 import 'package:radio_life/generated/l10n.dart';
 
-class AddNewDeviceController extends GetxController {
+class AddNewDeviceController extends BaseController {
   TextEditingController serialNumberController = TextEditingController();
   final FocusNode serialNumberFocus = FocusNode();
   final serialNumberError = ''.obs;
@@ -85,19 +85,5 @@ class AddNewDeviceController extends GetxController {
     }
 
     return result;
-  }
-
-  void handleError(AppException error) {
-    Get.appDialog(
-      barrierDismissible: false,
-      pageChild: AppSimpleDialog(
-        title: error.title ?? '',
-        message: error.description ?? '',
-        icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
-        onClosePressed: () {
-          Get.back();
-        },
-      ),
-    );
   }
 }

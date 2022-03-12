@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/pages/my_devices/model/device_filter_model.dart';
-import 'package:radio_life/app/styles/app_border_radius.dart';
-import 'package:radio_life/app/styles/app_color_scheme.dart';
-import 'package:radio_life/app/styles/app_spacing.dart';
+// import 'package:radio_life/app/styles/app_border_radius.dart';
+// import 'package:radio_life/app/styles/app_color_scheme.dart';
+// import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/text_field/dropdown_button_form_field_widget.dart';
@@ -140,6 +140,14 @@ class DeviceFilterDialogWidget extends StatelessWidget {
         )
       ],
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(ObjectFlagProperty<VoidCallback>.has('onApplyFilter', onApplyFilter));
+    properties.add(ObjectFlagProperty<VoidCallback>.has('onCancel', onCancel));
+    properties.add(DiagnosticsProperty<DeviceFilterData>('filterData', filterData));
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
+import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/pages/forgot_password/model/forgort_password_model.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
@@ -13,7 +14,7 @@ import 'package:radio_life/generated/l10n.dart';
 
 import 'adapter/forgot_password_adapter.dart';
 
-class ForgotPasswordController extends GetxController {
+class ForgotPasswordController extends BaseController {
   ForgotPasswordController(this._resetPasswordUseCase);
 
   //region UseCases
@@ -55,20 +56,6 @@ class ForgotPasswordController extends GetxController {
         handleError(response.error ?? AppException.generic());
         break;
     }
-  }
-
-  void handleError(AppException error) {
-    Get.appDialog(
-      barrierDismissible: false,
-      pageChild: AppSimpleDialog(
-        title: error.title ?? '',
-        message: error.description ?? '',
-        icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
-        onClosePressed: () {
-          Get.back();
-        },
-      ),
-    );
   }
 
   bool get _isValid {

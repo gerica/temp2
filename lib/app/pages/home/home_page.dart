@@ -5,7 +5,7 @@ import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
-import 'package:radio_life/app/styles/app_spacing.dart';
+// import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 
@@ -30,9 +30,7 @@ class HomePage extends GetView<HomeController> {
             Center(
               child: Container(
                 constraints: BoxConstraints(
-                    maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                        ? 500
-                        : MediaQuery.of(context).size.width),
+                    maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
                 padding: const EdgeInsets.all(AppSpacing.medium),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -45,13 +43,11 @@ class HomePage extends GetView<HomeController> {
                           children: [
                             Text(
                               S.of(context).hello,
-                              style: TextStyle(
-                                  color: AppColorScheme.textPrimary, fontSize: AppFontSize.mega),
+                              style: TextStyle(color: AppColorScheme.textPrimary, fontSize: AppFontSize.mega),
                             ),
                             Text(
                               ' Denis',
-                              style: TextStyle(
-                                  color: AppColorScheme.primarySwatch, fontSize: AppFontSize.mega),
+                              style: TextStyle(color: AppColorScheme.primarySwatch, fontSize: AppFontSize.mega),
                             )
                           ],
                         ),
@@ -72,10 +68,7 @@ class HomePage extends GetView<HomeController> {
                     UIHelper.verticalSpaceLarge,
                     GridView.builder(
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 160 / 169,
-                          mainAxisSpacing: 12,
-                          crossAxisSpacing: 8),
+                          crossAxisCount: 2, childAspectRatio: 160 / 169, mainAxisSpacing: 12, crossAxisSpacing: 8),
                       itemCount: controller.items.length,
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,

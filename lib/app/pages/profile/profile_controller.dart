@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
+import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
@@ -17,7 +18,7 @@ import 'package:radio_life/core/domain/use_cases/user/update_user_profile_use_ca
 import 'package:radio_life/generated/l10n.dart';
 import 'package:universal_io/io.dart' as io;
 
-class ProfileController extends GetxController {
+class ProfileController extends BaseController {
   ProfileController(
     this._imagePicker,
     this._logOutUseCase,
@@ -119,20 +120,6 @@ class ProfileController extends GetxController {
       file = io.File(pickedFile.path);
       image.value = file;
     }
-  }
-
-  void handleError(AppException error) {
-    Get.appDialog(
-      barrierDismissible: false,
-      pageChild: AppSimpleDialog(
-        title: error.title ?? '',
-        message: error.description ?? '',
-        icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
-        onClosePressed: () {
-          Get.back();
-        },
-      ),
-    );
   }
 
   Future logout() async {
