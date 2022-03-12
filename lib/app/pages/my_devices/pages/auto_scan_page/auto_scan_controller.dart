@@ -1,11 +1,17 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/my_devices/model/add_new_device_model.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
+import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
+import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
+import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/use_cases/device/bluetooth_scanning_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/device/check_bluetooth_state_use_case.dart';
@@ -114,17 +120,24 @@ class AutoScanController extends GetxController {
 
   Future<void> connectToDevice() async {
     final discoveryResult = state.value.data![indexDevice.value];
-    AppUIBlock.blockUI(context: Get.context);
 
+    AppUIBlock.blockUI(context: Get.context);
     final response = await _connectToDeviceUseCase(discoveryResult);
     AppUIBlock.unblock(context: Get.context);
 
-    if (response) {
-      Get.toNamed(Routes.configureWiFi,
-          arguments: AddNewDevice(
-            device: discoveryResult,
-            serialNumber: serialNumber.value,
-          ));
+    switch (response.status) {
+      case Status.loading:
+        break;
+      case Status.success:
+        Get.toNamed(Routes.configureWiFi,
+            arguments: AddNewDevice(
+              device: discoveryResult,
+              serialNumber: serialNumber.value,
+            ));
+        break;
+      case Status.failed:
+        handleError(response.error ?? AppException.generic());
+        break;
     }
   }
 
@@ -149,5 +162,22 @@ class AutoScanController extends GetxController {
 
   bool deviceSelected() {
     return indexDevice.value != initDevice;
+  }
+
+  void handleError(AppException error) {
+    if (error.description == 'Please Login Again!') {
+      Get.offAllNamed(Routes.signIn);
+    }
+    Get.appDialog(
+      barrierDismissible: false,
+      pageChild: AppSimpleDialog(
+        title: error.title ?? '',
+        message: error.description ?? '',
+        icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
+        onClosePressed: () {
+          // Get.back();
+        },
+      ),
+    );
   }
 }

@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:collection/src/iterable_extensions.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:injectable/injectable.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
@@ -10,10 +12,24 @@ import 'package:radio_life/core/domain/repositories/device/device_repository.dar
 import 'package:radio_life/core/domain/use_cases/device/configure_wifi_use_case.dart';
 import 'package:wifi_iot/wifi_iot.dart';
 
+// ignore_for_file: slash_for_doc_comments, constant_identifier_names, implementation_imports
+
 @Singleton(as: DeviceRepository)
 class DeviceRepositoryImplementation extends DeviceRepository {
   final FlutterBlue _flutterBlue;
-  static const uuidDeviceCustomService = 'a091622c-8aad-11ec-a8a3-0242ac120002';
+  static const SERVICE_UUID = 'a091622c-8aad-11ec-a8a3-0242ac120002';
+  static const CHARACTERISTIC_UUID_RX = '645b5776-77fa-4cb5-a547-fb969a5340e9';
+  static const CHARACTERISTIC_UUID_TX = '109ed2ab-b946-49c2-a836-4afaeb848dd8';
+
+  static const CMD_CONNECT = 'conect';
+  static const CMD_OTA = 'ota';
+  static const CMD_SSID = 'redeSSID';
+  static const CMD_PASSWORD = 'redePass';
+  static const CMD_DISCONNECT = 'disconect';
+  static const CMD_RESET = 'reset';
+  static const CMD_LIGHT_ON = 'l1';
+  static const CMD_LIGHT_OFF = 'l0';
+  static const CMD_LIGHT_BLINK = 'lauto';
 
   DeviceRepositoryImplementation(this._flutterBlue);
 
@@ -65,16 +81,18 @@ class DeviceRepositoryImplementation extends DeviceRepository {
   Future<String?> get getWifiSSID => WiFiForIoTPlugin.getSSID();
 
   @override
-  Future<bool> connectToDevice(BluetoothDevice params) async {
+  Future<Resource<bool>> connectToDevice(BluetoothDevice params) async {
     try {
       await _connectToDevice(params).timeout(const Duration(seconds: 5));
       stopBluetoothScan;
-      return true;
+      return Resource.success(data: true);
     } on TimeoutException catch (e) {
-      print('DeviceRepositoryImplementation.connectToDevice: TIMEOUT : ${e.message}');
+      return Resource.failed(
+          error: AppException(
+        title: 'Error to connect to device',
+        description: e.message,
+      ));
     }
-
-    return false;
   }
 
   Future<void> _connectToDevice(BluetoothDevice device) async {
@@ -90,51 +108,69 @@ class DeviceRepositoryImplementation extends DeviceRepository {
     }
   }
 
-  Future<void> _discoverServices(BluetoothDevice device) async {
-    final List<BluetoothService> services = await device.discoverServices();
-
-    services.forEach((service) async {
-      if (service.uuid.toString() == 'a091622c-8aad-11ec-a8a3-0242ac120002') {
-        // print('Info service bluetooth: ${service.isPrimary}');
-        final characteristics = service.characteristics;
-        final targetCharacteristic = characteristics[0];
-
-        final List<int> bytes = utf8.encode('l0');
-        targetCharacteristic.write(bytes);
-        // Future.delayed(const Duration(milliseconds: 500), () async {
-        //   print('Entered the loop...');
-        //   final characteristics = service.characteristics;
-        //   for (final BluetoothCharacteristic c in characteristics) {
-        //     final List<int> value = await c.read();
-        //     final String stringValue = String.fromCharCodes(value);
-        //     print('The recieved Characteristic Value is $stringValue and $value');
-        //     print('Entered the second loop...');
-        //     final descriptors = c.descriptors;
-        //     print('The descriptors value is equal to: $descriptors');
-        //     for (final BluetoothDescriptor d in descriptors) {
-        //       final List<int> value = await d.read();
-        //       print('Entered the third loop...');
-        //       final String stringValue = String.fromCharCodes(value);
-        //       print('The recieved Value is $stringValue and $value');
-        //     }
-        //   }
-        // });
-      }
-    });
-  }
-
+  /**
+   * comandos:
+   * conect
+   *  retorna:--> Informe SSID
+   *  Depois desse comando ele pede o SSID da rede wifi, e em seguida ele pede a senha, eu não consegui deixar tudo em uma comando so, pois o serviço BLE tem um limite de caracteres.
+   * ota
+   *  Faz a requisição para atualizar a placa pelo servidor. Essa requisição também e feita toda vez que a placa se inicializa.
+   * redeSSID
+   *  Retorna o nome da rede que esta conectado ou "" caso não esteja conectado.
+   * redePass
+   *  Retorna o Pasword da rede conectada
+   * disconect
+   *  Desconecta da rede wifi
+   * reset
+   *  Reseta as configurações do wifi, esse comando faz com que a placa esqueça as configurações do wifi.
+   * l1
+   *  Led On
+   * l0
+   *  Led OFF
+   * lauto
+   *  Led Blink
+   */
   @override
-  Future<void> configureWifi(ConfigureWifiParam param) async {
+  Future<Resource<String>> configureWifi(ConfigureWifiParam param) async {
     final List<BluetoothService> services = await param.device.discoverServices();
 
-    final service = services.firstWhere((s) => s.uuid.toString() == uuidDeviceCustomService);
-
+    final service = services.firstWhereOrNull((s) => s.uuid.toString() == SERVICE_UUID);
+    //
     if (service != null) {
       final characteristics = service.characteristics;
-      final targetCharacteristic = characteristics[0];
+      final txCharacteristics = characteristics.firstWhere((c) => c.uuid.toString() == CHARACTERISTIC_UUID_TX);
+      final rxCharacteristics = characteristics.firstWhere((c) => c.uuid.toString() == CHARACTERISTIC_UUID_RX);
 
-      final List<int> bytes = utf8.encode(param.password);
-      targetCharacteristic.write(bytes);
+      await _writeToDevice(rxCharacteristics, CMD_CONNECT);
+      print(await _readFromDevice(txCharacteristics));
+      await _writeToDevice(rxCharacteristics, param.ssid);
+      print(await _readFromDevice(txCharacteristics));
+      await _writeToDevice(rxCharacteristics, param.password);
+      final result = await _readFromDevice(txCharacteristics);
+      print('DeviceRepositoryImplementation.configureWifi: $result');
+
+      if (result.toLowerCase().contains('erro')) {
+        return Resource.failed(
+            error: AppException(
+          title: 'Error to configure wifi',
+          description: result,
+        ));
+      }
+      return Resource.success(data: result);
     }
+    return Resource.failed(
+        error: AppException(
+      title: 'Error to configure wifi',
+      description: 'service not found',
+    ));
+  }
+
+  Future<String> _readFromDevice(BluetoothCharacteristic charact) async {
+    final List<int> value = await charact.read();
+    return utf8.decode(value);
+  }
+
+  Future<void> _writeToDevice(BluetoothCharacteristic charact, String command) async {
+    await charact.write(utf8.encode(command));
   }
 }

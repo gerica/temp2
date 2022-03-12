@@ -10,6 +10,9 @@ import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
+import 'package:radio_life/app/widget/loading/app_ui_block.dart';
+import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/domain/use_cases/device/check_connectivity_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/device/configure_wifi_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/device/get_wifi_ssid_use_case.dart';
@@ -36,6 +39,7 @@ class ConfigureWiFiController extends GetxController {
   TextEditingController wifiPasswordController = TextEditingController();
   late StreamSubscription _streamSubscription;
   final hidePassword = true.obs;
+  final formValid = false.obs;
 
   //endregion
 
@@ -91,13 +95,52 @@ class ConfigureWiFiController extends GetxController {
     await _streamSubscription.cancel();
   }
 
+  void validated() {
+    formValid(wifiPasswordController.text.isNotEmpty && wifiSSIDNumberController.text.isNotEmpty);
+  }
+
   Future<void> nextPage() async {
-    await _configureWifiUseCase(ConfigureWifiParam(
+    if (formValid.isFalse) {
+      return;
+    }
+
+    AppUIBlock.blockUI(context: Get.context);
+    FocusManager.instance.primaryFocus?.unfocus();
+    final response = await _configureWifiUseCase(ConfigureWifiParam(
       device: paramsNewDevice.device,
       ssid: wifiSSIDNumberController.text,
       password: wifiPasswordController.text,
     ));
-    Get.toNamed(Routes.confirmRegister, arguments: paramsNewDevice.serialNumber);
+    AppUIBlock.unblock(context: Get.context);
+
+    switch (response.status) {
+      case Status.loading:
+        break;
+      case Status.success:
+        print('ConfigureWiFiController.nextPage: Success');
+        // Get.toNamed(Routes.confirmRegister, arguments: paramsNewDevice.serialNumber);
+        break;
+      case Status.failed:
+        handleError(response.error ?? AppException.generic());
+        break;
+    }
+  }
+
+  void handleError(AppException error) {
+    if (error.description == 'Please Login Again!') {
+      Get.offAllNamed(Routes.signIn);
+    }
+    Get.appDialog(
+      barrierDismissible: false,
+      pageChild: AppSimpleDialog(
+        title: error.title ?? '',
+        message: error.description ?? '',
+        icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
+        onClosePressed: () {
+          // Get.back();
+        },
+      ),
+    );
   }
 
 //endregion

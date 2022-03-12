@@ -13,7 +13,7 @@ abstract class DeviceRepository {
   Stream<Resource<BluetoothState>> get checkBluetoothState;
   Stream<ConnectivityResult> get checkConnectivity;
   Future<String?> get getWifiSSID;
-  Future<bool> connectToDevice(BluetoothDevice params);
+  Future<Resource<bool>> connectToDevice(BluetoothDevice params);
   Future<List<BluetoothDevice>> get bluetoothConnected;
-  Future<void> configureWifi(ConfigureWifiParam param);
+  Future<Resource<String>> configureWifi(ConfigureWifiParam param);
 }

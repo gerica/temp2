@@ -33,13 +33,15 @@ class ConfigureWiFiPage extends GetView<ConfigureWiFiController> {
               children: [
                 _buildForms(context),
                 UIHelper.verticalSpaceLarge,
-                PrimaryButton(
-                  onPressed: () => controller.nextPage(),
-                  title: S.of(context).next,
-                  color: PrimaryButtonColor.primary,
-                  type: PrimaryButtonType.circular,
-                  style: PrimaryButtonStyle.filled,
-                  state: Status.success,
+                Obx(
+                  () => PrimaryButton(
+                    onPressed: () => controller.nextPage(),
+                    title: S.of(context).next,
+                    color: controller.formValid.value ? PrimaryButtonColor.primary : PrimaryButtonColor.error,
+                    type: PrimaryButtonType.circular,
+                    style: PrimaryButtonStyle.filled,
+                    state: Status.success,
+                  ),
                 ),
               ],
             ),
@@ -50,39 +52,43 @@ class ConfigureWiFiPage extends GetView<ConfigureWiFiController> {
         ),
       );
 
-  Widget _buildForms(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          InputTextWidget(
-            hintText: S.of(context).wifiSsid,
-            onFieldSubmitted: () {},
-            prefixIcon: PlatformSvg.asset(AppSvgImages.icWiFi),
-            suffixIcon: InkWell(
-              onTap: () {
-                controller.openAppSettings();
-              },
-              child: PlatformSvg.asset(AppSvgImages.icSearch),
-            ),
-            keyboardType: TextInputType.text,
-            textCapitalization: TextCapitalization.words,
-            controller: controller.wifiSSIDNumberController,
-            errorText: null,
+  Widget _buildForms(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        InputTextWidget(
+          hintText: S.of(context).wifiSsid,
+          onFieldSubmitted: () {},
+          prefixIcon: PlatformSvg.asset(AppSvgImages.icWiFi),
+          suffixIcon: InkWell(
+            onTap: () {
+              controller.openAppSettings();
+            },
+            child: PlatformSvg.asset(AppSvgImages.icSearch),
           ),
-          UIHelper.verticalSpaceMedium,
-          Obx(() => InputTextWidget(
-                hintText: S.of(context).password,
-                onFieldSubmitted: () {},
-                obscureText: controller.hidePassword.value,
-                prefixIcon: PlatformSvg.asset(AppSvgImages.icKey),
-                suffixIcon: InkWell(
-                  onTap: () => controller.togglePasswordVisibility,
-                  child: PlatformSvg.asset(AppSvgImages.icEye),
-                ),
-                keyboardType: TextInputType.text,
-                textCapitalization: TextCapitalization.words,
-                controller: controller.wifiPasswordController,
-                errorText: null,
-              )),
-        ],
-      );
+          keyboardType: TextInputType.text,
+          textCapitalization: TextCapitalization.words,
+          controller: controller.wifiSSIDNumberController,
+          errorText: null,
+          onChanged: (value) => controller.validated(),
+        ),
+        UIHelper.verticalSpaceMedium,
+        Obx(() => InputTextWidget(
+              hintText: S.of(context).password,
+              onFieldSubmitted: () {},
+              obscureText: controller.hidePassword.value,
+              prefixIcon: PlatformSvg.asset(AppSvgImages.icKey),
+              suffixIcon: InkWell(
+                onTap: () => controller.togglePasswordVisibility,
+                child: PlatformSvg.asset(AppSvgImages.icEye),
+              ),
+              keyboardType: TextInputType.text,
+              textCapitalization: TextCapitalization.words,
+              controller: controller.wifiPasswordController,
+              errorText: null,
+              onChanged: (value) => controller.validated(),
+            )),
+      ],
+    );
+  }
 }
