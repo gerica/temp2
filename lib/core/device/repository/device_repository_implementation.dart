@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:collection/src/iterable_extensions.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:injectable/injectable.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
@@ -30,6 +29,7 @@ class DeviceRepositoryImplementation extends DeviceRepository {
   static const CMD_LIGHT_ON = 'l1';
   static const CMD_LIGHT_OFF = 'l0';
   static const CMD_LIGHT_BLINK = 'lauto';
+  static const CMD_STATUS = 'status';
 
   DeviceRepositoryImplementation(this._flutterBlue);
 
@@ -129,6 +129,9 @@ class DeviceRepositoryImplementation extends DeviceRepository {
    *  Led OFF
    * lauto
    *  Led Blink
+   *  status
+   *   retorna -> Conectado
+   *       ou  -> Erro
    */
   @override
   Future<Resource<String>> configureWifi(ConfigureWifiParam param) async {
@@ -141,11 +144,15 @@ class DeviceRepositoryImplementation extends DeviceRepository {
       final txCharacteristics = characteristics.firstWhere((c) => c.uuid.toString() == CHARACTERISTIC_UUID_TX);
       final rxCharacteristics = characteristics.firstWhere((c) => c.uuid.toString() == CHARACTERISTIC_UUID_RX);
 
-      await _writeToDevice(rxCharacteristics, CMD_CONNECT);
-      print(await _readFromDevice(txCharacteristics));
-      await _writeToDevice(rxCharacteristics, param.ssid);
-      print(await _readFromDevice(txCharacteristics));
-      await _writeToDevice(rxCharacteristics, param.password);
+      // await _writeToDevice(rxCharacteristics, CMD_CONNECT);
+      // print(await _readFromDevice(txCharacteristics));
+      // await _writeToDevice(rxCharacteristics, param.ssid);
+      // print(await _readFromDevice(txCharacteristics));
+      // await _writeToDevice(rxCharacteristics, param.password);
+      // final result = await _readFromDevice(txCharacteristics);
+      // print('DeviceRepositoryImplementation.configureWifi: $result');
+
+      await _writeToDevice(rxCharacteristics, CMD_STATUS);
       final result = await _readFromDevice(txCharacteristics);
       print('DeviceRepositoryImplementation.configureWifi: $result');
 

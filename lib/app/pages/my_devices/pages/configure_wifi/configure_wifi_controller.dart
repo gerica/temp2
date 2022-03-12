@@ -5,8 +5,8 @@ import 'package:connectivity_plus/connectivity_plus.dart' as connectivity;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
+import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/pages/my_devices/model/add_new_device_model.dart';
-import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
@@ -19,7 +19,7 @@ import 'package:radio_life/core/domain/use_cases/device/get_wifi_ssid_use_case.d
 
 import 'package:radio_life/generated/l10n.dart';
 
-class ConfigureWiFiController extends GetxController {
+class ConfigureWiFiController extends BaseController {
   ConfigureWiFiController(
     this._checkConnectivityUseCase,
     this._getWiFiSSIDUseCase,
@@ -121,26 +121,9 @@ class ConfigureWiFiController extends GetxController {
         // Get.toNamed(Routes.confirmRegister, arguments: paramsNewDevice.serialNumber);
         break;
       case Status.failed:
-        handleError(response.error ?? AppException.generic());
+        handleError(response.error ?? AppException.generic(), actionBack: false);
         break;
     }
-  }
-
-  void handleError(AppException error) {
-    if (error.description == 'Please Login Again!') {
-      Get.offAllNamed(Routes.signIn);
-    }
-    Get.appDialog(
-      barrierDismissible: false,
-      pageChild: AppSimpleDialog(
-        title: error.title ?? '',
-        message: error.description ?? '',
-        icon: Icon(Icons.error_outline, size: 50, color: AppColorScheme.error),
-        onClosePressed: () {
-          // Get.back();
-        },
-      ),
-    );
   }
 
 //endregion
