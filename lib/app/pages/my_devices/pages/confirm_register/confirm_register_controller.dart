@@ -44,7 +44,8 @@ class ConfirmRegisterController extends BaseController {
         id: null,
         locate: null,
         status: null,
-        type: null);
+        type: null,
+        lastUpdate: null);
     final response = await _confirmRegisterUseCase(entity);
     AppUIBlock.unblock(context: Get.context);
     switch (response.status) {

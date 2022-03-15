@@ -15,5 +15,6 @@ extension GetMyDevices$Query$MyDeviceExtension on GetMyDevices$Query$MyDevice {
         type: type,
         balance: balance,
         status: status,
+        lastUpdate: lastUpdate,
       );
 }

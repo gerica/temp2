@@ -13,6 +13,7 @@ extension MyDeviceEntityExtension on MyDeviceEntity {
         serialNumber: serialNumber,
         type: type,
         balance: balance,
-        status: status);
+        status: status,
+        lastUpdate: lastUpdate);
   }
 }

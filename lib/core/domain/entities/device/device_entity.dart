@@ -8,6 +8,7 @@ class MyDeviceEntity extends Base {
   String? type;
   int? balance;
   String? status;
+  DateTime? lastUpdate;
 
   MyDeviceEntity({
     required this.name,
@@ -16,6 +17,7 @@ class MyDeviceEntity extends Base {
     required this.type,
     required this.balance,
     required this.status,
+    required this.lastUpdate,
     this.id,
   });
 
@@ -28,10 +30,32 @@ class MyDeviceEntity extends Base {
     locate = parsedJson['locate'] == null ? null : parsedJson['locate'] as String;
     serialNumber = parsedJson['serialNumber'] == null ? null : parsedJson['serialNumber'] as String;
     type = parsedJson['type'] == null ? null : parsedJson['type'] as String;
+    lastUpdate = parsedJson['lastUpdate'] == null ? null : DateTime.parse(parsedJson['lastUpdate']).toLocal();
     final account = parsedJson['account'];
     if (account != null) {
       balance = account['balance'] == null ? null : account['balance'] as int;
     }
+  }
+
+  String? get lastStatus {
+    if (_diffInMinutes() > 5) {
+      return 'offline';
+    }
+    return status;
+  }
+
+  int _diffInMinutes() {
+    if (lastUpdate == null) {
+      return -1;
+    }
+    final Duration diff = DateTime.now().difference(lastUpdate!);
+
+    // print(diff.inDays);
+    // print(diff.inHours);
+    // print(diff.inMinutes);
+    // print(diff.inSeconds);
+    // print('--------------final');
+    return diff.inMinutes;
   }
 
   // MyDeviceEntity copyWith({

@@ -80,6 +80,11 @@ class MyDevicesPage extends GetView<MyDevicesController> {
       bottomNavigationBar: const AppBottomNavigationBarWidget(
         currentIndex: 0,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => controller.getMyDevices(),
+        backgroundColor: RadiolifeThemeColors.primarySwatch,
+        child: const Icon(Icons.refresh),
+      ),
     );
   }
 
