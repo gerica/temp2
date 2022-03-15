@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/pages/my_devices/model/add_new_device_model.dart';
+import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
@@ -117,8 +118,7 @@ class ConfigureWiFiController extends BaseController {
       case Status.loading:
         break;
       case Status.success:
-        print('ConfigureWiFiController.nextPage: Success');
-        // Get.toNamed(Routes.confirmRegister, arguments: paramsNewDevice.serialNumber);
+        Get.toNamed(Routes.confirmRegister, arguments: paramsNewDevice.serialNumber);
         break;
       case Status.failed:
         handleError(response.error ?? AppException.generic(), actionBack: false);

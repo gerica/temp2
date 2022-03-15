@@ -112,7 +112,7 @@ class DeviceRepositoryImplementation extends DeviceRepository {
    * comandos:
    * conect
    *  retorna:--> Informe SSID
-   *  Depois desse comando ele pede o SSID da rede wifi, e em seguida ele pede a senha, eu não consegui deixar tudo em uma comando so, pois o serviço BLE tem um limite de caracteres.
+   *  Depois desse comando ele pede o SSID da rede wifi, e em seguida ele pede a senha
    * ota
    *  Faz a requisição para atualizar a placa pelo servidor. Essa requisição também e feita toda vez que a placa se inicializa.
    * redeSSID
@@ -144,17 +144,40 @@ class DeviceRepositoryImplementation extends DeviceRepository {
       final txCharacteristics = characteristics.firstWhere((c) => c.uuid.toString() == CHARACTERISTIC_UUID_TX);
       final rxCharacteristics = characteristics.firstWhere((c) => c.uuid.toString() == CHARACTERISTIC_UUID_RX);
 
-      // await _writeToDevice(rxCharacteristics, CMD_CONNECT);
-      // print(await _readFromDevice(txCharacteristics));
-      // await _writeToDevice(rxCharacteristics, param.ssid);
-      // print(await _readFromDevice(txCharacteristics));
-      // await _writeToDevice(rxCharacteristics, param.password);
+      await _writeToDevice(rxCharacteristics, CMD_CONNECT);
+      await _writeToDevice(rxCharacteristics, param.ssid);
+      await _writeToDevice(rxCharacteristics, param.password);
+      var result = '';
+
+      var toContinue = true;
+      var optimistic = true;
+      var count = 0;
+      await Future.doWhile(() async {
+        if (optimistic) {
+          await Future.delayed(const Duration(seconds: 1));
+        } else {
+          await Future.delayed(const Duration(seconds: 5));
+        }
+        result = await _readFromDevice(txCharacteristics);
+        if (result == 'Conectado') {
+          toContinue = false;
+        } else if (result.toLowerCase().contains('erro')) {
+          result = 'Error. The ssid or password are wrong!';
+          toContinue = false;
+        }
+        count++;
+        if (count >= 10) {
+          optimistic = false;
+        }
+        return toContinue;
+      }).timeout(const Duration(seconds: 70), onTimeout: () {
+        result = 'Error. Timeout the cube doesn\'t respond!';
+        toContinue = false;
+      });
+
+      // await _writeToDevice(rxCharacteristics, CMD_RESET);
       // final result = await _readFromDevice(txCharacteristics);
       // print('DeviceRepositoryImplementation.configureWifi: $result');
-
-      await _writeToDevice(rxCharacteristics, CMD_STATUS);
-      final result = await _readFromDevice(txCharacteristics);
-      print('DeviceRepositoryImplementation.configureWifi: $result');
 
       if (result.toLowerCase().contains('erro')) {
         return Resource.failed(
