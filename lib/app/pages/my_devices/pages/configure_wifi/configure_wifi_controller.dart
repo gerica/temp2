@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:app_settings/app_settings.dart';
 import 'package:connectivity_plus/connectivity_plus.dart' as connectivity;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +9,7 @@ import 'package:radio_life/app/pages/my_devices/model/add_new_device_model.dart'
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
+import 'package:radio_life/app/widget/dialog/list_wifis_widget.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/enum/status.dart';
@@ -82,7 +82,13 @@ class ConfigureWiFiController extends BaseController {
   }
 
   void openAppSettings() {
-    AppSettings.openWIFISettings();
+    Get.appDialog(
+      pageChild: ListWifisWidget(
+        onSelected: (value) {
+          wifiSSIDNumberController.text = value;
+        },
+      ),
+    );
   }
 
   Future _updateWiFiSSID() async {

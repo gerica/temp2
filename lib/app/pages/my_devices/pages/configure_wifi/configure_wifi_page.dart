@@ -61,9 +61,7 @@ class ConfigureWiFiPage extends GetView<ConfigureWiFiController> {
           onFieldSubmitted: () {},
           prefixIcon: PlatformSvg.asset(AppSvgImages.icWiFi),
           suffixIcon: InkWell(
-            onTap: () {
-              controller.openAppSettings();
-            },
+            onTap: () => controller.openAppSettings(),
             child: PlatformSvg.asset(AppSvgImages.icSearch),
           ),
           keyboardType: TextInputType.text,
@@ -71,6 +69,7 @@ class ConfigureWiFiPage extends GetView<ConfigureWiFiController> {
           controller: controller.wifiSSIDNumberController,
           errorText: null,
           onChanged: (value) => controller.validated(),
+          readOnly: true,
         ),
         UIHelper.verticalSpaceMedium,
         Obx(() => InputTextWidget(

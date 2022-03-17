@@ -78,7 +78,14 @@ class DeviceRepositoryImplementation extends DeviceRepository {
   Stream<ConnectivityResult> get checkConnectivity => Connectivity().onConnectivityChanged;
 
   @override
-  Future<String?> get getWifiSSID => WiFiForIoTPlugin.getSSID();
+  Future<String?> get getWifiSSID async {
+    final frequency = await WiFiForIoTPlugin.getFrequency();
+    // 5G não funciona na placa do cubo
+    if (frequency != null && frequency < 3000) {
+      return WiFiForIoTPlugin.getSSID();
+    }
+    return '';
+  }
 
   @override
   Future<Resource<bool>> connectToDevice(BluetoothDevice params) async {
