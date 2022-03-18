@@ -1,5 +1,6 @@
 Radiolife web: https://radiolife-bucket.s3.us-east-2.amazonaws.com/index.html
 Releases:
-    -Rad-I178 - remove image and text
+    -Rad-I267 - LIstar redes wifi
+    -Rad-I268 - verificar status do device
 
-New version: 1.0.56+02
+New version: 1.0.56+03

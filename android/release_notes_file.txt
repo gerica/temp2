@@ -1,1 +1,2 @@
--Rad-I178 - remove image and text
+-Rad-I267 - LIstar redes wifi
+-Rad-I268 - verificar status do device
