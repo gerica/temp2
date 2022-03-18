@@ -82,12 +82,16 @@ class DeviceCardWidget extends StatelessWidget {
     Color colorDecoration = RadiolifeThemeColors.blueLight,
     FontWeight fontWeight = FontWeight.normal,
   }) {
+    String textFinal = text;
+    if (text.length > 10) {
+      textFinal = '${text.substring(0, 10)}...';
+    }
     return Container(
       margin: const EdgeInsets.only(right: 10),
       padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
       decoration: BoxDecoration(color: colorDecoration, borderRadius: BorderRadius.circular(4)),
       child: Text(
-        text,
+        textFinal,
         style: TextStyle(
           color: AppColorScheme.textPrimary,
           fontSize: AppFontSize.small,
