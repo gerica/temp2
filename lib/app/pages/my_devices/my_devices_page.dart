@@ -81,7 +81,17 @@ class MyDevicesPage extends GetView<MyDevicesController> {
         currentIndex: 0,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => controller.getMyDevices(),
+        onPressed: () async {
+          await controller.getMyDevices();
+          Get.snackbar(
+            S.of(Get.context as BuildContext).success,
+            S.of(Get.context as BuildContext).updateMyDevices,
+            snackPosition: SnackPosition.BOTTOM,
+            colorText: Colors.black,
+            margin: const EdgeInsets.all(16),
+            backgroundColor: Colors.green[500],
+          );
+        },
         backgroundColor: RadiolifeThemeColors.primarySwatch,
         child: const Icon(Icons.refresh),
       ),

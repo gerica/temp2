@@ -109,6 +109,7 @@
   "textResultPositive": "Please see a doctor.",
   "textResultNegative": "All right with you.",
   "textDevice": "Device",
-  "titleReportDetails": "Details exam"
+  "titleReportDetails": "Details exam",
+  "updateMyDevices": "The list of devices was update!"
 
 }

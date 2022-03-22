@@ -167,6 +167,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "titleReportDetails":
             MessageLookupByLibrary.simpleMessage("Details exam"),
         "titleUpdatePassword": MessageLookupByLibrary.simpleMessage("Error"),
+        "updateMyDevices": MessageLookupByLibrary.simpleMessage(
+            "The list of devices was update!"),
         "updatePassword":
             MessageLookupByLibrary.simpleMessage("Update password"),
         "warning": MessageLookupByLibrary.simpleMessage("Warning"),

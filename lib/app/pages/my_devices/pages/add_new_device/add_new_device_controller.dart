@@ -67,11 +67,11 @@ class AddNewDeviceController extends BaseController {
   }
 
   void _nextPage(Resource<DeviceCheckRegister> response) {
-    if (response.data!.status != null && response.data!.status == 'online') {
-      Get.toNamed(Routes.confirmRegister, arguments: serialNumberController.text);
-    } else {
-      Get.toNamed(Routes.autoScanPage, arguments: serialNumberController.text);
-    }
+    // if (response.data!.status != null && response.data!.status == 'online') {
+    //   Get.toNamed(Routes.confirmRegister, arguments: serialNumberController.text);
+    // } else {
+    Get.toNamed(Routes.autoScanPage, arguments: serialNumberController.text);
+    // }
   }
 
   bool get _isValid {

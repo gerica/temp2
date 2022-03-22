@@ -1159,6 +1159,16 @@ class S {
       args: [],
     );
   }
+
+  /// `The list of devices was update!`
+  String get updateMyDevices {
+    return Intl.message(
+      'The list of devices was update!',
+      name: 'updateMyDevices',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

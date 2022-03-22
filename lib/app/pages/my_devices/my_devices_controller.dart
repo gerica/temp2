@@ -48,6 +48,7 @@ class MyDevicesController extends BaseController {
     }
   }
 
+
   Future<void> applyFilter() async {
     final List<MyDeviceEntity?>? result = [...?mydevices.value.data];
 
