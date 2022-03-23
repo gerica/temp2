@@ -11,6 +11,7 @@ import 'package:radio_life/app/widget/cards/device_card_widget.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/domain/entities/device/device_entity.dart';
+import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 import 'my_devices_controller.dart';
@@ -18,12 +19,13 @@ import 'my_devices_controller.dart';
 class MyDevicesPage extends GetView<MyDevicesController> {
   @override
   Widget build(BuildContext context) {
+    print('MyDevicesPage.build: ${FlavorConfig.isProduction()}');
     return Scaffold(
       appBar: RadioLifeAppBarWidget(
         showBackButton: false,
         brightness: Brightness.dark,
         titleText: S.of(context).myDevices,
-        backgroundColor: AppColorScheme.primarySwatch,
+        backgroundColor: FlavorConfig.instance.color,
         actions: [
           IconButton(
             onPressed: () async {

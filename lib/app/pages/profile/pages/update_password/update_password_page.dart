@@ -9,6 +9,7 @@ import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 
@@ -20,13 +21,14 @@ class UpdatePasswordPage extends GetView<UpdatePasswordController> {
           showBackButton: true,
           brightness: Brightness.dark,
           titleText: S.of(context).password,
-          backgroundColor: AppColorScheme.primarySwatch,
+          backgroundColor: FlavorConfig.instance.color,
           onBackButtonPressed: () {
             Get.back();
           }),
       body: Container(
         padding: const EdgeInsets.all(AppSpacing.medium),
-        constraints: BoxConstraints(maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
+        constraints: BoxConstraints(
+            maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

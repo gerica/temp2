@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -20,19 +19,19 @@ Future main() async {
   HttpOverrides.global = AppHttpOverrides();
   await Firebase.initializeApp();
   runZonedGuarded(
-        () async {
+    () async {
       Resource.setErrorMapper(ErrorMapper.from);
       FlavorConfig(
-        flavor: Flavor.DEV,
-        color: AppColorScheme.success,
+        flavor: Flavor.PRODUCTION,
+        color: AppColorScheme.primarySwatch,
         values: FlavorValues(
-            baseUrl: Environment.baseUrlDev,
-            baseWebSocketUrl: Environment.baseWebSocketUrlDev,
-            imageUrl: Environment.imageUrlDev),
+            baseUrl: Environment.baseUrlProd,
+            baseWebSocketUrl: Environment.baseWebSocketUrlProd,
+            imageUrl: Environment.imageUrlProd),
       );
       await configureInjection();
       runApp(RadioLifeAppWidget());
     },
-        (error, stackTrace) => FirebaseCrashlytics.instance.recordError(error, stackTrace),
+    (error, stackTrace) => FirebaseCrashlytics.instance.recordError(error, stackTrace),
   );
 }

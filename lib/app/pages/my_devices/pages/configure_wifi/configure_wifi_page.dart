@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
-import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 import 'configure_wifi_controller.dart';
@@ -21,7 +21,7 @@ class ConfigureWiFiPage extends GetView<ConfigureWiFiController> {
           showBackButton: true,
           brightness: Brightness.dark,
           titleText: S.of(context).configureWifi,
-          backgroundColor: AppColorScheme.primarySwatch,
+          backgroundColor: FlavorConfig.instance.color,
           onBackButtonPressed: () {
             Get.back();
           },

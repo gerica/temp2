@@ -13,6 +13,7 @@ import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 import 'params/product_details_params.dart';
@@ -28,7 +29,7 @@ class ProductDetailsPage extends GetView<ProductDetailsController> {
           showBackButton: true,
           brightness: Brightness.dark,
           titleText: S.of(context).products,
-          backgroundColor: AppColorScheme.primarySwatch,
+          backgroundColor: FlavorConfig.instance.color,
           title: Obx(
             () => Text(
               controller.state.value.data?.title ?? '',

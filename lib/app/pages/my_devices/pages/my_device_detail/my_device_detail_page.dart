@@ -15,6 +15,7 @@ import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/domain/entities/device/device_entity.dart';
+import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 import 'my_device_detail_controller.dart';
@@ -30,7 +31,7 @@ class MyDeviceDetailPage extends GetView<MyDeviceDetailController> {
         showBackButton: true,
         brightness: Brightness.dark,
         titleText: S.of(context).myDevice,
-        backgroundColor: AppColorScheme.primarySwatch,
+        backgroundColor: FlavorConfig.instance.color,
         onBackButtonPressed: () => controller.goToMyDevicePage(),
       ),
       body: Obx(() => Center(

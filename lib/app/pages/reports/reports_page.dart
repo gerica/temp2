@@ -9,6 +9,7 @@ import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/cards/report_card_widget.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/core/domain/entities/exam/exam_entity.dart';
+import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 import 'reports_controller.dart';
@@ -21,7 +22,7 @@ class ReportsPage extends GetView<ReportsController> {
         showBackButton: false,
         brightness: Brightness.dark,
         titleText: S.of(context).reports,
-        backgroundColor: AppColorScheme.primarySwatch,
+        backgroundColor: FlavorConfig.instance.color,
         actions: [
           IconButton(
               onPressed: () => controller.openFilterDialog(),

@@ -9,6 +9,7 @@ import 'package:radio_life/app/styles/app_font_size.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
+import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 import 'params/report_details_params.dart';
@@ -25,7 +26,7 @@ class ReportDetailsPage extends GetView<ReportDetailsController> {
         showBackButton: true,
         brightness: Brightness.dark,
         titleText: S.of(context).products,
-        backgroundColor: AppColorScheme.primarySwatch,
+        backgroundColor: FlavorConfig.instance.color,
         title: Text(
           S.of(context).titleReportDetails,
           style: const TextStyle(color: AppColorScheme.white),

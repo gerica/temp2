@@ -13,6 +13,7 @@ import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart'
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/di/di.dart';
+import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 import 'profile_controller.dart';
@@ -25,7 +26,7 @@ class ProfilePage extends GetView<ProfileController> {
         showBackButton: false,
         brightness: Brightness.dark,
         titleText: S.of(context).profile,
-        backgroundColor: AppColorScheme.primarySwatch,
+        backgroundColor: FlavorConfig.instance.color,
       ),
       body: Container(
         padding: const EdgeInsets.all(AppSpacing.medium),

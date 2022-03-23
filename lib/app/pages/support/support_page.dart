@@ -14,6 +14,7 @@ import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 import 'support_controller.dart';
@@ -27,7 +28,7 @@ class SupportPage extends GetView<SupportController> {
             showBackButton: false,
             brightness: Brightness.dark,
             titleText: S.of(context).support,
-            backgroundColor: AppColorScheme.primarySwatch,
+            backgroundColor: FlavorConfig.instance.color,
             actions: [
               IconButton(
                 onPressed: () {},

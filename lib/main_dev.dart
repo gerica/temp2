@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -17,20 +16,19 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = AppHttpOverrides();
   runZonedGuarded(
-        () async {
+    () async {
       Resource.setErrorMapper(ErrorMapper.from);
       FlavorConfig(
         flavor: Flavor.DEV,
-        color: AppColorScheme.success,
+        color: AppColorScheme.blue,
         values: FlavorValues(
             baseUrl: Environment.baseUrlDev,
             baseWebSocketUrl: Environment.baseWebSocketUrlDev,
             imageUrl: Environment.imageUrlDev),
-
       );
       await configureInjection();
       runApp(RadioLifeAppWidget());
     },
-        (error, stackTrace) => debugPrint(stackTrace.toString()),
+    (error, stackTrace) => debugPrint(stackTrace.toString()),
   );
 }

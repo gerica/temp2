@@ -8,6 +8,7 @@ import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/core/data/enum/status.dart';
+import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 import 'buy_credits_controller.dart';
@@ -21,7 +22,7 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
           showBackButton: true,
           brightness: Brightness.dark,
           titleText: S.of(context).buyCredits,
-          backgroundColor: AppColorScheme.primarySwatch,
+          backgroundColor: FlavorConfig.instance.color,
           onBackButtonPressed: () {
             Get.back();
           },
