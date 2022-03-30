@@ -4,4 +4,4 @@ Releases:
     -Rad-I273 - Diff environment
     -Rad-I178 - Show message
 
-New version: 1.0.56+03
+New version: 1.0.56+04
