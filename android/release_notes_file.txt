@@ -1,2 +1,3 @@
--Rad-I267 - LIstar redes wifi
--Rad-I268 - verificar status do device
+-Rad-I273 - Deploy in production
+-Rad-I273 - Diff environment
+-Rad-I178 - Show message
