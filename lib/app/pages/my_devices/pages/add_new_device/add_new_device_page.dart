@@ -46,10 +46,10 @@ class AddNewDevicePage extends GetView<AddNewDeviceController> {
                     onPressed: () async {
                       final result = await Get.toNamed(Routes.qrCodeViewer);
                       if (result != null) {
-                        final initSerialNumber = result.indexOf('sr:');
+                        final initSerialNumber = result.indexOf('Data: ');
                         if (initSerialNumber >= 0) {
                           controller.serialNumberController.text =
-                              result.substring(initSerialNumber + 4, initSerialNumber + 9);
+                              result.substring(initSerialNumber + 6, result.length);
                           controller.serialNumberError('');
                         }
                       }
