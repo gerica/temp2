@@ -35,27 +35,18 @@ class _ListWifisWidgetpState extends State<ListWifisWidget> {
 
   bool get isStreaming => subscription != null;
 
-  Future<bool> _canGetScannedResults(BuildContext context) async {
-    if (shouldCheck) {
-      // check if can-getScannedResults
-      final can = await WiFiScan.instance.canGetScannedResults();
-      // if can-not, then show error
-      if (can != CanGetScannedResults.yes) {
-        accessPoints = <WiFiAccessPoint>[];
-        return false;
-      }
-    }
-    return true;
-  }
-
   Future<void> _getScannedResults(BuildContext context) async {
-    if (await _canGetScannedResults(context)) {
-      // get scanned results
-      final listWifis = await WiFiScan.instance.getScannedResults();
-      final results = listWifis.where((e) {
+    final result = await WiFiScan.instance.getScannedResults(askPermissions: true);
+    if (result.hasError) {
+      throw ArgumentError(
+        'handle error for values of GetScannedResultErrors '
+        '${result.error}',
+      );
+    }
+    if (result.value != null) {
+      final results = result.value!.where((e) {
         return e.frequency < 3000;
       }).toList();
-
       setState(() => accessPoints = results);
     }
   }

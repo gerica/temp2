@@ -61,7 +61,7 @@ abstract class Routes {
   static const updatePassword = '$profile/update-password';
   static const addNewDevice = '$myDevices/newDevice';
   static const confirmRegister = '$myDevices/confirmRegister';
-  static const qrCodeViewer = 'qr-code-viewer';
+  static const qrCodeViewer = '/qr-code-viewer';
   static const changePasswordPage = '$forgotPassword/change-password';
   static const myDeviceDetail = '$myDevices/my-device-detail';
   static const buyCreditsPage = '$myDeviceDetail/buy-credits';
