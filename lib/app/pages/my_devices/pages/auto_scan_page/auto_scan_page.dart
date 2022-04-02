@@ -45,7 +45,11 @@ class AutoScanPage extends GetView<AutoScanController> {
       return _showDevice;
     }
 
-    return Container();
+    return Center(
+      child: Container(
+        child: Text('${controller.bluetoothState.value}'),
+      ),
+    );
   }
 
   Widget get _showDevice {
