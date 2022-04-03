@@ -37,7 +37,7 @@ dependencies:
   layout: ^1.0.2
   websafe_svg: ^2.1.1
   responsive_builder: ^0.4.2
-  flutter_speed_dial: ^5.0.0+1
+  flutter_speed_dial: ^5.1.0
   flutter_holo_date_picker: ^1.0.3
   persistent_bottom_nav_bar: ^4.0.2
   lottie: ^1.2.2
@@ -89,12 +89,12 @@ dependencies:
   #endregion
 
   #region Utils
-  flutter_keyboard_visibility: ^5.0.2
+  flutter_keyboard_visibility: ^5.2.0
   #endregion
 
   #region Artemis
-  json_annotation: ^4.0.1
-  gql: ^0.13.0-nullsafety.1
+  json_annotation: ^4.4.0
+  gql: ^0.13.0
   #endregion
 
   #region Firebase
