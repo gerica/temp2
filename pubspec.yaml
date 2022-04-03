@@ -74,7 +74,7 @@ dependencies:
   graphql_flutter: ^5.0.0-nullsafety.1
   graphql: ^5.0.0-nullsafety.1
   dio: ^4.0.0
-  oauth_dio: ^0.2.3
+  oauth_dio: ^0.2.7
   #endregion
 
   #region Dart and Others
