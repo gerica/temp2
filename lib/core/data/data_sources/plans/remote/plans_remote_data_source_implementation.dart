@@ -1,5 +1,6 @@
 import 'package:graphql/client.dart';
 import 'package:injectable/injectable.dart';
+import 'package:radio_life/core/data/data_sources/plans/remote/add_credit_by_plan_mutation.dart';
 import 'package:radio_life/core/data/data_sources/plans/remote/plans_remote_data_source.dart';
 import 'package:radio_life/graphql/graphql_api.graphql.dart';
 
@@ -22,13 +23,11 @@ class PlansRemoteDataSourceImplementation extends PlansRemoteDataSource {
     required String deviceId,
     required String planId,
   }) {
-    final mutation = SignDevicePlanMutation(
-      variables: SignDevicePlanArguments(idPlan: planId, idDevice: deviceId),
-    );
+    final mutation = AddCreditByPlanMutation(idPlan: planId, idDevice: deviceId);
     return _graphQLClient.mutate(
       MutationOptions(
         document: mutation.document,
-        variables: mutation.getVariablesMap(),
+        variables: mutation.variables,
       ),
     );
   }

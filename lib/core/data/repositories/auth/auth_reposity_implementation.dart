@@ -68,7 +68,7 @@ class AuthRepositoryImplementation extends AuthRepository {
   }) =>
       Resource.asFuture(
         () => _remoteDataSource.changePassword(
-          currentPassword: currentPassword,
+          oldPassword: currentPassword,
           newPassword: newPassword,
         ),
         (data) => ChangePassword$Mutation.fromJson(data).toAuthEntity(),

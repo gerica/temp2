@@ -7,7 +7,7 @@ abstract class AuthRemoteDataSource {
   });
 
   Future<QueryResult> changePassword({
-    required String currentPassword,
+    required String oldPassword,
     required String newPassword,
   });
 

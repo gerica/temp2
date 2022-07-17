@@ -17,15 +17,10 @@ class PlatformSvg {
           height: height,
           fit: fit,
           color: color,
-          alignment: alignment,
+          // alignment: alignment,
           semanticsLabel: semanticsLabel);
     }
     return SvgPicture.asset(asset,
-        width: width,
-        height: height,
-        fit: fit,
-        color: color,
-        alignment: alignment,
-        semanticsLabel: semanticsLabel);
+        width: width, height: height, fit: fit, color: color, alignment: alignment, semanticsLabel: semanticsLabel);
   }
 }

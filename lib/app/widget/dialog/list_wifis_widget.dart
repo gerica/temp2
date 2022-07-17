@@ -60,7 +60,7 @@ class _ListWifisWidgetpState extends State<ListWifisWidget> {
   void initState() {
     super.initState();
     // fetch getScannedResults post first build
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _getScannedResults(context));
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getScannedResults(context));
   }
 
   @override

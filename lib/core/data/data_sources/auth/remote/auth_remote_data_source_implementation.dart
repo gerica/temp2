@@ -1,7 +1,9 @@
 import 'package:graphql/client.dart';
 import 'package:injectable/injectable.dart';
-
-import 'package:radio_life/graphql/graphql_api.dart';
+import 'package:radio_life/core/data/data_sources/auth/remote/change_password_mutation.dart';
+import 'package:radio_life/core/data/data_sources/auth/remote/reset_password_mutation.dart';
+import 'package:radio_life/core/data/data_sources/auth/remote/signin_mutation.dart';
+import 'package:radio_life/core/data/data_sources/auth/remote/signup_mutation.dart';
 import 'auth_remote_data_source.dart';
 
 @Injectable(as: AuthRemoteDataSource)
@@ -17,16 +19,14 @@ class AuthDataSourceImplementation extends AuthRemoteDataSource {
     required String email,
   }) {
     final mutation = SignUpMutation(
-      variables: SignUpArguments(
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-      ),
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
     );
     return _graphQLClient.mutate(
       MutationOptions(
         document: mutation.document,
-        variables: mutation.getVariablesMap(),
+        variables: mutation.variables,
       ),
     );
   }
@@ -37,46 +37,41 @@ class AuthDataSourceImplementation extends AuthRemoteDataSource {
     required String password,
   }) {
     final mutation = SignInMutation(
-      variables: SignInArguments(email: email, password: password),
+      email: email,
+      password: password,
     );
     return _graphQLClient.mutate(
       MutationOptions(
         document: mutation.document,
-        variables: mutation.getVariablesMap(),
+        variables: mutation.variables,
       ),
     );
   }
 
   @override
   Future<QueryResult> changePassword({
-    required String currentPassword,
+    required String oldPassword,
     required String newPassword,
   }) {
     final mutation = ChangePasswordMutation(
-      variables: ChangePasswordArguments(
-        currentPassword: currentPassword,
-        newPassword: newPassword,
-      ),
+      oldPassword: oldPassword,
+      newPassword: newPassword,
     );
     return _graphQLClient.mutate(
       MutationOptions(
         document: mutation.document,
-        variables: mutation.getVariablesMap(),
+        variables: mutation.variables,
       ),
     );
   }
 
   @override
   Future<QueryResult> resetPassword({required String email}) {
-    final mutation = ResetPasswordMutation(
-      variables: ResetPasswordArguments(
-        email: email,
-      ),
-    );
+    final mutation = ResetPasswordMutation(email: email);
     return _graphQLClient.mutate(
       MutationOptions(
         document: mutation.document,
-        variables: mutation.getVariablesMap(),
+        variables: mutation.variables,
       ),
     );
   }
