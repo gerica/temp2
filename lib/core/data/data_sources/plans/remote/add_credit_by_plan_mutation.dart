@@ -20,7 +20,6 @@ class AddCreditByPlanMutation extends GraphqlBase {
          mutation DeviceAddCreditByPlan($idDevice: MongoID!, $idPlan: MongoID!) {
              deviceAddCreditByPlan(idDevice:$idDevice, idPlan:$idPlan){
               balance
-              device
             }        
          }
       ''');

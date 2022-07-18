@@ -68,8 +68,8 @@ class ProfileController extends BaseController {
       case Status.success:
         final data = response.data;
         if (data != null) {
-          firstNameController.text = data.firstName;
-          lastNameController.text = data.lastName;
+          firstNameController.text = data.firstNameStr;
+          lastNameController.text = data.lastNameStr;
           imageUrl.value = data.image;
         }
         break;

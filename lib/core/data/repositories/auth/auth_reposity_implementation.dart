@@ -1,11 +1,9 @@
 import 'package:injectable/injectable.dart';
-import 'package:radio_life/core/data/adapter/auth/auth_entensions.dart';
 import 'package:radio_life/core/data/data_sources/auth/local/auth_local_data_source.dart';
 import 'package:radio_life/core/data/data_sources/auth/remote/auth_remote_data_source.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/entities/auth/auth_entity.dart';
 import 'package:radio_life/core/domain/repositories/auth/auth_repository.dart';
-import 'package:radio_life/graphql/graphql_api.graphql.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImplementation extends AuthRepository {
@@ -21,7 +19,7 @@ class AuthRepositoryImplementation extends AuthRepository {
   }) =>
       Resource.asFuture(
         () => _remoteDataSource.signIn(email: email, password: password),
-        (data) => SignIn$Mutation.fromJson(data).userLogin?.toAuthEntity(),
+        (data) => AuthEntity.fromJson(data),
       );
 
   @override
@@ -36,7 +34,7 @@ class AuthRepositoryImplementation extends AuthRepository {
                 lastName: lastName,
                 email: email,
               ),
-          (data) => SignUp$Mutation.fromJson(data).userRegister ?? '');
+          (data) => data);
 
   @override
   Future setDataAuthLocal(AuthEntity authEntity) async {
@@ -71,7 +69,7 @@ class AuthRepositoryImplementation extends AuthRepository {
           oldPassword: currentPassword,
           newPassword: newPassword,
         ),
-        (data) => ChangePassword$Mutation.fromJson(data).toAuthEntity(),
+        (data) => AuthEntity.fromJson(data),
       );
 
   @override
@@ -86,6 +84,6 @@ class AuthRepositoryImplementation extends AuthRepository {
         () => _remoteDataSource.resetPassword(
           email: email,
         ),
-        (data) => ResetPassword$Mutation.fromJson(data).userResetPassword,
+        (data) => data,
       );
 }

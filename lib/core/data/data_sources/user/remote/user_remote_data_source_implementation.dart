@@ -27,9 +27,9 @@ class UserRemoteDataSourceImplementation extends UserRemoteDataSource {
   @override
   Future<QueryResult> updateUserProfile({required UserEntity user}) {
     final mutation = UserUpdateMutation(
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      id: user.idStr,
+      firstName: user.firstNameStr,
+      lastName: user.lastNameStr,
       image: user.image,
     );
     return _graphQLClient.mutate(

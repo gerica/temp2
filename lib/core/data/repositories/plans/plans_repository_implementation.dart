@@ -1,10 +1,8 @@
 import 'package:injectable/injectable.dart';
-import 'package:radio_life/core/data/adapter/plans/get_plans_extension.dart';
 import 'package:radio_life/core/data/data_sources/plans/remote/plans_remote_data_source.dart';
 import 'package:radio_life/core/data/model/resource.dart';
-import 'package:radio_life/core/domain/entities/plans/plan_entity.dart';
+import 'package:radio_life/core/domain/entities/plans/plan_entity_list.dart';
 import 'package:radio_life/core/domain/repositories/plans/plans_repository.dart';
-import 'package:radio_life/graphql/graphql_api.graphql.dart';
 
 @Injectable(as: PlansRepository)
 class PlansRepositoryImplementation extends PlansRepository {
@@ -13,9 +11,9 @@ class PlansRepositoryImplementation extends PlansRepository {
   PlansRepositoryImplementation(this._remoteDataSource);
 
   @override
-  Future<Resource<List<PlanEntity?>>> getPlans() => Resource.asFuture(
+  Future<Resource<PlanEntityList?>> getPlans() => Resource.asFuture(
         () => _remoteDataSource.getPlans(),
-        (data) => GetPlans$Query.fromJson(data).toEntityList,
+        (data) => PlanEntityList.fromJson(data),
       );
 
   @override
@@ -25,6 +23,6 @@ class PlansRepositoryImplementation extends PlansRepository {
   }) =>
       Resource.asFuture(
         () => _remoteDataSource.signDevicePlan(deviceId: deviceId, planId: planId),
-        (data) => SignDevicePlan$Mutation.fromJson(data).deviceAddCreditByPlan?.balance ?? 0,
+        (data) => data ?? 0,
       );
 }

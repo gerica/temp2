@@ -63,7 +63,7 @@ class ReportsController extends BaseController {
           if (isLastPage) {
             pagingController.appendLastPage(newItems);
           } else {
-            final nextPageKey = pageKey + newItems.length;
+            final nextPageKey = pageKey + newItems.length as int;
             pagingController.appendPage(newItems, nextPageKey);
           }
         }

@@ -1,12 +1,10 @@
 import 'package:injectable/injectable.dart';
-import 'package:radio_life/core/data/adapter/user/user_extension.dart';
 import 'package:radio_life/core/data/data_sources/user/local/user_local_data_source.dart';
 import 'package:radio_life/core/data/data_sources/user/remote/user_remote_data_source.dart';
 import 'package:radio_life/core/data/model/resource.dart';
 import 'package:radio_life/core/domain/entities/user/user_entity.dart';
 import 'package:radio_life/core/domain/entities/user/user_entity_password.dart';
 import 'package:radio_life/core/domain/repositories/user/user_repository.dart';
-import 'package:radio_life/graphql/graphql_api.dart';
 
 @Injectable(as: UserRepository)
 class UserRepositoryImplementation extends UserRepository {
@@ -21,7 +19,7 @@ class UserRepositoryImplementation extends UserRepository {
   @override
   Future<Resource<UserEntity?>> getUser({required String id}) => Resource.asFuture(
         () => _remoteDataSource.getUser(id: id),
-        (data) => GetUser$Query.fromJson(data).userById?.toEntity,
+        (data) => UserEntity.fromJson(data),
       );
 
   @override
@@ -33,7 +31,7 @@ class UserRepositoryImplementation extends UserRepository {
   @override
   Future<Resource> updateUserProfile({required UserEntity user}) => Resource.asFuture(
         () => _remoteDataSource.updateUserProfile(user: user),
-        (data) => UpdateUser$Mutation$UpdateByIdUserPayload.fromJson(data).toEntity,
+        (data) => UserEntity.fromJson(data),
       );
 
   @override

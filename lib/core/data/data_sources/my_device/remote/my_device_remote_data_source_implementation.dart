@@ -1,9 +1,9 @@
 import 'package:graphql/client.dart';
 import 'package:injectable/injectable.dart';
 import 'package:radio_life/core/data/data_sources/my_device/remote/confirm_register_device_mutation.dart';
+import 'package:radio_life/core/data/data_sources/my_device/remote/get_my_devices_query.dart';
 import 'package:radio_life/core/data/data_sources/my_device/remote/my_device_remote_data_source.dart';
 import 'package:radio_life/core/domain/entities/device/device_entity.dart';
-import 'package:radio_life/graphql/graphql_api.graphql.dart';
 
 import 'device_check_register_query.dart';
 
