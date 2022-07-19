@@ -82,7 +82,7 @@ class ReportsController extends BaseController {
       case Status.success:
         final data = response.data;
         if (data != null) {
-          myDevices.value = Resource.success(data: data.toModelList);
+          myDevices.value = Resource.success(data: data.items);
         }
         break;
       case Status.failed:

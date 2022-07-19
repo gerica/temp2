@@ -38,8 +38,8 @@ class MyDevicesController extends BaseController {
       case Status.success:
         final data = response.data;
         if (data != null) {
-          state.value = Resource.success(data: data.toModelList);
-          mydevices.value = Resource.success(data: data.toModelList);
+          state.value = Resource.success(data: data.items);
+          mydevices.value = Resource.success(data: data.items);
         }
         break;
       case Status.failed:
@@ -47,7 +47,6 @@ class MyDevicesController extends BaseController {
         break;
     }
   }
-
 
   Future<void> applyFilter() async {
     final List<MyDeviceEntity?>? result = [...?mydevices.value.data];

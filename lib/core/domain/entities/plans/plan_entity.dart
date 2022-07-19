@@ -17,4 +17,8 @@ class PlanEntity {
     credit = parsedJson['credit'] == null ? null : parsedJson['credit'] as double;
     value = parsedJson['value'] == null ? null : parsedJson['value'] as double;
   }
+
+  String get nameStr => name ?? '';
+  double get creditVl => credit ?? 0;
+  double get valueVl => value ?? 0;
 }

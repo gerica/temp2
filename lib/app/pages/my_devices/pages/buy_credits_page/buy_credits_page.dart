@@ -43,9 +43,10 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
                       ? Card(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           margin: const EdgeInsets.symmetric(vertical: AppSpacing.tiny),
-                          color: data[index].backgroundColor,
+                          // color: data[index].backgroundColor,
+                          color: controller.backgroudColor(data[index]),
                           child: InkWell(
-                            splashColor: data[index].backgroundColor == AppColorScheme.primarySwatch
+                            splashColor: controller.backgroudColor(data[index]) == AppColorScheme.primarySwatch
                                 ? AppColorScheme.white.withOpacity(0.2)
                                 : AppColorScheme.primarySwatch.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(8),
@@ -57,26 +58,26 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
                               child: Column(
                                 children: [
                                   Text(
-                                    data[index].name,
+                                    data[index].nameStr,
                                     style: TextStyle(
                                       fontSize: AppFontSize.medium,
-                                      color: data[index].textColor,
+                                      color: controller.textColor(data[index]),
                                     ),
                                   ),
                                   UIHelper.verticalSpaceExtraSmall,
                                   Text(
-                                    data[index].price,
+                                    '${data[index].creditVl}',
                                     style: TextStyle(
                                       fontSize: AppFontSize.medium,
-                                      color: data[index].textColor,
+                                      color: controller.textColor(data[index]),
                                     ),
                                   ),
                                   UIHelper.verticalSpaceExtraSmall,
                                   Text(
-                                    data[index].amountOfCredits,
+                                    '${data[index].valueVl}',
                                     style: TextStyle(
                                       fontSize: AppFontSize.medium,
-                                      color: data[index].textColor,
+                                      color: controller.textColor(data[index]),
                                     ),
                                   )
                                 ],

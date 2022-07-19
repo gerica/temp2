@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
-import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/adapter/plans_adapter.dart';
-import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/model/plan_model.dart';
 import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/credit_transaction_success_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/my_device_detail_controller.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
@@ -11,6 +9,7 @@ import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
+import 'package:radio_life/core/domain/entities/plans/plan_entity.dart';
 import 'package:radio_life/core/domain/repositories/plans/sign_device_plan_use_case.dart';
 import 'package:radio_life/core/domain/use_cases/plans/get_plans_use_case.dart';
 
@@ -27,12 +26,12 @@ class BuyCreditsController extends BaseController {
   //endregion
 
   //region State
-  final state = Resource.loading<List<PlanModel>>().obs;
+  final state = Resource.loading<List<PlanEntity>>().obs;
 
 //endregion
 
   //region Variables
-  PlanModel? _selectedPlan;
+  PlanEntity? _selectedPlan;
   late String deviceId;
   final myDeviceDetailController = Get.find<MyDeviceDetailController>();
 
@@ -62,7 +61,7 @@ class BuyCreditsController extends BaseController {
         break;
       case Status.success:
         state.value = Resource.success(
-          data: PlansAdapter.toModel(response.data ?? []),
+          data: response.data?.items,
         );
         break;
       case Status.failed:
@@ -98,17 +97,16 @@ class BuyCreditsController extends BaseController {
     final data = state.value.data;
     if (data != null) {
       _selectedPlan = data[index];
-      state.value = Resource.success(
-          data: data
-              .map(
-                (plan) => plan.copyWith(
-                  isSelected: plan.id == _selectedPlan?.id,
-                  backgroundColor: plan.id == _selectedPlan?.id ? AppColorScheme.primarySwatch : AppColorScheme.white,
-                  textColor: plan.id == _selectedPlan?.id ? AppColorScheme.white : Colors.black,
-                ),
-              )
-              .toList());
+      state.value = Resource.success(data: data);
     }
+  }
+
+  Color backgroudColor(PlanEntity plan) {
+    return plan.id == _selectedPlan?.id ? AppColorScheme.primarySwatch : AppColorScheme.white;
+  }
+
+  Color textColor(PlanEntity plan) {
+    return plan.id == _selectedPlan?.id ? AppColorScheme.white : Colors.black;
   }
 
 //endregion
