@@ -10,18 +10,15 @@ import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
+import 'package:radio_life/core/data/repositories/my_device/my_device_repository.dart';
 import 'package:radio_life/core/domain/entities/device/device_check_register.dart';
-import 'package:radio_life/core/domain/use_cases/my_devices/get_device_check_register_use_case.dart';
 import 'package:radio_life/generated/l10n.dart';
 
 class AddNewDeviceController extends BaseController {
   TextEditingController serialNumberController = TextEditingController();
+  final _repository = MyDeviceRepository();
   final FocusNode serialNumberFocus = FocusNode();
   final serialNumberError = ''.obs;
-
-  final GetDeviceCheckRegisterUseCase _getDeviceCheckRegisterUseCase;
-
-  AddNewDeviceController(this._getDeviceCheckRegisterUseCase);
 
   // @override
   // void onReady() {
@@ -34,7 +31,7 @@ class AddNewDeviceController extends BaseController {
     AppUIBlock.blockUI(context: Get.context);
     // Get.toNamed(Routes.autoScanPage);
 
-    final response = await _getDeviceCheckRegisterUseCase(serialNumberController.text);
+    final response = await _repository.getDeviceCheckRegister(serialNumber: serialNumberController.text);
     AppUIBlock.unblock(context: Get.context);
     switch (response.status) {
       case Status.loading:

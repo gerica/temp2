@@ -1,22 +1,17 @@
 import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
-import 'package:radio_life/app/pages/my_devices/adapter/my_devices_adapter.dart';
 import 'package:radio_life/app/pages/my_devices/model/device_filter_model.dart';
 import 'package:radio_life/app/widget/dialog/device_filter_dialog_widget.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
+import 'package:radio_life/core/data/repositories/my_device/my_device_repository.dart';
 import 'package:radio_life/core/domain/entities/device/device_entity.dart';
-import 'package:radio_life/core/domain/use_cases/my_devices/get_my_devices_use_case.dart';
 
 class MyDevicesController extends BaseController {
-  MyDevicesController(
-    this._getMyDevicesUseCase,
-  );
-
-  final GetMyDevicesUseCase _getMyDevicesUseCase;
+  final _myDeviceRepository = MyDeviceRepository();
   final deviceFilter = DeviceFilter.empty().obs;
 
   final state = Resource.loading<List<MyDeviceEntity?>>().obs;
@@ -30,7 +25,7 @@ class MyDevicesController extends BaseController {
 
   Future getMyDevices() async {
     AppUIBlock.blockUI(context: Get.context);
-    final response = await _getMyDevicesUseCase();
+    final response = await _myDeviceRepository.getMyDevices();
     AppUIBlock.unblock(context: Get.context);
     switch (response.status) {
       case Status.loading:

@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
+// import 'package:image_picker/image_picker.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/helper/modal_helper.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
-import 'package:radio_life/app/pages/profile/pages/update_password/update_password_controller.dart';
-import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
 import 'package:radio_life/core/data/enum/status.dart';
-import 'package:radio_life/di/di.dart';
 import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
@@ -30,7 +27,8 @@ class ProfilePage extends GetView<ProfileController> {
       ),
       body: Container(
         padding: const EdgeInsets.all(AppSpacing.medium),
-        constraints: BoxConstraints(maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
+        constraints: BoxConstraints(
+            maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -71,14 +69,7 @@ class ProfilePage extends GetView<ProfileController> {
 
   Widget _buildUpadtePassword(BuildContext context) {
     return PrimaryButton(
-        onPressed: () {
-          final contPage = UpdatePasswordController(getIt());
-          contPage.image = controller.image;
-          contPage.imageUrl = controller.imageUrl;
-          contPage.clear();
-          Get.lazyPut(() => contPage);
-          Get.toNamed(Routes.updatePassword);
-        },
+        onPressed: () => controller.goPageChangePassword(),
         title: S.of(context).updatePassword,
         color: PrimaryButtonColor.primary,
         type: PrimaryButtonType.circular,
@@ -103,7 +94,7 @@ class ProfilePage extends GetView<ProfileController> {
                     ),
                     onTap: () {
                       Navigator.pop(context);
-                      controller.getImage(ImageSource.camera);
+                      // controller.getImage(ImageSource.camera);
                     },
                     title: Text(S.of(context).camera),
                   ),
@@ -122,7 +113,7 @@ class ProfilePage extends GetView<ProfileController> {
                     ),
                     onTap: () {
                       Navigator.pop(context);
-                      controller.getImage(ImageSource.gallery);
+                      // controller.getImage(ImageSource.gallery);
                     },
                     title: Text(S.of(context).gallery),
                   ),

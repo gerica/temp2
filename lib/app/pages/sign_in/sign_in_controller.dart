@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
@@ -10,25 +11,18 @@ import 'package:radio_life/app/widget/navigation/app_bottom_navitation_bar_contr
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
+import 'package:radio_life/core/data/repositories/auth/auth_repository.dart';
+import 'package:radio_life/core/data/repositories/user/user_repository.dart';
 import 'package:radio_life/core/domain/entities/user/user_entity.dart';
-import 'package:radio_life/core/domain/use_cases/auth/do_sign_in_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/user/save_user_id_use_case.dart';
+import 'package:radio_life/core/domain/managers/user_manager.dart';
 
 import 'adapter/sign_in_adapter.dart';
 
 class SignInController extends GetxController {
-  SignInController(
-    this._doSignInUseCase,
-    this._saveUserIdUseCase,
-  );
+  final _authRepository = AuthRepository();
+  final _userManager = UserManager();
+  final _userRepository = UserRepository();
 
-  //region Use Cases
-  final DoSignInUseCase _doSignInUseCase;
-  final SaveUserIdUseCase _saveUserIdUseCase;
-
-  //endregion
-
-  //region State
   Rx<Resource<UserEntity?>> state = Resource.success<UserEntity?>().obs;
 
   //endregion
@@ -47,13 +41,32 @@ class SignInController extends GetxController {
     if (!_isValid) return;
 
     AppUIBlock.blockUI(context: Get.context);
-    final response = await _doSignInUseCase(
-      SignInParams(email: emailController.text, password: pwdController.text),
-    );
+
+    final response = await _authRepository.signIn(email: emailController.text, password: pwdController.text);
+
+    if (response.status == Status.success) {
+      final authEntity = response.data;
+      if (authEntity != null) {
+        if (kIsWeb) {
+          await _authRepository.saveTokenAtLocalStorage(token: authEntity.token ?? '');
+          await _authRepository.saveUserConfirmedValue(confirmed: authEntity.confirmed ?? false);
+        } else
+          await _authRepository.setDataAuthLocal(authEntity);
+
+        _userManager.setLoggedIn(
+          isLoggedIn: authEntity.token != null && authEntity.confirmed == true,
+        );
+      }
+    }
+
+    // final response = await _doSignInUseCase(
+    //   SignInParams(email: emailController.text, password: pwdController.text),
+    // );
+
     AppUIBlock.unblock(context: Get.context);
     final data = response.data;
     if (response.status == Status.success && data != null) {
-      await _saveUserIdUseCase(data.accountId ?? '');
+      await _userRepository.saveUserId(id: data.accountId ?? '');
       if (data.confirmed == true) {
         final bottomNavigationController = Get.find<AppBottomNavigationController>();
         bottomNavigationController.changePage(0);

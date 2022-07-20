@@ -9,31 +9,22 @@ import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
-import 'package:radio_life/core/domain/use_cases/auth/reset_password_use_case.dart';
+import 'package:radio_life/core/data/repositories/auth/auth_repository.dart';
 import 'package:radio_life/generated/l10n.dart';
 
 import 'adapter/forgot_password_adapter.dart';
 
 class ForgotPasswordController extends BaseController {
-  ForgotPasswordController(this._resetPasswordUseCase);
+  final _authRepository = AuthRepository();
 
-  //region UseCases
-  final ResetPasswordUseCase _resetPasswordUseCase;
-
-  //endregion
-
-  //region Public
   TextEditingController emailController = TextEditingController();
   final forgotPasswordModel = const ForgotPasswordModel().obs;
 
-  //endregion
-
-  //region Functions
   Future performPasswordRecovery() async {
     if (!_isValid) return;
 
     AppUIBlock.blockUI(context: Get.context);
-    final response = await _resetPasswordUseCase(emailController.text);
+    final response = await _authRepository.resetPassword(email: emailController.text);
     AppUIBlock.unblock(context: Get.context);
     switch (response.status) {
       case Status.loading:

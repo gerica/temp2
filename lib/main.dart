@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:radio_life/core/data/util/app_http_override.dart';
-import 'package:radio_life/di/di.dart';
 import 'package:universal_io/io.dart';
 
 import 'app/radio_life_app_widget.dart';
@@ -29,7 +28,6 @@ Future main() async {
             baseWebSocketUrl: Environment.baseWebSocketUrlProd,
             imageUrl: Environment.imageUrlProd),
       );
-      await configureInjection();
       runApp(RadioLifeAppWidget());
     },
     (error, stackTrace) => FirebaseCrashlytics.instance.recordError(error, stackTrace),

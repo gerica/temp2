@@ -10,32 +10,10 @@ import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
-import 'package:radio_life/core/domain/use_cases/device/bluetooth_scanning_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/device/check_bluetooth_state_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/device/connect_to_device_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/device/device_connected_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/device/start_scan_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/device/stop_scan_use_case.dart';
+import 'package:radio_life/core/data/repositories/my_device/device_repository.dart';
 
 class AutoScanController extends BaseController {
-  AutoScanController(
-    // this._scanBluetoothDevicesUseCase,
-    this._startBluetoothScanUseCase,
-    this._stopBluetoothScanUseCase,
-    this._checkBluetoothStateUseCase,
-    this._connectToDeviceUseCase,
-    this._bluetoothScanningUseCase,
-    this._deviceConnectedUseCase,
-  );
-
-  //region Use Cases
-  // final ScanBluetoothDevicesUseCase _scanBluetoothDevicesUseCase;
-  final StartBluetoothScanUseCase _startBluetoothScanUseCase;
-  final StopBluetoothScanUseCase _stopBluetoothScanUseCase;
-  final CheckBluetoothStateUseCase _checkBluetoothStateUseCase;
-  final ConnectToDeviceUseCase _connectToDeviceUseCase;
-  final BluetoothScanningUseCase _bluetoothScanningUseCase;
-  final DeviceConnectedUseCase _deviceConnectedUseCase;
+  final _deviceRepository = DeviceRepository();
 
   //endregion
 
@@ -69,8 +47,8 @@ class AutoScanController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    _bluetoothStateStreamSubscription = _checkBluetoothStateUseCase().listen(bluetoothStateListener);
-    // _scanDeviceStreamSubscription = _scanBluetoothDevicesUseCase(dynamic).listen(scanDeviceResultsListener);
+    _bluetoothStateStreamSubscription = _deviceRepository.checkBluetoothState.listen(bluetoothStateListener);
+    // _scanDeviceStreamSubscription = _deviceRepository.startBluetoothScan.listen(scanDeviceResultsListener);
     // startScan();
   }
 
@@ -91,7 +69,7 @@ class AutoScanController extends BaseController {
           startScan();
           break;
         case BluetoothState.turningOff:
-          _stopBluetoothScanUseCase(dynamic);
+          _deviceRepository.stopBluetoothScan;
           break;
         case BluetoothState.off:
           break;
@@ -100,26 +78,26 @@ class AutoScanController extends BaseController {
   }
 
   Future startScan() async {
-    // await _stopBluetoothScanUseCase(dynamic);
+    // await _deviceRepository.stopBluetoothScan;
     state.value = Resource.loading(data: []);
-    final values = await _deviceConnectedUseCase.call(null);
+    final values = await _deviceRepository.bluetoothConnected;
     state.value = Resource.success(data: values);
-    _startBluetoothScanUseCase(dynamic).listen(_scanDeviceResultsListener);
-    _bluetoothScanningUseCase(dynamic).listen(_bluetoothScanningListener);
+    _deviceRepository.startBluetoothScan.listen(_scanDeviceResultsListener);
+    _deviceRepository.isScanning.listen(_bluetoothScanningListener);
   }
 
   @override
   Future dispose() async {
     super.dispose();
     _bluetoothStateStreamSubscription.pause();
-    await _stopBluetoothScanUseCase(dynamic);
+    await _deviceRepository.stopBluetoothScan;
   }
 
   Future<void> connectToDevice() async {
     final discoveryResult = state.value.data![indexDevice.value];
 
     AppUIBlock.blockUI(context: Get.context);
-    final response = await _connectToDeviceUseCase(discoveryResult);
+    final response = await _deviceRepository.connectToDevice(discoveryResult);
     AppUIBlock.unblock(context: Get.context);
 
     switch (response.status) {

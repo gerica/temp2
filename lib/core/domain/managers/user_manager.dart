@@ -1,6 +1,15 @@
+class UserManager {
+  static final UserManager _singleton = UserManager._internal();
 
-abstract class UserManager {
-  bool get isLoggedIn;
+  factory UserManager() {
+    return _singleton;
+  }
 
-  void setLoggedIn({required bool isLoggedIn});
+  UserManager._internal();
+  bool isLoggedIn = false;
+
+  @override
+  void setLoggedIn({required bool isLoggedIn}) {
+    this.isLoggedIn = isLoggedIn;
+  }
 }

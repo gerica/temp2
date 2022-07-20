@@ -1,12 +1,15 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:injectable/injectable.dart';
 
-@injectable
 class SecureLocalStorage {
+  static final SecureLocalStorage _singleton = SecureLocalStorage._internal();
 
-  final FlutterSecureStorage storage;
+  factory SecureLocalStorage() {
+    return _singleton;
+  }
 
-  const SecureLocalStorage(this.storage);
+  SecureLocalStorage._internal();
+  // Create storage
+  final storage = const FlutterSecureStorage();
 
   Future<void> saveData({required String key, required String value}) async {
     if (await storage.containsKey(key: key)) {

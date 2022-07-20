@@ -9,35 +9,16 @@ import 'package:radio_life/app/widget/loading/app_ui_block.dart';
 import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/core/data/model/app_exception.dart';
 import 'package:radio_life/core/data/model/resource.dart';
+import 'package:radio_life/core/data/repositories/plans/plans_repository.dart';
 import 'package:radio_life/core/domain/entities/plans/plan_entity.dart';
-import 'package:radio_life/core/domain/repositories/plans/sign_device_plan_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/plans/get_plans_use_case.dart';
 
 class BuyCreditsController extends BaseController {
-  BuyCreditsController(
-    this._getPlansUseCase,
-    this._signDevicePlanUseCase,
-  );
-
-  //final Use Cases
-  final GetPlansUseCase _getPlansUseCase;
-  final SignDevicePlanUseCase _signDevicePlanUseCase;
-
-  //endregion
-
-  //region State
+  final _plansRepository = PlansRepository();
   final state = Resource.loading<List<PlanEntity>>().obs;
 
-//endregion
-
-  //region Variables
   PlanEntity? _selectedPlan;
   late String deviceId;
   final myDeviceDetailController = Get.find<MyDeviceDetailController>();
-
-  //endregion
-
-//region Public
 
   @override
   void onInit() {
@@ -53,7 +34,7 @@ class BuyCreditsController extends BaseController {
 
   Future getPlans() async {
     AppUIBlock.blockUI(context: Get.context);
-    final response = await _getPlansUseCase();
+    final response = await _plansRepository.getPlans();
     AppUIBlock.unblock(context: Get.context);
 
     switch (response.status) {
@@ -73,8 +54,7 @@ class BuyCreditsController extends BaseController {
   Future signDevicePlan() async {
     if (_selectedPlan == null) return;
     AppUIBlock.blockUI(context: Get.context);
-    final response =
-        await _signDevicePlanUseCase(SignDevicePlanParams(deviceId: deviceId, planId: _selectedPlan?.id ?? ''));
+    final response = await _plansRepository.signDevicePlan(deviceId: deviceId, planId: _selectedPlan?.id ?? '');
     AppUIBlock.unblock(context: Get.context);
 
     switch (response.status) {
