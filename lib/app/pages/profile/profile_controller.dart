@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/data/enum/status.dart';
+import 'package:radio_life/app/data/model/app_exception.dart';
+import 'package:radio_life/app/data/repositories/auth/auth_repository.dart';
+import 'package:radio_life/app/data/repositories/user/user_repository.dart';
+import 'package:radio_life/app/domain/entities/user/user_entity.dart';
+import 'package:radio_life/app/domain/managers/user_manager.dart';
 // import 'package:image_picker/image_picker.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
@@ -7,12 +13,6 @@ import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
-import 'package:radio_life/core/data/enum/status.dart';
-import 'package:radio_life/core/data/model/app_exception.dart';
-import 'package:radio_life/core/data/repositories/auth/auth_repository.dart';
-import 'package:radio_life/core/data/repositories/user/user_repository.dart';
-import 'package:radio_life/core/domain/entities/user/user_entity.dart';
-import 'package:radio_life/core/domain/managers/user_manager.dart';
 import 'package:radio_life/generated/l10n.dart';
 import 'package:universal_io/io.dart' as io;
 

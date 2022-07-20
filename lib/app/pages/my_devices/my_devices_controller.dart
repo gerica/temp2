@@ -1,14 +1,14 @@
 import 'package:get/get.dart';
+import 'package:radio_life/app/data/enum/status.dart';
+import 'package:radio_life/app/data/model/app_exception.dart';
+import 'package:radio_life/app/data/model/resource.dart';
+import 'package:radio_life/app/data/repositories/my_device/my_device_repository.dart';
+import 'package:radio_life/app/domain/entities/device/device_entity.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/pages/my_devices/model/device_filter_model.dart';
 import 'package:radio_life/app/widget/dialog/device_filter_dialog_widget.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
-import 'package:radio_life/core/data/enum/status.dart';
-import 'package:radio_life/core/data/model/app_exception.dart';
-import 'package:radio_life/core/data/model/resource.dart';
-import 'package:radio_life/core/data/repositories/my_device/my_device_repository.dart';
-import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 class MyDevicesController extends BaseController {
   final _myDeviceRepository = MyDeviceRepository();

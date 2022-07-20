@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
+import 'package:radio_life/app/data/model/resource.dart';
+import 'package:radio_life/app/domain/entities/device/device_entity.dart';
 import 'package:radio_life/app/pages/my_devices/my_devices_controller.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
-import 'package:radio_life/core/data/model/resource.dart';
-import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 class MyDeviceDetailController extends GetxController {
   //region State

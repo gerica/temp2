@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/domain/entities/device/device_entity.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
-import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 class DeviceCardWidget extends StatelessWidget {
   final MyDeviceEntity model;

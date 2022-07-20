@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
+import 'package:radio_life/app/data/model/resource.dart';
+import 'package:radio_life/app/domain/entities/exam/exam_entity.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
-import 'package:radio_life/core/data/model/resource.dart';
-import 'package:radio_life/core/domain/entities/exam/exam_entity.dart';
 
 class ReportDetailsController extends GetxController {
   //region State

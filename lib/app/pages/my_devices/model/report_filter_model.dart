@@ -1,5 +1,5 @@
+import 'package:radio_life/app/domain/entities/device/device_entity.dart';
 import 'package:radio_life/app/widget/dialog/reports_filter_dialog_widget.dart';
-import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 class ReportFilter {
   int page;

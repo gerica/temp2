@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart' as connectivity;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/data/enum/status.dart';
+import 'package:radio_life/app/data/model/app_exception.dart';
+import 'package:radio_life/app/data/repositories/my_device/device_repository.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/pages/my_devices/model/add_new_device_model.dart';
@@ -13,9 +16,6 @@ import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/dialog/list_wifis_widget.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
-import 'package:radio_life/core/data/enum/status.dart';
-import 'package:radio_life/core/data/model/app_exception.dart';
-import 'package:radio_life/core/data/repositories/my_device/device_repository.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 
