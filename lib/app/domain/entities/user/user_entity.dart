@@ -7,7 +7,8 @@ class UserEntity {
 
   UserEntity({required this.id, required this.firstName, required this.lastName, this.email, this.image});
 
-  UserEntity.fromJson(Map<String, dynamic> parsedJson) {
+  UserEntity.fromJson(Map<String, dynamic> mapJson) {
+    final Map<String, dynamic> parsedJson = mapJson['userById'];
     id = parsedJson['_id'] == null ? null : parsedJson['_id'] as String;
     firstName = parsedJson['firstName'] == null ? null : parsedJson['firstName'] as String;
     lastName = parsedJson['lastName'] == null ? null : parsedJson['lastName'] as String;
