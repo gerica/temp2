@@ -1,19 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:radio_life/app/data/helpers/secure_local_storage.dart';
 import 'package:radio_life/app/data/helpers/storage_keys.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:radio_life/app/helper/provider_access_data.dart';
 
 class AuthDataSourceLocal {
   final _secureLocalStorage = SecureLocalStorage();
-  late SharedPreferences _sharedPreferences;
-
-  AuthDataSourceLocal() {
-    _init();
-  }
-
-  Future<void> _init() async {
-    _sharedPreferences = await SharedPreferences.getInstance();
-  }
 
   @override
   Future deleteUser() {
@@ -39,24 +30,25 @@ class AuthDataSourceLocal {
   @override
   Future get logout async {
     if (kIsWeb)
-      await _sharedPreferences.clear();
+      await ProviderAccessData().sharedPreferences.clear();
     else {
       await _secureLocalStorage.clearData();
-      await _sharedPreferences.clear();
+      await ProviderAccessData().sharedPreferences.clear();
     }
   }
 
   @override
   Future<void> saveUserConfirmedValue({required bool confirmed}) =>
-      _sharedPreferences.setBool(StorageKeys.userConfirmed, confirmed);
+      ProviderAccessData().sharedPreferences.setBool(StorageKeys.userConfirmed, confirmed);
 
   @override
-  Future<bool> get getUserConfirmedValue async => _sharedPreferences.getBool(StorageKeys.userConfirmed) ?? false;
+  Future<bool> get getUserConfirmedValue async =>
+      ProviderAccessData().sharedPreferences.getBool(StorageKeys.userConfirmed) ?? false;
 
   @override
-  String? get getTokenFromLocalStorage => _sharedPreferences.getString(StorageKeys.token);
+  String? get getTokenFromLocalStorage => ProviderAccessData().sharedPreferences.getString(StorageKeys.token);
 
   @override
   Future<void> saveTokenAtLocalStorage({required String token}) =>
-      _sharedPreferences.setString(StorageKeys.token, token);
+      ProviderAccessData().sharedPreferences.setString(StorageKeys.token, token);
 }

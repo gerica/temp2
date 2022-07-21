@@ -34,6 +34,12 @@ class SignInController extends GetxController {
   final FocusNode pwdFocus = FocusNode();
   final signInModel = const SignInModel().obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+    emailController.text = 'rogerio@radiolifelabs.com';
+    pwdController.text = '123';
+  }
   //endregion
 
   //region Functions
@@ -44,7 +50,7 @@ class SignInController extends GetxController {
 
     final response = await _authRepository.signIn(email: emailController.text, password: pwdController.text);
 
-    if (response.status == Status.success) {
+    if (response.status == Status.success && response.data != null) {
       final authEntity = response.data;
       if (authEntity != null) {
         if (kIsWeb) {
@@ -57,17 +63,16 @@ class SignInController extends GetxController {
           isLoggedIn: authEntity.token != null && authEntity.confirmed == true,
         );
       }
-    }
 
-    // final response = await _doSignInUseCase(
-    //   SignInParams(email: emailController.text, password: pwdController.text),
-    // );
+      // final response = await _doSignInUseCase(
+      //   SignInParams(email: emailController.text, password: pwdController.text),
+      // );
 
-    AppUIBlock.unblock(context: Get.context);
-    final data = response.data;
-    if (response.status == Status.success && data != null) {
-      await _userRepository.saveUserId(id: data.accountId ?? '');
-      if (data.confirmed == true) {
+      AppUIBlock.unblock(context: Get.context);
+      // final data = response.data;
+      // if (response.status == Status.success && data != null) {
+      await _userRepository.saveUserId(id: authEntity?.accountId ?? '');
+      if (authEntity?.confirmed == true) {
         final bottomNavigationController = Get.find<AppBottomNavigationController>();
         bottomNavigationController.changePage(0);
         Get.offAllNamed(

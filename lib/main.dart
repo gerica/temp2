@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:radio_life/app/data/helpers/error_mapper.dart';
 import 'package:radio_life/app/data/model/resource.dart';
 import 'package:radio_life/app/data/util/app_http_override.dart';
+import 'package:radio_life/app/helper/provider_access_data.dart';
 import 'package:radio_life/app/radio_life_app_widget.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:universal_io/io.dart';
@@ -28,6 +29,7 @@ Future main() async {
             baseWebSocketUrl: Environment.baseWebSocketUrlProd,
             imageUrl: Environment.imageUrlProd),
       );
+      await ProviderAccessData().init();
       runApp(RadioLifeAppWidget());
     },
     (error, stackTrace) => FirebaseCrashlytics.instance.recordError(error, stackTrace),
