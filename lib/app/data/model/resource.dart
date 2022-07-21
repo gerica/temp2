@@ -12,7 +12,8 @@ class Resource<T> {
   final AppException? error;
 
   // ignore: prefer_function_declarations_over_variables
-  static AppException Function(dynamic e) _errorMapper = (e) => AppException(exception: e, title: e.toString());
+  static AppException Function(dynamic e) _errorMapper =
+      (e) => AppException(exception: e, title: 'Error', description: e.toString());
 
   const Resource({
     required this.status,

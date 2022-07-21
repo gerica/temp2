@@ -15,7 +15,7 @@ class ErrorMapper {
             )
           : e is NoSuchMethodError
               ? AppException(exception: e, title: 'Unexpected error')
-              : AppException(exception: e, title: e.toString());
+              : AppException(exception: e, title: 'Error', description: e.toString());
 
   static String _graphQlErrorMapper(List<GraphQLError> errorList) {
     if (errorList.isEmpty) return 'Unexpected error'; //ToDo maybe customize this error message and export string
