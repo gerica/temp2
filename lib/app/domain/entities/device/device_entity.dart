@@ -34,6 +34,8 @@ class MyDeviceEntity extends Base {
     final account = parsedJson['account'];
     if (account != null) {
       balance = account['balance'] == null ? null : account['balance'] as int;
+    } else {
+      balance = parsedJson['balance'] == null ? null : parsedJson['balance'] as int;
     }
   }
 

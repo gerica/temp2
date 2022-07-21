@@ -5,12 +5,13 @@ class DeviceEntityList {
   List<MyDeviceEntity> items = [];
 
   DeviceEntityList.fromJson(Map<String, dynamic> parsedJson) {
-    count = parsedJson['count'] == null ? null : parsedJson['count'] as int;
-    final exams = parsedJson['items'];
+    final devices = parsedJson['myDevice'];
     items = [];
-    if (exams != null && exams.length > 0) {
-      for (final objJson in exams) {
+    count = 0;
+    if (devices != null && devices.length > 0) {
+      for (final objJson in devices) {
         items.add(MyDeviceEntity.fromJson(objJson));
+        count = count! + 1;
       }
     }
   }

@@ -19,7 +19,13 @@ class SignInMutation extends GraphqlBase {
     return gql(r'''
          mutation UserLogin($email: String!, $password: String!) {
              userLogin(record:{email:$email, password:$password}){
+                _id
                 token
+                confirmed
+                email
+                firstName
+                lastName
+                image
               }        
          }
       ''');

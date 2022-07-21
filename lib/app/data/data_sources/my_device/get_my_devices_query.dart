@@ -20,6 +20,7 @@ class GetMyDevicesQuery extends GraphqlBase {
               serialNumber
               status
               type
+              lastUpdate
             }       
          }
       ''');
