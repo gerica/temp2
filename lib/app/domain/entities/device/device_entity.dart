@@ -29,6 +29,7 @@ class MyDeviceEntity extends Base {
     name = parsedJson['name'] == null ? null : parsedJson['name'] as String;
     locate = parsedJson['locate'] == null ? null : parsedJson['locate'] as String;
     serialNumber = parsedJson['serialNumber'] == null ? null : parsedJson['serialNumber'] as String;
+    status = parsedJson['status'] == null ? null : parsedJson['status'] as String;
     type = parsedJson['type'] == null ? null : parsedJson['type'] as String;
     lastUpdate = parsedJson['lastUpdate'] == null ? null : DateTime.parse(parsedJson['lastUpdate']).toLocal();
     final account = parsedJson['account'];
