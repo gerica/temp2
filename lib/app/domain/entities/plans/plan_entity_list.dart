@@ -1,17 +1,17 @@
-
 import 'package:radio_life/app/domain/entities/plans/plan_entity.dart';
 
 class PlanEntityList {
   int? count;
   List<PlanEntity> items = [];
 
-  PlanEntityList.fromJson(Map<String, dynamic> parsedJson) {
-    count = parsedJson['count'] == null ? null : parsedJson['count'] as int;
-    final exams = parsedJson['items'];
+  PlanEntityList.fromJson(Map<String, dynamic> mapJson) {
+    final plans = mapJson['planCreditGetAll'];
+    count = 0;
     items = [];
-    if (exams != null && exams.length > 0) {
-      for (final objJson in exams) {
+    if (plans != null && plans.length > 0) {
+      for (final objJson in plans) {
         items.add(PlanEntity.fromJson(objJson));
+        count = count! + 1;
       }
     }
   }

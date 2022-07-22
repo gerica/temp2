@@ -23,6 +23,7 @@ class MyDeviceEntity extends Base {
 
   MyDeviceEntity.fromJson(Map<String, dynamic> parsedJson) {
     id = parsedJson['_id'] == null ? null : parsedJson['_id'] as String;
+    id ??= parsedJson['device'] == null ? null : parsedJson['device'] as String;
     deleted = parsedJson['deleted'] == null ? null : parsedJson['deleted'] as bool;
     createdAt = parsedJson['createdAt'] == null ? null : DateTime.parse(parsedJson['createdAt']).toLocal();
     updatedAt = parsedJson['updatedAt'] == null ? null : DateTime.parse(parsedJson['updatedAt']).toLocal();

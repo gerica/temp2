@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
@@ -36,6 +37,9 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
               () {
                 final data = controller.state.value.data;
                 if (data == null) return Container();
+                final locale = Localizations.localeOf(context);
+                final format = NumberFormat.simpleCurrency(locale: locale.toString());
+
                 return ListView.builder(
                   shrinkWrap: true,
                   itemCount: data.length + 1,
@@ -74,7 +78,7 @@ class BuyCreditsPage extends GetView<BuyCreditsController> {
                                   ),
                                   UIHelper.verticalSpaceExtraSmall,
                                   Text(
-                                    '${data[index].valueVl}',
+                                    '${format.currencySymbol}${data[index].valueVl}',
                                     style: TextStyle(
                                       fontSize: AppFontSize.medium,
                                       color: controller.textColor(data[index]),

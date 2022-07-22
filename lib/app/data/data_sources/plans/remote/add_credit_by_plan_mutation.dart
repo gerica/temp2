@@ -17,7 +17,7 @@ class AddCreditByPlanMutation extends GraphqlBase {
 
   DocumentNode get document {
     return gql(r'''
-         mutation DeviceAddCreditByPlan($idDevice: MongoID!, $idPlan: MongoID!) {
+         mutation DeviceAddCreditByPlan($idDevice: String!, $idPlan: String!) {
              deviceAddCreditByPlan(idDevice:$idDevice, idPlan:$idPlan){
               balance
             }        

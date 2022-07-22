@@ -23,7 +23,14 @@ class BuyCreditsController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    deviceId = tryCast<String>(Get.arguments) ?? '';
+    final deviceIdTemp = tryCast<String>(Get.arguments);
+    if (deviceIdTemp == null || deviceIdTemp.isEmpty) {
+      throw ArgumentError(
+        'Device not selected ',
+      );
+    } else {
+      deviceId = deviceIdTemp;
+    }
   }
 
   @override
@@ -88,10 +95,4 @@ class BuyCreditsController extends BaseController {
   Color textColor(PlanEntity plan) {
     return plan.id == _selectedPlan?.id ? AppColorScheme.white : Colors.black;
   }
-
-//endregion
-
-//region Functions
-//endregion
-
 }

@@ -75,7 +75,7 @@ class CreditTransactionSuccessPage extends GetView<CreditTransactionSuccessContr
                       ),
                       UIHelper.verticalSpaceSmall,
                       Text(
-                        S.of(context).loremIpsum,
+                        S.of(context).orderDetailsText,
                         style: TextStyle(color: AppColorScheme.gray1, fontSize: AppFontSize.secondary),
                       ),
                       UIHelper.verticalSpaceMedium,

@@ -1169,6 +1169,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Success to by credit`
+  String get orderDetailsText {
+    return Intl.message(
+      'Success to by credit',
+      name: 'orderDetailsText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

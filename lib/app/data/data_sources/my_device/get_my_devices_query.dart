@@ -12,7 +12,7 @@ class GetMyDevicesQuery extends GraphqlBase {
   DocumentNode get document {
     return gql(r'''
          query MyDevice() {
-              myDevice {
+              myDevice {              
               balance
               device
               locate

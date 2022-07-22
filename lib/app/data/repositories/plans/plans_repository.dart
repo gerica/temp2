@@ -18,6 +18,9 @@ class PlansRepository {
   }) =>
       Resource.asFuture(
         () => _plansDataSource.signDevicePlan(deviceId: deviceId, planId: planId),
-        (data) => data ?? 0,
+        (data) {
+          final deviceAdd = data['deviceAddCreditByPlan'];
+          return deviceAdd['balance'];
+        },
       );
 }
