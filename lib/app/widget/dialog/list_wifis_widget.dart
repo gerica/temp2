@@ -4,10 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
-import 'package:radio_life/core/data/enum/status.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 
@@ -60,7 +60,7 @@ class _ListWifisWidgetpState extends State<ListWifisWidget> {
   void initState() {
     super.initState();
     // fetch getScannedResults post first build
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _getScannedResults(context));
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getScannedResults(context));
   }
 
   @override

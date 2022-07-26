@@ -111,6 +111,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Don\'t have more exams"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("Order details"),
+        "orderDetailsText":
+            MessageLookupByLibrary.simpleMessage("Success to by credit"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordChanged":
             MessageLookupByLibrary.simpleMessage("Password changed"),

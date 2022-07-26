@@ -3,34 +3,25 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart' as connectivity;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/data/enum/status.dart';
+import 'package:radio_life/app/data/model/app_exception.dart';
+import 'package:radio_life/app/data/repositories/my_device/device_repository.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/pages/my_devices/model/add_new_device_model.dart';
+import 'package:radio_life/app/pages/my_devices/model/configure_wifi_model.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/dialog/list_wifis_widget.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
-import 'package:radio_life/core/data/enum/status.dart';
-import 'package:radio_life/core/data/model/app_exception.dart';
-import 'package:radio_life/core/domain/use_cases/device/check_connectivity_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/device/configure_wifi_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/device/get_wifi_ssid_use_case.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 
 class ConfigureWiFiController extends BaseController {
-  ConfigureWiFiController(
-    this._checkConnectivityUseCase,
-    this._getWiFiSSIDUseCase,
-    this._configureWifiUseCase,
-  );
+  final _deviceRepository = DeviceRepository();
 
-  //region Use cases
-  final CheckConnectivityUseCase _checkConnectivityUseCase;
-  final GetWiFiSSIDUseCase _getWiFiSSIDUseCase;
-  final ConfigureWifiUseCase _configureWifiUseCase;
   late AddNewDevice paramsNewDevice;
 
   //endregion
@@ -48,7 +39,7 @@ class ConfigureWiFiController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    _streamSubscription = _checkConnectivityUseCase().listen((event) {
+    _streamSubscription = _deviceRepository.checkConnectivity.listen((event) {
       _connectivityStateListener(event);
     });
 
@@ -92,7 +83,7 @@ class ConfigureWiFiController extends BaseController {
   }
 
   Future _updateWiFiSSID() async {
-    final ssid = await _getWiFiSSIDUseCase();
+    final ssid = await _deviceRepository.getWifiSSID;
     if (ssid != null) wifiSSIDNumberController.text = ssid;
   }
 
@@ -113,7 +104,7 @@ class ConfigureWiFiController extends BaseController {
 
     AppUIBlock.blockUI(context: Get.context);
     FocusManager.instance.primaryFocus?.unfocus();
-    final response = await _configureWifiUseCase(ConfigureWifiParam(
+    final response = await _deviceRepository.configureWifi(ConfigureWifiModel(
       device: paramsNewDevice.device,
       ssid: wifiSSIDNumberController.text,
       password: wifiPasswordController.text,

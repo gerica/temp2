@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/helper/platform_svg.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_svg_images.dart';
@@ -13,7 +14,6 @@ import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
-import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
@@ -39,9 +39,7 @@ class SupportPage extends GetView<SupportController> {
           body: Center(
             child: Container(
               constraints: BoxConstraints(
-                  maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                      ? 500
-                      : MediaQuery.of(context).size.width),
+                  maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
               padding: const EdgeInsets.all(AppSpacing.medium),
               child: SingleChildScrollView(
                 child: Column(
@@ -88,9 +86,7 @@ class SupportPage extends GetView<SupportController> {
                     Text(
                       S.of(context).stillNeedHelpSendUsAMessage,
                       style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: AppFontSize.medium,
-                          fontWeight: AppFontWeight.regular),
+                          color: Colors.black, fontSize: AppFontSize.medium, fontWeight: AppFontWeight.regular),
                     ),
                     UIHelper.verticalSpaceMedium,
                     InputTextWidget(
@@ -121,9 +117,11 @@ class SupportPage extends GetView<SupportController> {
               ),
             ),
           ),
-          bottomNavigationBar: isKeyboardVisible ? null : const AppBottomNavigationBarWidget(
-            currentIndex: 2,
-          ),
+          bottomNavigationBar: isKeyboardVisible
+              ? null
+              : const AppBottomNavigationBarWidget(
+                  currentIndex: 2,
+                ),
         ),
       );
 }

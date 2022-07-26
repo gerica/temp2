@@ -1,49 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/data/enum/status.dart';
+import 'package:radio_life/app/data/model/app_exception.dart';
+import 'package:radio_life/app/data/model/resource.dart';
+import 'package:radio_life/app/data/repositories/plans/plans_repository.dart';
+import 'package:radio_life/app/domain/entities/plans/plan_entity.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
-import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/adapter/plans_adapter.dart';
-import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/model/plan_model.dart';
 import 'package:radio_life/app/pages/my_devices/pages/credits_transaction_success/credit_transaction_success_page.dart';
 import 'package:radio_life/app/pages/my_devices/pages/my_device_detail/my_device_detail_controller.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
-import 'package:radio_life/core/data/enum/status.dart';
-import 'package:radio_life/core/data/model/app_exception.dart';
-import 'package:radio_life/core/data/model/resource.dart';
-import 'package:radio_life/core/domain/repositories/plans/sign_device_plan_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/plans/get_plans_use_case.dart';
 
 class BuyCreditsController extends BaseController {
-  BuyCreditsController(
-    this._getPlansUseCase,
-    this._signDevicePlanUseCase,
-  );
+  final _plansRepository = PlansRepository();
+  final state = Resource.loading<List<PlanEntity>>().obs;
 
-  //final Use Cases
-  final GetPlansUseCase _getPlansUseCase;
-  final SignDevicePlanUseCase _signDevicePlanUseCase;
-
-  //endregion
-
-  //region State
-  final state = Resource.loading<List<PlanModel>>().obs;
-
-//endregion
-
-  //region Variables
-  PlanModel? _selectedPlan;
+  PlanEntity? _selectedPlan;
   late String deviceId;
   final myDeviceDetailController = Get.find<MyDeviceDetailController>();
-
-  //endregion
-
-//region Public
 
   @override
   void onInit() {
     super.onInit();
-    deviceId = tryCast<String>(Get.arguments) ?? '';
+    final deviceIdTemp = tryCast<String>(Get.arguments);
+    if (deviceIdTemp == null || deviceIdTemp.isEmpty) {
+      throw ArgumentError(
+        'Device not selected ',
+      );
+    } else {
+      deviceId = deviceIdTemp;
+    }
   }
 
   @override
@@ -54,7 +41,7 @@ class BuyCreditsController extends BaseController {
 
   Future getPlans() async {
     AppUIBlock.blockUI(context: Get.context);
-    final response = await _getPlansUseCase();
+    final response = await _plansRepository.getPlans();
     AppUIBlock.unblock(context: Get.context);
 
     switch (response.status) {
@@ -62,7 +49,7 @@ class BuyCreditsController extends BaseController {
         break;
       case Status.success:
         state.value = Resource.success(
-          data: PlansAdapter.toModel(response.data ?? []),
+          data: response.data?.items,
         );
         break;
       case Status.failed:
@@ -74,8 +61,7 @@ class BuyCreditsController extends BaseController {
   Future signDevicePlan() async {
     if (_selectedPlan == null) return;
     AppUIBlock.blockUI(context: Get.context);
-    final response =
-        await _signDevicePlanUseCase(SignDevicePlanParams(deviceId: deviceId, planId: _selectedPlan?.id ?? ''));
+    final response = await _plansRepository.signDevicePlan(deviceId: deviceId, planId: _selectedPlan?.id ?? '');
     AppUIBlock.unblock(context: Get.context);
 
     switch (response.status) {
@@ -98,22 +84,15 @@ class BuyCreditsController extends BaseController {
     final data = state.value.data;
     if (data != null) {
       _selectedPlan = data[index];
-      state.value = Resource.success(
-          data: data
-              .map(
-                (plan) => plan.copyWith(
-                  isSelected: plan.id == _selectedPlan?.id,
-                  backgroundColor: plan.id == _selectedPlan?.id ? AppColorScheme.primarySwatch : AppColorScheme.white,
-                  textColor: plan.id == _selectedPlan?.id ? AppColorScheme.white : Colors.black,
-                ),
-              )
-              .toList());
+      state.value = Resource.success(data: data);
     }
   }
 
-//endregion
+  Color backgroudColor(PlanEntity plan) {
+    return plan.id == _selectedPlan?.id ? AppColorScheme.primarySwatch : AppColorScheme.white;
+  }
 
-//region Functions
-//endregion
-
+  Color textColor(PlanEntity plan) {
+    return plan.id == _selectedPlan?.id ? AppColorScheme.white : Colors.black;
+  }
 }

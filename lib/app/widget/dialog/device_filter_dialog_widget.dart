@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/data/enum/status.dart';
+import 'package:radio_life/app/domain/entities/device/device_entity.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/pages/my_devices/model/device_filter_model.dart';
 // import 'package:radio_life/app/styles/app_border_radius.dart';
@@ -10,8 +12,6 @@ import 'package:radio_life/app/pages/my_devices/model/device_filter_model.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/text_field/dropdown_button_form_field_widget.dart';
-import 'package:radio_life/core/data/enum/status.dart';
-import 'package:radio_life/core/domain/entities/device/device_entity.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 

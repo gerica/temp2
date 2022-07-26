@@ -1,22 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/data/enum/status.dart';
+import 'package:radio_life/app/data/model/app_exception.dart';
+import 'package:radio_life/app/data/repositories/my_device/my_device_repository.dart';
+import 'package:radio_life/app/domain/entities/device/device_entity.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/pages/my_devices/my_devices_controller.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/utils/try_cast.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
-import 'package:radio_life/core/data/enum/status.dart';
-import 'package:radio_life/core/data/model/app_exception.dart';
-import 'package:radio_life/core/domain/entities/device/device_entity.dart';
-import 'package:radio_life/core/domain/use_cases/my_devices/confirm_regiser_use_case.dart';
 
 class ConfirmRegisterController extends BaseController {
-  final ConfirmRegisterUseCase _confirmRegisterUseCase;
+  final _myDeviceRepository = MyDeviceRepository();
 
   TextEditingController nameController = TextEditingController();
-
-  ConfirmRegisterController(this._confirmRegisterUseCase);
 
   TextEditingController locationController = TextEditingController();
   final FocusNode locationFocus = FocusNode();
@@ -46,7 +44,7 @@ class ConfirmRegisterController extends BaseController {
         status: null,
         type: null,
         lastUpdate: null);
-    final response = await _confirmRegisterUseCase(entity);
+    final response = await _myDeviceRepository.confirmRegister(entity: entity);
     AppUIBlock.unblock(context: Get.context);
     switch (response.status) {
       case Status.loading:

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/data/enum/status.dart';
+import 'package:radio_life/app/domain/entities/plans/plan_entity.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
-import 'package:radio_life/app/pages/my_devices/pages/buy_credits_page/model/plan_model.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/styles/app_font_size.dart';
@@ -11,14 +12,13 @@ import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
-import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 import 'credit_transaction_success_controller.dart';
 
 class CreditTransactionSuccessPage extends GetView<CreditTransactionSuccessController> {
-  static Future? navigateWith({required PlanModel arguments}) => Get.offNamedUntil(
+  static Future? navigateWith({required PlanEntity arguments}) => Get.offNamedUntil(
         Routes.creditsTransactionSuccess,
         ModalRoute.withName('/'),
         arguments: arguments,
@@ -75,7 +75,7 @@ class CreditTransactionSuccessPage extends GetView<CreditTransactionSuccessContr
                       ),
                       UIHelper.verticalSpaceSmall,
                       Text(
-                        S.of(context).loremIpsum,
+                        S.of(context).orderDetailsText,
                         style: TextStyle(color: AppColorScheme.gray1, fontSize: AppFontSize.secondary),
                       ),
                       UIHelper.verticalSpaceMedium,
@@ -87,7 +87,7 @@ class CreditTransactionSuccessPage extends GetView<CreditTransactionSuccessContr
                       ),
                       UIHelper.verticalSpaceMedium,
                       Text(
-                        S.of(context).amountPaid(controller.state.value.data?.price ?? ''),
+                        S.of(context).amountPaid(controller.state.value.data?.value ?? ''),
                         style: const TextStyle(color: Colors.black),
                       ),
                       UIHelper.verticalSpaceLarge,

@@ -110,6 +110,7 @@
   "textResultNegative": "All right with you.",
   "textDevice": "Device",
   "titleReportDetails": "Details exam",
-  "updateMyDevices": "The list of devices was update!"
+  "updateMyDevices": "The list of devices was update!",
+  "orderDetailsText": "Success to by credit"
 
 }

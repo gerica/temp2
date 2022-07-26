@@ -1,4 +1,4 @@
-import 'package:radio_life/core/domain/entities/device/device_entity.dart';
+import 'package:radio_life/app/domain/entities/device/device_entity.dart';
 
 extension MyDeviceListExtension on List<MyDeviceEntity?> {
   List<MyDeviceEntity?> get toModelList => map((e) => e?.toModel).toList();

@@ -1,4 +1,1 @@
-- update some libs
-- Resolver problem of flutter_blue doesn't work in release
-- change e-mail
-- get qrcode
+- refactory layers
