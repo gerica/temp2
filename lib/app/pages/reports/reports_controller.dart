@@ -1,24 +1,22 @@
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:radio_life/app/data/enum/status.dart';
+import 'package:radio_life/app/data/model/app_exception.dart';
+import 'package:radio_life/app/data/model/resource.dart';
+import 'package:radio_life/app/data/repositories/exams/exams_repository.dart';
+import 'package:radio_life/app/data/repositories/my_device/my_device_repository.dart';
+import 'package:radio_life/app/domain/entities/device/device_entity.dart';
+import 'package:radio_life/app/domain/entities/exam/exam_entity.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
-import 'package:radio_life/app/pages/my_devices/adapter/my_devices_adapter.dart';
 import 'package:radio_life/app/pages/my_devices/model/report_filter_model.dart';
 import 'package:radio_life/app/widget/dialog/reports_filter_dialog_widget.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
-import 'package:radio_life/core/data/enum/status.dart';
-import 'package:radio_life/core/data/model/app_exception.dart';
-import 'package:radio_life/core/data/model/resource.dart';
-import 'package:radio_life/core/domain/entities/device/device_entity.dart';
-import 'package:radio_life/core/domain/entities/exam/exam_entity.dart';
-import 'package:radio_life/core/domain/use_cases/exams/get_exams_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/my_devices/get_my_devices_use_case.dart';
 
 class ReportsController extends BaseController {
-  ReportsController(this._getExamsUseCase, this._getMyDevicesUseCase);
+  final _examsRepository = ExamsRepository();
+  final _myDeviceRepository = MyDeviceRepository();
 
-  final GetExamsUseCase _getExamsUseCase;
-  final GetMyDevicesUseCase _getMyDevicesUseCase;
   final state = Resource.loading<List<ExamEntity>>().obs;
   final myDevices = Resource.loading<List<MyDeviceEntity?>>().obs;
   final reportFilter = ReportFilter(page: 1, perPage: _perPage).obs;
@@ -48,7 +46,7 @@ class ReportsController extends BaseController {
     AppUIBlock.blockUI(context: Get.context);
     await 1.delay();
     reportFilter.value.page = pageKey;
-    final response = await _getExamsUseCase(reportFilter.value);
+    final response = await _examsRepository.getExams(filter: reportFilter.value);
     AppUIBlock.unblock(context: Get.context);
     switch (response.status) {
       case Status.loading:
@@ -63,7 +61,7 @@ class ReportsController extends BaseController {
           if (isLastPage) {
             pagingController.appendLastPage(newItems);
           } else {
-            final nextPageKey = pageKey + newItems.length;
+            final nextPageKey = pageKey + newItems.length as int;
             pagingController.appendPage(newItems, nextPageKey);
           }
         }
@@ -75,14 +73,14 @@ class ReportsController extends BaseController {
   }
 
   Future getMyDevices() async {
-    final response = await _getMyDevicesUseCase();
+    final response = await _myDeviceRepository.getMyDevices();
     switch (response.status) {
       case Status.loading:
         break;
       case Status.success:
         final data = response.data;
         if (data != null) {
-          myDevices.value = Resource.success(data: data.toModelList);
+          myDevices.value = Resource.success(data: data.items);
         }
         break;
       case Status.failed:

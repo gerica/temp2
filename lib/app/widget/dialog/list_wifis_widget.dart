@@ -4,10 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
-import 'package:radio_life/core/data/enum/status.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 
@@ -35,27 +35,18 @@ class _ListWifisWidgetpState extends State<ListWifisWidget> {
 
   bool get isStreaming => subscription != null;
 
-  Future<bool> _canGetScannedResults(BuildContext context) async {
-    if (shouldCheck) {
-      // check if can-getScannedResults
-      final can = await WiFiScan.instance.canGetScannedResults();
-      // if can-not, then show error
-      if (can != CanGetScannedResults.yes) {
-        accessPoints = <WiFiAccessPoint>[];
-        return false;
-      }
-    }
-    return true;
-  }
-
   Future<void> _getScannedResults(BuildContext context) async {
-    if (await _canGetScannedResults(context)) {
-      // get scanned results
-      final listWifis = await WiFiScan.instance.getScannedResults();
-      final results = listWifis.where((e) {
+    final result = await WiFiScan.instance.getScannedResults(askPermissions: true);
+    if (result.hasError) {
+      throw ArgumentError(
+        'handle error for values of GetScannedResultErrors '
+        '${result.error}',
+      );
+    }
+    if (result.value != null) {
+      final results = result.value!.where((e) {
         return e.frequency < 3000;
       }).toList();
-
       setState(() => accessPoints = results);
     }
   }
@@ -69,7 +60,7 @@ class _ListWifisWidgetpState extends State<ListWifisWidget> {
   void initState() {
     super.initState();
     // fetch getScannedResults post first build
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _getScannedResults(context));
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getScannedResults(context));
   }
 
   @override

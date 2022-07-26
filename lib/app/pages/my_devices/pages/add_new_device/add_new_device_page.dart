@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_spacing.dart';
@@ -7,7 +8,6 @@ import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
-import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
@@ -46,10 +46,10 @@ class AddNewDevicePage extends GetView<AddNewDeviceController> {
                     onPressed: () async {
                       final result = await Get.toNamed(Routes.qrCodeViewer);
                       if (result != null) {
-                        final initSerialNumber = result.indexOf('sr:');
+                        final initSerialNumber = result.indexOf('Data: ');
                         if (initSerialNumber >= 0) {
                           controller.serialNumberController.text =
-                              result.substring(initSerialNumber + 4, initSerialNumber + 9);
+                              result.substring(initSerialNumber + 6, result.length);
                           controller.serialNumberError('');
                         }
                       }

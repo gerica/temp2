@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
-import 'package:radio_life/core/data/enum/status.dart';
 
 enum PrimaryButtonColor { success, error, primary, secondary }
 
@@ -112,9 +112,7 @@ class PrimaryButton extends StatelessWidget {
           fillColor: style.showBackground ? color.backgroundColor : Colors.transparent,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(type.cornerRadius),
-              side: style.showBorder
-                  ? BorderSide(color: color.backgroundColor, width: 2)
-                  : BorderSide.none),
+              side: style.showBorder ? BorderSide(color: color.backgroundColor, width: 2) : BorderSide.none),
           onPressed: onPressed,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),

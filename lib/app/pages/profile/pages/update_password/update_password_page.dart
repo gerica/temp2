@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/pages/profile/pages/update_password/update_password_controller.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
@@ -8,7 +9,6 @@ import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
-import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';

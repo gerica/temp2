@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/styles/app_theme.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/cards/bluetooth_card_widget.dart';
 import 'package:radio_life/app/widget/navigation/app_bottom_navigation_bar.dart';
-import 'package:radio_life/core/data/enum/status.dart';
 import 'package:radio_life/flavors/flavor_values.dart';
 
 import 'package:radio_life/generated/l10n.dart';
@@ -45,7 +45,11 @@ class AutoScanPage extends GetView<AutoScanController> {
       return _showDevice;
     }
 
-    return Container();
+    return Center(
+      child: Container(
+        child: Text('${controller.bluetoothState.value}'),
+      ),
+    );
   }
 
   Widget get _showDevice {

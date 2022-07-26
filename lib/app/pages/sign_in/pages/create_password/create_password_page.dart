@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
+import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/helper/ui_helper.dart';
 import 'package:radio_life/app/images/app_images.dart';
 import 'package:radio_life/app/styles/app_font_weight.dart';
@@ -8,7 +9,6 @@ import 'package:radio_life/app/styles/app_spacing.dart';
 import 'package:radio_life/app/widget/app_bar/radiolife_app_bar_widget.dart';
 import 'package:radio_life/app/widget/buttons/primary_button.dart';
 import 'package:radio_life/app/widget/text_field/input_text_widget.dart';
-import 'package:radio_life/core/data/enum/status.dart';
 
 import 'package:radio_life/generated/l10n.dart';
 import 'crate_password_controller.dart';
@@ -31,18 +31,13 @@ class CreatePasswordPage extends GetView<CreatePasswordController> {
           child: Container(
             padding: const EdgeInsets.all(AppSpacing.medium),
             constraints: BoxConstraints(
-                maxWidth: context.breakpoint > LayoutBreakpoint.xs
-                    ? 500
-                    : MediaQuery.of(context).size.width),
+                maxWidth: context.breakpoint > LayoutBreakpoint.xs ? 500 : MediaQuery.of(context).size.width),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   S.of(context).updatePassword,
-                  style: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: AppFontWeight.regular,
-                      color: Colors.black),
+                  style: const TextStyle(fontSize: 25, fontWeight: AppFontWeight.regular, color: Colors.black),
                 ),
                 UIHelper.verticalSpaceExtraLarge,
                 UIHelper.verticalSpaceMedium,

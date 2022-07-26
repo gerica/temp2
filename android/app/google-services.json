@@ -33,35 +33,6 @@
           ]
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:724547037719:android:5f8f89a8f2a2c66b118a52",
-        "android_client_info": {
-          "package_name": "com.radiolifelabs"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "724547037719-ld7sm170thu9pspoh925ontk21612io5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC230RolrK1Bkxl1ShdUE4UmSp4nBk61F0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "724547037719-ld7sm170thu9pspoh925ontk21612io5.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
     }
   ],
   "configuration_version": "1"

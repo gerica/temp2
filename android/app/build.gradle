@@ -32,7 +32,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -59,6 +59,10 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.debug
+            // Need to put this code because the flutter_blue doesn't work without this
+            // https://github.com/pauldemarco/flutter_blue/issues/772#issuecomment-827404250
+            minifyEnabled false
+            shrinkResources false
         }
     }
 }

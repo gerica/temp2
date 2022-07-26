@@ -1,48 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:radio_life/app/data/enum/status.dart';
+import 'package:radio_life/app/data/model/app_exception.dart';
+import 'package:radio_life/app/data/repositories/auth/auth_repository.dart';
+import 'package:radio_life/app/data/repositories/user/user_repository.dart';
+import 'package:radio_life/app/domain/entities/user/user_entity.dart';
+import 'package:radio_life/app/domain/managers/user_manager.dart';
+// import 'package:image_picker/image_picker.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
 import 'package:radio_life/app/styles/app_color_scheme.dart';
 import 'package:radio_life/app/widget/dialog/simple_dialog.dart';
 import 'package:radio_life/app/widget/loading/app_ui_block.dart';
-import 'package:radio_life/core/data/enum/status.dart';
-import 'package:radio_life/core/data/model/app_exception.dart';
-import 'package:radio_life/core/domain/entities/user/user_entity.dart';
-import 'package:radio_life/core/domain/use_cases/auth/log_out_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/user/get_user_id_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/user/get_user_profile_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/user/image_to_base64_use_case.dart';
-import 'package:radio_life/core/domain/use_cases/user/update_user_profile_use_case.dart';
 import 'package:radio_life/generated/l10n.dart';
 import 'package:universal_io/io.dart' as io;
 
+import 'pages/update_password/update_password_controller.dart';
+
 class ProfileController extends BaseController {
-  ProfileController(
-    this._imagePicker,
-    this._logOutUseCase,
-    this._updateUserProfileUseCase,
-    this._getUserIdUseCase,
-    this._getUserProfileUseCase,
-    this._imageToBase64UseCase,
-  );
+  static Future<ProfileController> get to async =>
+      Get.isRegistered<ProfileController>() ? Get.find<ProfileController>() : Get.put(ProfileController());
 
-  //region Use Cases
-  final LogOutUseCase _logOutUseCase;
-  final GetUserProfileUseCase _getUserProfileUseCase;
-  final UpdateUserProfileUseCase _updateUserProfileUseCase;
-  final GetUserIdUseCase _getUserIdUseCase;
-  final ImageToBase64UseCase _imageToBase64UseCase;
+  final _userRepository = UserRepository();
+  final _authRepository = AuthRepository();
+  final _userManager = UserManager();
 
-  //endregion
-
-  //region Variables
   final TextEditingController firstNameController = TextEditingController();
   final FocusNode firstNameFocus = FocusNode();
   final TextEditingController lastNameController = TextEditingController();
   final FocusNode lastNameFocus = FocusNode();
-  final ImagePicker _imagePicker;
+  // final ImagePicker _imagePicker;
+
   final image = Rxn<io.File?>();
   final imageUrl = Rxn<String?>();
   late String _id;
@@ -58,9 +47,9 @@ class ProfileController extends BaseController {
 
   Future _getUserProfile() async {
     AppUIBlock.blockUI(context: Get.context);
-    final userId = await _getUserIdUseCase();
+    final userId = await _userRepository.getUserId();
     _id = userId.data ?? '';
-    final response = await _getUserProfileUseCase(_id);
+    final response = await _userRepository.getUser(id: _id);
     AppUIBlock.unblock(context: Get.context);
     switch (response.status) {
       case Status.loading:
@@ -68,8 +57,8 @@ class ProfileController extends BaseController {
       case Status.success:
         final data = response.data;
         if (data != null) {
-          firstNameController.text = data.firstName;
-          lastNameController.text = data.lastName;
+          firstNameController.text = data.firstNameStr;
+          lastNameController.text = data.lastNameStr;
           imageUrl.value = data.image;
         }
         break;
@@ -82,9 +71,9 @@ class ProfileController extends BaseController {
   Future updateUserProfile() async {
     AppUIBlock.blockUI(context: Get.context);
     final file = this.file;
-    final base64 = file != null ? await _imageToBase64UseCase(file) : null;
-    final response = await _updateUserProfileUseCase(
-      UserEntity(
+    final base64 = file != null ? await _userRepository.convertoToBase64(file) : null;
+    final response = await _userRepository.updateUserProfile(
+      user: UserEntity(
         id: _id,
         firstName: firstNameController.text,
         lastName: lastNameController.text,
@@ -113,18 +102,28 @@ class ProfileController extends BaseController {
     }
   }
 
-  Future getImage(ImageSource source) async {
-    final pickedFile = await _imagePicker.getImage(
-        source: source, preferredCameraDevice: CameraDevice.rear, imageQuality: 90, maxHeight: 500, maxWidth: 500);
-    if (pickedFile != null) {
-      file = io.File(pickedFile.path);
-      image.value = file;
-    }
-  }
+  // Future getImage(ImageSource source) async {
+  //   final pickedFile = await _imagePicker.getImage(
+  //       source: source, preferredCameraDevice: CameraDevice.rear, imageQuality: 90, maxHeight: 500, maxWidth: 500);
+  //   if (pickedFile != null) {
+  //     file = io.File(pickedFile.path);
+  //     image.value = file;
+  //   }
+  // }
 
   Future logout() async {
-    await _logOutUseCase();
+    _userManager.setLoggedIn(isLoggedIn: false);
+    _authRepository.logout;
     Get.offAllNamed(Routes.signIn);
+  }
+
+  void goPageChangePassword() {
+    final contPage = UpdatePasswordController();
+    contPage.image = image;
+    contPage.imageUrl = imageUrl;
+    contPage.clear();
+    Get.lazyPut(() => contPage);
+    Get.toNamed(Routes.updatePassword);
   }
 
 //endregion

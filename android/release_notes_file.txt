@@ -1,3 +1,4 @@
--Rad-I273 - Deploy in production
--Rad-I273 - Diff environment
--Rad-I178 - Show message
+- update some libs
+- Resolver problem of flutter_blue doesn't work in release
+- change e-mail
+- get qrcode
