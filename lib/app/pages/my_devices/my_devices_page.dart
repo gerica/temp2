@@ -19,7 +19,6 @@ import 'my_devices_controller.dart';
 class MyDevicesPage extends GetView<MyDevicesController> {
   @override
   Widget build(BuildContext context) {
-    print('MyDevicesPage.build: ${FlavorConfig.isProduction()}');
     return Scaffold(
       appBar: RadioLifeAppBarWidget(
         showBackButton: false,
