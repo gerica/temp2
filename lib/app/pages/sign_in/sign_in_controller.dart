@@ -34,12 +34,12 @@ class SignInController extends GetxController {
   final FocusNode pwdFocus = FocusNode();
   final signInModel = const SignInModel().obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    emailController.text = 'rogerio@radiolifelabs.com';
-    pwdController.text = '123';
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   emailController.text = 'rogerio@radiolifelabs.com';
+  //   pwdController.text = '123';
+  // }
   //endregion
 
   //region Functions
