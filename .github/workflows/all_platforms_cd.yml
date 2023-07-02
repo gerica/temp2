@@ -46,15 +46,14 @@ jobs:
     name: Deploy beta build to TestFlight
     runs-on: macOS-latest
     steps:
-      #     - name: Show MATCH PASSWORD
-      #       run: echo ${{ secrets.MATCH_PASSWORD }} | sed 's/./& /g'
       - name: Checkout code from ref
         uses: actions/checkout@v3
+
       - name: Run Flutter tasks
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.10.5'
           channel: 'stable'
+          architecture: x64
       - run: flutter pub get
       - run: flutter build ios --release --no-codesign
 
