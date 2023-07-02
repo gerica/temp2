@@ -18,7 +18,8 @@ class ErrorMapper {
               : AppException(exception: e, title: 'Error', description: e.toString());
 
   static String _graphQlErrorMapper(List<GraphQLError> errorList) {
-    if (errorList.isEmpty) return 'Unexpected error'; //ToDo maybe customize this error message and export string
+    if (errorList.isEmpty)
+      return 'Unexpected error'; // TODO(ROGERIO): maybe customize this error message and export string.
 
     if (errorList.length == 1) {
       return GetErrorTitleAndDescriptionHelper.getTitleError(errorList);
@@ -27,7 +28,8 @@ class ErrorMapper {
   }
 
   static String _graphQlErrorMapperDescription(List<GraphQLError> errorList) {
-    if (errorList.isEmpty) return 'Unexpected error'; //ToDo maybe customize this error message and export string
+    if (errorList.isEmpty)
+      return 'Unexpected error'; // TODO(ROGERIO): maybe customize this error message and export string
 
     if (errorList.length == 1) {
       return GetErrorTitleAndDescriptionHelper.getDescriptionError(errorList);
