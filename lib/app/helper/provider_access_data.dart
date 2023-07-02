@@ -26,9 +26,9 @@ class ProviderAccessData {
 
   Dio provideDio() {
     final dio = Dio();
-    dio.options.connectTimeout = 10000;
-    dio.options.sendTimeout = 20000;
-    dio.options.receiveTimeout = 10000;
+    dio.options.connectTimeout = const Duration(milliseconds: 1000);
+    dio.options.sendTimeout = const Duration(milliseconds: 2000);
+    dio.options.receiveTimeout = const Duration(milliseconds: 1000);
     dio.options.baseUrl = FlavorConfig.instance.values.baseUrl;
     dio.interceptors.add(LogInterceptor(
       request: true,

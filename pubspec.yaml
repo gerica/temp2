@@ -73,14 +73,14 @@ dependencies:
   #region Network
   graphql_flutter: ^5.0.0-nullsafety.1
   graphql: ^5.0.0-nullsafety.1
-  dio: ^4.0.6
-  oauth_dio: ^0.2.7
+  dio: ^5.0.0
+#  oauth_dio: ^0.2.7
   #endregion
 
   #region Dart and Others
   equatable: ^2.0.3
   tuple: ^2.0.0
-  intl: ^0.17.0
+  intl: ^0.18.0
   share: ^2.0.4
   flinq: ^2.0.2
   flutter_blue: ^0.8.0
