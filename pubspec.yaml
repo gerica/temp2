@@ -28,8 +28,8 @@ dependencies:
 
   #region UI Stuff
   cupertino_icons: ^1.0.5
-  google_fonts: ^3.0.1
-  intl_utils: ^2.7.0
+  google_fonts: ^4.0.1
+  intl_utils: ^2.8.0
   uiblock: ^2.0.2
   auto_size_text: ^3.0.0
   shimmer: ^2.0.0
@@ -101,6 +101,8 @@ dependencies:
   firebase_core: ^1.19.2
   firebase_crashlytics: ^2.8.5
   #endregion
+
+  file: ^6.1.4
 
 dev_dependencies:
   flutter_test:
