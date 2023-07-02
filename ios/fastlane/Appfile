@@ -1,5 +1,5 @@
-app_identifier("com.radiolifelabs") # The bundle identifier of your app
-apple_id("denis@radiolife.co") # Your Apple email address
+app_identifier("co.radiolife") # The bundle identifier of your app
+apple_id("rogerio@radiolifelabs.com") # Your Apple email address
 
 itc_team_id("123018723") # App Store Connect Team ID
 team_id("X885W3MXVX") # Developer Portal Team ID
