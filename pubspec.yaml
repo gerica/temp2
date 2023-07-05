@@ -52,9 +52,9 @@ dependencies:
   #endregion
 
   #region Device
-  qr_code_scanner: ^1.0.0
+#  qr_code_scanner: ^1.0.0
   wifi_iot: ^0.3.16
-  connectivity_plus: ^2.3.5
+#  connectivity_plus: ^2.3.5
   app_settings: ^4.1.8
   wifi_scan: ^0.3.0
   #endregion
@@ -107,6 +107,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+#  fastlane: ^2.4.1
 #  build_runner: ^2.2.0
 #  artemis: ^6.18.4
 #  injectable_generator: ^1.5.4

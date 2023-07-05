@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:collection/src/iterable_extensions.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+// import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:radio_life/app/data/model/app_exception.dart';
 import 'package:radio_life/app/data/model/resource.dart';
@@ -69,8 +69,8 @@ class DeviceRepository {
     );
   }
 
-  @override
-  Stream<ConnectivityResult> get checkConnectivity => Connectivity().onConnectivityChanged;
+  // @override
+  // Stream<ConnectivityResult> get checkConnectivity => Connectivity().onConnectivityChanged;
 
   @override
   Future<String?> get getWifiSSID async {

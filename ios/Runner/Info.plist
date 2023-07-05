@@ -25,9 +25,21 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Radiolife require access your bluetooth to connect to the device</string>
+	<string>Radiolife needs BLE permission to scan new devices</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Radiolife require access your bluetooth to connect to the device</string>
+	<string>Radiolife needs BLE permission to scan new devices</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Radiolife needs access to camera</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Radiolife needs location permission</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Radiolife needs location permission</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Radiolife needs location permission</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Radiolife needs access to microphone</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Radiolife needs access to library</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -47,31 +59,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-    <key>UIUserInterfaceStyle</key>
-    <string>Light</string>
-    <key>UIViewControllerBasedStatusBarAppearance</key>
-    <true/>
-    <key>io.flutter.embedded_views_preview</key>
-    <true/>
-    <key>NSCameraUsageDescription</key>
-    <string>This app needs camera access to scan QR codes</string>
-    <key>NSBluetoothAlwaysUsageDescription</key>
-    <string>Radiolife needs BLE permission to scan new devices</string>
-    <key>NSBluetoothPeripheralUsageDescription</key>
-    <string>Radiolife needs BLE permission to scan new devices</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Radiolife needs location permission</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Radiolife needs location permission</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Radiolife needs location permission</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Radiolife needs access to library</string>
-    <key>NSCameraUsageDescription</key>
-    <string>Radiolife needs access to camera</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Radiolife needs access to microphone</string>
+	<true/>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 </dict>
 </plist>
