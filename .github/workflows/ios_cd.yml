@@ -3,33 +3,30 @@ name: Distribute iOS App
 on:
   push:
     branches:
-      - "ios-beta"
+      - "ios_release"
 
 jobs:
   deploy_ios:
     name: Deploy beta build to TestFlight
     runs-on: macOS-latest
     steps:
-
-      #     - name: Show MATCH PASSWORD
-      #       run: echo ${{ secrets.MATCH_PASSWORD }} | sed 's/./& /g'
-
       - name: Checkout code from ref
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.ref }}
-      - name: Run Flutter tasks
-        uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '3.0.5'
+        uses: actions/checkout@v3
 
+      - name: Run Flutter tasks
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
       - run: flutter pub get
       - run: flutter build ios --release --no-codesign
+
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v1.4.0
         with:
           lane: closed_beta
           subdirectory: ios
+
         env:
           APP_STORE_CONNECT_TEAM_ID: '${{ secrets.APP_STORE_CONNECT_TEAM_ID }}'
           DEVELOPER_APP_ID: '${{ secrets.DEVELOPER_APP_ID }}'
@@ -39,7 +36,10 @@ jobs:
           #FASTLANE_PASSWORD: '${{ secrets.FASTLANE_PASSWORD }}'
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: '${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}'
           MATCH_PASSWORD: '${{ secrets.MATCH_PASSWORD }}'
-          GIT_AUTHORIZATION: '${{ secrets.GIT_AUTHORIZATION }}'
+          GIT_AUTHORIZATION: '${{ secrets.GIT_AUTHORIZATION_NEW }}'
           PROVISIONING_PROFILE_SPECIFIER: '${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}'
           TEMP_KEYCHAIN_PASSWORD: '${{ secrets.TEMP_KEYCHAIN_PASSWORD }}'
           TEMP_KEYCHAIN_USER: '${{ secrets.TEMP_KEYCHAIN_USER }}'
+          APPLE_ISSUER_ID: '${{ secrets.APPLE_ISSUER_ID }}'
+          APPLE_KEY_ID: '${{ secrets.APPLE_KEY_ID }}'
+          APPLE_KEY_CONTENT: '${{ secrets.APPLE_KEY_CONTENT }}'
