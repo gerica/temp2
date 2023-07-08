@@ -1,7 +1,14 @@
-app_identifier("co.radiolife") # The bundle identifier of your app
-apple_id("rogerio@radiolifelabs.com") # Your Apple Developer Portal username
+app_identifier(ENV["DEVELOPER_APP_IDENTIFIER"])  # The bundle identifier of your app
+apple_id(ENV["FASTLANE_APPLE_ID"]) # Your Apple Developer Portal username
 
-itc_team_id("123018723") # App Store Connect Team ID
-team_id("X885W3MXVX") # Developer Portal Team ID
-itc_provider_id("X885W3MXVX")
-itc_provider("X885W3MXVX")
+itc_team_id(ENV["APP_STORE_CONNECT_TEAM_ID"]) # App Store Connect Team ID
+team_id(ENV["DEVELOPER_PORTAL_TEAM_ID"]) # Developer Portal Team ID
+
+# app_identifier("co.radiolife")
+# apple_id("rogerio@radiolifelabs.com")
+
+# itc_team_id("123018723") # App Store Connect Team ID
+# team_id("X885W3MXVX") # Developer Portal Team ID
+#
+# itc_provider_id("X885W3MXVX")
+# itc_provider("X885W3MXVX")
