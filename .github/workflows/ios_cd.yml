@@ -13,6 +13,13 @@ jobs:
       - name: Checkout code from ref
         uses: actions/checkout@v3
 
+      - name: Setup SSH Keys and known_hosts
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+
       - name: Run Flutter tasks
         uses: subosito/flutter-action@v2
         with:
@@ -28,6 +35,8 @@ jobs:
           subdirectory: ios
 
         env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          run: ./fetch-deps.sh
           APP_STORE_CONNECT_TEAM_ID: '${{ secrets.APP_STORE_CONNECT_TEAM_ID }}'
           DEVELOPER_APP_ID: '${{ secrets.DEVELOPER_APP_ID }}'
           DEVELOPER_APP_IDENTIFIER: '${{ secrets.DEVELOPER_APP_IDENTIFIER }}'
@@ -43,3 +52,4 @@ jobs:
           APPLE_ISSUER_ID: '${{ secrets.APPLE_ISSUER_ID }}'
           APPLE_KEY_ID: '${{ secrets.APPLE_KEY_ID }}'
           APPLE_KEY_CONTENT: '${{ secrets.APPLE_KEY_CONTENT }}'
+          SSH_PRIVATE_KEY: '${{ secrets.SSH_PRIVATE_KEY }}'
