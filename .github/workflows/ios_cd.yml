@@ -6,20 +6,30 @@ on:
       - "ios_release"
 
 jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup SSH Keys and known_hosts
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+
+      - name: Some task that fetches dependencies
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: ./fetch-deps.sh
   deploy_ios:
     name: Deploy beta build to TestFlight
     runs-on: macOS-latest
     steps:
       - name: Checkout code from ref
         uses: actions/checkout@v3
-
-      - name: Setup SSH Keys and known_hosts
-      - uses: webfactory/ssh-agent@v0.7.0
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: Run Flutter tasks
         uses: subosito/flutter-action@v2
