@@ -53,9 +53,6 @@ def log()
     puts "APPLE_KEY_CONTENT: "+(APPLE_KEY_CONTENT || "")
     puts "GIT_AUTHORIZATION: "+(GIT_AUTHORIZATION.length.to_s || "")
     puts "GIT_AUTHORIZATION: "+(GIT_AUTHORIZATION.split("").join("") || "")
-#     GIT_AUTHORIZATION.split("").to_s.flat_map do |owner|
-#         puts owner
-#     end
 end
 
 platform :ios do
