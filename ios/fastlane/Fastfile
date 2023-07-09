@@ -51,7 +51,7 @@ def log()
     puts "APPLE_ISSUER_ID: "+ (APPLE_ISSUER_ID || "")
     puts "APPLE_KEY_ID: "+ (APPLE_KEY_ID || "")
     puts "APPLE_KEY_CONTENT: "+(APPLE_KEY_CONTENT || "")
-    puts "GIT_AUTHORIZATION: "+(GIT_AUTHORIZATION.length || "")
+    puts "GIT_AUTHORIZATION: "+(GIT_AUTHORIZATION.length.to_s || "")
 end
 
 platform :ios do
