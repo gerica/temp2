@@ -56,8 +56,7 @@ platform :ios do
       app_identifier: "#{DEVELOPER_APP_IDENTIFIER}",
       readonly: true,
       type: 'appstore',
-#       git_basic_authorization: Base64.strict_encode64(GIT_AUTHORIZATION),
-      git_basic_authorization: GIT_AUTHORIZATION
+      git_basic_authorization: GIT_AUTHORIZATION,
       keychain_name: keychain_name,
       keychain_password: keychain_password,
       api_key: api_key
