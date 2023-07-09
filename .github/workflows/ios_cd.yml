@@ -10,16 +10,16 @@ jobs:
     name: Deploy beta build to TestFlight
     runs-on: macOS-latest
     steps:
-      - name: Checkout code from ref
-        uses: actions/checkout@v3
+#      - name: Checkout code from ref
+#        uses: actions/checkout@v3
 
-      - name: Run Flutter tasks
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          architecture: x64
-      - run: flutter pub get
-      - run: flutter build ios --release --no-codesign
+#      - name: Run Flutter tasks
+#        uses: subosito/flutter-action@v2
+#        with:
+#          channel: 'stable'
+#          architecture: x64
+#      - run: flutter pub get
+#      - run: flutter build ios --release --no-codesign
 
       - name: Checkout repository
         uses: actions/checkout@v1
