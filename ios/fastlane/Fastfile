@@ -1,6 +1,5 @@
 default_platform(:ios)
 
-
 DEVELOPER_APP_ID = ENV["DEVELOPER_APP_ID"]
 DEVELOPER_APP_IDENTIFIER = ENV["DEVELOPER_APP_IDENTIFIER"]
 PROVISIONING_PROFILE_SPECIFIER = ENV["PROVISIONING_PROFILE_SPECIFIER"]
@@ -32,12 +31,24 @@ def ensure_temp_keychain(name, password)
   create_temp_keychain(name, password)
 end
 
+def log()
+    puts "DEVELOPER_APP_ID: "+DEVELOPER_APP_ID
+    puts "DEVELOPER_APP_IDENTIFIER: "+DEVELOPER_APP_IDENTIFIER
+    puts "PROVISIONING_PROFILE_SPECIFIER: "+PROVISIONING_PROFILE_SPECIFIER
+    puts "TEMP_KEYCHAIN_USER: "+TEMP_KEYCHAIN_USER
+    puts "APPLE_ISSUER_ID: "+APPLE_ISSUER_ID
+    puts "APPLE_KEY_ID: "+APPLE_KEY_ID
+    puts "APPLE_KEY_CONTENT: "+APPLE_KEY_CONTENT
+    puts "DEVELOPER_APP_IDENTIFIER: "+DEVELOPER_APP_IDENTIFIER
+    puts "GIT_AUTHORIZATION: "+GIT_AUTHORIZATION
+end
+
 platform :ios do
   lane :closed_beta do
     keychain_name = TEMP_KEYCHAIN_USER
     keychain_password = TEMP_KEYCHAIN_PASSWORD
     ensure_temp_keychain(keychain_name, keychain_password)
-
+    log()
     api_key = app_store_connect_api_key(
       key_id: APPLE_KEY_ID,
       issuer_id: APPLE_ISSUER_ID,
@@ -56,7 +67,7 @@ platform :ios do
       app_identifier: "#{DEVELOPER_APP_IDENTIFIER}",
       readonly: true,
       type: 'appstore',
-      git_basic_authorization: GIT_AUTHORIZATION,
+      git_basic_authorization: Base64.strict_encode64(GIT_AUTHORIZATION),
       keychain_name: keychain_name,
       keychain_password: keychain_password,
       api_key: api_key
@@ -86,4 +97,8 @@ platform :ios do
 
     delete_temp_keychain(keychain_name)
   end
+#   lane :test do
+#     DEVELOPER_APP_IDENTIFIER = "123"
+#         puts "DEVELOPER_APP_IDENTIFIER: "+DEVELOPER_APP_IDENTIFIER
+#    end
 end
