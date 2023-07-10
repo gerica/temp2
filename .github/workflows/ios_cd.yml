@@ -7,22 +7,23 @@ on:
 
 jobs:
   deploy_ios:
-    name: Deploy beta build to TestFlight
+    name: Deploying to Testflight
     runs-on: macOS-latest
-    steps:
-      - name: Checkout code from ref
-        uses: actions/checkout@v3
-#
-      - name: Run Flutter tasks
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          architecture: x64
-      - run: flutter pub get
-      - run: flutter build ios --release --no-codesign
 
-#      - name: Checkout repository
-#        uses: actions/checkout@v1
+    steps:
+#      - name: Checkout code from ref
+#        uses: actions/checkout@v3
+##
+#      - name: Run Flutter tasks
+#        uses: subosito/flutter-action@v2
+#        with:
+#          channel: 'stable'
+#          architecture: x64
+#      - run: flutter pub get
+#      - run: flutter build ios --release --no-codesign
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
 
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v1.4.0
