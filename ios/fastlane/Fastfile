@@ -17,6 +17,7 @@ APPLE_KEY_ID = ENV["APPLE_KEY_ID"]
 APPLE_KEY_CONTENT = ENV["APPLE_KEY_CONTENT"]
 APPLE_KEY_FILEPATH = ENV["APPLE_KEY_FILEPATH"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
+GITHUB_WORKSPACE = ENV["GITHUB_WORKSPACE"]
 
 default_platform(:ios)
 
@@ -33,6 +34,7 @@ platform :ios do
   end
 
   lane :release do
+   puts "GITHUB_WORKSPACE: "+ (GITHUB_WORKSPACE || "")
     api_key = app_store_connect_api_key(
       key_id:  APPLE_KEY_ID,
       issuer_id: APPLE_ISSUER_ID,
@@ -47,7 +49,7 @@ platform :ios do
     upload_to_testflight(
       api_key: api_key,
       skip_submission: true,
-      ipa: "radiolife.ipa",
+      ipa: GITHUB_WORKSPACE+"/ios/fastlane/radiolife.ipa",
       skip_waiting_for_build_processing: true,
     )
   end

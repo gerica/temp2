@@ -11,8 +11,8 @@ jobs:
     runs-on: macOS-latest
 
     steps:
-      #      - name: Checkout code from ref
-      #        uses: actions/checkout@v3
+      - name: Checkout code from ref
+        uses: actions/checkout@v3
       ##
       #      - name: Run Flutter tasks
       #        uses: subosito/flutter-action@v2
@@ -22,17 +22,8 @@ jobs:
       #      - run: flutter pub get
       #      - run: flutter build ios --release --no-codesign
 
-      - name: Checkout repository
-        uses: actions/checkout@v1
-
-      - name: copy file
-        uses: canastro/copy-file-action@master
-        with:
-          source: "../ios/fastlane/radio_life.ipa"
-          target: "radio_life.ipa"
-
       - name: Deploy iOS Beta to TestFlight via Fastlane
-        uses: maierj/fastlane-action@v1.4.0
+        uses: maierj/fastlane-action@v3.0.0
         with:
           lane: release
           subdirectory: ios
@@ -53,3 +44,4 @@ jobs:
           APPLE_KEY_ID: '${{ secrets.APPLE_KEY_ID }}'
           APPLE_KEY_CONTENT: '${{ secrets.APPLE_KEY_CONTENT }}'
           APPLE_KEY_FILEPATH: '${{ secrets.APPLE_KEY_FILEPATH }}'
+          GITHUB_WORKSPACE:  '${{ github.workspace }}'
