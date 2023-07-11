@@ -17,30 +17,32 @@ APPLE_KEY_ID = ENV["APPLE_KEY_ID"]
 APPLE_KEY_CONTENT = ENV["APPLE_KEY_CONTENT"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
 
+default_platform(:ios)
+
 platform :ios do
-  desc "Push a new beta build to TestFlight"
-  lane :beta do
-    if is_ci
-      create_keychain(
-        name: ENV['TEMP_KEYCHAIN_USER'],
-        password: ENV["TEMP_KEYCHAIN_PASSWORD"],
-        default_keychain: true,
-        unlock: true,
-        timeout: 3600,
-        lock_when_sleeps: false
-      )
-    end
+  desc "Push a new build to TestFlight"
+  lane :deploy do
+
+    setup_ci if is_ci
+
+    cocoapods(clean_install: true)
+
     match(
       type: "appstore",
       readonly: is_ci,
-      keychain_name: ENV['TEMP_KEYCHAIN_USER'],
-      keychain_password: ENV["TEMP_KEYCHAIN_PASSWORD"],
     )
+
     build_app(
       workspace: "Runner.xcworkspace",
       scheme: "Runner",
-      export_method: "app-store"
+      archive_path: "../build/ios/Runner.xcarchive",
+      output_directory: "../build/ios/Runner",
     )
-    upload_to_testflight
+
+    upload_to_testflight(
+      api_key_path: "./app_store_connect.json",
+      ipa: '../build/ios/Runner/Runner.ipa',
+      skip_waiting_for_build_processing: true,
+    )
   end
 end

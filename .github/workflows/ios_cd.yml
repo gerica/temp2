@@ -6,44 +6,50 @@ on:
       - "ios_release"
 
 jobs:
-  deploy:
+  ios:
+    name: Deploying to ios
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_11.3.app/Contents/Developer'
-      - name: Bundle install
-        run: cd ./ios && bundle install
-      - name: Setup JDK
-        uses: actions/setup-java@v1
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          java-version: "12.x"
-      - name: Setup flutter
-        uses: subosito/flutter-action@v1
+          channel: stable
+          cache: true
+
+      - name: Set up App Store Connect
+        run: |
+          echo "${{ secrets.APP_STORE_CONNECT }}" | base64 --decode > ios/app_store_connect.json
+
+      - name: Setup Fastlane
+        uses: ruby/setup-ruby@v1
         with:
-          flutter-version: "3.10.5"
-          channel: "stable"
-      - name: Install tools
+          ruby-version: 2.6
+          rubygems: latest
+
+      - name: Build and Deploy
         run: |
           flutter pub get
-          cd ./ios && pod install
-      - name: Deploy to TestFlight
-        run: |
-          cd ./ios && bundle exec fastlane beta
+          make deploy-ios
         env:
+          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
+          MATCH_USERNAME: ${{ secrets.MATCH_USERNAME }}
+#          CI: ${{ secrets.CI }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.GIT_AUTHORIZATION }}
           APP_STORE_CONNECT_TEAM_ID: '${{ secrets.APP_STORE_CONNECT_TEAM_ID }}'
           DEVELOPER_APP_ID: '${{ secrets.DEVELOPER_APP_ID }}'
           DEVELOPER_APP_IDENTIFIER: '${{ secrets.DEVELOPER_APP_IDENTIFIER }}'
           DEVELOPER_PORTAL_TEAM_ID: '${{ secrets.DEVELOPER_PORTAL_TEAM_ID }}'
           FASTLANE_USER: '${{ secrets.FASTLANE_USER }}'
-          #FASTLANE_PASSWORD: '${{ secrets.FASTLANE_PASSWORD }}'
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: '${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}'
           MATCH_PASSWORD: '${{ secrets.MATCH_PASSWORD }}'
           GIT_AUTHORIZATION: '${{ secrets.GIT_AUTHORIZATION }}'
           PROVISIONING_PROFILE_SPECIFIER: '${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}'
           TEMP_KEYCHAIN_PASSWORD: '${{ secrets.TEMP_KEYCHAIN_PASSWORD }}'
           TEMP_KEYCHAIN_USER: '${{ secrets.TEMP_KEYCHAIN_USER }}'
-          APPLE_ISSUER_ID: '${{ secrets.APPLE_ISSUER_ID }}'
-          APPLE_KEY_ID: '${{ secrets.APPLE_KEY_ID }}'
-          APPLE_KEY_CONTENT: '${{ secrets.APPLE_KEY_CONTENT }}'
+          APP_STORE_CONNECT_API_KEY_ISSUER_ID: '${{ secrets.APPLE_ISSUER_ID }}'
+          APP_STORE_CONNECT_API_KEY_KEY_ID: '${{ secrets.APPLE_KEY_ID }}'
+          APP_STORE_CONNECT_API_KEY_KEY: '${{ secrets.APPLE_KEY_CONTENT }}'
