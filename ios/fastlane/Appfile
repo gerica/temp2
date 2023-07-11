@@ -6,18 +6,12 @@ apple_id(ENV["FASTLANE_APPLE_ID"])
 itc_team_id(ENV["APP_STORE_CONNECT_TEAM_ID"])
 # Developer Portal Team ID
 team_id(ENV["DEVELOPER_PORTAL_TEAM_ID"])
+itc_provider_id(ENV["DEVELOPER_PORTAL_TEAM_ID"])
+itc_provider(ENV["DEVELOPER_PORTAL_TEAM_ID"])
 
-# app_identifier(ENV["DEVELOPER_APP_IDENTIFIER"])  # The bundle identifier of your app
-# apple_id(ENV["FASTLANE_APPLE_ID"]) # Your Apple Developer Portal username
-#
-# itc_team_id(ENV["APP_STORE_CONNECT_TEAM_ID"]) # App Store Connect Team ID
-# team_id(ENV["DEVELOPER_PORTAL_TEAM_ID"]) # Developer Portal Team ID
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
 
-# app_identifier("co.radiolife")
-# apple_id("rogerio@radiolifelabs.com")
-
-# itc_team_id("123018723") # App Store Connect Team ID
-# team_id("X885W3MXVX") # Developer Portal Team ID
-#
-# itc_provider_id("X885W3MXVX")
-# itc_provider("X885W3MXVX")
+ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
+ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"]="anfx-ovxi-imau-ezcv"
+ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-asc_provider X885W3MXVX"

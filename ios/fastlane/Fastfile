@@ -20,29 +20,13 @@ GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
 default_platform(:ios)
 
 platform :ios do
-  desc "Push a new build to TestFlight"
-  lane :deploy do
-
-    setup_ci if is_ci
-
-    cocoapods(clean_install: true)
-
-    match(
-      type: "appstore",
-      readonly: is_ci,
-    )
-
-    build_app(
-      workspace: "Runner.xcworkspace",
-      scheme: "Runner",
-      archive_path: "../build/ios/Runner.xcarchive",
-      output_directory: "../build/ios/Runner",
-    )
-
+  desc "Push a new beta build to TestFlight"
+  lane :closed_beta do
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
     upload_to_testflight(
-      api_key_path: "./app_store_connect.json",
-      ipa: '../build/ios/Runner/Runner.ipa',
-      skip_waiting_for_build_processing: true,
+#       app_identifier: "co.radiolife",
+      app_identifier: "#{DEVELOPER_APP_IDENTIFIER}",
+      itc_provider: "#{DEVELOPER_PORTAL_TEAM_ID}",
     )
   end
 end
