@@ -60,8 +60,8 @@ platform :ios do
     match(
       app_identifier: "#{DEVELOPER_APP_IDENTIFIER}",
       readonly: true,
-#       type: 'appstore',
-      type: 'development',
+      type: 'appstore',
+#       type: 'development',
       git_basic_authorization: GIT_AUTHORIZATION,
       keychain_name: keychain_name,
       keychain_password: keychain_password,
@@ -73,7 +73,8 @@ platform :ios do
       configuration: "Release",
       workspace: "Runner.xcworkspace",
       scheme: "Runner",
-      export_method: "app-store",
+#       export_method: "app-store",
+      export_method: "development",
       export_options: {
         provisioningProfiles: {
             DEVELOPER_APP_ID => PROVISIONING_PROFILE_SPECIFIER
