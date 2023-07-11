@@ -60,7 +60,8 @@ platform :ios do
     match(
       app_identifier: "#{DEVELOPER_APP_IDENTIFIER}",
       readonly: true,
-      type: 'appstore',
+#       type: 'appstore',
+      type: 'development',
       git_basic_authorization: GIT_AUTHORIZATION,
       keychain_name: keychain_name,
       keychain_password: keychain_password,
