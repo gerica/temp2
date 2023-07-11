@@ -15,6 +15,7 @@ TEMP_KEYCHAIN_PASSWORD = "test"
 APPLE_ISSUER_ID = ENV["APPLE_ISSUER_ID"]
 APPLE_KEY_ID = ENV["APPLE_KEY_ID"]
 APPLE_KEY_CONTENT = ENV["APPLE_KEY_CONTENT"]
+APPLE_KEY_FILEPATH = ENV["APPLE_KEY_FILEPATH"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
 
 default_platform(:ios)
@@ -24,9 +25,27 @@ platform :ios do
   lane :closed_beta do
     build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
     upload_to_testflight(
+      skip_waiting_for_build_processing: true,
 #       app_identifier: "co.radiolife",
       app_identifier: "#{DEVELOPER_APP_IDENTIFIER}",
       itc_provider: "#{DEVELOPER_PORTAL_TEAM_ID}",
+    )
+  end
+
+  lane :release do
+    api_key = app_store_connect_api_key(
+      key_id:  "#{APPLE_KEY_ID}",
+      issuer_id: "#{APPLE_ISSUER_ID}",
+      key_filepath: "#{APPLE_KEY_FILEPATH}",
+      duration: 1200, # optional (maximum 1200)
+      in_house: false # optional but may be required if using match/sigh
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      skip_submission: true,
+#       ipa: "#{ipa_path}",
+      skip_waiting_for_build_processing: true,
     )
   end
 end
