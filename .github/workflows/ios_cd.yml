@@ -25,6 +25,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
+      - name: copy file
+        uses: canastro/copy-file-action@master
+        with:
+          source: "../ios/fastlane/radio_life.ipa"
+          target: "radio_life.ipa"
+
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v1.4.0
         with:
