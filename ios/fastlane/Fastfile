@@ -34,9 +34,9 @@ platform :ios do
 
   lane :release do
     api_key = app_store_connect_api_key(
-      key_id:  "#{APPLE_KEY_ID}",
-      issuer_id: "#{APPLE_ISSUER_ID}",
-      key_filepath: "#{APPLE_KEY_FILEPATH}",
+      key_id:  APPLE_KEY_ID,
+      issuer_id: APPLE_ISSUER_ID,
+      key_filepath: APPLE_KEY_FILEPATH,
       duration: 1200, # optional (maximum 1200)
       in_house: false # optional but may be required if using match/sigh
     )
