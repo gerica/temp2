@@ -206,6 +206,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		2FF6BC67FF5F1368C2037E7A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -275,6 +276,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
+			showEnvVarsInLog = 0;
 		};
 		B779E210268F912E00834AF5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
