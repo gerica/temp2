@@ -1,8 +1,17 @@
-app_identifier(ENV["DEVELOPER_APP_IDENTIFIER"])  # The bundle identifier of your app
-apple_id(ENV["FASTLANE_APPLE_ID"]) # Your Apple Developer Portal username
+# The bundle identifier of your app
+app_identifier(ENV["DEVELOPER_APP_IDENTIFIER"])
+# Your Apple email address
+apple_id(ENV["FASTLANE_APPLE_ID"])
+# App Store Connect Team ID
+itc_team_id(ENV["APP_STORE_CONNECT_TEAM_ID"])
+# Developer Portal Team ID
+team_id(ENV["DEVELOPER_PORTAL_TEAM_ID"])
 
-itc_team_id(ENV["APP_STORE_CONNECT_TEAM_ID"]) # App Store Connect Team ID
-team_id(ENV["DEVELOPER_PORTAL_TEAM_ID"]) # Developer Portal Team ID
+# app_identifier(ENV["DEVELOPER_APP_IDENTIFIER"])  # The bundle identifier of your app
+# apple_id(ENV["FASTLANE_APPLE_ID"]) # Your Apple Developer Portal username
+#
+# itc_team_id(ENV["APP_STORE_CONNECT_TEAM_ID"]) # App Store Connect Team ID
+# team_id(ENV["DEVELOPER_PORTAL_TEAM_ID"]) # Developer Portal Team ID
 
 # app_identifier("co.radiolife")
 # apple_id("rogerio@radiolifelabs.com")
