@@ -53,4 +53,49 @@ platform :ios do
       skip_waiting_for_build_processing: true,
     )
   end
+
+  desc "Deploy Production and Staging to TestFlight"
+    lane :deploy_all_to_testflight do
+      # =======================================================
+      # Step 0: If running on the CICD we need to create a custom keychain
+      if ENV['CI']
+        @api_key = app_store_connect_api_key(
+          key_id: APPLE_KEY_ID,
+          issuer_id: APPLE_KEY_CONTENT,
+          key_content: APPLE_KEY_FILEPATH,
+          is_key_content_base64: true,
+          duration: 1200,
+          in_house: false
+        )
+        setup_ci
+      end
+
+      # =======================================================
+      # Step 1: Increment the build number of this deploy
+    #       increment_build_number({
+    #         xcodeproj: "my_app.xcodeproj",
+    #         build_number: latest_testflight_build_number({ app_identifier: "br.com.my_company.my_app", api_key: @api_key }) + 1
+    #       })
+
+      # =======================================================
+      # Step 2: Attempt Deploy
+      # Sync the provisioning profiles
+      sync_code_signing(type: "appstore", app_identifier: DEVELOPER_APP_IDENTIFIER)
+      # Build the app
+      build_app(
+        workspace: "Runner.xcworkspace",
+        configuration: 'Release',
+        export_options: {
+          provisioningProfiles: {
+            DEVELOPER_APP_ID => PROVISIONING_PROFILE_SPECIFIER
+          }
+        }
+      )
+      # Upload the build to testflight
+      upload_to_testflight(
+        skip_waiting_for_build_processing: true,
+        api_key: @api_key
+      )
+    end
+
 end

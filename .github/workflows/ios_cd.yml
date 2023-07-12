@@ -21,16 +21,33 @@ jobs:
       #          architecture: x64
       #      - run: flutter pub get
       #      - run: flutter build ios --release --no-codesign
-      - uses: ruby/setup-ruby@v1
+#      - uses: ruby/setup-ruby@v1
+#        with:
+#          ruby-version: '3.0'
+#          bundler-cache: true
+#      - name: Deploy iOS to TestFlight via Fastlane
+#        uses: maierj/fastlane-action@v1.4.0
+##        uses: maierj/fastlane-action@v3.0.0
+#        with:
+#          lane: release
+#          subdirectory: ios
+      # Restore cache for pod (speed up)
+      - uses: actions/cache@v2
         with:
-          ruby-version: '3.0'
-          bundler-cache: true
-      - name: Deploy iOS to TestFlight via Fastlane
-        uses: maierj/fastlane-action@v1.4.0
-#        uses: maierj/fastlane-action@v3.0.0
+          path: ./ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Install iOS Dependencies
+        run: pod install
+        working-directory: ./ios
+
+      - name: Compile and Upload
+        uses: maierj/fastlane-action@v2.2.0
         with:
-          lane: release
-          subdirectory: ios
+          lane: 'deploy_all_to_testflight'
+          subdirectory: 'ios'
         env:
           APP_STORE_CONNECT_TEAM_ID: '${{ secrets.APP_STORE_CONNECT_TEAM_ID }}'
           DEVELOPER_APP_ID: '${{ secrets.DEVELOPER_APP_ID }}'
@@ -49,3 +66,7 @@ jobs:
           APPLE_KEY_CONTENT: '${{ secrets.APPLE_KEY_CONTENT }}'
           APPLE_KEY_FILEPATH: '${{ secrets.APPLE_KEY_FILEPATH }}'
           GITHUB_WORKSPACE:  '${{ github.workspace }}'
+          CI: true
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.GIT_AUTHORIZATION }}
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
