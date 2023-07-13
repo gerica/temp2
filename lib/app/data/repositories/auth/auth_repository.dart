@@ -28,8 +28,9 @@ class AuthRepository {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
-              ),
-          (data) => data);
+              ), (data) {
+        return data['userRegister'];
+      });
 
   @override
   Future setDataAuthLocal(AuthEntity authEntity) async {

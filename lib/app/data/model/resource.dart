@@ -48,6 +48,14 @@ class Resource<T> {
 
           final _errorMapped = _errorMapper(result.exception);
           print(result.exception.toString());
+
+          if (_errorMapped.description != null) {
+            final tempDesc = _errorMapped.description!;
+
+            if (tempDesc.contains('User Already Exists!') || tempDesc.contains('Wrong Password!')) {
+              _errorMapped.title = 'Warning';
+            }
+          }
           return failed(
             error: _errorMapped,
             data: _errorMapped.data is T ? _errorMapped.data : null,

@@ -1,5 +1,5 @@
 class AppException<E> implements Exception {
-  final String? title;
+  String? title;
   final String? description;
   final E? exception;
   final dynamic data;
@@ -11,8 +11,7 @@ class AppException<E> implements Exception {
     this.description,
   });
 
-  factory AppException.generic() => AppException(
-      title: 'Error', description: 'Please try again later.');
+  factory AppException.generic() => AppException(title: 'Error', description: 'Please try again later.');
 
   @override
   String toString() => title ?? '';
