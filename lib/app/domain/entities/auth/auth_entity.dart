@@ -18,4 +18,8 @@ class AuthEntity {
     lastName = parsedJson['lastName'] == null ? null : parsedJson['lastName'] as String;
     confirmed = parsedJson['confirmed'] == null ? null : parsedJson['confirmed'] as bool;
   }
+
+  AuthEntity.fromJsonToken(Map<String, dynamic> mapJson) {
+    token = mapJson['userChangePassword'] == null ? null : mapJson['userChangePassword'] as String;
+  }
 }

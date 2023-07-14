@@ -65,7 +65,7 @@ class AuthRepository {
           oldPassword: currentPassword,
           newPassword: newPassword,
         ),
-        (data) => AuthEntity.fromJson(data),
+        (data) => AuthEntity.fromJsonToken(data),
       );
 
   @override

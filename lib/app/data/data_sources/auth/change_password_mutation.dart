@@ -18,7 +18,7 @@ class ChangePasswordMutation extends GraphqlBase {
   DocumentNode get document {
     return gql(r'''
          mutation UserChangePassword($oldPassword: String!, $newPassword: String!) {
-            userChangePassword(record:{oldPassword:$oldPassword, newPassword:newPassword})      
+            userChangePassword(record:{oldPassword:$oldPassword, newPassword:$newPassword})                  
          }
       ''');
   }
