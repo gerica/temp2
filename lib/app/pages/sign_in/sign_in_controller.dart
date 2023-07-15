@@ -37,7 +37,7 @@ class SignInController extends GetxController {
   // @override
   // void onInit() {
   //   super.onInit();
-  //   emailController.text = 'rogerio@radiolifelabs.com';
+  //   emailController.text = 'rogerio2@radiolifelabs.com';
   //   pwdController.text = '123';
   // }
   //endregion
@@ -47,8 +47,8 @@ class SignInController extends GetxController {
     if (!_isValid) return;
 
     AppUIBlock.blockUI(context: Get.context);
-
     final response = await _authRepository.signIn(email: emailController.text, password: pwdController.text);
+    AppUIBlock.unblock(context: Get.context);
 
     if (response.status == Status.success && response.data != null) {
       final authEntity = response.data;
