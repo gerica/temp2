@@ -1,6 +1,6 @@
 import 'dart:async';
 
-// import 'package:connectivity_plus/connectivity_plus.dart' as connectivity;
+import 'package:connectivity_plus/connectivity_plus.dart' as connectivity;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/data/enum/status.dart';
@@ -39,9 +39,9 @@ class ConfigureWiFiController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    // _streamSubscription = _deviceRepository.checkConnectivity.listen((event) {
-    //   _connectivityStateListener(event);
-    // });
+    _streamSubscription = _deviceRepository.checkConnectivity.listen((event) {
+      _connectivityStateListener(event);
+    });
 
     _updateWiFiSSID();
     final param = tryCast<AddNewDevice>(Get.arguments);
@@ -55,22 +55,22 @@ class ConfigureWiFiController extends BaseController {
     hidePassword.value = !hidePassword.value;
   }
 
-  // Future _connectivityStateListener(connectivity.ConnectivityResult result) async {
-  //   if (result == connectivity.ConnectivityResult.mobile) {
-  //     Get.appDialog(
-  //         pageChild: AppSimpleDialog(
-  //           title: S.current.wifiRequired,
-  //           message: S.current.pleaseConnectToAWifiNetworkToContinue,
-  //           icon: Icon(Icons.warning_amber_outlined, size: 50, color: AppColorScheme.primarySwatch),
-  //           onOkPressed: () {
-  //             //AppSettings.openWIFISettings();
-  //           },
-  //         ),
-  //         barrierDismissible: false);
-  //   } else {
-  //     _updateWiFiSSID();
-  //   }
-  // }
+  Future _connectivityStateListener(connectivity.ConnectivityResult result) async {
+    if (result == connectivity.ConnectivityResult.mobile) {
+      Get.appDialog(
+          pageChild: AppSimpleDialog(
+            title: S.current.wifiRequired,
+            message: S.current.pleaseConnectToAWifiNetworkToContinue,
+            icon: Icon(Icons.warning_amber_outlined, size: 50, color: AppColorScheme.primarySwatch),
+            onOkPressed: () {
+              //AppSettings.openWIFISettings();
+            },
+          ),
+          barrierDismissible: false);
+    } else {
+      _updateWiFiSSID();
+    }
+  }
 
   void openAppSettings() {
     Get.appDialog(
@@ -124,5 +124,4 @@ class ConfigureWiFiController extends BaseController {
   }
 
 //endregion
-
 }

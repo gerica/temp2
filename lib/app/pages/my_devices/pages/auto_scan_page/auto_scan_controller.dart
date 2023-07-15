@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_blue/flutter_blue.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
 import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/data/model/app_exception.dart';
@@ -78,10 +78,11 @@ class AutoScanController extends BaseController {
   }
 
   Future startScan() async {
-    // await _deviceRepository.stopBluetoothScan;
+    await _deviceRepository.stopBluetoothScan;
     state.value = Resource.loading(data: []);
     final values = await _deviceRepository.bluetoothConnected;
     state.value = Resource.success(data: values);
+    // _deviceRepository.temp();
     _deviceRepository.startBluetoothScan.listen(_scanDeviceResultsListener);
     _deviceRepository.isScanning.listen(_bluetoothScanningListener);
   }
@@ -121,6 +122,7 @@ class AutoScanController extends BaseController {
   }
 
   void _scanDeviceResultsListener(Resource<dynamic> resource) {
+    print('AutoScanController._scanDeviceResultsListener');
     final data = state.value.data ?? [];
     final result = resource.data;
     if (result != null) {

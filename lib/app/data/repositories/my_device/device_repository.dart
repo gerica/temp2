@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:collection/src/iterable_extensions.dart';
-// import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter_blue/flutter_blue.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:radio_life/app/data/model/app_exception.dart';
 import 'package:radio_life/app/data/model/resource.dart';
 import 'package:radio_life/app/pages/my_devices/model/configure_wifi_model.dart';
@@ -12,7 +12,8 @@ import 'package:wifi_iot/wifi_iot.dart';
 // ignore_for_file: slash_for_doc_comments, constant_identifier_names, implementation_imports
 
 class DeviceRepository {
-  final _flutterBlue = FlutterBlue.instance;
+  // final _flutterBlue = FlutterBlue.instance;
+  final _flutterBlue = FlutterBluePlus.instance;
   static const SERVICE_UUID = 'a091622c-8aad-11ec-a8a3-0242ac120002';
   static const CHARACTERISTIC_UUID_RX = '645b5776-77fa-4cb5-a547-fb969a5340e9';
   static const CHARACTERISTIC_UUID_TX = '109ed2ab-b946-49c2-a836-4afaeb848dd8';
@@ -30,6 +31,7 @@ class DeviceRepository {
 
   @override
   Stream<Resource<ScanResult>> get startBluetoothScan {
+    print('DeviceRepository.startBluetoothScan');
     return _flutterBlue.scan(timeout: const Duration(seconds: 30)).transform(
           StreamTransformer<ScanResult, Resource<ScanResult>>.fromHandlers(handleData: (data, sink) {
             sink.add(Resource.success(data: data));
@@ -69,8 +71,8 @@ class DeviceRepository {
     );
   }
 
-  // @override
-  // Stream<ConnectivityResult> get checkConnectivity => Connectivity().onConnectivityChanged;
+  @override
+  Stream<ConnectivityResult> get checkConnectivity => Connectivity().onConnectivityChanged;
 
   @override
   Future<String?> get getWifiSSID async {
@@ -91,7 +93,7 @@ class DeviceRepository {
     } on TimeoutException catch (e) {
       return Resource.failed(
           error: AppException(
-        title: 'Error to connect to device',
+        title: 'Error with connecting',
         description: e.message,
       ));
     }
