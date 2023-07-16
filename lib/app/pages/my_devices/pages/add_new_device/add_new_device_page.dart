@@ -87,7 +87,7 @@ class AddNewDevicePage extends GetView<AddNewDeviceController> {
             }
           },
           textInputAction: TextInputAction.next,
-          readOnly: FlavorConfig.isProduction(),
+          // readOnly: FlavorConfig.isProduction(), // comment because qrcode have problem
         ),
       ],
     );
