@@ -35,21 +35,60 @@ class _ListWifisWidgetpState extends State<ListWifisWidget> {
 
   bool get isStreaming => subscription != null;
 
-  Future<void> _getScannedResults(BuildContext context) async {
-    final result = await WiFiScan.instance.getScannedResults(askPermissions: true);
-    if (result.hasError) {
-      throw ArgumentError(
-        'handle error for values of GetScannedResultErrors '
-        '${result.error}',
-      );
-    }
-    if (result.value != null) {
-      final results = result.value!.where((e) {
-        return e.frequency < 3000;
-      }).toList();
-      setState(() => accessPoints = results);
+  Future<void> _startScan() async {
+    // check platform support and necessary requirements
+    final can = await WiFiScan.instance.canStartScan(askPermissions: true);
+    switch (can) {
+      case CanStartScan.yes:
+        // start full scan async-ly
+        final isScanning = await WiFiScan.instance.startScan();
+        if (isScanning) {
+          _getScannedResults();
+        }
+        //...
+        break;
+      // ... handle other cases of CanStartScan values
     }
   }
+
+  Future<void> _getScannedResults() async {
+    // check platform support and necessary requirements
+    final can = await WiFiScan.instance.canGetScannedResults(askPermissions: true);
+    switch (can) {
+      case CanGetScannedResults.yes:
+        {
+          // get scanned results
+          final listWifis = await WiFiScan.instance.getScannedResults();
+
+          if (listWifis.isNotEmpty) {
+            final results = listWifis.where((e) {
+              return e.frequency < 3000;
+            }).toList();
+            setState(() => accessPoints = results);
+          }
+          break;
+        }
+      default:
+        throw ArgumentError('handle error for values of GetScannedResultErrors ' '${can.name}');
+      // ... handle other cases of CanGetScannedResults values
+    }
+  }
+
+  // Future<void> _getScannedResults2(BuildContext context) async {
+  //   final result = await WiFiScan.instance.getScannedResults(askPermissions: true);
+  //   if (result.hasError) {
+  //     throw ArgumentError(
+  //       'handle error for values of GetScannedResultErrors '
+  //       '${result.error}',
+  //     );
+  //   }
+  //   if (result.value != null) {
+  //     final results = result.value!.where((e) {
+  //       return e.frequency < 3000;
+  //     }).toList();
+  //     setState(() => accessPoints = results);
+  //   }
+  // }
 
   void _stopListteningToScanResults() {
     subscription?.cancel();
@@ -60,7 +99,8 @@ class _ListWifisWidgetpState extends State<ListWifisWidget> {
   void initState() {
     super.initState();
     // fetch getScannedResults post first build
-    WidgetsBinding.instance.addPostFrameCallback((_) => _getScannedResults(context));
+    // WidgetsBinding.instance.addPostFrameCallback((_) => _getScannedResults(context));
+    WidgetsBinding.instance.addPostFrameCallback((_) => _startScan());
   }
 
   @override

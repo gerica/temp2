@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:collection/src/iterable_extensions.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:get/get.dart';
 import 'package:radio_life/app/data/model/app_exception.dart';
 import 'package:radio_life/app/data/model/resource.dart';
 import 'package:radio_life/app/pages/my_devices/model/configure_wifi_model.dart';
@@ -71,8 +70,8 @@ class DeviceRepository {
     );
   }
 
-  @override
-  Stream<ConnectivityResult> get checkConnectivity => Connectivity().onConnectivityChanged;
+  // @override
+  // Stream<ConnectivityResult> get checkConnectivity => Connectivity().onConnectivityChanged;
 
   @override
   Future<String?> get getWifiSSID async {
@@ -139,58 +138,71 @@ class DeviceRepository {
    */
   @override
   Future<Resource<String>> configureWifi(ConfigureWifiModel param) async {
+    // await _doBluetooth(param);
     final List<BluetoothService> services = await param.device.discoverServices();
 
     final service = services.firstWhereOrNull((s) => s.uuid.toString() == SERVICE_UUID);
     //
     if (service != null) {
-      final characteristics = service.characteristics;
-      final txCharacteristics = characteristics.firstWhere((c) => c.uuid.toString() == CHARACTERISTIC_UUID_TX);
-      final rxCharacteristics = characteristics.firstWhere((c) => c.uuid.toString() == CHARACTERISTIC_UUID_RX);
+      try {
+        final characteristics = service.characteristics;
 
-      await _writeToDevice(rxCharacteristics, CMD_CONNECT);
-      await _writeToDevice(rxCharacteristics, param.ssid);
-      await _writeToDevice(rxCharacteristics, param.password);
-      var result = '';
+        final rxCharacteristics = characteristics.firstWhere((c) => c.uuid.toString() == CHARACTERISTIC_UUID_RX);
+        final txCharacteristics = characteristics.firstWhere((c) => c.uuid.toString() == CHARACTERISTIC_UUID_TX);
 
-      var toContinue = true;
-      var optimistic = true;
-      var count = 0;
-      await Future.doWhile(() async {
-        if (optimistic) {
-          await Future.delayed(const Duration(seconds: 1));
-        } else {
-          await Future.delayed(const Duration(seconds: 5));
-        }
-        result = await _readFromDevice(txCharacteristics);
-        if (result == 'Conectado') {
+        await _writeToDevice(rxCharacteristics, CMD_CONNECT);
+        await _writeToDevice(rxCharacteristics, param.ssid);
+        await _writeToDevice(rxCharacteristics, param.password);
+        var result = '';
+
+        var toContinue = true;
+        var optimistic = true;
+        var count = 0;
+        await Future.doWhile(() async {
+          if (optimistic) {
+            await Future.delayed(const Duration(seconds: 1));
+          } else {
+            await Future.delayed(const Duration(seconds: 5));
+          }
+          result = await _readFromDevice(txCharacteristics);
+          if (result == 'Conectado') {
+            toContinue = false;
+          } else if (result.toLowerCase().contains('erro')) {
+            // result = 'Error. The ssid or password are wrong!';
+            toContinue = false;
+          }
+          count++;
+          if (count >= 10) {
+            optimistic = false;
+          }
+          return toContinue;
+        }).timeout(const Duration(seconds: 70), onTimeout: () {
+          result = 'Error. Timeout the cube doesn\'t respond!';
           toContinue = false;
-        } else if (result.toLowerCase().contains('erro')) {
-          result = 'Error. The ssid or password are wrong!';
-          toContinue = false;
-        }
-        count++;
-        if (count >= 10) {
-          optimistic = false;
-        }
-        return toContinue;
-      }).timeout(const Duration(seconds: 70), onTimeout: () {
-        result = 'Error. Timeout the cube doesn\'t respond!';
-        toContinue = false;
-      });
+        });
 
-      // await _writeToDevice(rxCharacteristics, CMD_RESET);
-      // final result = await _readFromDevice(txCharacteristics);
-      // print('DeviceRepositoryImplementation.configureWifi: $result');
+        // await _writeToDevice(rxCharacteristics, CMD_RESET);
+        // final result = await _readFromDevice(txCharacteristics);
+        // print('DeviceRepositoryImplementation.configureWifi: $result');
 
-      if (result.toLowerCase().contains('erro')) {
+        if (result.toLowerCase().contains('erro')) {
+          return Resource.failed(
+              error: AppException(
+            title: 'Error to configure wifi',
+            description: result,
+          ));
+        }
+        return Resource.success(data: result);
+        // ignore: avoid_catches_without_on_clauses
+      } catch (e) {
+        // e.printError(info: );
+        print(e.toString());
         return Resource.failed(
             error: AppException(
           title: 'Error to configure wifi',
-          description: result,
+          description: e.toString(),
         ));
       }
-      return Resource.success(data: result);
     }
     return Resource.failed(
         error: AppException(
@@ -205,6 +217,7 @@ class DeviceRepository {
   }
 
   Future<void> _writeToDevice(BluetoothCharacteristic charact, String command) async {
-    await charact.write(utf8.encode(command));
+    // print(utf8.encode(command));
+    await charact.write(utf8.encode(command), withoutResponse: true);
   }
 }

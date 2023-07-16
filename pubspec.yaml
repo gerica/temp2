@@ -54,9 +54,9 @@ dependencies:
   #region Device
 #  qr_code_scanner: ^1.0.0
   wifi_iot: ^0.3.16
-  connectivity_plus: ^4.0.1
+#  connectivity_plus: ^4.0.1
   app_settings: ^4.1.8
-  wifi_scan: ^0.3.0
+  wifi_scan: ^0.4.0+1
   #endregion
 
   #region Arch and State Management
