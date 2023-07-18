@@ -56,7 +56,7 @@ class DeviceCardWidget extends StatelessWidget {
                         _chip(model.type ?? ''),
                         _chip(model.locate ?? ''),
                         _chip(
-                          model.lastStatus ?? '',
+                          model.lastStatus ?? 'offline',
                           colorDecoration:
                               model.lastStatus == 'online' ? RadiolifeThemeColors.success : RadiolifeThemeColors.yellow,
                           fontWeight: FontWeight.bold,
