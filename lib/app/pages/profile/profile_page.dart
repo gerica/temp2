@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:layout/layout.dart';
 import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/helper/modal_helper.dart';
@@ -94,7 +94,7 @@ class ProfilePage extends GetView<ProfileController> {
                     ),
                     onTap: () {
                       Navigator.pop(context);
-                      // controller.getImage(ImageSource.camera);
+                      controller.getImage(ImageSource.camera);
                     },
                     title: Text(S.of(context).camera),
                   ),
@@ -113,7 +113,7 @@ class ProfilePage extends GetView<ProfileController> {
                     ),
                     onTap: () {
                       Navigator.pop(context);
-                      // controller.getImage(ImageSource.gallery);
+                      controller.getImage(ImageSource.gallery);
                     },
                     title: Text(S.of(context).gallery),
                   ),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:radio_life/app/data/enum/status.dart';
 import 'package:radio_life/app/data/model/app_exception.dart';
 import 'package:radio_life/app/data/repositories/auth/auth_repository.dart';
 import 'package:radio_life/app/data/repositories/user/user_repository.dart';
 import 'package:radio_life/app/domain/entities/user/user_entity.dart';
 import 'package:radio_life/app/domain/managers/user_manager.dart';
-// import 'package:image_picker/image_picker.dart';
 import 'package:radio_life/app/helper/dialog_helper.dart';
 import 'package:radio_life/app/pages/base_controller.dart';
 import 'package:radio_life/app/radio_life_app_routes.dart';
@@ -30,7 +30,6 @@ class ProfileController extends BaseController {
   final FocusNode firstNameFocus = FocusNode();
   final TextEditingController lastNameController = TextEditingController();
   final FocusNode lastNameFocus = FocusNode();
-  // final ImagePicker _imagePicker;
 
   final image = Rxn<io.File?>();
   final imageUrl = Rxn<String?>();
@@ -102,14 +101,15 @@ class ProfileController extends BaseController {
     }
   }
 
-  // Future getImage(ImageSource source) async {
-  //   final pickedFile = await _imagePicker.getImage(
-  //       source: source, preferredCameraDevice: CameraDevice.rear, imageQuality: 90, maxHeight: 500, maxWidth: 500);
-  //   if (pickedFile != null) {
-  //     file = io.File(pickedFile.path);
-  //     image.value = file;
-  //   }
-  // }
+  Future getImage(ImageSource source) async {
+    final ImagePicker picker = ImagePicker();
+    final pickedFile = await picker.pickImage(
+        source: source, preferredCameraDevice: CameraDevice.rear, imageQuality: 90, maxHeight: 500, maxWidth: 500);
+    if (pickedFile != null) {
+      file = io.File(pickedFile.path);
+      image.value = file;
+    }
+  }
 
   Future logout() async {
     _userManager.setLoggedIn(isLoggedIn: false);
@@ -127,5 +127,4 @@ class ProfileController extends BaseController {
   }
 
 //endregion
-
 }
