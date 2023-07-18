@@ -22,8 +22,11 @@ class UserRepository {
       );
 
   Future<Resource> updateUserProfile({required UserEntity user}) => Resource.asFuture(
-        () => _remoteDataSource.updateUserProfile(user: user),
-        (data) => UserEntity.fromJson(data),
+        () => _remoteDataSource.updateUserProfile(user: user), (data) => true,
+        // (data) {
+        //   print('UserRepository.updateUserProfile');
+        //   return UserEntity.fromJson(data);
+        // },
       );
 
   Future<void> saveUserId({required String id}) => _localDataSource.saveUserId(id);
