@@ -67,8 +67,11 @@ class AddNewDeviceController extends BaseController {
     // if (response.data!.status != null && response.data!.status == 'online') {
     //   Get.toNamed(Routes.confirmRegister, arguments: serialNumberController.text);
     // } else {
-    Get.toNamed(Routes.autoScanPage, arguments: serialNumberController.text);
     // }
+    // comment to skip configure device wi-fi
+    // Get.toNamed(Routes.autoScanPage, arguments: serialNumberController.text);
+    // jump direct to register new device
+    Get.toNamed(Routes.confirmRegister, arguments: serialNumberController.text);
   }
 
   bool get _isValid {
